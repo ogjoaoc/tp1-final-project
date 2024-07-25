@@ -1,2 +1,2 @@
-# tp1-labsaude++
+# LabSaúde++
 Trabalho final da disciplina de técnicas de programação 1.
