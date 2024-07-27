@@ -4,6 +4,12 @@
  */
 package telas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author joaoc
@@ -13,11 +19,25 @@ public class telaInicial extends javax.swing.JFrame {
     /**
      * Creates new form telaInicial
      */
+    
     public telaInicial() {
         initComponents();
-        setSize(400, 300);
         setResizable(false); // Desativa o redimensionamento (incluindo o botão de maximizar)
         setVisible(true);
+        Image icon = new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage();
+        setIconImage(icon);
+        // Função do Enter
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                   btnLoginActionPerformed(null); // Aciona o evento do botão
+                }
+            }
+        });
+        // Torna a tela visível e pronta para receber eventos de teclado
+        setFocusable(true);
+        requestFocusInWindow();
     }
 
     /**
@@ -29,29 +49,41 @@ public class telaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnLogin = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LabSaúde++");
         setBackground(new java.awt.Color(255, 204, 204));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLogin.setText("Login");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabel1.setText("Presione ENTER para iniciar o sistema.");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 510, -1));
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/telaInicial.png"))); // NOI18N
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 910, 580));
+
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 130, 40));
-
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/telaInicial.png"))); // NOI18N
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, 920, 580));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, 0));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        // Torna a nova tela visível
+        telaLogin telaLogin = new telaLogin();
+        // Torna a telaLogin visível
+        telaLogin.setVisible(true);
+        // Fecha a telaInicial
+        this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -92,5 +124,6 @@ public class telaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,6 @@
 package classes;
 
-/**
- *
- * @author joaoc
- */
 public class Vacina {
-    
     private String tipoVacina;
     private boolean disponivel;
     private int qtd;
@@ -41,9 +36,13 @@ public class Vacina {
     }
     
     public boolean aplicaVacina() {
-        // Implementar
-        return true;
+        if (disponivel && qtd > 0) {
+            qtd--;
+            if (qtd == 0) {
+                disponivel = false;
+            }
+            return true;
+        }
+        return false;
     }
-    
-    
 }
