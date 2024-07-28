@@ -41,6 +41,11 @@ public class ResultadoExames extends javax.swing.JFrame {
         barraPesquisaResult.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
 
         btnPesquisarResult.setText("Pesquisar");
+        btnPesquisarResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarResultActionPerformed(evt);
+            }
+        });
 
         titlePacienteResult.setBackground(new java.awt.Color(242, 242, 242));
         titlePacienteResult.setText("Paciente: ");
@@ -122,6 +127,10 @@ public class ResultadoExames extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPesquisarResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarResultActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarResultActionPerformed
 
     /**
      * @param args the command line arguments

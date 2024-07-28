@@ -82,8 +82,11 @@ public class telaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos.", "Aviso",JOptionPane.INFORMATION_MESSAGE);
             txtLogin.setText(""); 
             txtSenha.setText("");
-        } else if(login.equals("admin") && senha.equals("123")) { 
+        } else if(login.equals("admin") && senha.equals("1234")) { 
             // abrir interface de ADM (cadastros e afins)
+            telaAdmin telaAdmin = new telaAdmin();
+            telaAdmin.setVisible(true);
+            this.dispose(); 
         } else {
             String tipoDeUsuario = "";
             // percorrer array de usuários (Pessoas?)
