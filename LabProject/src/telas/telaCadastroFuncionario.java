@@ -93,8 +93,10 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
         lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSenha.setText("Senha:");
 
+        btnGrupoSexo.add(rbtnFeminino);
         rbtnFeminino.setText("Feminino");
 
+        btnGrupoSexo.add(rbtnMasculino);
         rbtnMasculino.setText("Masculino");
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
