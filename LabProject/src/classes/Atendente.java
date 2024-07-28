@@ -1,11 +1,12 @@
 package classes;
 
-public class Atendente {
+public class Atendente extends Pessoa {
     private String turno;
     private int credencial;
     private int qtdAgendamentos;
 
-    public Atendente(String turno, int credencial, int qtdAgendamentos) {
+    public Atendente(String turno, int credencial, int qtdAgendamentos, String nome, String cpf, String sexo, String dataNascimento, String email) {
+        super(nome, cpf, sexo, dataNascimento, email);
         this.turno = turno;
         this.credencial = credencial;
         this.qtdAgendamentos = qtdAgendamentos;

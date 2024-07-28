@@ -1,9 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package telas;
-
+import classes.Enfermeiro;
+import database.BancoDeDados;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 /**
  *
  * @author joaoc
@@ -13,12 +12,30 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
     /**
      * Creates new form telaCadastroFuncionario
      */
+    
+    // Instanciando database    
+    BancoDeDados bancoDeDados = new BancoDeDados("database/dadosFuncionarios.csv", "database/dadosPacientes.csv");
+    
     public telaCadastroFuncionario() {
         initComponents();
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        inicializarButtonGroup();
+    }
+    
+    public void limparCampos() {
+        txtCpf.setText("");
+        txtNome.setText("");
+        txtData.setText("");
+        txtEmail.setText("");
+        txtSenha.setText("");
     }
 
+    public void inicializarButtonGroup() {
+        btnGrupoSexo.add(rbtnMasculino);
+        btnGrupoSexo.add(rbtnFeminino);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,6 +45,7 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGrupoSexo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
@@ -44,6 +62,8 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtCpf = new javax.swing.JTextField();
+        btnSalvar = new javax.swing.JButton();
+        btnSalvar1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         backgroundLogin = new javax.swing.JLabel();
 
@@ -83,46 +103,63 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
             }
         });
 
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSalvar.setText("Sair");
+
+        btnSalvar1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSalvar1.setText("Salvar");
+        btnSalvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblCpf)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblEmail)
-                                .addComponent(lblNome))
-                            .addGap(51, 51, 51)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSexo)
-                            .addComponent(lblSenha)
-                            .addComponent(lblFuncao))
-                        .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblCpf)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEmail)
+                                    .addComponent(lblNome))
+                                .addGap(51, 51, 51)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbtnFeminino)
-                                .addGap(27, 27, 27)
-                                .addComponent(rbtnMasculino))
-                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblSexo)
+                                    .addComponent(lblSenha)
+                                    .addComponent(lblFuncao))
+                                .addGap(66, 66, 66)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbtnFeminino)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(rbtnMasculino))
+                                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +196,11 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFuncao)
                     .addComponent(cbFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(143, 143, 143))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 570));
@@ -177,6 +218,35 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
+    private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
+        int indexCb = cbFuncao.getSelectedIndex();
+        String funcao = (String)cbFuncao.getSelectedItem();
+        String sexo = "";
+        if (rbtnFeminino.isSelected()) {
+            sexo = rbtnFeminino.getText();
+        } else if (rbtnMasculino.isSelected()) {
+            sexo = rbtnMasculino.getText();
+        }
+        if(txtCpf.getText().equals("") || txtData.getText().equals("") || txtEmail.getText().equals("") || txtNome.getText().equals("") ||
+                txtSenha.getText().equals("") || sexo.equals("") || funcao.equals("")) {
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            String nome = txtNome.getText();
+            String cpf = txtCpf.getText();
+            String dataNascimento = txtData.getText();
+            String email = txtEmail.getText();
+            String senha = new String(txtSenha.getPassword());
+            // sexo e função já foram salvos acima
+            if(funcao.equals("Enfermeiro")) {
+                boolean disponivel = true;
+                Enfermeiro enfermeiro = new Enfermeiro(disponivel, nome, cpf, sexo, dataNascimento, email);
+                bancoDeDados.adicionarPessoa(enfermeiro);
+            } else if(funcao.equals("Atendente")) {
+                
+            }
+    }//GEN-LAST:event_btnSalvar1ActionPerformed
+}
     /**
      * @param args the command line arguments
      */
@@ -214,6 +284,9 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLogin;
+    private javax.swing.ButtonGroup btnGrupoSexo;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvar1;
     private javax.swing.JComboBox<String> cbFuncao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
