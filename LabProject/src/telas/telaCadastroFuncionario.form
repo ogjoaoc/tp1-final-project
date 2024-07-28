@@ -236,7 +236,10 @@
         <Component class="javax.swing.JComboBox" name="cbFuncao">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="2">
+                <StringItem index="0" value="Atendente"/>
+                <StringItem index="1" value="Enfermeiro"/>
+              </StringArray>
             </Property>
           </Properties>
           <AuxValues>

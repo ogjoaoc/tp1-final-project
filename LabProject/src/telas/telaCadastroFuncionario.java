@@ -99,6 +99,8 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
         btnGrupoSexo.add(rbtnMasculino);
         rbtnMasculino.setText("Masculino");
 
+        cbFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atendente", "Enfermeiro" }));
+
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
