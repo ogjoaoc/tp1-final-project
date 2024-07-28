@@ -26,17 +26,98 @@ public class ResultadoExames extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlPacienteResult = new javax.swing.JPanel();
+        barraPesquisaResult = new javax.swing.JTextField();
+        btnPesquisarResult = new javax.swing.JButton();
+        titlePacienteResult = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblResultados = new javax.swing.JTable();
+        btnVoltarResult = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(931, 584));
+        setMinimumSize(new java.awt.Dimension(931, 584));
+
+        barraPesquisaResult.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+
+        btnPesquisarResult.setText("Pesquisar");
+
+        titlePacienteResult.setBackground(new java.awt.Color(242, 242, 242));
+        titlePacienteResult.setText("Paciente: ");
+        titlePacienteResult.setBorder(null);
+
+        javax.swing.GroupLayout pnlPacienteResultLayout = new javax.swing.GroupLayout(pnlPacienteResult);
+        pnlPacienteResult.setLayout(pnlPacienteResultLayout);
+        pnlPacienteResultLayout.setHorizontalGroup(
+            pnlPacienteResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPacienteResultLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(titlePacienteResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(barraPesquisaResult, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPesquisarResult, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        pnlPacienteResultLayout.setVerticalGroup(
+            pnlPacienteResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPacienteResultLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(pnlPacienteResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(barraPesquisaResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisarResult)
+                    .addComponent(titlePacienteResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        tblResultados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Data", "Nome", "Tipo", "Resultado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblResultados);
+
+        btnVoltarResult.setText("voltar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlPacienteResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(409, 409, 409)
+                .addComponent(btnVoltarResult)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(pnlPacienteResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVoltarResult)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +159,12 @@ public class ResultadoExames extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField barraPesquisaResult;
+    private javax.swing.JButton btnPesquisarResult;
+    private javax.swing.JButton btnVoltarResult;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pnlPacienteResult;
+    private javax.swing.JTable tblResultados;
+    private javax.swing.JTextField titlePacienteResult;
     // End of variables declaration//GEN-END:variables
 }
