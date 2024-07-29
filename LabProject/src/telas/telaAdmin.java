@@ -56,6 +56,11 @@ public class telaAdmin extends javax.swing.JFrame {
         getContentPane().add(btnRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 180, 100));
 
         btnEstoqueVacinas.setText("Estoque de Vacinas");
+        btnEstoqueVacinas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstoqueVacinasActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEstoqueVacinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 180, 100));
 
         btnPesquisarFunc.setText("Pesquisar Funcionários");
@@ -112,6 +117,12 @@ public class telaAdmin extends javax.swing.JFrame {
         pesquisarPaciente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPesquisarPacActionPerformed
+
+    private void btnEstoqueVacinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueVacinasActionPerformed
+        telaEstoqueVacina telaVacina = new telaEstoqueVacina();
+        telaVacina.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnEstoqueVacinasActionPerformed
 
     /**
      * @param args the command line arguments
