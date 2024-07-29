@@ -87,7 +87,18 @@ public class telaLogin extends javax.swing.JFrame {
             telaAdmin telaAdmin = new telaAdmin();
             telaAdmin.setVisible(true);
             this.dispose(); 
-        } else {
+        } else if (login.equals("enfermeiro") && senha.equals("1234")){
+            // abrir interface do enfermeiro
+            telaEnfermeiro telaEnfermeiro = new telaEnfermeiro();
+            telaEnfermeiro.setVisible(true);
+            this.dispose();
+        } else if (login.equals("atendente") && senha.equals("1234")){
+            // abrir interface do atendente
+            telaAtendente telaAtendente = new telaAtendente();
+            telaAtendente.setVisible(true);
+            this.dispose();
+        } 
+        else {
             String tipoDeUsuario = "";
             // percorrer array de usuários (Pessoas?)
             /*
