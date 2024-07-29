@@ -73,10 +73,9 @@ public class BancoDeDados {
                         }
                         break;
                     case "paciente":
-                        if (dados.length == 9) { // Paciente
+                        if (dados.length == 8) { // Paciente
                             String tipoSanguineo = dados[0];
                             String convenio = dados[1];
-                            int idade = Integer.parseInt(dados[2]);
                             boolean preferencial = Boolean.parseBoolean(dados[3]);
                             String nome = dados[4];
                             String cpf = dados[5];
