@@ -9,17 +9,15 @@ import javax.swing.JOptionPane;
  */
 public class telaCadastroFuncionario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form telaCadastroFuncionario
-     */
-    
     // Instanciando database    
-    BancoDeDados bancoDeDados = new BancoDeDados("database/dadosFuncionarios.csv", "database/dadosPacientes.csv");
+    BancoDeDados bancoDeDados = new BancoDeDados();
     
     public telaCadastroFuncionario() {
         initComponents();
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        bancoDeDados.lerArquivo("enfermeiro");
+        //bancoDeDados.lerArquivo("paciente");
         inicializarButtonGroup();
     }
     
@@ -244,8 +242,9 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
             // sexo e função já foram salvos acima
             if(funcao.equals("Enfermeiro")) {
                 boolean disponivel = true;
-                Enfermeiro enfermeiro = new Enfermeiro(disponivel, nome, cpf, sexo, dataNascimento, email);
+                Enfermeiro enfermeiro = new Enfermeiro(disponivel, nome, cpf, sexo, dataNascimento, email, senha);
                 bancoDeDados.adicionarPessoa(enfermeiro);
+                bancoDeDados.escreverArquivo("enfermeiro");
             } else if(funcao.equals("Atendente")) {
                 
             }

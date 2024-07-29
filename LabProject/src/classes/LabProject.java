@@ -1,5 +1,6 @@
 package classes;
 
+import database.BancoDeDados;
 import telas.telaInicial;
 
 /**
