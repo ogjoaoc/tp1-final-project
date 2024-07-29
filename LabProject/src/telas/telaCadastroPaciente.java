@@ -5,6 +5,7 @@
 package telas;
 
 import classes.Paciente;
+import database.BancoDeDados;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +17,13 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     /**
      * Creates new form telaCadastroPaciente
      */
+    
+    BancoDeDados bancoDeDados = new BancoDeDados();
+    
     public telaCadastroPaciente() {
         initComponents();
+        
+        bancoDeDados.lerArquivo("paciente");
     }
 
     /**
@@ -282,6 +288,9 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             else sexo = "Feminino";
 
             Paciente paciente = new Paciente(tipoSanguineo, "", preferencial, nome, cpf, sexo, dataNascimento, email);
+            
+            bancoDeDados.adicionarPessoa(paciente);
+            bancoDeDados.escreverArquivo("paciente");
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
