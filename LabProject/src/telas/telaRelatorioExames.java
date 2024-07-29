@@ -8,12 +8,12 @@ package telas;
  *
  * @author analuisa
  */
-public class telaResultadoExames extends javax.swing.JFrame {
+public class telaRelatorioExames extends javax.swing.JFrame {
 
     /**
      * Creates new form ResultadoExames
      */
-    public telaResultadoExames() {
+    public telaRelatorioExames() {
         initComponents();
     }
 
@@ -32,7 +32,7 @@ public class telaResultadoExames extends javax.swing.JFrame {
         barraPesquisaResult = new javax.swing.JTextField();
         btnPesquisarResult = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblResult = new javax.swing.JTable();
+        tblResultados = new javax.swing.JTable();
         btnVoltarResult = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,7 +41,7 @@ public class telaResultadoExames extends javax.swing.JFrame {
 
         pnlBkGround.setBackground(new java.awt.Color(248, 197, 190));
 
-        pnlPesquisa.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPesquisa.setBackground(new java.awt.Color(248, 197, 190));
 
         lblPaciente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblPaciente.setText("Paciente:");
@@ -84,7 +84,7 @@ public class telaResultadoExames extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        tblResult.setModel(new javax.swing.table.DefaultTableModel(
+        tblResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -95,8 +95,8 @@ public class telaResultadoExames extends javax.swing.JFrame {
                 "Data", "Nome ", "Tipo", "Resultado"
             }
         ));
-        tblResult.setSelectionBackground(new java.awt.Color(248, 197, 190));
-        jScrollPane1.setViewportView(tblResult);
+        tblResultados.setSelectionBackground(new java.awt.Color(248, 197, 190));
+        jScrollPane1.setViewportView(tblResultados);
 
         btnVoltarResult.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVoltarResult.setText("Voltar");
@@ -147,6 +147,7 @@ public class telaResultadoExames extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void barraPesquisaResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barraPesquisaResultActionPerformed
@@ -158,7 +159,9 @@ public class telaResultadoExames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarResultActionPerformed
 
     private void btnVoltarResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarResultActionPerformed
-        // TODO add your handling code here:
+        telaAdmin admin = new telaAdmin();
+        admin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarResultActionPerformed
 
     /**
@@ -178,21 +181,23 @@ public class telaResultadoExames extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaResultadoExames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaRelatorioExames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaResultadoExames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaRelatorioExames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaResultadoExames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaRelatorioExames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaResultadoExames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaRelatorioExames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaResultadoExames().setVisible(true);
+                new telaRelatorioExames().setVisible(true);
             }
         });
     }
@@ -205,6 +210,6 @@ public class telaResultadoExames extends javax.swing.JFrame {
     private javax.swing.JLabel lblPaciente;
     private javax.swing.JPanel pnlBkGround;
     private javax.swing.JPanel pnlPesquisa;
-    private javax.swing.JTable tblResult;
+    private javax.swing.JTable tblResultados;
     // End of variables declaration//GEN-END:variables
 }
