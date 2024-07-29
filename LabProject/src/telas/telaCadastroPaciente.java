@@ -290,7 +290,6 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             Paciente paciente = new Paciente(tipoSanguineo, "", preferencial, nome, cpf, sexo, dataNascimento, email);
             
             bancoDeDados.adicionarPessoa(paciente);
-            bancoDeDados.escreverArquivo("paciente");
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 

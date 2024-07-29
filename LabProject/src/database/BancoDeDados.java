@@ -93,80 +93,63 @@ public class BancoDeDados {
         }
     }
 
-    public void escreverArquivo(String tipo) {
-        String filePath = "";
-        switch (tipo.toLowerCase()) {
-            case "enfermeiro":
-                filePath = filePathEnfermeiro;
-                break;
-            case "atendente":
-                filePath = filePathAtendente;
-                break;
-            case "paciente":
-                filePath = filePathPaciente;
-                break;
-        }
-        
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            switch (tipo.toLowerCase()) {
-                case "enfermeiro":
-                    for (Enfermeiro enfermeiro : enfermeiros) {
-                        StringBuilder sb = new StringBuilder();
-                        sb.append(enfermeiro.isDisponivel()).append(",");
-                        sb.append(enfermeiro.getNome()).append(",");
-                        sb.append(enfermeiro.getCpf()).append(",");
-                        sb.append(enfermeiro.getSexo()).append(",");
-                        sb.append(enfermeiro.getDataNascimento()).append(",");
-                        sb.append(enfermeiro.getEmail()).append(",");
-                        sb.append(enfermeiro.getSenha());
-                        bw.write(sb.toString());
-                        bw.newLine();
-                    }
-                    break;
-                case "atendente":
-                    for (Atendente atendente : atendentes) {
-                        StringBuilder sb = new StringBuilder();
-                        sb.append(atendente.getTurno()).append(",");
-                        sb.append(atendente.getCredencial()).append(",");
-                        sb.append(atendente.getQtdAgendamentos()).append(",");
-                        sb.append(atendente.getNome()).append(",");
-                        sb.append(atendente.getCpf()).append(",");
-                        sb.append(atendente.getSexo()).append(",");
-                        sb.append(atendente.getDataNascimento()).append(",");
-                        sb.append(atendente.getEmail()).append(",");
-                        sb.append(atendente.getSenha());
-                        bw.write(sb.toString());
-                        bw.newLine();
-                    }
-                    break;
-                case "paciente":
-                    for (Paciente paciente : pacientes) {
-                        StringBuilder sb = new StringBuilder();
-                        sb.append(paciente.getTipoSanguineo()).append(",");
-                        sb.append(paciente.getConvenio()).append(",");
-                        sb.append(paciente.isPreferencial()).append(",");
-                        sb.append(paciente.getNome()).append(",");
-                        sb.append(paciente.getCpf()).append(",");
-                        sb.append(paciente.getSexo()).append(",");
-                        sb.append(paciente.getDataNascimento()).append(",");
-                        sb.append(paciente.getEmail());
-                        bw.write(sb.toString());
-                        bw.newLine();
-                    }
-                    break;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void adicionarPessoa(Pessoa pessoa) {
         if (pessoa instanceof Enfermeiro) {
-            enfermeiros.add((Enfermeiro) pessoa);
+            String filePath = filePathEnfermeiro;
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
+                Enfermeiro enfermeiro = (Enfermeiro) pessoa;
+                StringBuilder sb = new StringBuilder();
+                sb.append(enfermeiro.isDisponivel()).append(",");
+                sb.append(enfermeiro.getNome()).append(",");
+                sb.append(enfermeiro.getCpf()).append(",");
+                sb.append(enfermeiro.getSexo()).append(",");
+                sb.append(enfermeiro.getDataNascimento()).append(",");
+                sb.append(enfermeiro.getEmail()).append(",");
+                sb.append(enfermeiro.getSenha());
+                bw.write(sb.toString());
+                bw.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            
         } else if (pessoa instanceof Atendente) {
-            atendentes.add((Atendente) pessoa);
+            String filePath = filePathAtendente;
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
+                Atendente atendente = (Atendente) pessoa;
+                StringBuilder sb = new StringBuilder();
+                sb.append(atendente.getTurno()).append(",");
+                sb.append(atendente.getCredencial()).append(",");
+                sb.append(atendente.getQtdAgendamentos()).append(",");
+                sb.append(atendente.getNome()).append(",");
+                sb.append(atendente.getCpf()).append(",");
+                sb.append(atendente.getSexo()).append(",");
+                sb.append(atendente.getDataNascimento()).append(",");
+                sb.append(atendente.getEmail()).append(",");
+                sb.append(atendente.getSenha());
+                bw.write(sb.toString());
+                bw.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         } else if (pessoa instanceof Paciente) {
-            pacientes.add((Paciente) pessoa);
+            String filePath = filePathPaciente;
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
+                Paciente paciente = (Paciente) pessoa;
+                StringBuilder sb = new StringBuilder();
+                sb.append(paciente.getTipoSanguineo()).append(",");
+                sb.append(paciente.getConvenio()).append(",");
+                sb.append(paciente.isPreferencial()).append(",");
+                sb.append(paciente.getNome()).append(",");
+                sb.append(paciente.getCpf()).append(",");
+                sb.append(paciente.getSexo()).append(",");
+                sb.append(paciente.getDataNascimento()).append(",");
+                sb.append(paciente.getEmail());
+                bw.write(sb.toString());
+                bw.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

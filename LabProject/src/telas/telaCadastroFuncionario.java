@@ -244,7 +244,7 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
                 boolean disponivel = true;
                 Enfermeiro enfermeiro = new Enfermeiro(disponivel, nome, cpf, sexo, dataNascimento, email, senha);
                 bancoDeDados.adicionarPessoa(enfermeiro);
-                bancoDeDados.escreverArquivo("enfermeiro");
+                //bancoDeDados.escreverArquivo("enfermeiro");
             } else if(funcao.equals("Atendente")) {
                 
             }
