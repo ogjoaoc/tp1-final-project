@@ -4,6 +4,9 @@
  */
 package telas;
 
+import classes.Paciente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author zero
@@ -103,6 +106,11 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         groupPreferencial.add(rdbSim);
         rdbSim.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rdbSim.setText("Sim");
+        rdbSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbSimActionPerformed(evt);
+            }
+        });
 
         groupPreferencial.add(rdbNao);
         rdbNao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -254,12 +262,36 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbTipoSanguineoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        if (txtNome.getText().equals("") ||
+            txtCPF.getText().equals("") ||
+            groupSexo.getSelection() == null ||
+            txtDataNascimento.getText().equals("") ||
+            txtEmail.getText().equals("") ||
+            groupPreferencial.getSelection() == null) {
+            
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String tipoSanguineo = (String) cmbTipoSanguineo.getSelectedItem();
+            boolean preferencial = rdbSim.isSelected();
+            String nome = txtNome.getText();
+            String cpf = txtCPF.getText();
+            String dataNascimento = txtDataNascimento.getText();
+            String email = txtEmail.getText();
+            String sexo;
+            if (rdbMasculino.isSelected()) sexo = "Masculino";
+            else sexo = "Feminino";
+
+            Paciente paciente = new Paciente(tipoSanguineo, "", preferencial, nome, cpf, sexo, dataNascimento, email);
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void rdbSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbSimActionPerformed
 
     /**
      * @param args the command line arguments
