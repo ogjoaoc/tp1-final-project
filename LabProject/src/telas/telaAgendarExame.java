@@ -243,6 +243,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarExameActionPerformed
@@ -266,7 +267,9 @@ public class telaAgendarExame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarExame2ActionPerformed
 
     private void btnExcluirExame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirExame1ActionPerformed
-        // TODO add your handling code here:
+        telaAtendente telaAtendente = new telaAtendente();
+        telaAtendente.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnExcluirExame1ActionPerformed
 
     /**

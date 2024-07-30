@@ -98,7 +98,9 @@ public class telaEnfermeiro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRealizarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarExameActionPerformed
-        // TODO add your handling code here:
+        telaRelatorioExames telaRelatorioExames = new telaRelatorioExames();
+        telaRelatorioExames.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRealizarExameActionPerformed
 
     private void btnRealizarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarVacinaActionPerformed

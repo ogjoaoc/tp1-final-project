@@ -373,7 +373,9 @@ public class telaRelatorioExames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarRelatorioActionPerformed
 
     private void btnVoltarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarRelatorioActionPerformed
-        // TODO add your handling code here:
+        telaEnfermeiro telaEnfermeiro = new telaEnfermeiro();
+        telaEnfermeiro.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarRelatorioActionPerformed
 
     /**
