@@ -27,32 +27,49 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollBar1 = new javax.swing.JScrollBar();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblTituloVacina = new javax.swing.JLabel();
+        lblTipoVacina = new javax.swing.JLabel();
+        lblSexo = new javax.swing.JLabel();
+        lblCpf = new javax.swing.JLabel();
+        lblDataNascimento = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblTipoSanguineo = new javax.swing.JLabel();
+        lblConvenio = new javax.swing.JLabel();
+        lblAtendimentoPreferencial = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JTextField();
+        txtDataNascimento = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtTipoSanguineo = new javax.swing.JTextField();
+        txtConvenio = new javax.swing.JTextField();
+        txtAtendimentoPreferencial = new javax.swing.JTextField();
+        lblTituloInfoPaciente = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        txtDataDeAplicacao = new javax.swing.JTextField();
+        lblEstoqueVacina = new javax.swing.JLabel();
+        txtEstoqueVacina = new javax.swing.JTextField();
+        lblObservacao = new javax.swing.JLabel();
+        txtTipo = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        hashImage = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtCampoObs = new javax.swing.JTextArea();
+        checkBoxPrimeiraDose = new javax.swing.JCheckBox();
+        checkBoxTerceiraDose = new javax.swing.JCheckBox();
+        checkBoxSegundaDose = new javax.swing.JCheckBox();
+        lblTituloAplicacaoDosagem = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnFinalizar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,117 +77,150 @@ public class telaAplicarVacina extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(248, 197, 190));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel1.setText("Vacina");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(572, 46, -1, -1));
+        lblTituloVacina.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        lblTituloVacina.setText("Vacina");
+        jPanel1.add(lblTituloVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(572, 46, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Tipo:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 100, -1, -1));
+        lblTipoVacina.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTipoVacina.setText("Tipo:");
+        jPanel1.add(lblTipoVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 100, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Sexo: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 233, -1, -1));
+        lblSexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSexo.setText("Sexo: ");
+        jPanel1.add(lblSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Cpf:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 159, -1, -1));
+        lblCpf.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCpf.setText("Cpf:");
+        jPanel1.add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("Data de Nascimento:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 302, 189, 31));
+        lblDataNascimento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblDataNascimento.setText("Data de Nascimento:");
+        jPanel1.add(lblDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 189, 31));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("Email:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 373, -1, -1));
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEmail.setText("Email:");
+        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("Tipo sanguíneo:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 557, -1, -1));
+        lblTipoSanguineo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTipoSanguineo.setText("Tipo sanguíneo:");
+        jPanel1.add(lblTipoSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setText("Convênio:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 429, -1, -1));
+        lblConvenio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblConvenio.setText("Convênio:");
+        jPanel1.add(lblConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setText("Atendimento Preferencial: ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 494, -1, -1));
+        lblAtendimentoPreferencial.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAtendimentoPreferencial.setText("Atendimento Preferencial: ");
+        jPanel1.add(lblAtendimentoPreferencial, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
 
-        jTextField1.setText("Masculino");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 94, -1));
+        txtNome.setText("Masculino");
+        jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 94, -1));
 
         jTextField2.setText("Joao da Silva Pereira Ramos");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 131, 178, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 178, -1));
 
-        jTextField3.setText("09269629");
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 193, 94, -1));
+        txtCpf.setText("09269629");
+        jPanel1.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 94, -1));
 
-        jTextField4.setText("19/03/2005");
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 339, 112, -1));
+        txtDataNascimento.setText("19/03/2005");
+        jPanel1.add(txtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 112, -1));
 
-        jTextField5.setText("joaodasilva@gmail.com");
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 404, 163, -1));
+        txtEmail.setText("joaodasilva@gmail.com");
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 163, -1));
 
-        jTextField6.setText("A+");
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 594, 38, -1));
+        txtTipoSanguineo.setText("A+");
+        jPanel1.add(txtTipoSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 38, -1));
 
-        jTextField7.setText("Sim");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txtConvenio.setText("Sim");
+        txtConvenio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txtConvenioActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 466, 38, -1));
+        jPanel1.add(txtConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 38, -1));
 
-        jTextField8.setText("Não");
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 529, 40, -1));
+        txtAtendimentoPreferencial.setText("Não");
+        jPanel1.add(txtAtendimentoPreferencial, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, 40, -1));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel10.setText("Informações do Paciente");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 47, -1, -1));
+        lblTituloInfoPaciente.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        lblTituloInfoPaciente.setText("Informações do Paciente");
+        jPanel1.add(lblTituloInfoPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setText("Nome: ");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNome.setText("Nome: ");
+        jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
-        jTextField9.setText("Febre Amarela");
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(738, 131, 110, -1));
+        txtDataDeAplicacao.setText("18/18/2021");
+        jPanel1.add(txtDataDeAplicacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 360, 80, -1));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel12.setText("Em estoque: ");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 159, -1, -1));
+        lblEstoqueVacina.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEstoqueVacina.setText("Em estoque: ");
+        jPanel1.add(lblEstoqueVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 159, -1, -1));
 
-        jTextField10.setText("138");
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        txtEstoqueVacina.setText("138");
+        txtEstoqueVacina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                txtEstoqueVacinaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 193, 40, -1));
+        jPanel1.add(txtEstoqueVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 193, 40, -1));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setText("Data:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(738, 100, -1, -1));
+        lblObservacao.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblObservacao.setText("Observação:");
+        jPanel1.add(lblObservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, -1, -1));
 
-        jTextField11.setText("Febre Amarela");
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 131, 109, -1));
+        txtTipo.setText("Febre Amarela");
+        jPanel1.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 131, 109, -1));
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconHash.png"))); // NOI18N
-        jLabel14.setText("jLabel14");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(842, 0, 158, 179));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 330, 210));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 710));
+        hashImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconHash.png"))); // NOI18N
+        hashImage.setText("jLabel14");
+        jPanel1.add(hashImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 160, 179));
+
+        txtCampoObs.setColumns(20);
+        txtCampoObs.setRows(5);
+        txtCampoObs.setText("Evitar exposição ao sol. Vacina, subcutânea, não exercitar região\nde aplicação.\n");
+        jScrollPane1.setViewportView(txtCampoObs);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 360, 160));
+
+        checkBoxPrimeiraDose.setText("Primeira Dose");
+        jPanel1.add(checkBoxPrimeiraDose, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, -1, -1));
+
+        checkBoxTerceiraDose.setText("Terceira Dose");
+        jPanel1.add(checkBoxTerceiraDose, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, -1, -1));
+
+        checkBoxSegundaDose.setText("Segunda Dose");
+        jPanel1.add(checkBoxSegundaDose, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, -1, -1));
+
+        lblTituloAplicacaoDosagem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloAplicacaoDosagem.setText("Data de aplicação e Dosagem:");
+        jPanel1.add(lblTituloAplicacaoDosagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, -1, -1));
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 410, 400));
+
+        btnFinalizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnFinalizar.setText("Finalizar");
+        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 740, 200, 50));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 390, 670));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void txtConvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConvenioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_txtConvenioActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void txtEstoqueVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstoqueVacinaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_txtEstoqueVacinaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,32 +258,44 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton btnFinalizar;
+    private javax.swing.JCheckBox checkBoxPrimeiraDose;
+    private javax.swing.JCheckBox checkBoxSegundaDose;
+    private javax.swing.JCheckBox checkBoxTerceiraDose;
+    private javax.swing.JLabel hashImage;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollBar jScrollBar1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblAtendimentoPreferencial;
+    private javax.swing.JLabel lblConvenio;
+    private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblDataNascimento;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEstoqueVacina;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblObservacao;
+    private javax.swing.JLabel lblSexo;
+    private javax.swing.JLabel lblTipoSanguineo;
+    private javax.swing.JLabel lblTipoVacina;
+    private javax.swing.JLabel lblTituloAplicacaoDosagem;
+    private javax.swing.JLabel lblTituloInfoPaciente;
+    private javax.swing.JLabel lblTituloVacina;
+    private javax.swing.JTextField txtAtendimentoPreferencial;
+    private javax.swing.JTextArea txtCampoObs;
+    private javax.swing.JTextField txtConvenio;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtDataDeAplicacao;
+    private javax.swing.JTextField txtDataNascimento;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEstoqueVacina;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtTipo;
+    private javax.swing.JTextField txtTipoSanguineo;
     // End of variables declaration//GEN-END:variables
 }

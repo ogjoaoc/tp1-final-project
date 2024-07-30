@@ -105,6 +105,9 @@ public class telaEnfermeiro extends javax.swing.JFrame {
 
     private void btnRealizarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarVacinaActionPerformed
         // TODO add your handling code here:
+        telaAplicarVacina telaAplicarVacina = new telaAplicarVacina();
+        telaAplicarVacina.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRealizarVacinaActionPerformed
 
     /**

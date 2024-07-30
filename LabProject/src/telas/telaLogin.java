@@ -38,6 +38,7 @@ public class telaLogin extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
         backgroundLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,7 +52,7 @@ public class telaLogin extends javax.swing.JFrame {
                 btnEntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 210, 60));
+        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 210, 60));
 
         lblLogin.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblLogin.setText("Login: ");
@@ -67,8 +68,11 @@ public class telaLogin extends javax.swing.JFrame {
         txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 320, 50));
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 570, 250));
+
         backgroundLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backgroundCor.png"))); // NOI18N
-        getContentPane().add(backgroundLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 550));
+        getContentPane().add(backgroundLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 550));
 
         pack();
         setLocationRelativeTo(null);
@@ -163,6 +167,7 @@ public class telaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLogin;
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JTextField txtLogin;
