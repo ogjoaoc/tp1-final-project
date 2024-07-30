@@ -106,14 +106,19 @@ public class telaAtendente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarPacienteActionPerformed
-        // TODO add your handling code here:
+        telaCadastroPaciente telaCadPaciente = new telaCadastroPaciente();
+        telaCadPaciente.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCadastrarPacienteActionPerformed
 
     private void btnAgendarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarExameActionPerformed
-        // TODO add your handling code here:
+        telaAgendarExame telaAgendarExame = new telaAgendarExame();
+        telaAgendarExame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAgendarExameActionPerformed
 
     private void btnAgendarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarVacinaActionPerformed

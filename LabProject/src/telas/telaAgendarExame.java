@@ -8,12 +8,12 @@ package telas;
  *
  * @author analuisa
  */
-public class telaAddExame extends javax.swing.JFrame {
+public class telaAgendarExame extends javax.swing.JFrame {
 
     /**
      * Creates new form telaAddExame
      */
-    public telaAddExame() {
+    public telaAgendarExame() {
         initComponents();
     }
 
@@ -198,6 +198,7 @@ public class telaAddExame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEnfermeiroExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnfermeiroExameActionPerformed
@@ -237,20 +238,21 @@ public class telaAddExame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaAddExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaAgendarExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaAddExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaAgendarExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaAddExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaAgendarExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaAddExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaAgendarExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaAddExame().setVisible(true);
+                new telaAgendarExame().setVisible(true);
             }
         });
     }

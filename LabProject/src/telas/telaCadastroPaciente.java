@@ -22,8 +22,6 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     
     public telaCadastroPaciente() {
         initComponents();
-        
-        bancoDeDados.lerArquivo("paciente");
     }
 
     /**
@@ -54,7 +52,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         txtDataNascimento = new javax.swing.JFormattedTextField();
         txtCPF = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
-        btnSair = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -152,11 +150,11 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             }
         });
 
-        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -204,7 +202,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                         .addGap(153, 153, 153)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(105, 105, 105)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -243,7 +241,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38))
         );
 
@@ -293,9 +291,11 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        telaAtendente telaAtendente = new telaAtendente();
+        telaAtendente.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnSairActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void rdbSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSimActionPerformed
         // TODO add your handling code here:
@@ -337,8 +337,8 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbTipoSanguineo;
     private javax.swing.ButtonGroup groupPreferencial;
     private javax.swing.ButtonGroup groupSexo;

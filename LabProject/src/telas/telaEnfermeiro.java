@@ -94,6 +94,7 @@ public class telaEnfermeiro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRealizarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarExameActionPerformed
