@@ -26,143 +26,355 @@ public class telaRelatorioExames extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlBkGround = new javax.swing.JPanel();
-        pnlPesquisa = new javax.swing.JPanel();
-        lblPaciente = new javax.swing.JLabel();
-        barraPesquisaResult = new javax.swing.JTextField();
-        btnPesquisarResult = new javax.swing.JButton();
+        pnlDadosExame = new javax.swing.JPanel();
+        lblData = new javax.swing.JLabel();
+        txtData = new javax.swing.JFormattedTextField();
+        lblTipo = new javax.swing.JLabel();
+        txtTipo = new javax.swing.JTextField();
+        lblPatologia = new javax.swing.JLabel();
+        txtPatologia = new javax.swing.JTextField();
+        lblAlvo = new javax.swing.JLabel();
+        txtAlvo = new javax.swing.JTextField();
+        pnlDadosPaciente = new javax.swing.JPanel();
+        lblNome = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        lblCPF = new javax.swing.JLabel();
+        txtCPF = new javax.swing.JFormattedTextField();
+        lblSexo = new javax.swing.JLabel();
+        txtSexo = new javax.swing.JTextField();
+        lblDataNascimento = new javax.swing.JLabel();
+        txtDataNascimento = new javax.swing.JFormattedTextField();
+        lblConvenio = new javax.swing.JLabel();
+        txtTipoSanguineo = new javax.swing.JTextField();
+        lblTipoSanguineo = new javax.swing.JLabel();
+        txtConvenio = new javax.swing.JTextField();
+        lblPreferencial = new javax.swing.JLabel();
+        txtPreferencial = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        pnlRelatorioResultado = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblResultados = new javax.swing.JTable();
-        btnVoltarResult = new javax.swing.JButton();
+        txtRelatorio = new javax.swing.JTextArea();
+        btnSalvarRelatorio = new javax.swing.JButton();
+        btnCancelarRelatorio = new javax.swing.JButton();
+        btnVoltarRelatorio = new javax.swing.JButton();
+        colorBkGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(931, 584));
-        setMinimumSize(new java.awt.Dimension(931, 584));
+        setMinimumSize(new java.awt.Dimension(930, 500));
+        setPreferredSize(new java.awt.Dimension(930, 500));
+        setSize(new java.awt.Dimension(930, 500));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlBkGround.setBackground(new java.awt.Color(248, 197, 190));
+        pnlDadosExame.setBackground(new java.awt.Color(248, 197, 190));
+        pnlDadosExame.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados do Exame: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
 
-        pnlPesquisa.setBackground(new java.awt.Color(248, 197, 190));
+        lblData.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblData.setText("Data:");
 
-        lblPaciente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblPaciente.setText("Paciente:");
+        try {
+            txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtData.setToolTipText("");
 
-        barraPesquisaResult.addActionListener(new java.awt.event.ActionListener() {
+        lblTipo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTipo.setText("Tipo:");
+
+        lblPatologia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPatologia.setText("Patologia: ");
+
+        txtPatologia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                barraPesquisaResultActionPerformed(evt);
+                txtPatologiaActionPerformed(evt);
             }
         });
 
-        btnPesquisarResult.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnPesquisarResult.setText("Pesquisar");
-        btnPesquisarResult.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarResultActionPerformed(evt);
-            }
-        });
+        lblAlvo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAlvo.setText("Alvo: ");
 
-        javax.swing.GroupLayout pnlPesquisaLayout = new javax.swing.GroupLayout(pnlPesquisa);
-        pnlPesquisa.setLayout(pnlPesquisaLayout);
-        pnlPesquisaLayout.setHorizontalGroup(
-            pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPesquisaLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(lblPaciente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(barraPesquisaResult, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPesquisarResult, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-        pnlPesquisaLayout.setVerticalGroup(
-            pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPesquisaLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPaciente)
-                    .addComponent(barraPesquisaResult, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarResult, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        tblResultados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Data", "Nome ", "Tipo", "Resultado"
-            }
-        ));
-        tblResultados.setSelectionBackground(new java.awt.Color(248, 197, 190));
-        jScrollPane1.setViewportView(tblResultados);
-
-        btnVoltarResult.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnVoltarResult.setText("Voltar");
-        btnVoltarResult.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarResultActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlBkGroundLayout = new javax.swing.GroupLayout(pnlBkGround);
-        pnlBkGround.setLayout(pnlBkGroundLayout);
-        pnlBkGroundLayout.setHorizontalGroup(
-            pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBkGroundLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDadosExameLayout = new javax.swing.GroupLayout(pnlDadosExame);
+        pnlDadosExame.setLayout(pnlDadosExameLayout);
+        pnlDadosExameLayout.setHorizontalGroup(
+            pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDadosExameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnlDadosExameLayout.createSequentialGroup()
+                            .addComponent(lblData)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblTipo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlDadosExameLayout.createSequentialGroup()
+                            .addComponent(lblPatologia)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtPatologia)))
+                    .addGroup(pnlDadosExameLayout.createSequentialGroup()
+                        .addComponent(lblAlvo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAlvo, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        pnlDadosExameLayout.setVerticalGroup(
+            pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDadosExameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblData)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTipo)
+                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPatologia)
+                    .addComponent(txtPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAlvo)
+                    .addComponent(txtAlvo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
+        );
+
+        getContentPane().add(pnlDadosExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 470, 160));
+
+        pnlDadosPaciente.setBackground(new java.awt.Color(248, 197, 190));
+        pnlDadosPaciente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados do Paciente: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
+
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNome.setText("Nome:");
+
+        lblCPF.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCPF.setText("CPF:");
+
+        try {
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        lblSexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSexo.setText("Sexo:");
+
+        lblDataNascimento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblDataNascimento.setText("Data de nascimento:");
+
+        try {
+            txtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDataNascimento.setToolTipText("");
+
+        lblConvenio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblConvenio.setText("Convênio:");
+
+        txtTipoSanguineo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTipoSanguineoActionPerformed(evt);
+            }
+        });
+
+        lblTipoSanguineo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTipoSanguineo.setText("Tipo Sanguíneo:");
+
+        txtConvenio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConvenioActionPerformed(evt);
+            }
+        });
+
+        lblPreferencial.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPreferencial.setText("Preferencial:");
+
+        txtPreferencial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPreferencialActionPerformed(evt);
+            }
+        });
+
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEmail.setText("E-mail:");
+
+        javax.swing.GroupLayout pnlDadosPacienteLayout = new javax.swing.GroupLayout(pnlDadosPaciente);
+        pnlDadosPaciente.setLayout(pnlDadosPacienteLayout);
+        pnlDadosPacienteLayout.setHorizontalGroup(
+            pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                        .addComponent(lblEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                        .addComponent(lblConvenio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblPreferencial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPreferencial))
+                    .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                        .addComponent(lblNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNome))
+                    .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                        .addComponent(lblCPF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblTipoSanguineo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                        .addComponent(lblDataNascimento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblSexo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        pnlDadosPacienteLayout.setVerticalGroup(
+            pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDataNascimento)
+                    .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSexo)
+                    .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCPF)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTipoSanguineo)
+                    .addComponent(txtTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblConvenio)
+                    .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPreferencial)
+                        .addComponent(txtPreferencial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblEmail)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pnlDadosPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 280));
+
+        pnlRelatorioResultado.setBackground(new java.awt.Color(248, 197, 190));
+        pnlRelatorioResultado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Relátorio / Resultado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
+
+        txtRelatorio.setColumns(20);
+        txtRelatorio.setRows(5);
+        jScrollPane1.setViewportView(txtRelatorio);
+
+        btnSalvarRelatorio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSalvarRelatorio.setText("Salvar");
+        btnSalvarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarRelatorioActionPerformed(evt);
+            }
+        });
+
+        btnCancelarRelatorio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCancelarRelatorio.setText("Cancelar");
+        btnCancelarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarRelatorioActionPerformed(evt);
+            }
+        });
+
+        btnVoltarRelatorio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVoltarRelatorio.setText("Voltar");
+        btnVoltarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarRelatorioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlRelatorioResultadoLayout = new javax.swing.GroupLayout(pnlRelatorioResultado);
+        pnlRelatorioResultado.setLayout(pnlRelatorioResultadoLayout);
+        pnlRelatorioResultadoLayout.setHorizontalGroup(
+            pnlRelatorioResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRelatorioResultadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlRelatorioResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlRelatorioResultadoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(pnlRelatorioResultadoLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(btnSalvarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnCancelarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(btnVoltarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
+        );
+        pnlRelatorioResultadoLayout.setVerticalGroup(
+            pnlRelatorioResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRelatorioResultadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlRelatorioResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBkGroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVoltarResult, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(387, 387, 387))
-        );
-        pnlBkGroundLayout.setVerticalGroup(
-            pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBkGroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVoltarResult, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBkGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBkGround, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(pnlRelatorioResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 420, 450));
+
+        colorBkGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backgroundCor.png"))); // NOI18N
+        getContentPane().add(colorBkGround, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 590));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void barraPesquisaResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barraPesquisaResultActionPerformed
+    private void txtPatologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatologiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_barraPesquisaResultActionPerformed
+    }//GEN-LAST:event_txtPatologiaActionPerformed
 
-    private void btnPesquisarResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarResultActionPerformed
+    private void txtTipoSanguineoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoSanguineoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarResultActionPerformed
+    }//GEN-LAST:event_txtTipoSanguineoActionPerformed
 
-    private void btnVoltarResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarResultActionPerformed
-        telaAdmin admin = new telaAdmin();
-        admin.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnVoltarResultActionPerformed
+    private void txtPreferencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPreferencialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPreferencialActionPerformed
+
+    private void txtConvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConvenioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConvenioActionPerformed
+
+    private void btnSalvarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarRelatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvarRelatorioActionPerformed
+
+    private void btnCancelarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRelatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarRelatorioActionPerformed
+
+    private void btnVoltarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarRelatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +405,18 @@ public class telaRelatorioExames extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -203,13 +427,38 @@ public class telaRelatorioExames extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField barraPesquisaResult;
-    private javax.swing.JButton btnPesquisarResult;
-    private javax.swing.JButton btnVoltarResult;
+    private javax.swing.JButton btnCancelarRelatorio;
+    private javax.swing.JButton btnSalvarRelatorio;
+    private javax.swing.JButton btnVoltarRelatorio;
+    private javax.swing.JLabel colorBkGround;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblPaciente;
-    private javax.swing.JPanel pnlBkGround;
-    private javax.swing.JPanel pnlPesquisa;
-    private javax.swing.JTable tblResultados;
+    private javax.swing.JLabel lblAlvo;
+    private javax.swing.JLabel lblCPF;
+    private javax.swing.JLabel lblConvenio;
+    private javax.swing.JLabel lblData;
+    private javax.swing.JLabel lblDataNascimento;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPatologia;
+    private javax.swing.JLabel lblPreferencial;
+    private javax.swing.JLabel lblSexo;
+    private javax.swing.JLabel lblTipo;
+    private javax.swing.JLabel lblTipoSanguineo;
+    private javax.swing.JPanel pnlDadosExame;
+    private javax.swing.JPanel pnlDadosPaciente;
+    private javax.swing.JPanel pnlRelatorioResultado;
+    private javax.swing.JTextField txtAlvo;
+    private javax.swing.JFormattedTextField txtCPF;
+    private javax.swing.JTextField txtConvenio;
+    private javax.swing.JFormattedTextField txtData;
+    private javax.swing.JFormattedTextField txtDataNascimento;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtPatologia;
+    private javax.swing.JTextField txtPreferencial;
+    private javax.swing.JTextArea txtRelatorio;
+    private javax.swing.JTextField txtSexo;
+    private javax.swing.JTextField txtTipo;
+    private javax.swing.JTextField txtTipoSanguineo;
     // End of variables declaration//GEN-END:variables
 }
