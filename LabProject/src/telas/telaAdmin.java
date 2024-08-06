@@ -29,11 +29,11 @@ public class telaAdmin extends javax.swing.JFrame {
 
         lblInfo = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        btnRelatorio = new javax.swing.JButton();
         btnEstoqueVacinas = new javax.swing.JButton();
         btnPesquisarFunc = new javax.swing.JButton();
         btnCadastrarFunc = new javax.swing.JButton();
         btnPesquisarPac = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         backgroundLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,14 +46,6 @@ public class telaAdmin extends javax.swing.JFrame {
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblTitle.setText("Gerenciamento");
         getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, -1));
-
-        btnRelatorio.setText("Relatório de Exames");
-        btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRelatorioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 180, 100));
 
         btnEstoqueVacinas.setText("Estoque de Vacinas");
         btnEstoqueVacinas.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +61,7 @@ public class telaAdmin extends javax.swing.JFrame {
                 btnPesquisarFuncActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPesquisarFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 180, 100));
+        getContentPane().add(btnPesquisarFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 180, 100));
 
         btnCadastrarFunc.setText("Cadastrar Funcionário");
         btnCadastrarFunc.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +69,7 @@ public class telaAdmin extends javax.swing.JFrame {
                 btnCadastrarFuncActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastrarFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 180, 100));
+        getContentPane().add(btnCadastrarFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 180, 100));
 
         btnPesquisarPac.setText("Pesquisar Pacientes");
         btnPesquisarPac.addActionListener(new java.awt.event.ActionListener() {
@@ -87,8 +79,17 @@ public class telaAdmin extends javax.swing.JFrame {
         });
         getContentPane().add(btnPesquisarPac, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 180, 100));
 
+        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, 80, 40));
+
         backgroundLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backgroundCor.png"))); // NOI18N
-        getContentPane().add(backgroundLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 570));
+        getContentPane().add(backgroundLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 570));
 
         pack();
         setLocationRelativeTo(null);
@@ -99,12 +100,6 @@ public class telaAdmin extends javax.swing.JFrame {
         telaCadastro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCadastrarFuncActionPerformed
-
-    private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        telaRelatorioExames telaExames = new telaRelatorioExames();
-        telaExames.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnRelatorioActionPerformed
 
     private void btnPesquisarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarFuncActionPerformed
         telaPesquisarFuncionario pesquisarFuncionario = new telaPesquisarFuncionario();
@@ -123,6 +118,12 @@ public class telaAdmin extends javax.swing.JFrame {
         telaVacina.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEstoqueVacinasActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        telaLogin telaLogin = new telaLogin();
+        telaLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,7 +166,7 @@ public class telaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnEstoqueVacinas;
     private javax.swing.JButton btnPesquisarFunc;
     private javax.swing.JButton btnPesquisarPac;
-    private javax.swing.JButton btnRelatorio;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables

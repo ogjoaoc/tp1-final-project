@@ -38,6 +38,7 @@ public class telaLogin extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
+        btnSair = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         backgroundLogin = new javax.swing.JLabel();
 
@@ -52,7 +53,7 @@ public class telaLogin extends javax.swing.JFrame {
                 btnEntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 210, 60));
+        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 210, 60));
 
         lblLogin.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblLogin.setText("Login: ");
@@ -67,6 +68,17 @@ public class telaLogin extends javax.swing.JFrame {
 
         txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 320, 50));
+
+        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnSair.setText("Sair");
+        btnSair.setMaximumSize(new java.awt.Dimension(106, 36));
+        btnSair.setMinimumSize(new java.awt.Dimension(106, 36));
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 210, 60));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 570, 250));
@@ -129,6 +141,12 @@ public class telaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        telaInicial telaInicial = new telaInicial();
+        telaInicial.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,6 +185,7 @@ public class telaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLogin;
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblSenha;
