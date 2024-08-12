@@ -33,43 +33,30 @@ public class telaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnEntrar = new javax.swing.JButton();
-        lblLogin = new javax.swing.JLabel();
-        lblSenha = new javax.swing.JLabel();
-        txtLogin = new javax.swing.JTextField();
+        pnlLogin = new javax.swing.JPanel();
         txtSenha = new javax.swing.JPasswordField();
+        btnEntrar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        imgIconUser = new javax.swing.JLabel();
+        txtLogin = new javax.swing.JTextField();
         backgroundLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Login");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
+
+        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 210, 60));
 
-        lblLogin.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblLogin.setText("Login: ");
-        getContentPane().add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
-
-        lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblSenha.setText("Senha:");
-        getContentPane().add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
-
-        txtLogin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        getContentPane().add(txtLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 320, 50));
-
-        txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 320, 50));
-
-        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSair.setText("Sair");
         btnSair.setMaximumSize(new java.awt.Dimension(106, 36));
         btnSair.setMinimumSize(new java.awt.Dimension(106, 36));
@@ -78,13 +65,54 @@ public class telaLogin extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 210, 60));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 570, 250));
+        imgIconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconUserL.png"))); // NOI18N
+
+        txtLogin.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
+
+        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
+        pnlLogin.setLayout(pnlLoginLayout);
+        pnlLoginLayout.setHorizontalGroup(
+            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLoginLayout.createSequentialGroup()
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLoginLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlLoginLayout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(imgIconUser)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                    .addComponent(txtLogin))
+                .addGap(19, 19, 19))
+        );
+        pnlLoginLayout.setVerticalGroup(
+            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(imgIconUser)
+                .addGap(39, 39, 39)
+                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 420, 400));
 
         backgroundLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backgroundCor.png"))); // NOI18N
-        getContentPane().add(backgroundLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 550));
+        getContentPane().add(backgroundLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 510));
 
         pack();
         setLocationRelativeTo(null);
@@ -186,9 +214,8 @@ public class telaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel backgroundLogin;
     private javax.swing.JButton btnEntrar;
     private javax.swing.JButton btnSair;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblLogin;
-    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel imgIconUser;
+    private javax.swing.JPanel pnlLogin;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables

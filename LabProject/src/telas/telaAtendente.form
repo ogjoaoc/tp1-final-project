@@ -56,17 +56,14 @@
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblInfo" min="-2" pref="390" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
-                          <Component id="btnSair" min="-2" pref="80" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblInfo" min="-2" pref="390" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnSair" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="348" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,9 +76,9 @@
                       <Component id="btnAgendarExame" alignment="3" min="-2" pref="77" max="-2" attributes="0"/>
                       <Component id="btnAgendarVacina" alignment="3" min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Component id="btnSair" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   <Component id="lblInfo" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

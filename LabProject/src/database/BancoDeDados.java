@@ -7,6 +7,7 @@ import classes.Pessoa;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.nio.file.Paths;
 
 public class BancoDeDados {
     private String filePathFuncionarios;
@@ -19,9 +20,19 @@ public class BancoDeDados {
 
     public BancoDeDados() {
         String auxDir = System.getProperty("user.dir");
-        this.filePathEnfermeiro = auxDir + "\\src\\database\\dadosEnfermeiro.csv";
+        
+        this.filePathEnfermeiro = Paths.get(auxDir, "src", "database", "dadosEnfermeiro.csv").toString();
+        this.filePathAtendente = Paths.get(auxDir, "src", "database", "dadosAtendente.csv").toString();
+        this.filePathPaciente = Paths.get(auxDir, "src", "database", "dadosPaciente.csv").toString();
+        
+        
+        /*this.filePathEnfermeiro = auxDir + "\\src\\database\\dadosEnfermeiro.csv";
+        this.filePathEnfermeiro = auxDir + "//src//database//dadosEnfermeiro.csv";
         this.filePathAtendente = auxDir + "\\src\\database\\dadosAtendente.csv";
+        this.filePathAtendente = auxDir + "//src//database//dadosAtendente.csv";
         this.filePathPaciente = auxDir + "\\src\\database\\dadosPaciente.csv";
+        this.filePathPaciente = auxDir + "//src//database//dadosPaciente.csv";*/
+        
         this.enfermeiros = new ArrayList<>();
         this.atendentes = new ArrayList<>();
         this.pacientes = new ArrayList<>();
