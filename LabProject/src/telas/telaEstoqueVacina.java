@@ -26,6 +26,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSalvar3 = new javax.swing.JButton();
         pnlBkGround = new javax.swing.JPanel();
         pnlVacina = new javax.swing.JPanel();
         lblVacina = new javax.swing.JLabel();
@@ -34,10 +35,22 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
         lblVacina1 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
         txtValidade = new javax.swing.JFormattedTextField();
-        btnSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVacinas = new javax.swing.JTable();
         btnVoltarResult = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
+        txtBarraPesquisa = new javax.swing.JTextField();
+
+        btnSalvar3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSalvar3.setText("Salvar");
+        btnSalvar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvar3ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(931, 584));
@@ -77,39 +90,26 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
         txtValidade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtValidade.setPreferredSize(new java.awt.Dimension(126, 36));
 
-        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSalvar.setText("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlVacinaLayout = new javax.swing.GroupLayout(pnlVacina);
         pnlVacina.setLayout(pnlVacinaLayout);
         pnlVacinaLayout.setHorizontalGroup(
             pnlVacinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVacinaLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(pnlVacinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlVacinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlVacinaLayout.createSequentialGroup()
-                        .addGroup(pnlVacinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlVacinaLayout.createSequentialGroup()
-                                .addComponent(lblVacina1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlVacinaLayout.createSequentialGroup()
-                                .addComponent(lblVacina)
-                                .addGap(35, 35, 35)
-                                .addComponent(txtVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblVacina)
+                        .addGap(35, 35, 35)
+                        .addComponent(txtVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlVacinaLayout.createSequentialGroup()
                         .addComponent(lblValidade)
                         .addGap(18, 18, 18)
-                        .addComponent(txtValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))))
+                        .addComponent(txtValidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblVacina1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlVacinaLayout.setVerticalGroup(
             pnlVacinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,12 +122,9 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
                 .addGroup(pnlVacinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblValidade)
                     .addComponent(txtValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlVacinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblVacina1)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         tblVacinas.setModel(new javax.swing.table.DefaultTableModel(
@@ -145,10 +142,49 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblVacinas);
 
         btnVoltarResult.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnVoltarResult.setText("Voltar");
+        btnVoltarResult.setText("Sair");
         btnVoltarResult.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarResultActionPerformed(evt);
+            }
+        });
+
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnPesquisar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconSearch.png"))); // NOI18N
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        txtBarraPesquisa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtBarraPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBarraPesquisaActionPerformed(evt);
             }
         });
 
@@ -156,16 +192,26 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
         pnlBkGround.setLayout(pnlBkGroundLayout);
         pnlBkGroundLayout.setHorizontalGroup(
             pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBkGroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlVacina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBkGroundLayout.createSequentialGroup()
                 .addContainerGap(390, Short.MAX_VALUE)
                 .addComponent(btnVoltarResult, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(387, 387, 387))
+            .addGroup(pnlBkGroundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlVacina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addGroup(pnlBkGroundLayout.createSequentialGroup()
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtBarraPesquisa)))
+                .addContainerGap())
         );
         pnlBkGroundLayout.setVerticalGroup(
             pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +219,15 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBarraPesquisa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVoltarResult, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -187,9 +241,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBkGround, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnlBkGround, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -213,6 +265,26 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnSalvar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvar3ActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void txtBarraPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBarraPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBarraPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,7 +329,11 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvar3;
     private javax.swing.JButton btnVoltarResult;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblVacina;
@@ -266,6 +342,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBkGround;
     private javax.swing.JPanel pnlVacina;
     private javax.swing.JTable tblVacinas;
+    private javax.swing.JTextField txtBarraPesquisa;
     private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtVacina;
     private javax.swing.JFormattedTextField txtValidade;

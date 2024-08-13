@@ -86,13 +86,14 @@ public class telaAdmin extends javax.swing.JFrame {
         getContentPane().add(btnCadastrarFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 280, 100));
 
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconExit.png"))); // NOI18N
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 90, 40));
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 120, 40));
 
         backgroundLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backgroundCor.png"))); // NOI18N
         backgroundLogin.setText("Gerenciamento Financeiro");

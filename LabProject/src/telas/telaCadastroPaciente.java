@@ -54,32 +54,41 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         txtCPF = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(248, 197, 190));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Nome:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 34, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Sexo:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("CPF:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 130, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("E-mail:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 82, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Data de nascimento:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 178, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Tipo sanguíneo:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 226, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Preferencial:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtNome.setToolTipText("");
@@ -88,6 +97,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                 txtNomeActionPerformed(evt);
             }
         });
+        jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 31, 431, -1));
 
         groupSexo.add(rdbFeminino);
         rdbFeminino.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -97,10 +107,17 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                 rdbFemininoActionPerformed(evt);
             }
         });
+        jPanel1.add(rdbFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
 
         groupSexo.add(rdbMasculino);
         rdbMasculino.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rdbMasculino.setText("Masculino");
+        rdbMasculino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbMasculinoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rdbMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
 
         txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtEmail.setToolTipText("");
@@ -109,6 +126,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                 txtEmailActionPerformed(evt);
             }
         });
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 77, 431, 32));
 
         groupPreferencial.add(rdbSim);
         rdbSim.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -118,10 +136,12 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                 rdbSimActionPerformed(evt);
             }
         });
+        jPanel1.add(rdbSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
 
         groupPreferencial.add(rdbNao);
         rdbNao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rdbNao.setText("Não");
+        jPanel1.add(rdbNao, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
 
         cmbTipoSanguineo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cmbTipoSanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-" }));
@@ -130,6 +150,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                 cmbTipoSanguineoActionPerformed(evt);
             }
         });
+        jPanel1.add(cmbTipoSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 223, 122, -1));
 
         try {
             txtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -137,6 +158,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 173, -1, 32));
 
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -144,6 +166,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCPF.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 127, 197, -1));
 
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSalvar.setText("Salvar");
@@ -152,111 +175,29 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 126, 42));
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnVoltar.setText("Voltar");
+        btnVoltar.setText("Sair");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 126, 42));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(34, 34, 34)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(rdbFeminino)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(rdbMasculino))
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(34, 34, 34)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(30, 30, 30)
-                                .addComponent(cmbTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(30, 30, 30)
-                                .addComponent(rdbSim)
-                                .addGap(43, 43, 43)
-                                .addComponent(rdbNao))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105)
-                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(rdbFeminino)
-                    .addComponent(rdbMasculino))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cmbTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(rdbSim)
-                    .addComponent(rdbNao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconHash.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -315,6 +256,10 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbSimActionPerformed
 
+    private void rdbMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMasculinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbMasculinoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -363,6 +308,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rdbFeminino;
     private javax.swing.JRadioButton rdbMasculino;

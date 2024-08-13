@@ -29,13 +29,16 @@ public class telaFinanceiro extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         pnlEntrada = new javax.swing.JPanel();
         txtEntrada = new javax.swing.JLabel();
-        valorEntrada = new javax.swing.JFormattedTextField();
+        txtValorEntrada = new javax.swing.JLabel();
+        valorEntrada = new javax.swing.JTextField();
         pnlSaida = new javax.swing.JPanel();
         txtSaida = new javax.swing.JLabel();
-        valorSaida = new javax.swing.JFormattedTextField();
+        txtValorSaida = new javax.swing.JLabel();
+        valorSaida = new javax.swing.JTextField();
         pnlTotal = new javax.swing.JPanel();
-        valorTotal = new javax.swing.JFormattedTextField();
         txtTotal = new javax.swing.JLabel();
+        txtValorTotal = new javax.swing.JLabel();
+        valorTotal = new javax.swing.JTextField();
         backgroundCor = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGastos = new javax.swing.JTable();
@@ -43,7 +46,6 @@ public class telaFinanceiro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(680, 470));
-        setPreferredSize(new java.awt.Dimension(679, 490));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
@@ -55,33 +57,24 @@ public class telaFinanceiro extends javax.swing.JFrame {
         txtEntrada.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtEntrada.setText("Entrada");
 
-        valorEntrada.setBackground(new java.awt.Color(242, 242, 242));
-        valorEntrada.setBorder(null);
-        try {
-            valorEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$#####,##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        valorEntrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        valorEntrada.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        valorEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valorEntradaActionPerformed(evt);
-            }
-        });
+        txtValorEntrada.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtValorEntrada.setText("R$");
 
         javax.swing.GroupLayout pnlEntradaLayout = new javax.swing.GroupLayout(pnlEntrada);
         pnlEntrada.setLayout(pnlEntradaLayout);
         pnlEntradaLayout.setHorizontalGroup(
             pnlEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEntradaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(valorEntrada)
-                .addContainerGap())
-            .addGroup(pnlEntradaLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(txtEntrada)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGroup(pnlEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEntradaLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(txtEntrada))
+                    .addGroup(pnlEntradaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtValorEntrada)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         pnlEntradaLayout.setVerticalGroup(
             pnlEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,44 +82,37 @@ public class telaFinanceiro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(txtEntrada)
                 .addGap(18, 18, 18)
-                .addComponent(valorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValorEntrada)
+                    .addComponent(valorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 160, -1));
+        getContentPane().add(pnlEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 160, 110));
 
         pnlSaida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtSaida.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtSaida.setText("Saída");
 
-        valorSaida.setBackground(new java.awt.Color(242, 242, 242));
-        valorSaida.setBorder(null);
-        try {
-            valorSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$#####,##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        valorSaida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        valorSaida.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        valorSaida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valorSaidaActionPerformed(evt);
-            }
-        });
+        txtValorSaida.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtValorSaida.setText("R$");
 
         javax.swing.GroupLayout pnlSaidaLayout = new javax.swing.GroupLayout(pnlSaida);
         pnlSaida.setLayout(pnlSaidaLayout);
         pnlSaidaLayout.setHorizontalGroup(
             pnlSaidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSaidaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(valorSaida, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pnlSaidaLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(txtSaida)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlSaidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSaidaLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(txtSaida))
+                    .addGroup(pnlSaidaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtValorSaida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valorSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         pnlSaidaLayout.setVerticalGroup(
             pnlSaidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +120,9 @@ public class telaFinanceiro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(txtSaida)
                 .addGap(18, 18, 18)
-                .addComponent(valorSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlSaidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValorSaida)
+                    .addComponent(valorSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -142,45 +130,38 @@ public class telaFinanceiro extends javax.swing.JFrame {
 
         pnlTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        valorTotal.setBackground(new java.awt.Color(242, 242, 242));
-        valorTotal.setBorder(null);
-        try {
-            valorTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$#####,##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        valorTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        valorTotal.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        valorTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valorTotalActionPerformed(evt);
-            }
-        });
-
         txtTotal.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         txtTotal.setText("Total");
+
+        txtValorTotal.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtValorTotal.setText("R$");
 
         javax.swing.GroupLayout pnlTotalLayout = new javax.swing.GroupLayout(pnlTotal);
         pnlTotal.setLayout(pnlTotalLayout);
         pnlTotalLayout.setHorizontalGroup(
             pnlTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTotalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(valorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pnlTotalLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(txtTotal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTotalLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(txtTotal))
+                    .addGroup(pnlTotalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtValorTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         pnlTotalLayout.setVerticalGroup(
             pnlTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTotalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtTotal)
-                .addGap(18, 18, 18)
-                .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValorTotal)
+                    .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 160, -1));
@@ -218,7 +199,7 @@ public class telaFinanceiro extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblGastos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 660, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 660, 180));
 
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSair.setText("Sair");
@@ -231,18 +212,6 @@ public class telaFinanceiro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void valorEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorEntradaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_valorEntradaActionPerformed
-
-    private void valorSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorSaidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_valorSaidaActionPerformed
-
-    private void valorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_valorTotalActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         telaAdmin telaAdmin = new telaAdmin();
@@ -297,8 +266,11 @@ public class telaFinanceiro extends javax.swing.JFrame {
     private javax.swing.JLabel txtEntrada;
     private javax.swing.JLabel txtSaida;
     private javax.swing.JLabel txtTotal;
-    private javax.swing.JFormattedTextField valorEntrada;
-    private javax.swing.JFormattedTextField valorSaida;
-    private javax.swing.JFormattedTextField valorTotal;
+    private javax.swing.JLabel txtValorEntrada;
+    private javax.swing.JLabel txtValorSaida;
+    private javax.swing.JLabel txtValorTotal;
+    private javax.swing.JTextField valorEntrada;
+    private javax.swing.JTextField valorSaida;
+    private javax.swing.JTextField valorTotal;
     // End of variables declaration//GEN-END:variables
 }
