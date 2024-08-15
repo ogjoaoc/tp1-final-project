@@ -3,13 +3,13 @@ package classes;
 public class Paciente extends Pessoa {
     private String tipoSanguineo;
     private String convenio;
-    private boolean preferencial;
+    //private boolean preferencial;
 
-    public Paciente(String tipoSanguineo, String convenio, boolean preferencial, String nome, String cpf, String sexo, String dataNascimento, String email) {
+    public Paciente(String tipoSanguineo, String convenio, /*boolean preferencial,*/ String nome, String cpf, String sexo, String dataNascimento, String email) {
         super(nome, cpf, sexo, dataNascimento, email);
         this.tipoSanguineo = tipoSanguineo;
         this.convenio = convenio;
-        this.preferencial = preferencial;
+        //this.preferencial = preferencial;
     }
     
     public String getTipoSanguineo() {
@@ -28,13 +28,13 @@ public class Paciente extends Pessoa {
         this.convenio = convenio;
     }
 
-    public boolean isPreferencial() {
+    /*public boolean isPreferencial() {
         return preferencial;
     }
 
     public void setPreferencial(boolean preferencial) {
         this.preferencial = preferencial;
-    }
+    }*/
     
     
     

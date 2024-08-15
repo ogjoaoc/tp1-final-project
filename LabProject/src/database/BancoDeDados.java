@@ -93,7 +93,7 @@ public class BancoDeDados {
                             String sexo = dados[6];
                             String dataNascimento = dados[7];
                             String email = dados[8];
-                            pacientes.add(new Paciente(tipoSanguineo, convenio, preferencial, nome, cpf, sexo, dataNascimento, email));
+                            pacientes.add(new Paciente(tipoSanguineo, convenio, /*preferencial,*/ nome, cpf, sexo, dataNascimento, email));
                         }
                         break;
                 }
@@ -149,7 +149,7 @@ public class BancoDeDados {
                 StringBuilder sb = new StringBuilder();
                 sb.append(paciente.getTipoSanguineo()).append(",");
                 sb.append(paciente.getConvenio()).append(",");
-                sb.append(paciente.isPreferencial()).append(",");
+                //sb.append(paciente.isPreferencial()).append(",");
                 sb.append(paciente.getNome()).append(",");
                 sb.append(paciente.getCpf()).append(",");
                 sb.append(paciente.getSexo()).append(",");

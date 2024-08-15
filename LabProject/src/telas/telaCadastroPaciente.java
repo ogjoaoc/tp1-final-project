@@ -47,8 +47,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         rdbFeminino = new javax.swing.JRadioButton();
         rdbMasculino = new javax.swing.JRadioButton();
         txtEmail = new javax.swing.JTextField();
-        rdbSim = new javax.swing.JRadioButton();
-        rdbNao = new javax.swing.JRadioButton();
+        cmbConvenio = new javax.swing.JComboBox<>();
         cmbTipoSanguineo = new javax.swing.JComboBox<>();
         txtDataNascimento = new javax.swing.JFormattedTextField();
         txtCPF = new javax.swing.JFormattedTextField();
@@ -87,7 +86,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 226, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("Preferencial:");
+        jLabel7.setText("Convênio:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -128,20 +127,14 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         });
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 77, 431, 32));
 
-        groupPreferencial.add(rdbSim);
-        rdbSim.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdbSim.setText("Sim");
-        rdbSim.addActionListener(new java.awt.event.ActionListener() {
+        cmbConvenio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbConvenio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sem Convênio", "Unimed", "Amil", "Bradesco Saúde", "Porto Seguro" }));
+        cmbConvenio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbSimActionPerformed(evt);
+                cmbConvenioActionPerformed(evt);
             }
         });
-        jPanel1.add(rdbSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
-
-        groupPreferencial.add(rdbNao);
-        rdbNao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdbNao.setText("Não");
-        jPanel1.add(rdbNao, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        jPanel1.add(cmbConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 180, -1));
 
         cmbTipoSanguineo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cmbTipoSanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-" }));
@@ -231,7 +224,8 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             String tipoSanguineo = (String) cmbTipoSanguineo.getSelectedItem();
-            boolean preferencial = rdbSim.isSelected();
+            //boolean preferencial = rdbSim.isSelected();
+            String convenio = "sla";
             String nome = txtNome.getText();
             String cpf = txtCPF.getText();
             String dataNascimento = txtDataNascimento.getText();
@@ -240,7 +234,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             if (rdbMasculino.isSelected()) sexo = "Masculino";
             else sexo = "Feminino";
 
-            Paciente paciente = new Paciente(tipoSanguineo, "", preferencial, nome, cpf, sexo, dataNascimento, email);
+            Paciente paciente = new Paciente(tipoSanguineo, convenio, /*preferencial*/ nome, cpf, sexo, dataNascimento, email);
             
             bancoDeDados.adicionarPessoa(paciente);
         }
@@ -252,13 +246,13 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void rdbSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSimActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdbSimActionPerformed
-
     private void rdbMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMasculinoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbMasculinoActionPerformed
+
+    private void cmbConvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbConvenioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbConvenioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,6 +292,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JComboBox<String> cmbConvenio;
     private javax.swing.JComboBox<String> cmbTipoSanguineo;
     private javax.swing.ButtonGroup groupPreferencial;
     private javax.swing.ButtonGroup groupSexo;
@@ -312,8 +307,6 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rdbFeminino;
     private javax.swing.JRadioButton rdbMasculino;
-    private javax.swing.JRadioButton rdbNao;
-    private javax.swing.JRadioButton rdbSim;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JFormattedTextField txtDataNascimento;
     private javax.swing.JTextField txtEmail;

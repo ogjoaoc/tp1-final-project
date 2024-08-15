@@ -169,8 +169,8 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarResultActionPerformed
 
     private void btnVoltarResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarResultActionPerformed
-        telaAdmin admin = new telaAdmin();
-        admin.setVisible(true);
+        telaAtendente atendente = new telaAtendente();
+        atendente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarResultActionPerformed
 
