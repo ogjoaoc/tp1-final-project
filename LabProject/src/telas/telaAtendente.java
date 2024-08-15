@@ -58,7 +58,7 @@ public class telaAtendente extends javax.swing.JFrame {
                 btnCadastrarPaciente1ActionPerformed(evt);
             }
         });
-        background.add(btnCadastrarPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, 77));
+        background.add(btnCadastrarPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 230, 80));
 
         btnCadastrarPaciente.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         btnCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconAddUser.png"))); // NOI18N
@@ -68,7 +68,7 @@ public class telaAtendente extends javax.swing.JFrame {
                 btnCadastrarPacienteActionPerformed(evt);
             }
         });
-        background.add(btnCadastrarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, 77));
+        background.add(btnCadastrarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 230, 80));
 
         btnAgendarExame.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         btnAgendarExame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconExame.png"))); // NOI18N
@@ -197,7 +197,7 @@ public class telaAtendente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgendarExameActionPerformed
 
     private void btnMinhaContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinhaContaActionPerformed
-        telaContaAtendente telaContaAtendente = new telaContaAtendente();
+        telaContaFuncionario telaContaAtendente = new telaContaFuncionario();
         telaContaAtendente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMinhaContaActionPerformed
