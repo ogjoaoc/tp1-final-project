@@ -1,14 +1,18 @@
 package telas;
+import classes.Atendente;
 import classes.Enfermeiro;
 import database.BancoDeDados;
 import java.awt.Toolkit;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import telas.telaAdmin;
 /**
  *
  * @author joaoc
  */
-public class telaCadastroFuncionario extends javax.swing.JFrame {
+public final class telaCadastroFuncionario extends javax.swing.JFrame {
 
     // Instanciando database    
     BancoDeDados bancoDeDados = new BancoDeDados();
@@ -146,10 +150,15 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
         lblSalario.setText("Salário:");
 
         try {
-            txtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$####,##")));
+            txtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("$####.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSalarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -280,19 +289,26 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
             String nome = txtNome.getText();
-            String cpf = txtCpf.getText();
+            String cpfAux = "", cpf = txtCpf.getText();
             String dataNascimento = txtData.getText();
             String email = txtEmail.getText();
             String senha = new String(txtSenha.getPassword());
             String salario = txtSalario.getText();
+            for(int i = 0; i < cpf.length(); i++) {
+                if(cpf.charAt(i) != '.' && cpf.charAt(i) != '-')
+                    cpfAux += cpf.charAt(i);
+            }
             // sexo e função já foram salvos acima
             if(funcao.equals("Enfermeiro")) {
                 boolean disponivel = true;
-                Enfermeiro enfermeiro = new Enfermeiro(disponivel, nome, cpf, sexo, dataNascimento, email, senha);
+                Enfermeiro enfermeiro = new Enfermeiro(nome, cpfAux, sexo, dataNascimento, email, senha, salario, disponivel);
                 bancoDeDados.adicionarPessoa(enfermeiro);
                 //bancoDeDados.escreverArquivo("enfermeiro");
             } else if(funcao.equals("Atendente")) {
-                
+                Random random = new Random();
+                int credencial = 1000 + random.nextInt(9000); 
+                Atendente atendente = new Atendente(nome, cpfAux, sexo, dataNascimento, email, senha, salario, "Manhã", credencial, 0);
+                bancoDeDados.adicionarPessoa(atendente);
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -306,6 +322,10 @@ public class telaCadastroFuncionario extends javax.swing.JFrame {
     private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDataActionPerformed
+
+    private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSalarioActionPerformed
 
     /**
      * @param args the command line arguments

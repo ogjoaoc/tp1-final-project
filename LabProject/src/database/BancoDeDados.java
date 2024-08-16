@@ -2,10 +2,13 @@ package database;
 
 import classes.Atendente;
 import classes.Enfermeiro;
+import classes.Funcionario;
 import classes.Paciente;
 import classes.Pessoa;
 
 import java.io.*;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.nio.file.Paths;
 
@@ -17,6 +20,7 @@ public class BancoDeDados {
     private ArrayList<Enfermeiro> enfermeiros;
     private ArrayList<Atendente> atendentes;
     private ArrayList<Paciente> pacientes;
+    private ArrayList<Funcionario> funcionarios;
 
     public BancoDeDados() {
         String auxDir = System.getProperty("user.dir");
@@ -36,6 +40,7 @@ public class BancoDeDados {
         this.enfermeiros = new ArrayList<>();
         this.atendentes = new ArrayList<>();
         this.pacientes = new ArrayList<>();
+        this.funcionarios = new ArrayList<>();
     }
 
     public void lerArquivo(String tipo) {
@@ -58,29 +63,35 @@ public class BancoDeDados {
                 String[] dados = linha.split(",");
                 switch (tipo.toLowerCase()) {
                     case "enfermeiro":
-                        if (dados.length == 7) { // Enfermeiro
-                            boolean disponivel = Boolean.parseBoolean(dados[0]);
-                            String nome = dados[1];
-                            String cpf = dados[2];
-                            String sexo = dados[3];
-                            String dataNascimento = dados[4];
-                            String email = dados[5];
-                            String senha = dados[6];
-                            enfermeiros.add(new Enfermeiro(disponivel, nome, cpf, sexo, dataNascimento, email, senha));
+                        if (dados.length == 8) { // Enfermeiro
+                            String nome = dados[0];
+                            String cpf = dados[1];
+                            String sexo = dados[2];
+                            String dataNascimento = dados[3];
+                            String email = dados[4];
+                            String senha = dados[5];
+                            String salario = dados[6];
+                            boolean disponivel = Boolean.parseBoolean(dados[7]);
+                            Enfermeiro enf = new Enfermeiro(nome, cpf, sexo, dataNascimento, email, senha, salario, disponivel);
+                            enfermeiros.add(enf);
+                            funcionarios.add(enf);
                         }
                         break;
                     case "atendente":
-                        if (dados.length == 9) { // Atendente
-                            String turno = dados[0];
-                            int credencial = Integer.parseInt(dados[1]);
-                            int qtdAgendamentos = Integer.parseInt(dados[2]);
-                            String nome = dados[3];
-                            String cpf = dados[4];
-                            String sexo = dados[5];
-                            String dataNascimento = dados[6];
-                            String email = dados[7];
-                            String senha = dados[8];
-                            atendentes.add(new Atendente(turno, credencial, qtdAgendamentos, nome, cpf, sexo, dataNascimento, email, senha));
+                        if (dados.length == 10) { // Atendente
+                            String nome = dados[0];
+                            String cpf = dados[1];
+                            String sexo = dados[2];
+                            String dataNascimento = dados[3];
+                            String email = dados[4];
+                            String senha = dados[5];
+                            String salario = dados[6];
+                            String turno = dados[7];
+                            int credencial = Integer.parseInt(dados[8]);
+                            int qtdAgendamentos = Integer.parseInt(dados[9]);
+                            Atendente atend = new Atendente(nome, cpf, sexo, dataNascimento, email, senha, salario, turno, credencial, qtdAgendamentos);
+                            atendentes.add(atend);
+                            funcionarios.add(atend);
                         }
                         break;
                     case "paciente":
@@ -109,13 +120,14 @@ public class BancoDeDados {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
                 Enfermeiro enfermeiro = (Enfermeiro) pessoa;
                 StringBuilder sb = new StringBuilder();
-                sb.append(enfermeiro.isDisponivel()).append(",");
                 sb.append(enfermeiro.getNome()).append(",");
                 sb.append(enfermeiro.getCpf()).append(",");
                 sb.append(enfermeiro.getSexo()).append(",");
                 sb.append(enfermeiro.getDataNascimento()).append(",");
                 sb.append(enfermeiro.getEmail()).append(",");
-                sb.append(enfermeiro.getSenha());
+                sb.append(enfermeiro.getSenha()).append(",");
+                sb.append(enfermeiro.getSalario()).append(",");
+                sb.append(String.valueOf(enfermeiro.isDisponivel()));
                 bw.write(sb.toString());
                 bw.newLine();
             } catch (IOException e) {
@@ -127,15 +139,16 @@ public class BancoDeDados {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
                 Atendente atendente = (Atendente) pessoa;
                 StringBuilder sb = new StringBuilder();
-                sb.append(atendente.getTurno()).append(",");
-                sb.append(atendente.getCredencial()).append(",");
-                sb.append(atendente.getQtdAgendamentos()).append(",");
                 sb.append(atendente.getNome()).append(",");
                 sb.append(atendente.getCpf()).append(",");
                 sb.append(atendente.getSexo()).append(",");
                 sb.append(atendente.getDataNascimento()).append(",");
                 sb.append(atendente.getEmail()).append(",");
-                sb.append(atendente.getSenha());
+                sb.append(atendente.getSenha()).append(",");
+                sb.append(atendente.getSalario()).append(",");
+                sb.append(atendente.getTurno()).append(",");
+                sb.append(atendente.getCredencial()).append(",");
+                sb.append(atendente.getQtdAgendamentos());
                 bw.write(sb.toString());
                 bw.newLine();
             } catch (IOException e) {
@@ -165,11 +178,11 @@ public class BancoDeDados {
 
     public void removerPessoa(Pessoa pessoa) {
         if (pessoa instanceof Enfermeiro) {
-            enfermeiros.remove(pessoa);
+            enfermeiros.remove((Enfermeiro)pessoa);
         } else if (pessoa instanceof Atendente) {
-            atendentes.remove(pessoa);
+            atendentes.remove((Atendente)pessoa);
         } else if (pessoa instanceof Paciente) {
-            pacientes.remove(pessoa);
+            pacientes.remove((Paciente)pessoa);
         }
     }
 
@@ -184,4 +197,9 @@ public class BancoDeDados {
     public ArrayList<Paciente> getPacientes() {
         return pacientes;
     }
+    
+    public ArrayList<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+    
 }
