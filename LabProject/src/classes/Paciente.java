@@ -5,7 +5,14 @@ public class Paciente extends Pessoa {
     private String convenio;
     //private boolean preferencial;
 
-    public Paciente(String tipoSanguineo, String convenio, /*boolean preferencial,*/ String nome, String cpf, String sexo, String dataNascimento, String email) {
+    public Paciente(String nome, String cpf, String sexo, String dataNascimento, String email, String tipoSanguineo) {
+        super(nome, cpf, sexo, dataNascimento, email);
+        this.tipoSanguineo = tipoSanguineo;
+        this.convenio = "Sem convênio.";
+        //this.preferencial = preferencial;
+    }
+    
+    public Paciente(String nome, String cpf, String sexo, String dataNascimento, String email, String tipoSanguineo, String convenio /*boolean preferencial,*/) {
         super(nome, cpf, sexo, dataNascimento, email);
         this.tipoSanguineo = tipoSanguineo;
         this.convenio = convenio;
