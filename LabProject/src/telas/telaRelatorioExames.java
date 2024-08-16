@@ -15,6 +15,7 @@ public class telaRelatorioExames extends javax.swing.JFrame {
      */
     public telaRelatorioExames() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

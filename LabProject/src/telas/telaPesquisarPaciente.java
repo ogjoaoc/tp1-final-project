@@ -15,6 +15,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
      */
     public telaPesquisarPaciente() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

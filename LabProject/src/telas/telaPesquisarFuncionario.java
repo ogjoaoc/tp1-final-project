@@ -15,6 +15,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
      */
     public telaPesquisarFuncionario() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

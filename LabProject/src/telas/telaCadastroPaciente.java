@@ -22,6 +22,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     
     public telaCadastroPaciente() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

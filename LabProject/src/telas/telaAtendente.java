@@ -15,6 +15,7 @@ public class telaAtendente extends javax.swing.JFrame {
      */
     public telaAtendente() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

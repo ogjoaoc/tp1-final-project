@@ -15,6 +15,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame {
      */
     public telaEstoqueVacina() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

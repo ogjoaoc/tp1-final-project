@@ -15,6 +15,7 @@ public class telaAplicarVacina extends javax.swing.JFrame {
      */
     public telaAplicarVacina() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**
@@ -150,21 +151,21 @@ public class telaAplicarVacina extends javax.swing.JFrame {
         lblTituloVacina.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         lblTituloVacina.setText("Vacina");
         jPanel3.add(lblTituloVacina);
-        lblTituloVacina.setBounds(20, 10, 87, 32);
+        lblTituloVacina.setBounds(20, 10, 80, 36);
 
         lblTipoVacina.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTipoVacina.setText("Tipo:");
         jPanel3.add(lblTipoVacina);
-        lblTipoVacina.setBounds(20, 50, 45, 22);
+        lblTipoVacina.setBounds(20, 50, 43, 25);
 
         txtTipo.setText("Febre Amarela");
         jPanel3.add(txtTipo);
-        txtTipo.setBounds(20, 80, 109, 23);
+        txtTipo.setBounds(20, 80, 109, 22);
 
         lblEstoqueVacina.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblEstoqueVacina.setText("Em estoque: ");
         jPanel3.add(lblEstoqueVacina);
-        lblEstoqueVacina.setBounds(20, 120, 118, 22);
+        lblEstoqueVacina.setBounds(20, 120, 109, 25);
 
         txtEstoqueVacina.setText("138");
         txtEstoqueVacina.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +174,7 @@ public class telaAplicarVacina extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtEstoqueVacina);
-        txtEstoqueVacina.setBounds(20, 150, 40, 23);
+        txtEstoqueVacina.setBounds(20, 150, 40, 22);
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 410, 200));
 
@@ -184,28 +185,28 @@ public class telaAplicarVacina extends javax.swing.JFrame {
         lblTituloAplicacaoDosagem.setText("Data de aplicação e Dosagem");
         lblTituloAplicacaoDosagem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel5.add(lblTituloAplicacaoDosagem);
-        lblTituloAplicacaoDosagem.setBounds(10, 10, 410, 32);
+        lblTituloAplicacaoDosagem.setBounds(10, 10, 410, 36);
 
         txtDataDeAplicacao.setText("18/18/2021");
         jPanel5.add(txtDataDeAplicacao);
-        txtDataDeAplicacao.setBounds(20, 50, 79, 23);
+        txtDataDeAplicacao.setBounds(20, 50, 73, 22);
 
         checkBoxPrimeiraDose.setText("Primeira Dose");
         jPanel5.add(checkBoxPrimeiraDose);
-        checkBoxPrimeiraDose.setBounds(20, 90, 104, 21);
+        checkBoxPrimeiraDose.setBounds(20, 90, 96, 20);
 
         checkBoxTerceiraDose.setText("Terceira Dose");
         jPanel5.add(checkBoxTerceiraDose);
-        checkBoxTerceiraDose.setBounds(280, 90, 103, 21);
+        checkBoxTerceiraDose.setBounds(280, 90, 93, 20);
 
         checkBoxSegundaDose.setText("Segunda Dose");
         jPanel5.add(checkBoxSegundaDose);
-        checkBoxSegundaDose.setBounds(150, 90, 108, 21);
+        checkBoxSegundaDose.setBounds(150, 90, 98, 20);
 
         lblObservacao.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblObservacao.setText("Observação:");
         jPanel5.add(lblObservacao);
-        lblObservacao.setBounds(20, 120, 114, 22);
+        lblObservacao.setBounds(20, 120, 105, 25);
 
         txtCampoObs.setColumns(20);
         txtCampoObs.setRows(5);

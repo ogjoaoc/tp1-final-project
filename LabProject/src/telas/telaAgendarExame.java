@@ -15,6 +15,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
      */
     public telaAgendarExame() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

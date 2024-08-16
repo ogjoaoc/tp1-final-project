@@ -1,7 +1,5 @@
 package database;
-
 import classes.*;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.nio.file.Paths;
@@ -105,7 +103,6 @@ public class BancoDeDados {
                 bw.write(sb.toString()); bw.newLine();
             
             } catch (IOException e) {
-                e.printStackTrace();
             }
 
         } else if (pessoa instanceof Paciente) {

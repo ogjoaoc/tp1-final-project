@@ -22,7 +22,7 @@ public class telaInicial extends javax.swing.JFrame {
     
     public telaInicial() {
         initComponents();
-        setResizable(false); // Desativa o redimensionamento (incluindo o botão de maximizar)
+        this.setResizable(false);
         setVisible(true);
         Image icon = new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage();
         setIconImage(icon);

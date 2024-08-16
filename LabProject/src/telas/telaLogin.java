@@ -14,11 +14,32 @@ public class telaLogin extends javax.swing.JFrame {
     BancoDeDados database = new BancoDeDados();
     
     public telaLogin() {
+        
         initComponents();
+        this.setResizable(false);
         Image icon = new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage();
         setIconImage(icon);
         database.lerArquivo("enfermeiro");
         database.lerArquivo("atendente");
+        txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+        
+        @Override
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    txtSenha.requestFocus(); 
+                }
+            }
+        });
+
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    btnEntrar.doClick(); 
+                }
+            }
+        });
+
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +58,7 @@ public class telaLogin extends javax.swing.JFrame {
         setTitle("Tela de Login");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
@@ -81,7 +102,7 @@ public class telaLogin extends javax.swing.JFrame {
                         .addComponent(imgIconUser)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
                     .addComponent(txtLogin))

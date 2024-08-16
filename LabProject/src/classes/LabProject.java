@@ -1,12 +1,6 @@
 package classes;
-
-import database.BancoDeDados;
 import telas.telaInicial;
 
-/**
- *
- * @author joao
- */
 public class LabProject {
 
     /**

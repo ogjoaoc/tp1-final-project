@@ -15,6 +15,7 @@ public class telaEnfermeiro extends javax.swing.JFrame {
      */
     public telaEnfermeiro() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

@@ -15,6 +15,7 @@ public class telaContaFuncionario extends javax.swing.JFrame {
      */
     public telaContaFuncionario() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**

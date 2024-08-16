@@ -19,6 +19,7 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
     
     public telaCadastroFuncionario() {
         initComponents();
+        this.setResizable(false);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         bancoDeDados.lerArquivo("enfermeiro");

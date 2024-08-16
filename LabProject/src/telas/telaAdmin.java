@@ -15,6 +15,7 @@ public class telaAdmin extends javax.swing.JFrame {
      */
     public telaAdmin() {
         initComponents();
+        this.setResizable(false);
         setLocationRelativeTo(null);
     }
 

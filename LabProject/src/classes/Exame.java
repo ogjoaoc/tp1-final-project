@@ -1,8 +1,4 @@
 package classes;
-/**
- *
- * @author analuisa
- */
 public class Exame {
     private String data, tipo, patologia, alvo, resultado;
     private Paciente paciente;
