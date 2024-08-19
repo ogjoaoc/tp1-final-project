@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class telaPesquisarFuncionario extends javax.swing.JFrame {
 
     BancoDeDados database = new BancoDeDados(); 
-    private final String placeholderText = "Pesquisa por CPF ou nome...";
+    private final String placeholderText = "Pesquisar por CPF ou nome...";
     
     public telaPesquisarFuncionario() {
         initComponents();

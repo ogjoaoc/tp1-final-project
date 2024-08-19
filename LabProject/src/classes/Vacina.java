@@ -1,16 +1,23 @@
 package classes;
 
 public class Vacina {
-    private String tipoVacina;
+    private String tipoVacina, validade;
     private boolean disponivel;
     private int qtd;
-
-    public Vacina(String tipoVacina, boolean disponivel, int qtd) {
+    private double preco;
+    
+    // Construtores
+    public Vacina(){}; 
+    
+    public Vacina(String tipoVacina, String validade, boolean disponivel, int qtd, double preco) {
         this.tipoVacina = tipoVacina;
+        this.validade = validade;
         this.disponivel = disponivel;
         this.qtd = qtd;
+        this.preco = preco;
     }
-
+    
+    // métodos getters e setters
     public String getTipoVacina() {
         return tipoVacina;
     }
@@ -19,6 +26,14 @@ public class Vacina {
         this.tipoVacina = tipoVacina;
     }
 
+    public String getValidade(){
+        return this.validade;
+    }
+    
+    public void setValidade(String data){
+        this.validade = data;
+    }
+    
     public boolean isDisponivel() {
         return disponivel;
     }
@@ -33,6 +48,14 @@ public class Vacina {
 
     public void setQtd(int qtd) {
         this.qtd = qtd;
+    }
+    
+    public double getPreco(){
+        return this.preco;
+    }
+    
+    public void setPreco(double preco){
+        this.preco = preco;
     }
     
     public boolean aplicaVacina() {

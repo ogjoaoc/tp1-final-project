@@ -11,6 +11,7 @@ public class BancoDeDados {
     private final ArrayList<Atendente> atendentes;
     private final ArrayList<Paciente> pacientes;
     private final ArrayList<Funcionario> funcionarios;
+    private final ArrayList<Vacina> vacinas;
     private final HashMap<String, String> filePathHash; 
 
     public BancoDeDados() {
@@ -19,12 +20,20 @@ public class BancoDeDados {
         this.atendentes = new ArrayList<>();
         this.pacientes = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
+        this.vacinas = new ArrayList<>();
         this.filePathHash = new HashMap<>();
         
         filePathHash.put("enfermeiro", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosEnfermeiro.csv").toString());
         filePathHash.put("atendente", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosAtendente.csv").toString());
         filePathHash.put("paciente", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosPaciente.csv").toString());
+        filePathHash.put("vacina", Paths.get(System.getProperty("user.dir"),"src", "database","dadosVacinas.csv").toString());
+        
+    }
     
+    public StringBuilder escreverDadosBase(Vacina vacina){
+        StringBuilder sb = new StringBuilder(); sb.append(vacina.getTipoVacina()).append(","); sb.append(vacina.getValidade()).append(",");
+        sb.append(String.valueOf(vacina.isDisponivel())).append(","); sb.append(vacina.getQtd()).append(","); sb.append(vacina.getPreco()).append(",");
+        return sb;
     }
 
     public StringBuilder escreverDadosBase(Pessoa pessoa) {
@@ -53,6 +62,11 @@ public class BancoDeDados {
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(",");
                 switch (dados.length) {
+                    case 5 -> {
+                        Vacina vac = new Vacina(dados[0], dados[1], Boolean.parseBoolean(dados[2]), Integer.parseInt(dados[3]), Double.parseDouble(dados[4]));
+                        vacinas.add(vac);
+                    }
+
                     case 8 -> {
                         Enfermeiro enf = new Enfermeiro(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], Boolean.parseBoolean(dados[7]));
                         enfermeiros.add(enf);
@@ -69,6 +83,18 @@ public class BancoDeDados {
             }
         } catch (IOException e) {
         }
+        
+    }
+    
+    public void adicionarVacina(Vacina vacina) throws IOException{
+        String filePath = filePathHash.get("vacina");
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
+            
+                StringBuilder sb = escreverDadosBase(vacina);
+                bw.write(sb.toString()); bw.newLine();
+                
+        } catch (IOException e) {}
         
     }
 
@@ -120,6 +146,10 @@ public class BancoDeDados {
         }
     }
 
+    public void removerVacina(Vacina vacina){
+        vacinas.remove(vacina);
+    }
+    
     public void removerPessoa(Pessoa pessoa) {
         
         if (pessoa instanceof Enfermeiro) {
@@ -146,6 +176,10 @@ public class BancoDeDados {
     
     public ArrayList<Funcionario> getFuncionarios() {
         return funcionarios;
+    }
+    
+    public ArrayList<Vacina> getVacinas(){
+        return vacinas;
     }
     
 }
