@@ -107,8 +107,8 @@ public class telaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarFuncActionPerformed
 
     private void btnEstoqueVacinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueVacinasActionPerformed
-        telaEstoqueVacina2 telaVacina2 = new telaEstoqueVacina2();
-        telaVacina2.setVisible(true);
+        telaEstoqueVacina telaVacina = new telaEstoqueVacina();
+        telaVacina.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEstoqueVacinasActionPerformed
 

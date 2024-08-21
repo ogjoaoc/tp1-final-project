@@ -92,7 +92,7 @@ public class BancoDeDados {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
             
                 StringBuilder sb = escreverDadosBase(vacina);
-                bw.write(sb.toString()); bw.newLine();
+                bw.write(sb.toString()); bw.newLine(); vacinas.add(vacina); // Adiciona a vacina ao arquivo e à lista em memória
                 
         } catch (IOException e) {}
         
@@ -146,8 +146,11 @@ public class BancoDeDados {
         }
     }
 
-    public void removerVacina(Vacina vacina){
-        vacinas.remove(vacina);
+    public void removerVacina(String tipoVacina){
+       
+        vacinas.removeIf(v -> v.getTipoVacina().equals(tipoVacina));
+        reescreverArquivo();
+        
     }
     
     public void removerPessoa(Pessoa pessoa) {
@@ -161,7 +164,35 @@ public class BancoDeDados {
         }
         
     }
+    
+    public void atualizarVacina(Vacina vacina) {
+        String tipoVacina = vacina.getTipoVacina();
 
+        // Atualiza a vacina na lista em memória
+        for (int i = 0; i < vacinas.size(); i++) {
+            if (vacinas.get(i).getTipoVacina().equals(tipoVacina)) {
+                vacinas.set(i, vacina);
+                break; // Opcional: Se houver várias vacinas com o mesmo tipo, você pode remover isso.
+            }
+        }
+        
+        // Reescreve o arquivo atualizado
+        reescreverArquivo();
+    }
+
+    public void reescreverArquivo(){
+        String filePath = filePathHash.get("vacina");
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            for (Vacina v : vacinas) {
+                StringBuilder sb = escreverDadosBase(v);
+                bw.write(sb.toString());
+                bw.newLine();
+            }
+        } catch (IOException e) {}
+        
+    }
+    
     public ArrayList<Enfermeiro> getEnfermeiros() {
         return enfermeiros;
     }
