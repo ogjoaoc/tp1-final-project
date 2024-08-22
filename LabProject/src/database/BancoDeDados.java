@@ -61,24 +61,27 @@ public class BancoDeDados {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(",");
-                switch (dados.length) {
-                    case 5 -> {
+                switch (tipo) {
+                    case "vacina" -> {
                         Vacina vac = new Vacina(dados[0], dados[1], Boolean.parseBoolean(dados[2]), Integer.parseInt(dados[3]), Double.parseDouble(dados[4]));
                         vacinas.add(vac);
                     }
 
-                    case 8 -> {
+                    case "enfermeiro" -> {
                         Enfermeiro enf = new Enfermeiro(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], Boolean.parseBoolean(dados[7]));
                         enfermeiros.add(enf);
                         funcionarios.add(enf);
                     }
-                    case 10 -> {
+                    case "atendente" -> {
                         Atendente atend = new Atendente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], dados[7], Integer.parseInt(dados[8]), Integer.parseInt(dados[9]));
                         atendentes.add(atend);
                         funcionarios.add(atend);
                     }
-                    case 9 -> //boolean preferencial = Boolean.parseBoolean(dados[3]);
-                        pacientes.add(new Paciente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6] /*preferencial,*/));
+                    case "paciente" ->{ //boolean preferencial = Boolean.parseBoolean(dados[3]);
+                        // Paciente(String nome, String cpf, String sexo, String dataNascimento, String email, String tipoSanguineo, String convenio /*boolean preferencial,*/)
+                        // A+,,true,ana,132.424.234-24,Feminino,11/23/4123,fajslfjalks@gmail
+                        pacientes.add(new Paciente(dados[3], dados[4], dados[5], dados[6], dados[7], dados[0], dados[1] /*preferencial,*/));
+                    }
                 }
             }
         } catch (IOException e) {
