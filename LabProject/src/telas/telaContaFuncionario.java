@@ -13,8 +13,24 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
         this.setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         carregarDadosUserLogado();
+        desativarEditCamposDeTexto();
     }
     
+    public void desativarEditCamposDeTexto() {
+        txtNome.setEditable(false);
+        txtData.setEditable(false);
+        txtEmail.setEditable(false);
+        txtCpf.setEditable(false);
+        txtSenha.setEditable(false);   
+    }
+    
+    public void habilitarEditCamposDeTexto() {
+        txtNome.setEditable(true);
+        txtData.setEditable(true);
+        txtEmail.setEditable(true);
+        txtCpf.setEditable(true);
+        txtSenha.setEditable(true);  
+    }
     
     public void carregarDadosUserLogado() {
         
@@ -25,7 +41,7 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
             txtEmail.setText(userLogado.getEmail());
             txtCpf.setText(userLogado.getCpf());
             txtSenha.setText(userLogado.getSenha());
-            
+             
         }
         
     }
@@ -190,7 +206,8 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        habilitarEditCamposDeTexto();
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
