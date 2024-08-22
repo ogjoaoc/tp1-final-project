@@ -4,6 +4,7 @@ import database.BancoDeDados;
 import classes.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -131,6 +132,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();  // Alterado para JTextField
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFuncionarios = new javax.swing.JTable();
+        btnDemitir = new javax.swing.JButton();
         btnVoltarResult = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -170,6 +172,14 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         tblFuncionarios.setSelectionBackground(new java.awt.Color(248, 197, 190));
         jScrollPane1.setViewportView(tblFuncionarios);
 
+        btnDemitir.setFont(new java.awt.Font("Segoe UI", 1, 18));
+        btnDemitir.setText("Demitir");
+        btnDemitir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDemitirActionPerformed(evt);
+            }
+        });
+
         btnVoltarResult.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVoltarResult.setText("Voltar");
         btnVoltarResult.addActionListener(new java.awt.event.ActionListener() {
@@ -177,9 +187,10 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
                 btnVoltarResultActionPerformed(evt);
             }
         });
-
+        
         JPanel btnPanel = new JPanel(); // Painel para o botão
         btnPanel.setBackground(new java.awt.Color(248, 197, 190));
+        btnPanel.add(btnDemitir);
         btnPanel.add(btnVoltarResult); // Adicionar o botão ao painel
 
         pnlBkGround.add(pnlPesquisa, BorderLayout.NORTH);
@@ -207,7 +218,30 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         telaAdmin admin = new telaAdmin();
         admin.setVisible(true);
         this.dispose();
-    }                                               
+    }   
+    
+    private void btnDemitirActionPerformed(java.awt.event.ActionEvent evt) {
+        int idx = tblFuncionarios.getSelectedRow();
+        
+        if (idx >= 0) {
+            // Confirmação antes de excluir
+            int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja demitir o funcionário?", "Confirmar Demissão", JOptionPane.YES_NO_OPTION);
+            if (confirmacao == JOptionPane.YES_OPTION) {
+                // Remove o funcionario da lista
+                if(tblFuncionarios.getValueAt(idx,4).equals("Enfermeiro")){
+                    String cpf = tblFuncionarios.getValueAt(idx,1).toString();
+                    database.removerPessoa("enfermeiro", cpf);
+                }
+                
+                else if(tblFuncionarios.getValueAt(idx,4).equals("Atendente")){
+                    String cpf = tblFuncionarios.getValueAt(idx,1).toString();
+                    database.removerPessoa("atendente", cpf);
+                }
+                
+                carregarTabela(database.getFuncionarios());
+            }
+        }
+    }  
 
     public static void main(String args[]) {
         try {
@@ -235,6 +269,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnVoltarResult;
+    private javax.swing.JButton btnDemitir;
     private javax.swing.JTextField jTextField1;  // Alterado para JTextField
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPaciente;
