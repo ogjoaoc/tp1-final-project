@@ -1,6 +1,7 @@
 package telas;
 
 import classes.*;
+import interfaces.UserLogado;
 
 public final class telaContaFuncionario extends javax.swing.JFrame {
     
