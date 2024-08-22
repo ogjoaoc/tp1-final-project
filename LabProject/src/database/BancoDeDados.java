@@ -61,27 +61,24 @@ public class BancoDeDados {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(",");
-                switch (tipo) {
-                    case "vacina" -> {
+                switch (dados.length) {
+                    case 5 -> {
                         Vacina vac = new Vacina(dados[0], dados[1], Boolean.parseBoolean(dados[2]), Integer.parseInt(dados[3]), Double.parseDouble(dados[4]));
                         vacinas.add(vac);
                     }
 
-                    case "enfermeiro" -> {
+                    case 8 -> {
                         Enfermeiro enf = new Enfermeiro(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], Boolean.parseBoolean(dados[7]));
                         enfermeiros.add(enf);
                         funcionarios.add(enf);
                     }
-                    case "atendente" -> {
+                    case 10 -> {
                         Atendente atend = new Atendente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], dados[7], Integer.parseInt(dados[8]), Integer.parseInt(dados[9]));
                         atendentes.add(atend);
                         funcionarios.add(atend);
                     }
-                    case "paciente" ->{ //boolean preferencial = Boolean.parseBoolean(dados[3]);
-                        // Paciente(String nome, String cpf, String sexo, String dataNascimento, String email, String tipoSanguineo, String convenio /*boolean preferencial,*/)
-                        // A+,,true,ana,132.424.234-24,Feminino,11/23/4123,fajslfjalks@gmail
-                        pacientes.add(new Paciente(dados[3], dados[4], dados[5], dados[6], dados[7], dados[0], dados[1] /*preferencial,*/));
-                    }
+                    case 9 -> //boolean preferencial = Boolean.parseBoolean(dados[3]);
+                        pacientes.add(new Paciente(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6] /*preferencial,*/));
                 }
             }
         } catch (IOException e) {
@@ -209,6 +206,7 @@ public class BancoDeDados {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
                 for (Enfermeiro e : enfermeiros) {
                     StringBuilder sb = escreverDadosBase(e);
+                    sb.append(e.getSalario()).append(",");sb.append(String.valueOf(e.isDisponivel()));
                     bw.write(sb.toString());
                     bw.newLine();
                 }
@@ -219,6 +217,7 @@ public class BancoDeDados {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
                 for (Atendente a : atendentes) {
                     StringBuilder sb = escreverDadosBase(a);
+                    sb.append(a.getSalario()).append(",");sb.append(a.getTurno()).append(",");sb.append(a.getCredencial()).append(","); sb.append(String.valueOf(a.getQtdAgendamentos())).append(",");
                     bw.write(sb.toString());
                     bw.newLine();
                 }
@@ -228,7 +227,7 @@ public class BancoDeDados {
         else if(nomeArquivo.equals("paciente")){
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
                 for (Paciente p : pacientes) {
-                    StringBuilder sb = escreverDadosBase(p);
+                    StringBuilder sb = escreverDadosBase(p);sb.append(p.getTipoSanguineo()).append(","); sb.append(p.getConvenio()).append(",");
                     bw.write(sb.toString());
                     bw.newLine();
                 }
@@ -258,3 +257,4 @@ public class BancoDeDados {
     }
     
 }
+

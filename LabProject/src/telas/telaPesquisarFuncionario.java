@@ -24,8 +24,8 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         this.setResizable(false); // Desativar redimensionamento da tela
         
         // Ler os dados dos arquivos
-        database.lerArquivo("enfermeiro");
         database.lerArquivo("atendente");
+        database.lerArquivo("enfermeiro");
 
         // Adicionar o listener para monitorar o campo de texto
         addSearchListener();
@@ -240,6 +240,8 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
                 
                 carregarTabela(database.getFuncionarios());
             }
+        } else{
+            JOptionPane.showMessageDialog(this,"Selecione um funcionário para demitir.", "Informação", JOptionPane.INFORMATION_MESSAGE);
         }
     }  
 

@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/zero/Documents/tp1-final-project/LabProject/src/database/dadosPaciente.csv</file>
-            <file>file:/C:/Users/zero/Documents/tp1-final-project/LabProject/src/database/BancoDeDados.java</file>
-            <file>file:/C:/Users/zero/Documents/tp1-final-project/LabProject/src/telas/telaPesquisarFuncionario.java</file>
-            <file>file:/C:/Users/zero/Documents/tp1-final-project/LabProject/src/telas/telaPesquisarPaciente.java</file>
-            <file>file:/C:/Users/zero/Documents/tp1-final-project/LabProject/src/classes/Paciente.java</file>
-=======
-            <file>file:/Users/analuisa/Documents/tp1-final-project/LabProject/src/telas/telaLogin.java</file>
-            <file>file:/Users/analuisa/Documents/tp1-final-project/LabProject/src/telas/telaEstoqueVacina.java</file>
+            <file>file:/Users/analuisa/Documents/tp1-final-project/LabProject/src/database/dadosAtendente.csv</file>
+            <file>file:/Users/analuisa/Documents/tp1-final-project/LabProject/src/database/dadosVacinas.csv</file>
+            <file>file:/Users/analuisa/Documents/tp1-final-project/LabProject/src/telas/telaPesquisarFuncionario.java</file>
+            <file>file:/Users/analuisa/Documents/tp1-final-project/LabProject/src/database/dadosEnfermeiro.csv</file>
             <file>file:/Users/analuisa/Documents/tp1-final-project/LabProject/src/database/BancoDeDados.java</file>
-            <file>file:/Users/analuisa/Documents/tp1-final-project/LabProject/src/telas/telaAdmin.java</file>
->>>>>>> 6d67f2669b4acf7d6a9d7a8bb2e9ab48d016f2e4
         </group>
     </open-files>
 </project-private>
