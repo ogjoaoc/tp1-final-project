@@ -1,9 +1,8 @@
 package telas;
 
-import classes.Enfermeiro;
-import classes.Funcionario;
-import classes.Pessoa;
+import classes.*;
 import database.BancoDeDados;
+import interfaces.UserLogado;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -41,6 +40,7 @@ public class telaLogin extends javax.swing.JFrame {
         });
 
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -171,6 +171,7 @@ public class telaLogin extends javax.swing.JFrame {
         } else {
             
             String tipoDeUsuario = "";
+            UserLogado userLogado = null;
             for (Funcionario funcionario : database.getFuncionarios()) {
                 if (funcionario.getCpf().equals(login) && funcionario.getSenha().equals(senha)) {
                     if(funcionario instanceof Enfermeiro) {
@@ -178,12 +179,19 @@ public class telaLogin extends javax.swing.JFrame {
                     } else {
                         tipoDeUsuario = "atendente";
                     }
+                    userLogado = funcionario;
+                    break;
                 }
             }
-
+            
+            // Seta usuário logado no "SessionManager"
+            GerenciadorLogin.getInstance().setUserLogado(userLogado);
+            
             if(tipoDeUsuario.equals("")) {
+                
                 Toolkit.getDefaultToolkit().beep();
                 JOptionPane.showMessageDialog(null,"Usuário não encontrado.", "Aviso",JOptionPane.ERROR_MESSAGE); 
+            
             } else if(tipoDeUsuario.equals("atendente")) {
                 
                 // abrir interface atendente
