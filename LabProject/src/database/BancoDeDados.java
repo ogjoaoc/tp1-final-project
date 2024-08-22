@@ -149,19 +149,28 @@ public class BancoDeDados {
     public void removerVacina(String tipoVacina){
        
         vacinas.removeIf(v -> v.getTipoVacina().equals(tipoVacina));
-        reescreverArquivo();
+        reescreverArquivo("vacina");
         
     }
     
-    public void removerPessoa(Pessoa pessoa) {
+    public void removerPessoa(String cargo, String cpf) {
         
-        if (pessoa instanceof Enfermeiro) {
-            enfermeiros.remove((Enfermeiro)pessoa);
-        } else if (pessoa instanceof Atendente) {
-            atendentes.remove((Atendente)pessoa);
-        } else if (pessoa instanceof Paciente) {
-            pacientes.remove((Paciente)pessoa);
+        if (cargo.equals("enfermeiro")) {
+            enfermeiros.removeIf(e -> e.getCpf().equals(cpf));
+            reescreverArquivo("enfermeiro");
+        } 
+        
+        else if (cargo.equals("atendente")) {
+            atendentes.removeIf(a -> a.getCpf().equals(cpf));
+            reescreverArquivo("atendente");
         }
+        
+        else if (cargo.equals("paciente")) {
+            pacientes.removeIf(p -> p.getCpf().equals(cpf));
+            reescreverArquivo("paciente");
+        }
+        
+        funcionarios.removeIf(f -> f.getCpf().equals(cpf));
         
     }
     
@@ -177,19 +186,51 @@ public class BancoDeDados {
         }
         
         // Reescreve o arquivo atualizado
-        reescreverArquivo();
+        reescreverArquivo("vacina");
     }
 
-    public void reescreverArquivo(){
-        String filePath = filePathHash.get("vacina");
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            for (Vacina v : vacinas) {
-                StringBuilder sb = escreverDadosBase(v);
-                bw.write(sb.toString());
-                bw.newLine();
-            }
-        } catch (IOException e) {}
+    public void reescreverArquivo(String nomeArquivo){
+        String filePath = filePathHash.get(nomeArquivo);
+        
+        if(nomeArquivo.equals("vacina")){
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+                for (Vacina v : vacinas) {
+                    StringBuilder sb = escreverDadosBase(v);
+                    bw.write(sb.toString());
+                    bw.newLine();
+                }
+            } catch (IOException e) {}
+        } 
+        
+        else if(nomeArquivo.equals("enfermeiro")){
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+                for (Enfermeiro e : enfermeiros) {
+                    StringBuilder sb = escreverDadosBase(e);
+                    bw.write(sb.toString());
+                    bw.newLine();
+                }
+            } catch (IOException e) {}
+        }
+        
+        else if(nomeArquivo.equals("atendente")){
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+                for (Atendente a : atendentes) {
+                    StringBuilder sb = escreverDadosBase(a);
+                    bw.write(sb.toString());
+                    bw.newLine();
+                }
+            } catch (IOException e) {}
+        }
+        
+        else if(nomeArquivo.equals("paciente")){
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+                for (Paciente p : pacientes) {
+                    StringBuilder sb = escreverDadosBase(p);
+                    bw.write(sb.toString());
+                    bw.newLine();
+                }
+            } catch (IOException e) {}
+        }
         
     }
     
