@@ -10,6 +10,7 @@ import database.BancoDeDados;
 import classes.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -180,7 +181,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
         txtQuantidade = new javax.swing.JTextField();
         txtValidade = new javax.swing.JFormattedTextField();
         lblpreco = new javax.swing.JLabel();
-        txtPreco = new javax.swing.JFormattedTextField();
+        txtPreco = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVacinas = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
@@ -234,13 +235,13 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
         lblpreco.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblpreco.setText("Preço: ");
 
-        try {
-            txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
         txtPreco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPreco.setPreferredSize(new java.awt.Dimension(126, 36));
+        txtPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlVacinaLayout = new javax.swing.GroupLayout(pnlVacina);
         pnlVacina.setLayout(pnlVacinaLayout);
@@ -421,7 +422,11 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>                        
-
+    
+    private void txtPrecoActionPerformed(ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+            
     private void txtVacinaActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
     }                                         
@@ -588,7 +593,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
     private javax.swing.JPanel pnlVacina;
     private javax.swing.JTable tblVacinas;
     private javax.swing.JTextField txtBarraPesquisa;
-    private javax.swing.JFormattedTextField txtPreco;
+    private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtVacina;
     private javax.swing.JFormattedTextField txtValidade;
