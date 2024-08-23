@@ -46,7 +46,7 @@ public class telaAtendente extends javax.swing.JFrame {
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        background.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, 260, 30));
+        background.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 450, 340, 30));
 
         lblInfo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblInfo.setText("<html>Logado como: <i>Atendente</i></html>");
@@ -207,7 +207,9 @@ public class telaAtendente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarPaciente1ActionPerformed
 
     private void btnAgendarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarVacinaActionPerformed
-        // TODO add your handling code here:
+        telaAgendarVacina telaAgendarVacina = new telaAgendarVacina();
+        telaAgendarVacina.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAgendarVacinaActionPerformed
 
     private void btnPagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagamentosActionPerformed
