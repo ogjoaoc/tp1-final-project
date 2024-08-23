@@ -1,19 +1,29 @@
 package telas;
 
 import classes.*;
+import database.BancoDeDados;
 import interfaces.UserLogado;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public final class telaContaFuncionario extends javax.swing.JFrame {
     
     Funcionario userLogado = (Funcionario) GerenciadorLogin.getInstance().getFuncionario();
+    BancoDeDados bancoDeDados = new BancoDeDados();
     
     public telaContaFuncionario() {
+        if(userLogado.getFuncionario() instanceof Enfermeiro) {
+            bancoDeDados.lerArquivo("enfermeiro");
+        } else {
+            bancoDeDados.lerArquivo("atendente");
+        }
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         carregarDadosUserLogado();
         desativarEditCamposDeTexto();
+        btnSalvar.setEnabled(false);
     }
     
     public void desativarEditCamposDeTexto() {
@@ -207,11 +217,29 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         habilitarEditCamposDeTexto();
-        
+        btnSalvar.setEnabled(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        if(txtNome.getText().equals("") || txtCpf.equals("") || txtSenha.equals("") || txtData.equals("") || txtEmail.equals("")) {
+            JOptionPane.showMessageDialog(null,"Todos os campos devem ser inseridos!", "Mensagem",JOptionPane.PLAIN_MESSAGE);
+        } else {
+            String nome = txtNome.getText(), cpf = txtCpf.getText(), email = txtEmail.getText(), senha = txtSenha.getText(), data = txtData.getText();
+            if(userLogado.getFuncionario() instanceof Atendente) {
+                Atendente aux = (Atendente)userLogado.getFuncionario();
+                Atendente atend = new Atendente(nome, cpf,  aux.getSexo(), data, email, senha, aux.getSalario(), aux.getTurno(), aux.getCredencial(), aux.getQtdAgendamentos());
+                bancoDeDados.atualizarFuncionario(atend);
+                GerenciadorLogin.getInstance().setUserLogado(atend);
+            } else if(userLogado.getFuncionario() instanceof Enfermeiro) {
+                Enfermeiro aux = (Enfermeiro)userLogado.getFuncionario();
+                Enfermeiro enf = new Enfermeiro(nome, cpf,  aux.getSexo(), data, email, senha, aux.getSalario(), aux.isDisponivel());
+                bancoDeDados.atualizarFuncionario(enf);
+                GerenciadorLogin.getInstance().setUserLogado(enf);
+            }
+            JOptionPane.showMessageDialog(null,"Dados atualizados com sucesso!", "Mensagem",JOptionPane.PLAIN_MESSAGE);
+            carregarDadosUserLogado();
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

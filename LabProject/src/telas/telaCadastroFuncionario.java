@@ -146,6 +146,11 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfActionPerformed(evt);
+            }
+        });
 
         lblSalario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSalario.setText("Salário:");
@@ -290,25 +295,21 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
             String nome = txtNome.getText();
-            String cpfAux = "", cpf = txtCpf.getText();
+            String cpf = txtCpf.getText();
             String dataNascimento = txtData.getText();
             String email = txtEmail.getText();
             String senha = new String(txtSenha.getPassword());
             String salario = txtSalario.getText();
-            for(int i = 0; i < cpf.length(); i++) {
-                if(cpf.charAt(i) != '.' && cpf.charAt(i) != '-')
-                    cpfAux += cpf.charAt(i);
-            }
             // sexo e função já foram salvos acima
             if(funcao.equals("Enfermeiro")) {
                 boolean disponivel = true;
-                Enfermeiro enfermeiro = new Enfermeiro(nome, cpfAux, sexo, dataNascimento, email, senha, salario, disponivel);
+                Enfermeiro enfermeiro = new Enfermeiro(nome, cpf, sexo, dataNascimento, email, senha, salario, disponivel);
                 bancoDeDados.adicionarPessoa(enfermeiro);
                 //bancoDeDados.escreverArquivo("enfermeiro");
             } else if(funcao.equals("Atendente")) {
                 Random random = new Random();
                 int credencial = 1000 + random.nextInt(9000); 
-                Atendente atendente = new Atendente(nome, cpfAux, sexo, dataNascimento, email, senha, salario, "Manhã", credencial, 0);
+                Atendente atendente = new Atendente(nome, cpf, sexo, dataNascimento, email, senha, salario, "Manhã", credencial, 0);
                 bancoDeDados.adicionarPessoa(atendente);
             }
         }
@@ -327,6 +328,10 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
     private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSalarioActionPerformed
+
+    private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfActionPerformed
 
     /**
      * @param args the command line arguments

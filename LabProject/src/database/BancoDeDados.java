@@ -188,6 +188,31 @@ public class BancoDeDados {
         // Reescreve o arquivo atualizado
         reescreverArquivo("vacina");
     }
+    
+    public void atualizarFuncionario(Funcionario func) {
+        
+        String cpf = func.getCpf();
+        
+        if(func instanceof Enfermeiro) {
+            for (int i = 0; i < enfermeiros.size(); i++) {
+                if (enfermeiros.get(i).getCpf().equals(cpf)) {
+                    enfermeiros.set(i, (Enfermeiro)func);
+                    break; 
+                }
+            }
+            reescreverArquivo("enfermeiro");
+            
+        } else {
+            for (int i = 0; i < atendentes.size(); i++) {
+                if (atendentes.get(i).getCpf().equals(cpf)) {
+                    atendentes.set(i, (Atendente)func);
+                    break; 
+                }
+            }
+            reescreverArquivo("atendente");
+        }
+    }
+    
 
     public void reescreverArquivo(String nomeArquivo){
         String filePath = filePathHash.get(nomeArquivo);
