@@ -152,7 +152,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(txtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 173, 110, 32));
+        jPanel1.add(txtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 173, -1, 32));
 
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
