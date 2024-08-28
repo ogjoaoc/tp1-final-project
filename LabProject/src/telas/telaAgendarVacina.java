@@ -7,16 +7,16 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.Timer;
 
 public class telaAgendarVacina extends javax.swing.JFrame {
-
-    private JPopupMenu popupVacina;
-    private JPopupMenu popupPaciente;
-    private JPopupMenu popupEnfermeiro;
-    BancoDeDados database = new BancoDeDados(); 
-
+    
+    private JPopupMenu popupVacina = new JPopupMenu();
+    private JPopupMenu popupPaciente = new JPopupMenu();
+    private JPopupMenu popupEnfermeiro = new JPopupMenu();
+    private BancoDeDados database = new BancoDeDados(); 
+    private Timer debounceTimer;
+    
     public telaAgendarVacina() {
         initComponents();
         setupAutoComplete();
@@ -25,86 +25,100 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         database.lerArquivo("vacina");
         database.lerArquivo("paciente");
         database.lerArquivo("enfermeiro");
-   
     }
-
+    
     private void setupAutoComplete() {
-        // Mock data for demonstration
-        List<String> vacinaList = Arrays.asList("Vacina A", "Vacina B", "Vacina C");
-        
-        /*ArrayList<String> vacinaList = new ArrayList<String>();
-        for(Vacina v : database.getVacinas()){
-            vacinaList.add(v.getTipoVacina());
-        }*/
-
-        ArrayList<String> pacienteList = new ArrayList<String>();
-        for(Paciente p : database.getPacientes()){
-            pacienteList.add(p.getCpf());
-        }
-        
-        ArrayList<String> enfermeiroList = new ArrayList<String>();
-        for(Enfermeiro e: database.getEnfermeiros()){
-            enfermeiroList.add(e.getCpf());
-        }
-
-        txtVacina.getDocument().addDocumentListener(new AutoCompleteListener(txtVacina, vacinaList));
-        txtPaciente.getDocument().addDocumentListener(new AutoCompleteListener(txtPaciente, pacienteList));
-        txtEnfermeiro.getDocument().addDocumentListener(new AutoCompleteListener(txtEnfermeiro, enfermeiroList));
-    }
-
-    private void setupPlaceholders() {
-        txtVacina.setToolTipText("Digite o nome da vacina");
-        txtPaciente.setToolTipText("Digite o nome do paciente");
-        txtEnfermeiro.setToolTipText("Digite o nome do enfermeiro");
-        txtPreco.setToolTipText("Digite o preço da vacina");
+        txtVacina.getDocument().addDocumentListener(new AutoCompleteListener(txtVacina, "vacina"));
+        txtPaciente.getDocument().addDocumentListener(new AutoCompleteListener(txtPaciente, "paciente"));
+        txtEnfermeiro.getDocument().addDocumentListener(new AutoCompleteListener(txtEnfermeiro, "enfermeiro"));
     }
 
     private class AutoCompleteListener implements DocumentListener {
         private JTextField textField;
-        private List<String> suggestions;
+        private String tipo;  
         private JPopupMenu popupMenu;
+        private boolean updatingText = false;
 
-        public AutoCompleteListener(JTextField textField, List<String> suggestions) {
+        public AutoCompleteListener(JTextField textField, String tipo) {
             this.textField = textField;
-            this.suggestions = suggestions;
-            this.popupMenu = new JPopupMenu();
+            this.tipo = tipo;
+
+            switch(tipo) {
+                case "vacina":
+                    this.popupMenu = popupVacina;
+                    break;
+                case "paciente":
+                    this.popupMenu = popupPaciente;
+                    break;
+                case "enfermeiro":
+                    this.popupMenu = popupEnfermeiro;
+                    break;
+            }
         }
 
         @Override
         public void insertUpdate(DocumentEvent e) {
-            showSuggestions();
+            if (!updatingText) {
+                debounceBusca();
+            }
         }
 
         @Override
         public void removeUpdate(DocumentEvent e) {
-            showSuggestions();
+            if (!updatingText) {
+                debounceBusca();
+            }
         }
 
         @Override
         public void changedUpdate(DocumentEvent e) {
-            // Not needed
+        }
+
+        private void debounceBusca() {
+            if (debounceTimer != null) {
+                debounceTimer.stop();
+            }
+
+            debounceTimer = new Timer(300, e -> showSuggestions());
+            debounceTimer.setRepeats(false);
+            debounceTimer.start();
         }
 
         private void showSuggestions() {
+            //Component focusedComponent = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+            
             popupMenu.removeAll();
-            String text = textField.getText();
-            if (text.isEmpty()) {
+            String textoBusca = textField.getText().toLowerCase();
+
+            if (textoBusca.isEmpty()) {
                 popupMenu.setVisible(false);
                 return;
             }
 
+            ArrayList<String> suggestions = buscarSugestoes(textoBusca, tipo);
+
             for (String suggestion : suggestions) {
-                if (suggestion.toLowerCase().startsWith(text.toLowerCase())) {
-                    JMenuItem item = new JMenuItem(suggestion);
-                    item.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            textField.setText(suggestion);
-                            popupMenu.setVisible(false);
+                JMenuItem item = new JMenuItem(suggestion);
+                item.addActionListener(e -> {
+                    updatingText = true;
+                    textField.setText(suggestion);
+                    
+                    // Se a vacina foi selecionada, atualizar o campo de preço
+                    if (tipo.equals("vacina")) {
+                        Vacina vacina = database.getVacinas().stream()
+                            .filter(v -> v.getTipoVacina().equalsIgnoreCase(suggestion))
+                            .findFirst().orElse(null);
+                        if (vacina != null) {
+                            txtPreco.setText(String.valueOf(vacina.getPreco()));
                         }
-                    });
-                    popupMenu.add(item);
-                }
+                    }
+                    
+                    popupMenu.setVisible(false);
+                    textField.requestFocusInWindow();
+                    updatingText = false;
+                
+                });
+                popupMenu.add(item);
             }
 
             if (popupMenu.getComponentCount() > 0) {
@@ -112,7 +126,69 @@ public class telaAgendarVacina extends javax.swing.JFrame {
             } else {
                 popupMenu.setVisible(false);
             }
+            
+            // Retorna o foco ao campo de texto após exibir o popup
+            /*if (focusedComponent != null) {
+                focusedComponent.requestFocusInWindow();
+            }*/
+        
         }
+
+        private ArrayList<String> buscarSugestoes(String textoBusca, String tipo) {
+            ArrayList<String> resultados = new ArrayList<>();
+
+            switch (tipo) {
+                case "vacina":
+                    resultados = new ArrayList<>(database.getVacinas().stream()
+                            .map(Vacina::getTipoVacina)
+                            .filter(nome -> nome.toLowerCase().contains(textoBusca))
+                            .toList());
+                    break;
+                case "paciente":
+                    resultados = new ArrayList<>(database.getPacientes().stream()
+                            .map(Paciente::getNome)
+                            .filter(nome -> nome.toLowerCase().contains(textoBusca))
+                            .toList());
+                    break;
+                case "enfermeiro":
+                    resultados = new ArrayList<>(database.getEnfermeiros().stream()
+                            .map(Enfermeiro::getNome)
+                            .filter(nome -> nome.toLowerCase().contains(textoBusca))
+                            .toList());
+                    break;
+            }
+
+            return resultados;
+        }
+    }
+
+    private void setupPlaceholders() {
+        configurarPlaceholder(txtVacina, "Digite o nome da vacina...");
+        configurarPlaceholder(txtPaciente, "Digite o nome do paciente...");
+        configurarPlaceholder(txtEnfermeiro, "Digite o nome do enfermeiro...");
+    }
+
+    private void configurarPlaceholder(JTextField textField, String placeholderText) {
+        textField.setText(placeholderText);
+        textField.setForeground(Color.GRAY);
+
+        textField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals(placeholderText)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setForeground(Color.GRAY);
+                    textField.setText(placeholderText);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -133,8 +209,8 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(0, 25, 400, 300));
-        setMinimumSize(new java.awt.Dimension(400, 300));
+        setBounds(new java.awt.Rectangle(0, 25, 500, 300));
+        setMinimumSize(new java.awt.Dimension(500, 300));
         this.setLocationRelativeTo(null);
         setResizable(false);
 
