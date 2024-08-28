@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author zero
  */
-public class telaCadastroPaciente extends javax.swing.JFrame {
+public class telaEditarPaciente extends javax.swing.JFrame {
 
     /**
      * Creates new form telaCadastroPaciente
@@ -20,7 +20,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     
     BancoDeDados bancoDeDados = new BancoDeDados();
     
-    public telaCadastroPaciente() {
+    public telaEditarPaciente() {
         initComponents();
         this.setResizable(false);
     }
