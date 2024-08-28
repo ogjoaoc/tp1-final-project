@@ -6,23 +6,51 @@ package telas;
 
 import classes.Paciente;
 import database.BancoDeDados;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author zero
  */
-public class telaCadastroPaciente extends javax.swing.JFrame {
+public class telaEditarPaciente extends javax.swing.JFrame {
 
     /**
      * Creates new form telaCadastroPaciente
      */
     
     BancoDeDados bancoDeDados = new BancoDeDados();
+    Paciente pacienteAntigo;
     
-    public telaCadastroPaciente() {
+    public telaEditarPaciente() {
         initComponents();
         this.setResizable(false);
+    }
+    
+    public telaEditarPaciente(Paciente p) {
+        initComponents();
+        this.setResizable(false);
+        
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        
+        txtNome.setText(p.getNome());
+        txtEmail.setText(p.getEmail());
+        txtCPF.setText(p.getCpf());
+        txtDataNascimento.setText(p.getDataNascimento());
+        cmbTipoSanguineo.setSelectedItem(p.getTipoSanguineo());
+        if ("Masculino".equals(p.getSexo()))
+            rdbMasculino.setSelected(true);
+        else
+            rdbFeminino.setSelected(true);
+        
+        cmbConvenio.setSelectedItem(p.getConvenio());
+        
+        bancoDeDados.lerArquivo("paciente");
+        
+        this.pacienteAntigo = p;
     }
 
     /**
@@ -53,7 +81,6 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         txtDataNascimento = new javax.swing.JFormattedTextField();
         txtCPF = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -171,15 +198,6 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
         });
         jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 126, 42));
 
-        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnVoltar.setText("Sair");
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 126, 42));
-
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconHash.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, -1));
 
@@ -224,7 +242,6 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             String tipoSanguineo = (String) cmbTipoSanguineo.getSelectedItem();
-            //boolean preferencial = rdbSim.isSelected();
             String convenio = (String) cmbConvenio.getSelectedItem();
             String nome = txtNome.getText();
             String cpf = txtCPF.getText();
@@ -234,17 +251,13 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             if (rdbMasculino.isSelected()) sexo = "Masculino";
             else sexo = "Feminino";
 
-            Paciente paciente = new Paciente(tipoSanguineo, convenio, /*preferencial*/ nome, cpf, sexo, dataNascimento, email);
+            Paciente pacienteNovo = new Paciente(nome, cpf, sexo, dataNascimento, email, tipoSanguineo, convenio);
             
-            bancoDeDados.adicionarPessoa(paciente);
+            bancoDeDados.atualizarPaciente(pacienteAntigo, pacienteNovo);
+            
+            this.pacienteAntigo = pacienteNovo;
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
-
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        telaAtendente telaAtendente = new telaAtendente();
-        telaAtendente.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void rdbMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMasculinoActionPerformed
         // TODO add your handling code here:
@@ -271,27 +284,27 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaCadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaEditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaCadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaEditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaCadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaEditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaCadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaEditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaCadastroPaciente().setVisible(true);
+                new telaEditarPaciente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbConvenio;
     private javax.swing.JComboBox<String> cmbTipoSanguineo;
     private javax.swing.ButtonGroup groupPreferencial;

@@ -185,6 +185,11 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
             }
         });
         tblPacientes.setSelectionBackground(new java.awt.Color(248, 197, 190));
+        tblPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPacientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPacientes);
         if (tblPacientes.getColumnModel().getColumnCount() > 0) {
             tblPacientes.getColumnModel().getColumn(0).setResizable(false);
@@ -254,6 +259,16 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscaActionPerformed
+
+    private void tblPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPacientesMouseClicked
+        int idx = tblPacientes.getSelectedRow();
+        
+        Object cpf = tblPacientes.getValueAt(idx, 1);
+        Paciente paciente = database.encontrarPaciente((String) cpf);
+        
+        telaEditarPaciente editPaciente = new telaEditarPaciente(paciente);
+        editPaciente.setVisible(true);
+    }//GEN-LAST:event_tblPacientesMouseClicked
 
     /**
      * @param args the command line arguments

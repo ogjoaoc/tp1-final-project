@@ -78,7 +78,8 @@ public class BancoDeDados {
                         funcionarios.add(atend);
                     }
                     case "paciente" -> //boolean preferencial = Boolean.parseBoolean(dados[3]);
-                        pacientes.add(new Paciente(dados[3], dados[4], dados[5], dados[6], dados[7], dados[0], dados[1] /*preferencial,*/));
+                        pacientes.add(new Paciente(dados[2], dados[3], dados[4], dados[5], dados[6], dados[0], dados[1] /*preferencial,*/));
+                        //Paciente(String nome, String cpf, String sexo, String dataNascimento, String email, String tipoSanguineo, String convenio /*boolean preferencial,*/)
                 }
             }
         } catch (IOException e) {
@@ -213,7 +214,25 @@ public class BancoDeDados {
         }
     }
     
-
+    public void atualizarPaciente(Paciente pacienteAntigo, Paciente pacienteNovo){
+        for (int i = 0; i < pacientes.size(); i++) {
+                if (pacientes.get(i).getCpf().equals(pacienteAntigo.getCpf())) {
+                    pacientes.set(i, pacienteNovo);
+                    break;
+                }
+        }
+        reescreverArquivo("paciente");
+    }  
+    
+    public Paciente encontrarPaciente(String cpf){
+        for (int i = 0; i < pacientes.size(); i++) {
+                if (pacientes.get(i).getCpf().equals(cpf)){
+                    return pacientes.get(i);
+                }
+        }
+        return null;
+    }
+    
     public void reescreverArquivo(String nomeArquivo){
         String filePath = filePathHash.get(nomeArquivo);
         
@@ -252,8 +271,8 @@ public class BancoDeDados {
         else if(nomeArquivo.equals("paciente")){
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
                 for (Paciente p : pacientes) {
-                    StringBuilder sb = escreverDadosBase(p);sb.append(p.getTipoSanguineo()).append(","); sb.append(p.getConvenio()).append(",");
-                    bw.write(sb.toString());
+                    String paciente = p.getTipoSanguineo() + "," + p.getConvenio() + ","+ p.getNome()+","+p.getCpf()+","+p.getSexo()+","+p.getDataNascimento()+","+p.getEmail();
+                    bw.write(paciente);
                     bw.newLine();
                 }
             } catch (IOException e) {}
