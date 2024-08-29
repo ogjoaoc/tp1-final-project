@@ -1,12 +1,14 @@
 package classes;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Agendamento {
+    
     private int id; 
-    private String tipo; // vacina ou exame
-    private Exame exameAssociado; // se for Exame, ref pro Exame, se não ref pra Vacina
-    private Date dataCriado;
+    private ArrayList<Exame> listaExames;
+    private ArrayList<Vacina> listaVacinas;
+    private SimpleDateFormat dataCriado;
     private double valorTotal;
     
     // gerar csv no formato id, tipo, cpfPaciente, cpfEnfermeiro, dataCriado, dataAgendado, { info exame ou info vacina }
@@ -14,14 +16,15 @@ public class Agendamento {
     public Agendamento () {
         
     }
-    
-    public Agendamento(int id, String tipo, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, Exame tipoExame, Vacina tipoVacina, Date dataCriado, Date dataAgendado, double valorTotal) {
+
+    public Agendamento(int id, ArrayList<Exame> listaExames, ArrayList<Vacina> listaVacinas, SimpleDateFormat dataCriado, double valorTotal) {
         this.id = id;
-        this.tipo = tipo;
-        this.exameAssociado = tipoExame;
+        this.listaExames = listaExames;
+        this.listaVacinas = listaVacinas;
+        this.dataCriado = dataCriado;
         this.valorTotal = valorTotal;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -30,31 +33,29 @@ public class Agendamento {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public ArrayList<Exame> getListaExames() {
+        return listaExames;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setListaExames(ArrayList<Exame> listaExames) {
+        this.listaExames = listaExames;
     }
 
-
-    public Exame getExameAssociado() {
-        return exameAssociado;
+    public ArrayList<Vacina> getListaVacinas() {
+        return listaVacinas;
     }
 
-    public void setExameAssociado(Exame exameAssociado) {
-        this.exameAssociado = exameAssociado;
+    public void setListaVacinas(ArrayList<Vacina> listaVacinas) {
+        this.listaVacinas = listaVacinas;
     }
 
-    public Date getDataCriado() {
+    public SimpleDateFormat getDataCriado() {
         return dataCriado;
     }
 
-    public void setDataCriado(Date dataCriado) {
+    public void setDataCriado(SimpleDateFormat dataCriado) {
         this.dataCriado = dataCriado;
     }
-
 
     public double getValorTotal() {
         return valorTotal;

@@ -1,16 +1,20 @@
 package classes;
 
 public class Hemograma extends Exame {
-    private String alvo, resultado;
+    private String alvo;
     
     // Construtores
     public Hemograma(){};
-    
-    public Hemograma(String d, Paciente p, Enfermeiro e, String alvo){
-        super(d,p,e);
+
+    public Hemograma(String alvo, String resultado) {
+
+    }
+
+    public Hemograma(String alvo, String resultado, String data, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, String dataRealizacao, double preco) {
+        super(data, pacienteAssociado, enfermeiroAssociado, dataRealizacao, preco);
         this.alvo = alvo;
     }
-    
+
     // métodos getters e setters
     public String getAlvo(){
         return this.alvo;
@@ -18,14 +22,6 @@ public class Hemograma extends Exame {
     
     public void setAlvo(String alvo){
         this.alvo = alvo;
-    }
-    
-    public String getResultado(){
-        return this.resultado;
-    }
-    
-    public void setResultado(String resultado){
-        this.resultado = resultado;
     }
     
 }

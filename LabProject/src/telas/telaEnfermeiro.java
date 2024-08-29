@@ -17,7 +17,6 @@ public class telaEnfermeiro extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        txtNomeAtendente = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
         btnSair1 = new javax.swing.JButton();
@@ -32,29 +31,15 @@ public class telaEnfermeiro extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNomeAtendente.setBackground(new java.awt.Color(242, 242, 242));
-        txtNomeAtendente.setText("Funcionário João João");
-        txtNomeAtendente.setBorder(null);
-        txtNomeAtendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeAtendenteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtNomeAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(509, Short.MAX_VALUE))
+            .addGap(0, 785, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(txtNomeAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
+            .addGap(0, 23, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 785, -1));
@@ -191,10 +176,6 @@ public class telaEnfermeiro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnMinhaContaActionPerformed
 
-    private void txtNomeAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeAtendenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeAtendenteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -240,7 +221,6 @@ public class telaEnfermeiro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblInfo;
-    private javax.swing.JTextField txtNomeAtendente;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,17 +26,163 @@ public class telaAgendarExameInfo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        background = new javax.swing.JPanel();
+        panelTitle = new javax.swing.JPanel();
+        txtTitle = new javax.swing.JLabel();
+        btnAvancar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
+        lblPaciente1 = new javax.swing.JLabel();
+        lblPaciente3 = new javax.swing.JLabel();
+        lblPaciente4 = new javax.swing.JLabel();
+        lblPaciente5 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblPaciente2 = new javax.swing.JLabel();
+        lblPaciente7 = new javax.swing.JLabel();
+        lblPaciente8 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblPaciente9 = new javax.swing.JLabel();
+        lblPaciente10 = new javax.swing.JLabel();
+        lblPaciente6 = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        background.setBackground(new java.awt.Color(248, 197, 190));
+        background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        txtTitle.setForeground(new java.awt.Color(153, 0, 0));
+        txtTitle.setText("Informações - Agendamento");
+
+        javax.swing.GroupLayout panelTitleLayout = new javax.swing.GroupLayout(panelTitle);
+        panelTitle.setLayout(panelTitleLayout);
+        panelTitleLayout.setHorizontalGroup(
+            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTitleLayout.createSequentialGroup()
+                .addGap(348, 348, 348)
+                .addComponent(txtTitle)
+                .addContainerGap(348, Short.MAX_VALUE))
+        );
+        panelTitleLayout.setVerticalGroup(
+            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTitleLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(txtTitle)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        background.add(panelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 70));
+
+        btnAvancar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAvancar.setText("Finalizar");
+        background.add(btnAvancar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 610, 190, 60));
+
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        background.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 610, 190, 60));
+
+        lblPaciente1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente1.setText("Dados de check-out:");
+        background.add(lblPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 340, 40));
+
+        lblPaciente3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente3.setText("Tipo de agendamento:");
+        background.add(lblPaciente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 240, 40));
+
+        lblPaciente4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente4.setText("Exame: OU Vacina:");
+        background.add(lblPaciente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 200, 40));
+
+        lblPaciente5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente5.setText("Paciente:");
+        background.add(lblPaciente5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 100, 40));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblPaciente2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente2.setText("Valor total:");
+
+        lblPaciente7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente7.setText("Valor total: 156.00 $");
+
+        lblPaciente8.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente8.setText("156.00 $");
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        lblPaciente9.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente9.setText("Exame - Sorológico");
+
+        lblPaciente10.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
+        lblPaciente10.setText("- Nenhum desconto aplicado");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(lblPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblPaciente9)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPaciente8, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPaciente10)
+                            .addComponent(lblPaciente7))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lblPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPaciente8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPaciente9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(lblPaciente10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPaciente7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
+        );
+
+        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 320, 250));
+
+        lblPaciente6.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblPaciente6.setText("Enfermeiro:");
+        background.add(lblPaciente6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 110, 40));
+        background.add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 410, -1, -1));
+        background.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +224,24 @@ public class telaAgendarExameInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel background;
+    private javax.swing.JButton btnAvancar;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblPaciente1;
+    private javax.swing.JLabel lblPaciente10;
+    private javax.swing.JLabel lblPaciente2;
+    private javax.swing.JLabel lblPaciente3;
+    private javax.swing.JLabel lblPaciente4;
+    private javax.swing.JLabel lblPaciente5;
+    private javax.swing.JLabel lblPaciente6;
+    private javax.swing.JLabel lblPaciente7;
+    private javax.swing.JLabel lblPaciente8;
+    private javax.swing.JLabel lblPaciente9;
+    private javax.swing.JPanel panelTitle;
+    private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 }

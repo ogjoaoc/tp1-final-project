@@ -1,16 +1,20 @@
 package classes;
 
 public class Sorologico extends Exame{
-    private String patologia, resultado;
+    private String patologia;
     
     // Construtores
     public Sorologico(){};
-    
-    public Sorologico(String d, Paciente p, Enfermeiro e, String patologia){
-        super(d,p,e);
+
+    public Sorologico(String patologia, String resultado) {
         this.patologia = patologia;
     }
-    
+
+    public Sorologico(String patologia, String data, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, String dataRealizacao, double preco) {
+        super(data, pacienteAssociado, enfermeiroAssociado, dataRealizacao, preco);
+        this.patologia = patologia;
+    }
+
     // métodos getters e setters
     public String getPatologia(){
         return this.patologia;
@@ -18,14 +22,6 @@ public class Sorologico extends Exame{
     
     public void setPatologia(String p){
         this.patologia = p;
-    }
-    
-    public String getResultado(){
-        return this.resultado;
-    }
-    
-    public void setResultado(String resultado){
-        this.resultado = resultado;
     }
     
 }

@@ -1,43 +1,54 @@
 package classes;
 
-public abstract class Exame {
-    private String data;
-    private Paciente paciente;
-    private Enfermeiro enfermeiro;
+public abstract class Exame extends Agendamento {
+    private String dataRealizacao;
+    private Paciente pacienteAssociado;
+    private Enfermeiro enfermeiroAssociado;
+    private double preco;
+    
     
     // construtores
     public Exame(){};
-    
-    public Exame(String d, Paciente p, Enfermeiro e){
-        this.data = d;
-        this.paciente = p;
-        this.enfermeiro = e;
+
+    public Exame(String data, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, String dataRealizacao, double preco) {
+        this.dataRealizacao = dataRealizacao;
+        this.pacienteAssociado = pacienteAssociado;
+        this.enfermeiroAssociado = enfermeiroAssociado;
+        this.preco = preco;
     }
-    
-    // métodos getters
-    public String getData(){
-        return this.data;
+
+    public String getData() {
+        return dataRealizacao;
     }
-    
-    public Paciente getPaciente(){
-        return this.paciente;
+
+    public void setData(String data) {
+        this.dataRealizacao = data;
     }
-    
-    public Enfermeiro getEnfermeiro(){
-        return this.enfermeiro;
+
+    public Paciente getPacienteAssociado() {
+        return pacienteAssociado;
     }
-    
-    //métodos setters
-    public void setData(String d){
-        this.data = d;
+
+    public void setPacienteAssociado(Paciente pacienteAssociado) {
+        this.pacienteAssociado = pacienteAssociado;
     }
-        
-    public void setPaciente(Paciente p){
-        this.paciente = p;
+
+    public Enfermeiro getEnfermeiroAssociado() {
+        return enfermeiroAssociado;
     }
-    
-    public void setEnfermeiro(Enfermeiro e){
-        this.enfermeiro = e;
+
+    public void setEnfermeiroAssociado(Enfermeiro enfermeiroAssociado) {
+        this.enfermeiroAssociado = enfermeiroAssociado;
+    }
+
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
     } 
+    
     
 }

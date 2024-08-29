@@ -13,7 +13,7 @@ public class BancoDeDados {
     private final ArrayList<Funcionario> funcionarios;
     private final ArrayList<Vacina> vacinas;
     private final HashMap<String, String> filePathHash; 
-
+    
     public BancoDeDados() {
         
         this.enfermeiros = new ArrayList<>();
@@ -63,7 +63,7 @@ public class BancoDeDados {
                 String[] dados = linha.split(",");
                 switch (tipo) {
                     case "vacina" -> {
-                        Vacina vac = new Vacina(dados[0], dados[1], Boolean.parseBoolean(dados[2]), Integer.parseInt(dados[3]), Double.parseDouble(dados[4]));
+                         Vacina vac = new Vacina(dados[0], dados[1], Boolean.parseBoolean(dados[2]), Integer.parseInt(dados[3]), Double.parseDouble(dados[4]));
                         vacinas.add(vac);
                     }
 

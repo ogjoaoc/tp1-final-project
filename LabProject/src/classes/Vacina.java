@@ -3,6 +3,8 @@ package classes;
 public class Vacina {
     private String tipoVacina, validade;
     private boolean disponivel;
+    private Enfermeiro enfermeiroAssociado;
+    private Paciente pacienteASsociado;
     private int qtd;
     private double preco;
     
@@ -68,4 +70,7 @@ public class Vacina {
         }
         return false;
     }
+    
+    
+    
 }
