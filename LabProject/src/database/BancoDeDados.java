@@ -12,6 +12,7 @@ public class BancoDeDados {
     private final ArrayList<Paciente> pacientes;
     private final ArrayList<Funcionario> funcionarios;
     private final ArrayList<Vacina> vacinas;
+    private final ArrayList<Exame> exames;
     private final HashMap<String, String> filePathHash; 
     
     public BancoDeDados() {
@@ -21,18 +22,32 @@ public class BancoDeDados {
         this.pacientes = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
         this.vacinas = new ArrayList<>();
+        this.exames = new ArrayList<>();
         this.filePathHash = new HashMap<>();
         
         filePathHash.put("enfermeiro", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosEnfermeiro.csv").toString());
         filePathHash.put("atendente", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosAtendente.csv").toString());
         filePathHash.put("paciente", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosPaciente.csv").toString());
         filePathHash.put("vacina", Paths.get(System.getProperty("user.dir"),"src", "database","dadosVacinas.csv").toString());
+        filePathHash.put("exame", Paths.get(System.getProperty("user.dir"),"src", "database","dadosExame.csv").toString());
         
     }
     
     public StringBuilder escreverDadosBase(Vacina vacina){
         StringBuilder sb = new StringBuilder(); sb.append(vacina.getTipoVacina()).append(","); sb.append(vacina.getValidade()).append(",");
         sb.append(String.valueOf(vacina.isDisponivel())).append(","); sb.append(vacina.getQtd()).append(","); sb.append(vacina.getPreco()).append(",");
+        return sb;
+    }
+    
+    public StringBuilder escreverDadosBase(Exame exame){
+        StringBuilder sb = new StringBuilder();
+        
+        if(exame instanceof Sorologico){
+            sb.append("Sorológico");sb.append(((Sorologico) exame).getPatologia());sb.append(((Sorologico) exame).getPreco());
+        } else if(exame instanceof Hemograma){
+            sb.append("Hemograma");sb.append(((Hemograma) exame).getAlvo());sb.append(((Hemograma) exame).getPreco());
+        }
+
         return sb;
     }
 
@@ -61,9 +76,9 @@ public class BancoDeDados {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(",");
-                switch (tipo) {
+                switch (tipo) { 
                     case "vacina" -> {
-                         Vacina vac = new Vacina(dados[0], dados[1], Boolean.parseBoolean(dados[2]), Integer.parseInt(dados[3]), Double.parseDouble(dados[4]));
+                        Vacina vac = new Vacina(dados[0], dados[1], Boolean.parseBoolean(dados[2]), Integer.parseInt(dados[3]), Double.parseDouble(dados[4]));
                         vacinas.add(vac);
                     }
 
@@ -298,6 +313,10 @@ public class BancoDeDados {
     
     public ArrayList<Vacina> getVacinas(){
         return vacinas;
+    }
+    
+    public ArrayList<Exame> getExames(){
+        return exames;
     }
     
 }
