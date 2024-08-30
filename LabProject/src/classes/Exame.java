@@ -10,6 +10,10 @@ public abstract class Exame extends Agendamento {
     // construtores
     public Exame(){};
     
+    public Exame(double preco){
+        this.preco = preco;
+    }
+    
     public Exame(String data, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, String dataRealizacao, double preco) {
         this.dataRealizacao = dataRealizacao;
         this.pacienteAssociado = pacienteAssociado;

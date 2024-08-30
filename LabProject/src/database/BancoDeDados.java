@@ -43,9 +43,9 @@ public class BancoDeDados {
         StringBuilder sb = new StringBuilder();
         
         if(exame instanceof Sorologico){
-            sb.append("Sorológico");sb.append(((Sorologico) exame).getPatologia());sb.append(((Sorologico) exame).getPreco());
+            sb.append("Sorológico");sb.append(",");sb.append(((Sorologico) exame).getPatologia());sb.append(",");sb.append(((Sorologico) exame).getPreco());sb.append(",");
         } else if(exame instanceof Hemograma){
-            sb.append("Hemograma");sb.append(((Hemograma) exame).getAlvo());sb.append(((Hemograma) exame).getPreco());
+            sb.append("Hemograma");sb.append(",");sb.append(((Hemograma) exame).getAlvo());sb.append(",");sb.append(((Hemograma) exame).getPreco());sb.append(",");
         }
 
         return sb;
@@ -77,10 +77,20 @@ public class BancoDeDados {
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(",");
                 switch (tipo) { 
+                    case "exame" -> {
+                        if(dados[0].equals("Sorologico")){
+                            Sorologico exame = new Sorologico(dados[1], Double.parseDouble(dados[2]));
+                             exames.add(exame);
+                        } else if(dados[0].equals("Hemograma")){
+                            Hemograma exame = new Hemograma(dados[1], Double.parseDouble(dados[2]));
+                             exames.add(exame);
+                        }
+                    }
                     case "vacina" -> {
                         Vacina vac = new Vacina(dados[0], dados[1], Boolean.parseBoolean(dados[2]), Integer.parseInt(dados[3]), Double.parseDouble(dados[4]));
                         vacinas.add(vac);
                     }
+
 
                     case "enfermeiro" -> {
                         Enfermeiro enf = new Enfermeiro(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], Boolean.parseBoolean(dados[7]));
@@ -109,6 +119,18 @@ public class BancoDeDados {
             
                 StringBuilder sb = escreverDadosBase(vacina);
                 bw.write(sb.toString()); bw.newLine(); vacinas.add(vacina); // Adiciona a vacina ao arquivo e à lista em memória
+                
+        } catch (IOException e) {}
+        
+    }
+    
+    public void adicionarExame(Exame exame) throws IOException{
+        String filePath = filePathHash.get("exame");
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
+            
+                StringBuilder sb = escreverDadosBase(exame);
+                bw.write(sb.toString()); bw.newLine(); exames.add(exame); // Adiciona o exame ao arquivo e à lista em memória
                 
         } catch (IOException e) {}
         
@@ -169,6 +191,18 @@ public class BancoDeDados {
         
     }
     
+    public void removerExame(String nomeExame){
+        exames.removeIf(exame -> {
+            if (exame instanceof Sorologico) {
+                return ((Sorologico) exame).getPatologia().equals(nomeExame);
+            } else if (exame instanceof Hemograma) {
+                return ((Hemograma) exame).getAlvo().equals(nomeExame);
+            }
+            return false;
+        });
+        reescreverArquivo("exame");   
+    }
+    
     public void removerPessoa(String cargo, String cpf) {
         
         if (cargo.equals("enfermeiro")) {
@@ -204,6 +238,28 @@ public class BancoDeDados {
         // Reescreve o arquivo atualizado
         reescreverArquivo("vacina");
     }
+    
+    public void atualizarExame(Exame exameAtualizado) {
+        String tipoExame = exameAtualizado.getClass().getSimpleName(); // Obtém o nome da classe (Sorologico ou Hemograma)
+
+        // Atualiza o exame na lista em memória
+        for (int i = 0; i < exames.size(); i++) {
+            Exame exameExistente = exames.get(i);
+
+            // Verifica se é o mesmo tipo e se o identificador único bate (Patologia para Sorológico ou Alvo para Hemograma)
+            if (exameExistente.getClass().getSimpleName().equals(tipoExame)) {
+                if ((exameExistente instanceof Sorologico && ((Sorologico) exameExistente).getPatologia().equals(((Sorologico) exameAtualizado).getPatologia())) ||
+                    (exameExistente instanceof Hemograma && ((Hemograma) exameExistente).getAlvo().equals(((Hemograma) exameAtualizado).getAlvo()))) {
+                    exames.set(i, exameAtualizado);
+                    break; // Para após encontrar e atualizar o exame
+                }
+            }
+        }
+
+        // Reescreve o arquivo atualizado
+        reescreverArquivo("exame");
+    }
+
     
     public void atualizarFuncionario(Funcionario func) {
         
@@ -251,7 +307,17 @@ public class BancoDeDados {
     public void reescreverArquivo(String nomeArquivo){
         String filePath = filePathHash.get(nomeArquivo);
         
-        if(nomeArquivo.equals("vacina")){
+        if(nomeArquivo.equals("exame")){
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+                for (Exame e : exames) {
+                    StringBuilder sb = escreverDadosBase(e);
+                    bw.write(sb.toString());
+                    bw.newLine();
+                }
+            } catch (IOException e) {}
+        } 
+        
+        else if(nomeArquivo.equals("vacina")){
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
                 for (Vacina v : vacinas) {
                     StringBuilder sb = escreverDadosBase(v);

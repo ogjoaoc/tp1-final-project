@@ -19,10 +19,11 @@ import static java.lang.Double.parseDouble;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import telas.telaAdmin;
 
 public class telaCadastroExame extends javax.swing.JFrame {
 
-    //BancoDeDados bancoDeDados = new BancoDeDados();
+    BancoDeDados bancoDeDados = new BancoDeDados();
     private String estadoSalvar;
     private final String placeholderText = "Pesquisar por nome...";
     
@@ -51,21 +52,21 @@ public class telaCadastroExame extends javax.swing.JFrame {
         });
         
         limparCampos();
-        habilitarCampos(false,false);
+        habilitarCampos(false,false,false);
         habilitarBotoes(true,false,true,true,false);
         
-        // Adicionar o listener para monitorar o campo de texto
-        //addSearchListener();
+        //Adicionar o listener para monitorar o campo de texto
+        addSearchListener();
         
         // Inicializar a tabela com todos os funcionários
-        //carregarTabela(bancoDeDados.getExames());
+        carregarTabela(bancoDeDados.getExames());
         
         // Configurar o texto de instrução
         configurarPlaceholder();
         
     }
     
-    /*private Timer debounceTimer;
+    private Timer debounceTimer;
     
     private void addSearchListener() {
         txtBarraPesquisa.getDocument().addDocumentListener(new DocumentListener() {
@@ -91,7 +92,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
             debounceTimer.stop();
         }
 
-        //debounceTimer = new Timer(300, e -> atualizarBusca());  // 300ms debounce
+        debounceTimer = new Timer(300, e -> atualizarBusca());  // 300ms debounce
         debounceTimer.setRepeats(false);  // Executar apenas uma vez
         debounceTimer.start();
     }
@@ -105,17 +106,18 @@ public class telaCadastroExame extends javax.swing.JFrame {
             carregarTabela(bancoDeDados.getExames());
         } else {
             // Filtrar os funcionários com base no nome ou CPF
-            List<Vacina> examesFiltrados = bancoDeDados.getExames().stream()
-                .filter(f -> f.get().toLowerCase().contains(textoBusca))
+            List<Exame> examesFiltrados = bancoDeDados.getExames().stream()
+                .filter(e -> (e instanceof Sorologico && ((Sorologico) e).getPatologia().toLowerCase().contains(textoBusca.toLowerCase())) ||
+                        (e instanceof Hemograma && ((Hemograma) e).getAlvo().toLowerCase().contains(textoBusca.toLowerCase())))
                 .toList();
 
             // Criar um novo ArrayList com os elementos filtrados
-            ArrayList<Vacina> vacinasArrayList = new ArrayList<>(vacinasFiltrados);
+            ArrayList<Exame> examesArrayList = new ArrayList<>(examesFiltrados);
 
             // Atualizar a tabela
-            carregarTabela(vacinasArrayList);
+            carregarTabela(examesArrayList);
         }
-    }*/
+    }
     
     private void configurarPlaceholder() {
         txtBarraPesquisa.setText(placeholderText);
@@ -140,6 +142,19 @@ public class telaCadastroExame extends javax.swing.JFrame {
         });
     }
     
+    private void carregarTabela(ArrayList<Exame> exames) {
+        DefaultTableModel model = (DefaultTableModel) tblExames.getModel();
+        model.setRowCount(0);  // Limpar a tabela
+        
+        for(Exame e : exames){
+            if(e instanceof Sorologico){
+                model.addRow(new Object[]{"Sorológico", ((Sorologico) e).getPatologia(), e.getPreco()});
+            }
+            else if(e instanceof Hemograma){
+             model.addRow(new Object[]{"Hemograma",((Hemograma) e).getAlvo(), e.getPreco()});
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -159,7 +174,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         txtBarraPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblExames = new javax.swing.JTable();
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -224,7 +239,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
 
         txtBarraPesquisa.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblExames.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -243,7 +258,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblExames);
 
         btnSair.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnSair.setText("Sair");
@@ -348,33 +363,117 @@ public class telaCadastroExame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        limparCampos();
+        habilitarCampos(true,true,true);
+        habilitarBotoes(true,true,false,false,true);
+        estadoSalvar = "cadastro";
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        if (txtExame.getText().equals("") || cmbTipo.getSelectedIndex() == 0 || txtPreco.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser inseridos!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+        }
+        else{
+            String nomeExame = txtExame.getText();
+            String tipoExame = (String) cmbTipo.getSelectedItem();
+            double preco = Double.parseDouble(txtPreco.getText());
+            
+            if(estadoSalvar.equals("cadastro")){
+                // Adiciona um novo exame ao banco de dados
+                if(tipoExame.equals("Sorológico")){
+                    Sorologico exame = new Sorologico(nomeExame,preco);
+                    try {
+                        bancoDeDados.adicionarExame((Exame) exame);
+                    } catch (IOException ex) {}
+                } else if(tipoExame.equals("Hemograma")){
+                    Hemograma exame = new Hemograma(nomeExame, preco);
+                    try {
+                        bancoDeDados.adicionarExame((Exame) exame);
+                    } catch (IOException ex) {}
+                }
+                carregarTabela(bancoDeDados.getExames());
+                
+            }
+            else if(estadoSalvar.equals("edicao")){
+                // Atualiza o exame selecionado
+                if(tipoExame.equals("Sorológico")){
+                    Sorologico exameEditado = new Sorologico(nomeExame,preco);
+                    bancoDeDados.atualizarExame((Exame) exameEditado);
+                } else if(tipoExame.equals("Hemograma")){
+                    Hemograma exameEditado = new Hemograma(nomeExame, preco);
+                    bancoDeDados.atualizarExame((Exame) exameEditado);
+                }
+                carregarTabela(bancoDeDados.getExames());
+
+            }
+        }
+        
+        limparCampos();
+        habilitarCampos(false,false,false);
+        habilitarBotoes(true,false,true,true,true);
+        limparBarraPesquisa();                              
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        int idx = tblExames.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
+        if (idx >= 0) {
+
+            // Preenche os campos com os dados da vacina selecionada
+            txtExame.setText(tblExames.getValueAt(idx, 0).toString());
+            txtPreco.setText(tblExames.getValueAt(idx, 2).toString());
+            cmbTipo.setSelectedItem(tblExames.getValueAt(idx, 1).toString());
+
+            // Define o estado para "edicao" e habilita os campos
+            estadoSalvar = "edicao";
+            habilitarCampos(true, true, true);
+            habilitarBotoes(false, true, true, true, true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um exame para editar.", "Mensagem", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        int idx = tblExames.getSelectedRow(); // índice da linha selecionada na tabela
+        
+        if (idx >= 0) {
+            // Confirmação antes de excluir
+            int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este exame?", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+            if (confirmacao == JOptionPane.YES_OPTION) {
+                // Remove a vacina da lista
+                String exameExcluido = tblExames.getValueAt(idx,0).toString();
+                bancoDeDados.removerVacina(exameExcluido);
+
+                // Atualiza a tabela
+                carregarTabela(bancoDeDados.getExames());
+
+                // Limpa os campos e desabilita os botões de edição e exclusão
+                limparCampos();
+                habilitarCampos(false, false, false);
+                habilitarBotoes(true, false, true, true, true);
+                limparBarraPesquisa();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um exame para excluir.", "Mensagem", JOptionPane.WARNING_MESSAGE);
+        }   
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        limparCampos();
+        habilitarCampos(false,false,false);
+        habilitarBotoes(true,false,true,true,false);
+        limparBarraPesquisa();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void limparCampos(){
        txtExame.setText("");
        txtPreco.setText("");
+       cmbTipo.setSelectedIndex(0);
     }
     
-    private void habilitarCampos(boolean exame, boolean preco){
+    private void habilitarCampos(boolean exame, boolean preco, boolean tipo){
         txtExame.setEnabled(exame);
         txtPreco.setEnabled(preco);
+        cmbTipo.setEnabled(tipo);
     }
     
     private void habilitarBotoes(boolean cad, boolean salvar, boolean editar, boolean excluir, boolean cancelar){
@@ -433,10 +532,10 @@ public class telaCadastroExame extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblExame;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblTipo1;
+    private javax.swing.JTable tblExames;
     private javax.swing.JTextField txtBarraPesquisa;
     private javax.swing.JTextField txtExame;
     private javax.swing.JTextField txtPreco;

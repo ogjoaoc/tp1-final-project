@@ -6,8 +6,9 @@ public class Hemograma extends Exame {
     // Construtores
     public Hemograma(){};
 
-    public Hemograma(String alvo, String resultado) {
-
+    public Hemograma(String alvo, double preco) {
+        super(preco);
+        this.alvo = alvo;
     }
 
     public Hemograma(String alvo, String resultado, String data, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, String dataRealizacao, double preco) {

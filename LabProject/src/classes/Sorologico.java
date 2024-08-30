@@ -6,7 +6,8 @@ public class Sorologico extends Exame{
     // Construtores
     public Sorologico(){};
 
-    public Sorologico(String patologia, String resultado) {
+    public Sorologico(String patologia, double preco) {
+        super(preco);
         this.patologia = patologia;
     }
 
