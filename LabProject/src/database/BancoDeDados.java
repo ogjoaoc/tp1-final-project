@@ -78,12 +78,12 @@ public class BancoDeDados {
                 String[] dados = linha.split(",");
                 switch (tipo) { 
                     case "exame" -> {
-                        if(dados[0].equals("Sorologico")){
+                        if(dados[0].equals("Sorológico")){
                             Sorologico exame = new Sorologico(dados[1], Double.parseDouble(dados[2]));
-                             exames.add(exame);
+                             exames.add((Exame) exame);
                         } else if(dados[0].equals("Hemograma")){
                             Hemograma exame = new Hemograma(dados[1], Double.parseDouble(dados[2]));
-                             exames.add(exame);
+                             exames.add((Exame) exame);
                         }
                     }
                     case "vacina" -> {

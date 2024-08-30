@@ -31,7 +31,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
-        //bancoDeDados.lerArquivo("vacina");
+        bancoDeDados.lerArquivo("exame");
         
         // Adiciona a tecla ENTER a funcionalidade de avançar os campos de texto
         txtExame.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -58,7 +58,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
         //Adicionar o listener para monitorar o campo de texto
         addSearchListener();
         
-        // Inicializar a tabela com todos os funcionários
+        // Inicializar a tabela com todos os exames
         carregarTabela(bancoDeDados.getExames());
         
         // Configurar o texto de instrução
@@ -419,9 +419,9 @@ public class telaCadastroExame extends javax.swing.JFrame {
         if (idx >= 0) {
 
             // Preenche os campos com os dados da vacina selecionada
-            txtExame.setText(tblExames.getValueAt(idx, 0).toString());
+            txtExame.setText(tblExames.getValueAt(idx, 1).toString());
             txtPreco.setText(tblExames.getValueAt(idx, 2).toString());
-            cmbTipo.setSelectedItem(tblExames.getValueAt(idx, 1).toString());
+            cmbTipo.setSelectedItem(tblExames.getValueAt(idx, 0).toString());
 
             // Define o estado para "edicao" e habilita os campos
             estadoSalvar = "edicao";
@@ -440,8 +440,8 @@ public class telaCadastroExame extends javax.swing.JFrame {
             int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este exame?", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
             if (confirmacao == JOptionPane.YES_OPTION) {
                 // Remove a vacina da lista
-                String exameExcluido = tblExames.getValueAt(idx,0).toString();
-                bancoDeDados.removerVacina(exameExcluido);
+                String exameExcluido = tblExames.getValueAt(idx,1).toString();
+                bancoDeDados.removerExame(exameExcluido);
 
                 // Atualiza a tabela
                 carregarTabela(bancoDeDados.getExames());
