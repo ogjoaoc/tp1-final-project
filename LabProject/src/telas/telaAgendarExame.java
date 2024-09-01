@@ -7,6 +7,9 @@ public class telaAgendarExame extends javax.swing.JFrame {
      */
     public telaAgendarExame() {
         initComponents();
+        this.setResizable(false);
+        setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -19,6 +22,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
     private void initComponents() {
 
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        jComboBox1 = new javax.swing.JComboBox<>();
         background = new javax.swing.JPanel();
         panelTitle = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
@@ -27,13 +31,15 @@ public class telaAgendarExame extends javax.swing.JFrame {
         lblSelecionarPaciente = new javax.swing.JLabel();
         btnAvancar = new javax.swing.JButton();
         iconSexoPaciente1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCheckOut = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAdicionarExame = new javax.swing.JButton();
+        btnAdicionarVacina = new javax.swing.JButton();
         lblSelecionarPaciente1 = new javax.swing.JLabel();
         iconSexoPaciente2 = new javax.swing.JLabel();
-        btnAvancar2 = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,16 +55,16 @@ public class telaAgendarExame extends javax.swing.JFrame {
         panelTitleLayout.setHorizontalGroup(
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTitleLayout.createSequentialGroup()
-                .addGap(173, 173, 173)
+                .addGap(155, 155, 155)
                 .addComponent(txtTitle)
-                .addContainerGap(459, Short.MAX_VALUE))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         panelTitleLayout.setVerticalGroup(
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTitleLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(txtTitle)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         background.add(panelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 70));
@@ -97,15 +103,15 @@ public class telaAgendarExame extends javax.swing.JFrame {
                 "Procedimento", "Tipo", "Enfermeiro", "Valor"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblCheckOut.setViewportView(jTable1);
 
-        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 640, 220));
+        background.add(tblCheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 640, 220));
 
-        jButton2.setText("Exame");
-        background.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 90, 40));
+        btnAdicionarExame.setText("Exame");
+        background.add(btnAdicionarExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 90, 40));
 
-        jButton3.setText("Vacina");
-        background.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 100, 40));
+        btnAdicionarVacina.setText("Vacina");
+        background.add(btnAdicionarVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 100, 40));
 
         lblSelecionarPaciente1.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         lblSelecionarPaciente1.setText("Selecionar paciente:");
@@ -114,9 +120,9 @@ public class telaAgendarExame extends javax.swing.JFrame {
         iconSexoPaciente2.setText("IconSexo");
         background.add(iconSexoPaciente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, 20));
 
-        btnAvancar2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnAvancar2.setText("Voltar");
-        background.add(btnAvancar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 180, 50));
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        background.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 180, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,7 +140,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
         // TODO add your handling code here:
-        telaPagamento telaPag = new telaPagamento();
+        telaPagamento telaPag = new telaPagamento(this);
         telaPag.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAvancarActionPerformed
@@ -177,19 +183,20 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
+    private javax.swing.JButton btnAdicionarExame;
+    private javax.swing.JButton btnAdicionarVacina;
     private javax.swing.JButton btnAvancar;
-    private javax.swing.JButton btnAvancar2;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel iconSexoPaciente1;
     private javax.swing.JLabel iconSexoPaciente2;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSelecionarEnfermeiro;
     private javax.swing.JLabel lblSelecionarPaciente;
     private javax.swing.JLabel lblSelecionarPaciente1;
     private javax.swing.JPanel panelTitle;
+    private javax.swing.JScrollPane tblCheckOut;
     private javax.swing.JTextField txtPaciente;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
