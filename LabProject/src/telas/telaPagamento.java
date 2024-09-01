@@ -3,6 +3,7 @@ package telas;
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
+import javax.swing.border.Border;
 
 /**
  *
@@ -18,9 +19,27 @@ public class telaPagamento extends javax.swing.JFrame {
     public telaPagamento(telaAgendamento anterior) {
         initComponents();
         aux = anterior;
+
+        // Define a cor rosa
+        Color rosa = new Color(248, 197, 190);
+
+        // Cria uma borda com a cor rosa
+        Border rosaBorda = BorderFactory.createLineBorder(rosa, 2);
+
+        // Atualiza a aparência do JTabbedPane
         UIManager.put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0));
-        UIManager.put("TabbedPane.contentAreaColor", Color.WHITE);
-        UIManager.put("TabbedPane.border", BorderUIResource.getBlackLineBorderUIResource());
+        UIManager.put("TabbedPane.contentAreaColor", rosa);
+        UIManager.put("TabbedPane.border", new BorderUIResource(rosaBorda));
+        // Atualiza as propriedades das abas
+        UIManager.put("TabbedPane.selected", rosa);
+        UIManager.put("TabbedPane.tabAreaBackground", rosa);
+        UIManager.put("TabbedPane.tabInsets", new Insets(0, 0, 0, 0));
+        UIManager.put("TabbedPane.tabUnderlineColor", rosa);
+        UIManager.put("TabbedPane.tabSelectedBackground", rosa);
+
+        // Atualiza a aparência dos componentes existentes
+        SwingUtilities.updateComponentTreeUI(getRootPane());
+        
         this.setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -90,9 +109,12 @@ public class telaPagamento extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        tabbedPagamento.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tabbedPagamento.setBackground(new java.awt.Color(248, 197, 190));
+        tabbedPagamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(248, 197, 190)));
+        tabbedPagamento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         pnlCartao.setBackground(new java.awt.Color(248, 197, 190));
+        pnlCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(248, 197, 190), 2, true));
 
         lblNomeTitular.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblNomeTitular.setText("Nome do titular:");
@@ -158,11 +180,11 @@ public class telaPagamento extends javax.swing.JFrame {
                             .addComponent(txtNumCartao2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEnderecoCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblVencimento1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(lblIconCard, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))))
             .addGroup(pnlCartaoLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(53, 53, 53)
                 .addComponent(separatorCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -196,12 +218,12 @@ public class telaPagamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNumCartao2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblIconCard, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(separatorCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(26, 26, 26))
         );
 
-        tabbedPagamento.addTab("Cartão de Crédito", pnlCartao);
+        tabbedPagamento.addTab("    Cartão de Crédito     ", pnlCartao);
 
         pnlPix.setBackground(new java.awt.Color(248, 197, 190));
 
@@ -209,14 +231,14 @@ public class telaPagamento extends javax.swing.JFrame {
         pnlPix.setLayout(pnlPixLayout);
         pnlPixLayout.setHorizontalGroup(
             pnlPixLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
         pnlPixLayout.setVerticalGroup(
             pnlPixLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 387, Short.MAX_VALUE)
+            .addGap(0, 397, Short.MAX_VALUE)
         );
 
-        tabbedPagamento.addTab("Pix", pnlPix);
+        tabbedPagamento.addTab("   Pix    ", pnlPix);
 
         pnlValorTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -327,7 +349,7 @@ public class telaPagamento extends javax.swing.JFrame {
                             .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(pnlValorTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

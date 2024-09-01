@@ -158,7 +158,6 @@ public class telaAgendamento extends javax.swing.JFrame {
         txtPaciente = new javax.swing.JTextField();
         lblSelecionarPaciente = new javax.swing.JLabel();
         btnAvancar = new javax.swing.JButton();
-        iconSexoPaciente1 = new javax.swing.JLabel();
         tblCheckOut = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnAdicionarExame = new javax.swing.JButton();
@@ -206,7 +205,7 @@ public class telaAgendamento extends javax.swing.JFrame {
 
         lblSelecionarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         lblSelecionarPaciente.setText("Adicionar:");
-        background.add(lblSelecionarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 210, 40));
+        background.add(lblSelecionarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 210, 40));
 
         btnAvancar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAvancar.setText("Avançar");
@@ -216,9 +215,6 @@ public class telaAgendamento extends javax.swing.JFrame {
             }
         });
         background.add(btnAvancar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, 180, 50));
-
-        iconSexoPaciente1.setText("iconVacExa");
-        background.add(iconSexoPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, 70, 20));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -243,7 +239,7 @@ public class telaAgendamento extends javax.swing.JFrame {
                 btnAdicionarExameActionPerformed(evt);
             }
         });
-        background.add(btnAdicionarExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 110, 40));
+        background.add(btnAdicionarExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 130, 40));
 
         btnAdicionarVacina.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         btnAdicionarVacina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconVacinaP.png"))); // NOI18N
@@ -253,7 +249,7 @@ public class telaAgendamento extends javax.swing.JFrame {
                 btnAdicionarVacinaActionPerformed(evt);
             }
         });
-        background.add(btnAdicionarVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 110, 40));
+        background.add(btnAdicionarVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 130, 40));
 
         lblSelecionarPaciente1.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         lblSelecionarPaciente1.setText("Selecionar paciente:");
@@ -324,7 +320,6 @@ public class telaAgendamento extends javax.swing.JFrame {
     private javax.swing.JButton btnAvancar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JLabel iconSexoPaciente1;
     private javax.swing.JLabel iconSexoPaciente2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTable jTable1;
