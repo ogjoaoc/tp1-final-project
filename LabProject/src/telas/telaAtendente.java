@@ -30,14 +30,12 @@ public class telaAtendente extends javax.swing.JFrame {
         lblInfo = new javax.swing.JLabel();
         btnCadastrarPaciente1 = new javax.swing.JButton();
         btnCadastrarPaciente = new javax.swing.JButton();
-        btnAgendarExame = new javax.swing.JButton();
+        btnAgendamento = new javax.swing.JButton();
         btnMinhaConta = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btnAgendarVacina = new javax.swing.JButton();
-        btnPagamentos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 197, 190));
@@ -60,7 +58,7 @@ public class telaAtendente extends javax.swing.JFrame {
                 btnCadastrarPaciente1ActionPerformed(evt);
             }
         });
-        background.add(btnCadastrarPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 230, 80));
+        background.add(btnCadastrarPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 230, 80));
 
         btnCadastrarPaciente.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         btnCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconAddUser.png"))); // NOI18N
@@ -70,17 +68,17 @@ public class telaAtendente extends javax.swing.JFrame {
                 btnCadastrarPacienteActionPerformed(evt);
             }
         });
-        background.add(btnCadastrarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 230, 80));
+        background.add(btnCadastrarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 230, 80));
 
-        btnAgendarExame.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        btnAgendarExame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconExame.png"))); // NOI18N
-        btnAgendarExame.setText("Agendar Exame");
-        btnAgendarExame.addActionListener(new java.awt.event.ActionListener() {
+        btnAgendamento.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        btnAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconAgendar.png"))); // NOI18N
+        btnAgendamento.setText("Agendamento");
+        btnAgendamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgendarExameActionPerformed(evt);
+                btnAgendamentoActionPerformed(evt);
             }
         });
-        background.add(btnAgendarExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 230, 80));
+        background.add(btnAgendamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 230, 80));
 
         btnMinhaConta.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         btnMinhaConta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconProfile.png"))); // NOI18N
@@ -91,7 +89,7 @@ public class telaAtendente extends javax.swing.JFrame {
                 btnMinhaContaActionPerformed(evt);
             }
         });
-        background.add(btnMinhaConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 230, 77));
+        background.add(btnMinhaConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 230, 80));
 
         txtTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtTitle.setForeground(new java.awt.Color(153, 0, 0));
@@ -142,26 +140,6 @@ public class telaAtendente extends javax.swing.JFrame {
 
         background.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 785, -1));
 
-        btnAgendarVacina.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        btnAgendarVacina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconVacina.png"))); // NOI18N
-        btnAgendarVacina.setText("Agendar Vacina");
-        btnAgendarVacina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgendarVacinaActionPerformed(evt);
-            }
-        });
-        background.add(btnAgendarVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 230, 77));
-
-        btnPagamentos.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        btnPagamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconPagamento.png"))); // NOI18N
-        btnPagamentos.setText("    Pagamentos      ");
-        btnPagamentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagamentosActionPerformed(evt);
-            }
-        });
-        background.add(btnPagamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 230, 77));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,11 +161,11 @@ public class telaAtendente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCadastrarPacienteActionPerformed
 
-    private void btnAgendarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarExameActionPerformed
-        telaAgendarExame telaAgendarExame = new telaAgendarExame();
-        telaAgendarExame.setVisible(true);
+    private void btnAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendamentoActionPerformed
+        telaAgendamento telaAgendamento = new telaAgendamento();
+        telaAgendamento.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnAgendarExameActionPerformed
+    }//GEN-LAST:event_btnAgendamentoActionPerformed
 
     private void btnMinhaContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinhaContaActionPerformed
         telaContaFuncionario telaContaAtendente = new telaContaFuncionario();
@@ -205,16 +183,6 @@ public class telaAtendente extends javax.swing.JFrame {
         telaPesquisarPaciente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCadastrarPaciente1ActionPerformed
-
-    private void btnAgendarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarVacinaActionPerformed
-        telaAgendarVacina telaAgendarVacina = new telaAgendarVacina();
-        telaAgendarVacina.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnAgendarVacinaActionPerformed
-
-    private void btnPagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagamentosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPagamentosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,12 +222,10 @@ public class telaAtendente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
-    private javax.swing.JButton btnAgendarExame;
-    private javax.swing.JButton btnAgendarVacina;
+    private javax.swing.JButton btnAgendamento;
     private javax.swing.JButton btnCadastrarPaciente;
     private javax.swing.JButton btnCadastrarPaciente1;
     private javax.swing.JButton btnMinhaConta;
-    private javax.swing.JButton btnPagamentos;
     private javax.swing.JButton btnSair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

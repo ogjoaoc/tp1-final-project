@@ -12,7 +12,6 @@ import javax.swing.Timer;
 public class telaAgendarVacina extends javax.swing.JFrame {
     
     private JPopupMenu popupVacina = new JPopupMenu();
-    private JPopupMenu popupPaciente = new JPopupMenu();
     private JPopupMenu popupEnfermeiro = new JPopupMenu();
     private BancoDeDados database = new BancoDeDados(); 
     private Timer debounceTimer;
@@ -23,13 +22,11 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         setupPlaceholders();
         
         database.lerArquivo("vacina");
-        database.lerArquivo("paciente");
         database.lerArquivo("enfermeiro");
     }
     
     private void setupAutoComplete() {
         txtVacina.getDocument().addDocumentListener(new AutoCompleteListener(txtVacina, "vacina"));
-        txtPaciente.getDocument().addDocumentListener(new AutoCompleteListener(txtPaciente, "paciente"));
         txtEnfermeiro.getDocument().addDocumentListener(new AutoCompleteListener(txtEnfermeiro, "enfermeiro"));
     }
 
@@ -46,9 +43,6 @@ public class telaAgendarVacina extends javax.swing.JFrame {
             switch(tipo) {
                 case "vacina":
                     this.popupMenu = popupVacina;
-                    break;
-                case "paciente":
-                    this.popupMenu = popupPaciente;
                     break;
                 case "enfermeiro":
                     this.popupMenu = popupEnfermeiro;
@@ -85,8 +79,6 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         }
 
         private void showSuggestions() {
-            //Component focusedComponent = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
-            
             popupMenu.removeAll();
             String textoBusca = textField.getText().toLowerCase();
 
@@ -126,11 +118,6 @@ public class telaAgendarVacina extends javax.swing.JFrame {
             } else {
                 popupMenu.setVisible(false);
             }
-            
-            // Retorna o foco ao campo de texto após exibir o popup
-            /*if (focusedComponent != null) {
-                focusedComponent.requestFocusInWindow();
-            }*/
         
         }
 
@@ -141,12 +128,6 @@ public class telaAgendarVacina extends javax.swing.JFrame {
                 case "vacina":
                     resultados = new ArrayList<>(database.getVacinas().stream()
                             .map(Vacina::getTipoVacina)
-                            .filter(nome -> nome.toLowerCase().contains(textoBusca))
-                            .toList());
-                    break;
-                case "paciente":
-                    resultados = new ArrayList<>(database.getPacientes().stream()
-                            .map(Paciente::getNome)
                             .filter(nome -> nome.toLowerCase().contains(textoBusca))
                             .toList());
                     break;
@@ -164,7 +145,6 @@ public class telaAgendarVacina extends javax.swing.JFrame {
 
     private void setupPlaceholders() {
         configurarPlaceholder(txtVacina, "Digite o nome da vacina...");
-        configurarPlaceholder(txtPaciente, "Digite o nome do paciente...");
         configurarPlaceholder(txtEnfermeiro, "Digite o nome do enfermeiro...");
     }
 
@@ -196,12 +176,10 @@ public class telaAgendarVacina extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblVacina = new javax.swing.JLabel();
-        lblPaciente = new javax.swing.JLabel();
         lblEnfermeiro = new javax.swing.JLabel();
         lblPreco = new javax.swing.JLabel();
         lblDose = new javax.swing.JLabel();
         txtVacina = new javax.swing.JTextField();
-        txtPaciente = new javax.swing.JTextField();
         txtEnfermeiro = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
         cmbDose = new javax.swing.JComboBox<>();
@@ -219,10 +197,6 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         lblVacina.setText("Vacina: ");
         lblVacina.setFont(new java.awt.Font("Segoe UI", 1, 18));
         txtVacina.setFont(new java.awt.Font("Segoe UI", 0, 18));
-
-        lblPaciente.setText("Paciente: ");
-        lblPaciente.setFont(new java.awt.Font("Segoe UI", 1, 18));
-        txtPaciente.setFont(new java.awt.Font("Segoe UI", 0, 18));
 
         lblEnfermeiro.setText("Enfermeiro: ");
         lblEnfermeiro.setFont(new java.awt.Font("Segoe UI", 1, 18));
@@ -262,14 +236,12 @@ public class telaAgendarVacina extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblVacina)
-                    .addComponent(lblPaciente)
                     .addComponent(lblEnfermeiro)
                     .addComponent(lblPreco)
                     .addComponent(lblDose))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtVacina)
-                    .addComponent(txtPaciente)
                     .addComponent(txtEnfermeiro)
                     .addComponent(txtPreco)
                     .addComponent(cmbDose, 0, 250, Short.MAX_VALUE))
@@ -287,10 +259,6 @@ public class telaAgendarVacina extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblVacina)
                     .addComponent(txtVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPaciente)
-                    .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEnfermeiro)
@@ -329,8 +297,8 @@ public class telaAgendarVacina extends javax.swing.JFrame {
     }
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {
-        telaAtendente telaAtendente = new telaAtendente();
-        telaAtendente.setVisible(true);
+        telaAgendamento telaAgendamento = new telaAgendamento();
+        telaAgendamento.setVisible(true);
         this.dispose();
     }
 
@@ -366,11 +334,9 @@ public class telaAgendarVacina extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDose;
     private javax.swing.JLabel lblEnfermeiro;
-    private javax.swing.JLabel lblPaciente;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblVacina;
     private javax.swing.JTextField txtEnfermeiro;
-    private javax.swing.JTextField txtPaciente;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtVacina;
     // End of variables declaration  
