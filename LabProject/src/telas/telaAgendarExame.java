@@ -1,21 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package telas;
 
-/**
- *
- * @author analuisa
- */
 public class telaAgendarExame extends javax.swing.JFrame {
 
     /**
-     * Creates new form telaAddExame
+     * Creates new form telaAgendarExame2
      */
     public telaAgendarExame() {
         initComponents();
-        this.setResizable(false);
     }
 
     /**
@@ -27,103 +18,73 @@ public class telaAgendarExame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnSalvarExame1 = new javax.swing.JButton();
-        lblPaciente = new javax.swing.JLabel();
-        lblEnfermeiro = new javax.swing.JLabel();
-        lblData = new javax.swing.JLabel();
-        lblTipo = new javax.swing.JLabel();
-        cbTipo = new javax.swing.JComboBox<>();
-        txtDataExame = new javax.swing.JFormattedTextField();
-        btnSalvarExame = new javax.swing.JButton();
-        btnEditarExame = new javax.swing.JButton();
-        btnExcluirExame = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        imgExame = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        background = new javax.swing.JPanel();
+        panelTitle = new javax.swing.JPanel();
+        txtTitle = new javax.swing.JLabel();
+        lblSelecionarEnfermeiro = new javax.swing.JLabel();
+        txtPaciente = new javax.swing.JTextField();
+        lblSelecionarPaciente = new javax.swing.JLabel();
+        btnAvancar = new javax.swing.JButton();
+        iconSexoPaciente1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        btnSalvarExame2 = new javax.swing.JButton();
-        btnExcluirExame1 = new javax.swing.JButton();
-        txtEnfermeiro = new javax.swing.JTextField();
-        txtPaciente = new javax.swing.JTextField();
-        lblTipo1 = new javax.swing.JLabel();
-        cbTipo1 = new javax.swing.JComboBox<>();
-        btnOkPaciente = new javax.swing.JButton();
-        btnOkEnfermeiro = new javax.swing.JButton();
-
-        btnSalvarExame1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSalvarExame1.setText("Salvar");
-        btnSalvarExame1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarExame1ActionPerformed(evt);
-            }
-        });
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        lblSelecionarPaciente1 = new javax.swing.JLabel();
+        iconSexoPaciente2 = new javax.swing.JLabel();
+        btnAvancar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
-        lblPaciente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblPaciente.setText("Paciente:");
+        background.setBackground(new java.awt.Color(248, 197, 190));
+        background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblEnfermeiro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblEnfermeiro.setText("Enfermeiro:");
+        txtTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        txtTitle.setForeground(new java.awt.Color(153, 0, 0));
+        txtTitle.setText("Agendamento - Exames e Vacinas");
 
-        lblData.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblData.setText("Data:");
-
-        lblTipo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblTipo.setText("Tipo:");
-
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um tipo", "Sorologia", "Hemograma" }));
-
-        try {
-            txtDataExame.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        btnSalvarExame.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSalvarExame.setText("Salvar");
-        btnSalvarExame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarExameActionPerformed(evt);
-            }
-        });
-
-        btnEditarExame.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnEditarExame.setText("Editar");
-        btnEditarExame.setToolTipText("");
-        btnEditarExame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarExameActionPerformed(evt);
-            }
-        });
-
-        btnExcluirExame.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnExcluirExame.setText("Excluir");
-        btnExcluirExame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirExameActionPerformed(evt);
-            }
-        });
-
-        imgExame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgExame.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imgExame, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelTitleLayout = new javax.swing.GroupLayout(panelTitle);
+        panelTitle.setLayout(panelTitleLayout);
+        panelTitleLayout.setHorizontalGroup(
+            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTitleLayout.createSequentialGroup()
+                .addGap(173, 173, 173)
+                .addComponent(txtTitle)
+                .addContainerGap(459, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imgExame, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE))
+        panelTitleLayout.setVerticalGroup(
+            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTitleLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(txtTitle)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        background.add(panelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 70));
+
+        lblSelecionarEnfermeiro.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        lblSelecionarEnfermeiro.setText("Check-out:");
+        background.add(lblSelecionarEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, 40));
+
+        txtPaciente.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        background.add(txtPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 220, 40));
+
+        lblSelecionarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        lblSelecionarPaciente.setText("Adicionar:");
+        background.add(lblSelecionarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 210, 40));
+
+        btnAvancar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAvancar.setText("Avançar");
+        btnAvancar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvancarActionPerformed(evt);
+            }
+        });
+        background.add(btnAvancar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, 180, 50));
+
+        iconSexoPaciente1.setText("iconVacinaExame");
+        background.add(iconSexoPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, -1, 20));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,178 +94,50 @@ public class telaAgendarExame extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Data", "Tipo", "Paciente", "Enfermeiro"
+                "Procedimento", "Tipo", "Enfermeiro", "Valor"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
-        btnSalvarExame2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSalvarExame2.setText("Pesquisar");
-        btnSalvarExame2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarExame2ActionPerformed(evt);
-            }
-        });
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 640, 220));
 
-        btnExcluirExame1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnExcluirExame1.setText("Voltar");
-        btnExcluirExame1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirExame1ActionPerformed(evt);
-            }
-        });
+        jButton2.setText("Exame");
+        background.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 90, 40));
 
-        lblTipo1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblTipo1.setText("Exame:");
+        jButton3.setText("Vacina");
+        background.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 100, 40));
 
-        cbTipo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um exame", " " }));
+        lblSelecionarPaciente1.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        lblSelecionarPaciente1.setText("Selecionar paciente:");
+        background.add(lblSelecionarPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 210, 40));
 
-        btnOkPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconSearch.png"))); // NOI18N
+        iconSexoPaciente2.setText("IconSexo");
+        background.add(iconSexoPaciente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, 20));
 
-        btnOkEnfermeiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconSearch.png"))); // NOI18N
+        btnAvancar2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAvancar2.setText("Voltar");
+        background.add(btnAvancar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 180, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblPaciente)
-                                    .addComponent(lblData)
-                                    .addComponent(lblTipo)
-                                    .addComponent(lblTipo1))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(lblEnfermeiro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDataExame, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtEnfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnOkEnfermeiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnOkPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSalvarExame2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnSalvarExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnEditarExame, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnExcluirExame, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnExcluirExame1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(53, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblData)
-                            .addComponent(txtDataExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnOkPaciente)
-                            .addComponent(lblPaciente))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnOkEnfermeiro)
-                                .addGap(19, 19, 19))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtEnfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblEnfermeiro))
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTipo)
-                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTipo1)
-                            .addComponent(cbTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(btnSalvarExame2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(11, 11, 11)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSalvarExame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditarExame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExcluirExame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExcluirExame1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarExameActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarExameActionPerformed
-
-    private void btnEditarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarExameActionPerformed
+    private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarExameActionPerformed
-
-    private void btnExcluirExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirExameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirExameActionPerformed
-
-    private void btnSalvarExame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarExame1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarExame1ActionPerformed
-
-    private void btnSalvarExame2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarExame2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarExame2ActionPerformed
-
-    private void btnExcluirExame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirExame1ActionPerformed
-        telaAtendente telaAtendente = new telaAtendente();
-        telaAtendente.setVisible(true);
+        telaPagamento telaPag = new telaPagamento();
+        telaPag.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnExcluirExame1ActionPerformed
+    }//GEN-LAST:event_btnAvancarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,12 +166,6 @@ public class telaAgendarExame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -349,28 +176,21 @@ public class telaAgendarExame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditarExame;
-    private javax.swing.JButton btnExcluirExame;
-    private javax.swing.JButton btnExcluirExame1;
-    private javax.swing.JButton btnOkEnfermeiro;
-    private javax.swing.JButton btnOkPaciente;
-    private javax.swing.JButton btnSalvarExame;
-    private javax.swing.JButton btnSalvarExame1;
-    private javax.swing.JButton btnSalvarExame2;
-    private javax.swing.JComboBox<String> cbTipo;
-    private javax.swing.JComboBox<String> cbTipo1;
-    private javax.swing.JLabel imgExame;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel background;
+    private javax.swing.JButton btnAvancar;
+    private javax.swing.JButton btnAvancar2;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel iconSexoPaciente1;
+    private javax.swing.JLabel iconSexoPaciente2;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel lblData;
-    private javax.swing.JLabel lblEnfermeiro;
-    private javax.swing.JLabel lblPaciente;
-    private javax.swing.JLabel lblTipo;
-    private javax.swing.JLabel lblTipo1;
-    private javax.swing.JFormattedTextField txtDataExame;
-    private javax.swing.JTextField txtEnfermeiro;
+    private javax.swing.JLabel lblSelecionarEnfermeiro;
+    private javax.swing.JLabel lblSelecionarPaciente;
+    private javax.swing.JLabel lblSelecionarPaciente1;
+    private javax.swing.JPanel panelTitle;
     private javax.swing.JTextField txtPaciente;
+    private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 }

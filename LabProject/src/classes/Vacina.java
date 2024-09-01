@@ -70,7 +70,21 @@ public class Vacina {
         }
         return false;
     }
-    
-    
+
+    public Enfermeiro getEnfermeiroAssociado() {
+        return enfermeiroAssociado;
+    }
+
+    public void setEnfermeiroAssociado(Enfermeiro enfermeiroAssociado) {
+        this.enfermeiroAssociado = enfermeiroAssociado;
+    }
+
+    public Paciente getPacienteASsociado() {
+        return pacienteASsociado;
+    }
+
+    public void setPacienteASsociado(Paciente pacienteASsociado) {
+        this.pacienteASsociado = pacienteASsociado;
+    }
     
 }
