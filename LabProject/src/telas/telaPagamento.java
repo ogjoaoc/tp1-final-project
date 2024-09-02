@@ -20,7 +20,7 @@ public class telaPagamento extends javax.swing.JFrame {
         initComponents();
         aux = anterior;
 
-        // Define a cor rosa
+        /*// Define a cor rosa
         Color rosa = new Color(248, 197, 190);
 
         // Cria uma borda com a cor rosa
@@ -35,10 +35,10 @@ public class telaPagamento extends javax.swing.JFrame {
         UIManager.put("TabbedPane.tabAreaBackground", rosa);
         UIManager.put("TabbedPane.tabInsets", new Insets(0, 0, 0, 0));
         UIManager.put("TabbedPane.tabUnderlineColor", rosa);
-        UIManager.put("TabbedPane.tabSelectedBackground", rosa);
+        UIManager.put("TabbedPane.tabSelectedBackground", rosa);*/
 
         // Atualiza a aparência dos componentes existentes
-        SwingUtilities.updateComponentTreeUI(getRootPane());
+        //SwingUtilities.updateComponentTreeUI(getRootPane());
         
         this.setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
@@ -55,6 +55,8 @@ public class telaPagamento extends javax.swing.JFrame {
     private void initComponents() {
 
         backgroundColor = new javax.swing.JPanel();
+        btnVoltar = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
         panelTitle = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
         tabbedPagamento = new javax.swing.JTabbedPane();
@@ -80,13 +82,24 @@ public class telaPagamento extends javax.swing.JFrame {
         separatorCheckOut = new javax.swing.JSeparator();
         tblCheckOut = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnFinalizar = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         backgroundColor.setBackground(new java.awt.Color(248, 197, 190));
+
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
+        btnFinalizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnFinalizar.setText("Finalizar");
+        btnFinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtTitle.setForeground(new java.awt.Color(153, 0, 0));
@@ -149,7 +162,6 @@ public class telaPagamento extends javax.swing.JFrame {
         lblIconCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconCard.png"))); // NOI18N
 
         separatorCartao.setForeground(new java.awt.Color(0, 0, 0));
-        separatorCartao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         separatorCartao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout pnlCartaoLayout = new javax.swing.GroupLayout(pnlCartao);
@@ -218,7 +230,7 @@ public class telaPagamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNumCartao2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblIconCard, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(separatorCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -249,7 +261,6 @@ public class telaPagamento extends javax.swing.JFrame {
         lblValorTotalPanel.setText("Valor total:  $");
 
         separatorCheckOut.setForeground(new java.awt.Color(0, 0, 0));
-        separatorCheckOut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         separatorCheckOut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -303,19 +314,6 @@ public class telaPagamento extends javax.swing.JFrame {
                 .addComponent(lblValorTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        btnFinalizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnFinalizar.setText("Finalizar");
-        btnFinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnVoltar.setText("Voltar");
-        btnVoltar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout backgroundColorLayout = new javax.swing.GroupLayout(backgroundColor);
         backgroundColor.setLayout(backgroundColorLayout);
