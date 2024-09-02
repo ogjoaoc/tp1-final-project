@@ -119,6 +119,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         btnAgendar = new javax.swing.JButton();
         cbEnfermeiro = new javax.swing.JComboBox<>();
         lblSelecionarPaciente2 = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,7 +176,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
 
         btnAgendar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgendar.setText("Agendar");
-        background.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 140, 40));
+        background.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 140, 40));
 
         cbEnfermeiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do enfermeiro...", " " }));
         background.add(cbEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 190, 40));
@@ -183,6 +184,15 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         lblSelecionarPaciente2.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         lblSelecionarPaciente2.setText("Preço:");
         background.add(lblSelecionarPaciente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 40));
+
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        background.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,6 +211,10 @@ public class telaAgendarVacina extends javax.swing.JFrame {
     private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,6 +255,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JButton btnAgendar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbDose;
     private javax.swing.JComboBox<String> cbEnfermeiro;
     private javax.swing.JComboBox<String> cbTipoVacina;

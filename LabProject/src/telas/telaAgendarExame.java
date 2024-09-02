@@ -143,6 +143,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         lblSelecionarPaciente4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         btnAgendar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,12 +180,12 @@ public class telaAgendarExame extends javax.swing.JFrame {
         jRadioButton1.setBackground(new java.awt.Color(248, 197, 190));
         jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jRadioButton1.setText("Sorológico");
-        background.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, -1));
+        background.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
 
         jRadioButton2.setBackground(new java.awt.Color(248, 197, 190));
         jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jRadioButton2.setText("Hemograma");
-        background.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
+        background.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
         lblSelecionarPaciente2.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         lblSelecionarPaciente2.setText("Exame:");
@@ -207,7 +208,16 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
         btnAgendar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgendar.setText("Agendar");
-        background.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 140, 40));
+        background.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 140, 40));
+
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        background.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,6 +232,10 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,6 +276,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JButton btnAgendar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbEnfermeiro;
     private javax.swing.JComboBox<String> cbTipoExame;
     private javax.swing.JRadioButton jRadioButton1;
