@@ -24,7 +24,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
     
     BancoDeDados bancoDeDados = new BancoDeDados();
     Paciente pacienteAntigo;
-    
+
     public telaEditarPaciente() {
         initComponents();
         this.setResizable(false);
@@ -254,7 +254,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
             Paciente pacienteNovo = new Paciente(nome, cpf, sexo, dataNascimento, email, tipoSanguineo, convenio);
             
             bancoDeDados.atualizarPaciente(pacienteAntigo, pacienteNovo);
-            
+         
             this.pacienteAntigo = pacienteNovo;
         }
     }//GEN-LAST:event_btnSalvarActionPerformed

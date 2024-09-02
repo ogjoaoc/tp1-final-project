@@ -25,6 +25,8 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
 
     BancoDeDados database = new BancoDeDados(); 
     private final String placeholderText = "Pesquisar por CPF ou nome...";
+    private telaEditarPaciente editPaciente;
+
     
     public telaPesquisarPaciente() {
         initComponents();
@@ -266,8 +268,16 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
         Object cpf = tblPacientes.getValueAt(idx, 1);
         Paciente paciente = database.encontrarPaciente((String) cpf);
         
-        telaEditarPaciente editPaciente = new telaEditarPaciente(paciente);
-        editPaciente.setVisible(true);
+        if (editPaciente != null && editPaciente.isVisible()) {
+            // Se estiver visível, traz para frente
+            editPaciente.toFront();
+            editPaciente.requestFocus();
+        } else {
+            // Caso contrário, cria uma nova instância e exibe
+            editPaciente = new telaEditarPaciente(paciente);
+            editPaciente.setVisible(true);
+        }
+
     }//GEN-LAST:event_tblPacientesMouseClicked
 
     /**
