@@ -5,7 +5,9 @@ import classes.*;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
@@ -51,23 +53,26 @@ public class telaAgendamento extends javax.swing.JFrame {
     }
     
     protected void atualizarTabelaCheckOut() {
-        String[] colunas = {"Procedimento", "Tipo", "Enfermeiro", "Valor"};
-        Object[][] dados = new Object[checkOutExames.size() + checkOutVacina.size()][4];
+        String[] colunas = {"Procedimento", "Tipo", "Enfermeiro", "Valor", "Data de Realização"};
+        Object[][] dados = new Object[checkOutExames.size() + checkOutVacina.size()][5];
 
         int i = 0;
         for (Exame exame : checkOutExames) {
-            dados[i][0] = "Exame"; 
+            dados[i][0] = "Exame";
             dados[i][1] = exame.getSubtipo(); 
             dados[i][2] = exame.getEnfermeiroAssociado().getNome(); 
             dados[i][3] = exame.getPreco(); 
+            dados[i][4] = exame.getDataRealizacao(); 
             i++;
         }
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         for (Vacina vacina : checkOutVacina) {
             dados[i][0] = "Vacina"; 
             dados[i][1] = vacina.getTipoVacina(); 
             dados[i][2] = vacina.getEnfermeiroAssociado().getNome(); 
             dados[i][3] = vacina.getPreco(); 
+            dados[i][4] = sdf.format(new Date()); 
             i++;
         }
 

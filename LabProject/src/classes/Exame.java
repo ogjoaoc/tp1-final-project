@@ -21,11 +21,11 @@ public abstract class Exame {
         this.preco = preco;
     }
 
-    public String getData() {
+    public String getDataRealizacao() {
         return dataRealizacao;
     }
 
-    public void setData(String data) {
+    public void setDataRealizacao(String data) {
         this.dataRealizacao = data;
     }
 
