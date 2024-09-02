@@ -11,8 +11,8 @@ public class Hemograma extends Exame {
         this.alvo = alvo;
     }
 
-    public Hemograma(String alvo, String resultado, String data, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, String dataRealizacao, double preco) {
-        super(data, pacienteAssociado, enfermeiroAssociado, dataRealizacao, preco);
+    public Hemograma(String alvo, String dataRealizacao, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, double preco) {
+        super(dataRealizacao, pacienteAssociado, enfermeiroAssociado, preco);
         this.alvo = alvo;
     }
 

@@ -1,15 +1,15 @@
 package classes;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Agendamento {
     
     private int id; 
     private ArrayList<Exame> listaExames;
     private ArrayList<Vacina> listaVacinas;
-    private SimpleDateFormat dataCriado;
-    private double valorTotal;
+    private Date dataCriado;
+    private double valorTotal = 0f;
     
     // gerar csv no formato id, tipo, cpfPaciente, cpfEnfermeiro, dataCriado, dataAgendado, { info exame ou info vacina }
     
@@ -17,12 +17,11 @@ public class Agendamento {
         
     }
 
-    public Agendamento(int id, ArrayList<Exame> listaExames, ArrayList<Vacina> listaVacinas, SimpleDateFormat dataCriado, double valorTotal) {
+    public Agendamento(int id, ArrayList<Exame> listaExames, ArrayList<Vacina> listaVacinas) {
         this.id = id;
         this.listaExames = listaExames;
         this.listaVacinas = listaVacinas;
-        this.dataCriado = dataCriado;
-        this.valorTotal = valorTotal;
+        this.dataCriado = new Date();
     }
     
     public int getId() {
@@ -49,11 +48,11 @@ public class Agendamento {
         this.listaVacinas = listaVacinas;
     }
 
-    public SimpleDateFormat getDataCriado() {
+    public Date getDataCriado() {
         return dataCriado;
     }
 
-    public void setDataCriado(SimpleDateFormat dataCriado) {
+    public void setDataCriado(Date dataCriado) {
         this.dataCriado = dataCriado;
     }
 

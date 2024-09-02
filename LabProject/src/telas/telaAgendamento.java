@@ -18,7 +18,11 @@ public class telaAgendamento extends javax.swing.JFrame {
     private JPopupMenu popupPaciente = new JPopupMenu();
     private BancoDeDados database = new BancoDeDados(); 
     private Timer debounceTimer;
-
+    
+    ArrayList<Exame> checkOutExames;
+    ArrayList<Vacina> checkOutVacina;
+    
+    
     public telaAgendamento() {
         initComponents();
         this.setResizable(false);
@@ -29,8 +33,66 @@ public class telaAgendamento extends javax.swing.JFrame {
         setupPlaceholders();
         
         database.lerArquivo("paciente");
-        
+        this.checkOutExames = new ArrayList<>();
+        this.checkOutVacina = new ArrayList<>();
+        atualizarTabelaCheckOut();
+       
     }
+    
+    protected Paciente getPacienteSelecionado() {
+        String nomePacienteSelecionado = txtPaciente.getText();
+        ArrayList<Paciente> auxiliarPacientes = database.getPacientes();
+        for(Paciente pac: auxiliarPacientes) {
+            if(pac.getNome().equals(nomePacienteSelecionado)) {
+                return pac;
+            }
+        }
+        return null;
+    }
+    
+    protected void atualizarTabelaCheckOut() {
+        String[] colunas = {"Procedimento", "Tipo", "Enfermeiro", "Valor"};
+        Object[][] dados = new Object[checkOutExames.size() + checkOutVacina.size()][4];
+
+        int i = 0;
+        for (Exame exame : checkOutExames) {
+            dados[i][0] = "Exame"; 
+            dados[i][1] = exame.getSubtipo(); 
+            dados[i][2] = exame.getEnfermeiroAssociado().getNome(); 
+            dados[i][3] = exame.getPreco(); 
+            i++;
+        }
+
+        for (Vacina vacina : checkOutVacina) {
+            dados[i][0] = "Vacina"; 
+            dados[i][1] = vacina.getTipoVacina(); 
+            dados[i][2] = vacina.getEnfermeiroAssociado().getNome(); 
+            dados[i][3] = vacina.getPreco(); 
+            i++;
+        }
+
+        javax.swing.table.DefaultTableModel modeloTabela = new javax.swing.table.DefaultTableModel(dados, colunas);
+        jTable1.setModel(modeloTabela);
+    }
+    
+
+    public ArrayList<Exame> getCheckOutExames() {
+        return checkOutExames;
+    }
+
+    public void setCheckOutExames(ArrayList<Exame> checkOutExames) {
+        this.checkOutExames = checkOutExames;
+    }
+
+    public ArrayList<Vacina> getCheckOutVacina() {
+        return checkOutVacina;
+    }
+
+    public void setCheckOutVacina(ArrayList<Vacina> checkOutVacina) {
+        this.checkOutVacina = checkOutVacina;
+    }
+    
+    
     
     private void setupAutoComplete() {
         txtPaciente.getDocument().addDocumentListener(new telaAgendamento.AutoCompleteListener(txtPaciente));
@@ -295,12 +357,12 @@ public class telaAgendamento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAdicionarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarVacinaActionPerformed
-        telaAgendarVacina telaAgendarVacina = new telaAgendarVacina();
+        telaAgendarVacina telaAgendarVacina = new telaAgendarVacina(this);
         telaAgendarVacina.setVisible(true);
     }//GEN-LAST:event_btnAdicionarVacinaActionPerformed
 
     private void btnAdicionarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarExameActionPerformed
-        telaAgendarExame telaAgendarExame = new telaAgendarExame();
+        telaAgendarExame telaAgendarExame = new telaAgendarExame(this);
         telaAgendarExame.setVisible(true);
     }//GEN-LAST:event_btnAdicionarExameActionPerformed
 

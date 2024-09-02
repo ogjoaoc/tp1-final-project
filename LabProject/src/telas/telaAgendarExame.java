@@ -5,6 +5,7 @@ import database.BancoDeDados;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import static java.lang.Double.parseDouble;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -19,14 +20,18 @@ public class telaAgendarExame extends javax.swing.JFrame {
     private ButtonGroup buttonGroup;
     private ArrayList<Exame> exames; 
     private ArrayList<Enfermeiro> enfermeiros; 
+    private telaAgendamento telaAgendamentoRef;
 
-    public telaAgendarExame() {
+    public telaAgendarExame() {}
+    
+    public telaAgendarExame(telaAgendamento ref) {
         initComponents();
         configurarBotoes();
         configurarComboBoxExame(); 
         setResizable(false);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        telaAgendamentoRef = ref;
     }
 
     private void configurarBotoes() {
@@ -208,6 +213,11 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
         btnAgendar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgendar.setText("Agendar");
+        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendarActionPerformed(evt);
+            }
+        });
         background.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 140, 40));
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -236,6 +246,33 @@ public class telaAgendarExame extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
+        String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
+        String tipoExame = (String) cbTipoExame.getSelectedItem();
+        String precoExame = jTextField1.getText();
+
+        // Encontrar o enfermeiro selecionado no banco de dados
+        Enfermeiro enfermeiroSelecionado = null;
+        for (Enfermeiro enf : enfermeiros) {
+            if (enf.getNome().equals(nomeEnfermeiro)) {
+                enfermeiroSelecionado = enf;
+                break;
+            }
+        }
+
+        Exame novoExame = null;
+        if (jRadioButton1.isSelected()) { // Sorológico
+            novoExame = new Sorologico(tipoExame, "2023/09/01", telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame)); // Data fixa por enquanto
+        } else if (jRadioButton2.isSelected()) { // Hemograma
+            novoExame = new Hemograma(tipoExame, "2023/09/01" , telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame));
+        }
+
+        // Adicionar o exame à lista na tela principal
+        telaAgendamentoRef.getCheckOutExames().add(novoExame);
+        telaAgendamentoRef.atualizarTabelaCheckOut();
+        this.dispose();
+    }//GEN-LAST:event_btnAgendarActionPerformed
 
     /**
      * @param args the command line arguments

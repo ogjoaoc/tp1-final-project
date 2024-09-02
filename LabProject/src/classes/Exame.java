@@ -1,6 +1,6 @@
 package classes;
 
-public abstract class Exame extends Agendamento {
+public abstract class Exame {
     private String dataRealizacao;
     private Paciente pacienteAssociado;
     private Enfermeiro enfermeiroAssociado;
@@ -13,8 +13,8 @@ public abstract class Exame extends Agendamento {
     public Exame(double preco){
         this.preco = preco;
     }
-    
-    public Exame(String data, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, String dataRealizacao, double preco) {
+
+    public Exame(String dataRealizacao, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, double preco) {
         this.dataRealizacao = dataRealizacao;
         this.pacienteAssociado = pacienteAssociado;
         this.enfermeiroAssociado = enfermeiroAssociado;
@@ -53,6 +53,14 @@ public abstract class Exame extends Agendamento {
     public void setPreco(double preco) {
         this.preco = preco;
     } 
+    
+    public String getSubtipo() {
+        if(this instanceof Sorologico) {
+            return "Sorológico";
+        } else {
+            return "Hemograma";
+        }
+    }
     
     
 }

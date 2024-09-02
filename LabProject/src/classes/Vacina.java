@@ -4,7 +4,7 @@ public class Vacina {
     private String tipoVacina, validade;
     private boolean disponivel;
     private Enfermeiro enfermeiroAssociado;
-    private Paciente pacienteASsociado;
+    private Paciente pacienteAssociado;
     private int qtd;
     private double preco;
     
@@ -15,6 +15,15 @@ public class Vacina {
         this.tipoVacina = tipoVacina;
         this.validade = validade;
         this.disponivel = disponivel;
+        this.qtd = qtd;
+        this.preco = preco;
+    }
+
+    public Vacina(String tipoVacina, String validade, Enfermeiro enfermeiroAssociado, Paciente pacienteAssociado, int qtd, double preco) {
+        this.tipoVacina = tipoVacina;
+        this.validade = validade;
+        this.enfermeiroAssociado = enfermeiroAssociado;
+        this.pacienteAssociado = pacienteAssociado;
         this.qtd = qtd;
         this.preco = preco;
     }
@@ -79,12 +88,12 @@ public class Vacina {
         this.enfermeiroAssociado = enfermeiroAssociado;
     }
 
-    public Paciente getPacienteASsociado() {
-        return pacienteASsociado;
+    public Paciente pacienteAssociado() {
+        return pacienteAssociado;
     }
 
-    public void setPacienteASsociado(Paciente pacienteASsociado) {
-        this.pacienteASsociado = pacienteASsociado;
+    public void setPacienteASsociado(Paciente pacienteAssociado) {
+        this.pacienteAssociado = pacienteAssociado;
     }
     
 }
