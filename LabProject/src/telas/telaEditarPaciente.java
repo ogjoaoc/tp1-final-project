@@ -24,13 +24,14 @@ public class telaEditarPaciente extends javax.swing.JFrame {
     
     BancoDeDados bancoDeDados = new BancoDeDados();
     Paciente pacienteAntigo;
+    private telaPesquisarPaciente telaPesquisarPaciente;
 
     public telaEditarPaciente() {
         initComponents();
         this.setResizable(false);
     }
     
-    public telaEditarPaciente(Paciente p) {
+    public telaEditarPaciente(Paciente p, telaPesquisarPaciente telaPesquisarPaciente) {
         initComponents();
         this.setResizable(false);
         
@@ -51,6 +52,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
         bancoDeDados.lerArquivo("paciente");
         
         this.pacienteAntigo = p;
+        this.telaPesquisarPaciente = telaPesquisarPaciente;
     }
 
     /**
@@ -256,6 +258,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
             bancoDeDados.atualizarPaciente(pacienteAntigo, pacienteNovo);
          
             this.pacienteAntigo = pacienteNovo;
+            this.telaPesquisarPaciente.carregarTabela(bancoDeDados.getPacientes());
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 

@@ -92,7 +92,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
         }
     }
     
-    private void carregarTabela(ArrayList<Paciente> pacientes) {
+    public void carregarTabela(ArrayList<Paciente> pacientes) {
         DefaultTableModel model = (DefaultTableModel) tblPacientes.getModel();
         model.setRowCount(0);  // Limpar a tabela
 
@@ -274,7 +274,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
             editPaciente.requestFocus();
         } else {
             // Caso contrário, cria uma nova instância e exibe
-            editPaciente = new telaEditarPaciente(paciente);
+            editPaciente = new telaEditarPaciente(paciente, this);
             editPaciente.setVisible(true);
         }
 
