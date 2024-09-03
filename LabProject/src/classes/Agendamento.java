@@ -17,11 +17,12 @@ public class Agendamento {
         
     }
 
-    public Agendamento(int id, ArrayList<Exame> listaExames, ArrayList<Vacina> listaVacinas) {
+    public Agendamento(int id, ArrayList<Exame> listaExames, ArrayList<Vacina> listaVacinas, double valorTotal) {
         this.id = id;
         this.listaExames = listaExames;
         this.listaVacinas = listaVacinas;
         this.dataCriado = new Date();
+        this.valorTotal = valorTotal;
     }
     
     public int getId() {
@@ -64,6 +65,12 @@ public class Agendamento {
         this.valorTotal = valorTotal;
     }
     
+    public void adicionarExame(Exame exame) {
+        this.listaExames.add(exame);
+    }
     
+    public void adicionarVacina(Vacina vacina) {
+        this.listaVacinas.add(vacina);
+    }
     
 }

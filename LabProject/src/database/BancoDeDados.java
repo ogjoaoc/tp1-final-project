@@ -1,8 +1,12 @@
 package database;
 import classes.*;
 import java.io.*;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class BancoDeDados {
@@ -13,8 +17,9 @@ public class BancoDeDados {
     private final ArrayList<Funcionario> funcionarios;
     private final ArrayList<Vacina> vacinas;
     private final ArrayList<Exame> exames;
+    private final ArrayList<Agendamento> agendamentos;
     private final HashMap<String, String> filePathHash; 
-    
+  
     public BancoDeDados() {
         
         this.enfermeiros = new ArrayList<>();
@@ -23,13 +28,16 @@ public class BancoDeDados {
         this.funcionarios = new ArrayList<>();
         this.vacinas = new ArrayList<>();
         this.exames = new ArrayList<>();
+        this.agendamentos = new ArrayList<>();
         this.filePathHash = new HashMap<>();
+       
         
         filePathHash.put("enfermeiro", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosEnfermeiro.csv").toString());
         filePathHash.put("atendente", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosAtendente.csv").toString());
         filePathHash.put("paciente", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosPaciente.csv").toString());
         filePathHash.put("vacina", Paths.get(System.getProperty("user.dir"),"src", "database","dadosVacinas.csv").toString());
         filePathHash.put("exame", Paths.get(System.getProperty("user.dir"),"src", "database","dadosExame.csv").toString());
+        filePathHash.put("agendamento", Paths.get(System.getProperty("user.dir"),"src", "database","dadosAgendamento.csv").toString());
         
     }
     
@@ -41,35 +49,26 @@ public class BancoDeDados {
     
     public StringBuilder escreverDadosBase(Exame exame){
         StringBuilder sb = new StringBuilder();
-        
         if(exame instanceof Sorologico){
             sb.append("Sorológico");sb.append(",");sb.append(((Sorologico) exame).getPatologia());sb.append(",");sb.append(((Sorologico) exame).getPreco());sb.append(",");
         } else if(exame instanceof Hemograma){
             sb.append("Hemograma");sb.append(",");sb.append(((Hemograma) exame).getAlvo());sb.append(",");sb.append(((Hemograma) exame).getPreco());sb.append(",");
         }
-
         return sb;
     }
 
     public StringBuilder escreverDadosBase(Pessoa pessoa) {
-        
         StringBuilder sb = new StringBuilder(); sb.append(pessoa.getNome()).append(","); sb.append(pessoa.getCpf()).append(","); 
         sb.append(pessoa.getSexo()).append(","); sb.append(pessoa.getDataNascimento()).append(","); sb.append(pessoa.getEmail()).append(",");
-        
         if(pessoa instanceof Enfermeiro) {
             sb.append(((Enfermeiro) pessoa).getSenha()).append(",");
         } else if(pessoa instanceof Atendente) {
             sb.append(((Atendente) pessoa).getSenha()).append(",");
         }
-        
         return sb;
-        
     }
     
-    public void ApagarLinha() {
-        // Implementar em breve...
-    }
-    
+
     public void lerArquivo(String tipo) {
         
         try (BufferedReader br = new BufferedReader(new FileReader(filePathHash.get(tipo)))) {
@@ -91,7 +90,6 @@ public class BancoDeDados {
                         vacinas.add(vac);
                     }
 
-
                     case "enfermeiro" -> {
                         Enfermeiro enf = new Enfermeiro(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], Boolean.parseBoolean(dados[7]));
                         enfermeiros.add(enf);
@@ -110,6 +108,107 @@ public class BancoDeDados {
         } catch (IOException e) {
         }
         
+    }
+    
+    public void lerArquivoAgendamento() throws FileNotFoundException, IOException, ParseException {
+        Agendamento agendamentoAtual = null;
+        int idAtual = -1;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Supondo o formato de data "yyyy-MM-dd"
+
+        try (BufferedReader br = new BufferedReader(new FileReader("agendamento"))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                String[] dados = linha.split(",");
+
+                int idLinha = Integer.parseInt(dados[0]);
+
+                if (idLinha != idAtual) {
+                    if (agendamentoAtual != null) {
+                        agendamentos.add(agendamentoAtual); 
+                    }
+                    // Cria um novo agendamento
+                    agendamentoAtual = new Agendamento();
+                    agendamentoAtual.setId(idLinha);
+                    agendamentoAtual.setDataCriado(sdf.parse(dados[1])); // Converte a data para Date
+                    agendamentoAtual.setValorTotal(Double.parseDouble(dados[2]));
+                    idAtual = idLinha;
+                }
+
+                // Adiciona exames ou vacinas ao agendamento atual
+                if (dados.length > 3) { // Verifica se há dados suficientes na linha
+                    if (dados[3].startsWith("Exame")) {
+                        Exame exame;
+                        if (dados[3].equals("Sorológico")) {
+                            exame = new Sorologico(dados[3], Double.parseDouble(dados[7]));
+                        } else if (dados[3].equals("Hemograma")) {
+                            exame = new Hemograma(dados[3], Double.parseDouble(dados[7]));
+                        } else {
+                            continue; // Tipo de exame não reconhecido
+                        }
+                        exame.setDataRealizacao(dados[4]); // Converte a data para Date
+                        exame.getPacienteAssociado().setCpf(dados[5]);
+                        exame.getEnfermeiroAssociado().setCpf(dados[6]);
+                        exame.setPreco(Double.parseDouble(dados[7]));
+                        agendamentoAtual.adicionarExame(exame);
+                    } else if (dados[3].startsWith("Vacina")) {
+                        Vacina vacina = new Vacina(dados[3], dados[4], Boolean.parseBoolean(dados[5]), Integer.parseInt(dados[6]), Double.parseDouble(dados[7]));
+                        vacina.pacienteAssociado().setCpf(dados[8]);
+                        vacina.getEnfermeiroAssociado().setCpf(dados[9]);
+                        vacina.setQtd(Integer.parseInt(dados[10]));
+                        vacina.setPreco(Double.parseDouble(dados[11]));
+                        agendamentoAtual.adicionarVacina(vacina);
+                    }
+                }
+            }
+
+            // Adiciona o último agendamento
+            if (agendamentoAtual != null) {
+                agendamentos.add(agendamentoAtual);
+            }
+        }
+
+    }
+    
+    public void adicionarAgendamento(Agendamento agendamento) throws IOException {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePathHash.get("agendamento"), true))) {
+            String idAgendamento = String.valueOf(agendamento.getId());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de data
+
+            for (Exame exame : agendamento.getListaExames()) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(idAgendamento).append(",");
+                sb.append(sdf.format(agendamento.getDataCriado())).append(",");
+                sb.append(agendamento.getValorTotal()).append(",");
+                sb.append((exame.getSubtipo())).append(",");
+                sb.append(exame.getTipoExame()).append(",");
+                sb.append(exame.getDataRealizacao()).append(",");
+                sb.append(exame.getCpfPacienteAssociado()).append(",");
+                sb.append(exame.getCpfEnfermeiroAssociado()).append(",");
+                sb.append(exame.getPreco());
+                bw.write(sb.toString());
+                bw.newLine();
+            }
+
+            for (Vacina vacina : agendamento.getListaVacinas()) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(idAgendamento).append(",");
+                sb.append(sdf.format(agendamento.getDataCriado())).append(",");
+                sb.append(agendamento.getValorTotal()).append(",");
+                sb.append("Vacina").append(",");
+                sb.append(vacina.getTipoVacina()).append(",");
+                sb.append(vacina.getValidade()).append(",");
+                sb.append(vacina.getCpfEnfermeiroAssociado()).append(",");
+                sb.append(vacina.getCpfPacienteAssociado()).append(",");
+                sb.append(vacina.getQtd()).append(",");
+                sb.append(vacina.getPreco());
+                bw.write(sb.toString());
+                bw.newLine();
+            }
+
+            agendamentos.add(agendamento);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     public void adicionarVacina(Vacina vacina) throws IOException{
@@ -361,28 +460,71 @@ public class BancoDeDados {
         
     }
     
+    public void reescreverArquivoAgendamento() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("agendamento"))) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de data
+
+            for (Agendamento agendamento : agendamentos) {
+                // Escreve os dados dos exames associados
+                for (Exame exame : agendamento.getListaExames()) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(agendamento.getId()).append(",");
+                    sb.append(sdf.format(agendamento.getDataCriado())).append(",");
+                    sb.append(agendamento.getValorTotal()).append(",");
+                    sb.append((exame.getSubtipo())).append(",");
+                    sb.append(exame.getTipoExame()).append(",");
+                    sb.append(exame.getDataRealizacao()).append(",");
+                    sb.append(exame.getCpfPacienteAssociado()).append(",");
+                    sb.append(exame.getCpfEnfermeiroAssociado()).append(",");
+                    sb.append(exame.getPreco());
+                    bw.write(sb.toString());
+                    bw.newLine();
+                }
+
+                // Escreve os dados das vacinas associadas
+                for (Vacina vacina : agendamento.getListaVacinas()) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(agendamento.getId()).append(",");
+                    sb.append(sdf.format(agendamento.getDataCriado())).append(",");
+                    sb.append(agendamento.getValorTotal()).append(",");
+                    sb.append(vacina.getTipoVacina()).append(",");
+                    sb.append(vacina.getValidade()).append(",");
+                    sb.append(vacina.getCpfEnfermeiroAssociado()).append(",");
+                    sb.append(vacina.getCpfPacienteAssociado()).append(",");
+                    sb.append(vacina.getQtd()).append(",");
+                    sb.append(vacina.getPreco());
+                    bw.write(sb.toString());
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    
+    
     public ArrayList<Enfermeiro> getEnfermeiros() {
         return enfermeiros;
     }
-
     public ArrayList<Atendente> getAtendentes() {
         return atendentes;
     }
-
     public ArrayList<Paciente> getPacientes() {
         return pacientes;
     }
-    
     public ArrayList<Funcionario> getFuncionarios() {
         return funcionarios;
     }
-    
     public ArrayList<Vacina> getVacinas(){
         return vacinas;
     }
-    
     public ArrayList<Exame> getExames(){
         return exames;
+    }
+    public ArrayList<Agendamento> getAgendamentos() {
+        return agendamentos;
     }
     
 }

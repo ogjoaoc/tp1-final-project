@@ -5,9 +5,14 @@ import classes.*;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
@@ -18,14 +23,14 @@ import javax.swing.event.DocumentListener;
 public class telaAgendamento extends javax.swing.JFrame {
     
     private JPopupMenu popupPaciente = new JPopupMenu();
-    private BancoDeDados database = new BancoDeDados(); 
+    protected BancoDeDados database = new BancoDeDados(); 
     private Timer debounceTimer;
     
     ArrayList<Exame> checkOutExames;
-    ArrayList<Vacina> checkOutVacina;
+    ArrayList<Vacina> checkOutVacinas;
     
     
-    public telaAgendamento() {
+    public telaAgendamento() throws IOException, FileNotFoundException, ParseException {
         initComponents();
         this.setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
@@ -36,8 +41,11 @@ public class telaAgendamento extends javax.swing.JFrame {
         
         database.lerArquivo("paciente");
         this.checkOutExames = new ArrayList<>();
-        this.checkOutVacina = new ArrayList<>();
+        this.checkOutVacinas = new ArrayList<>();
         atualizarTabelaCheckOut();
+        
+        database.lerArquivoAgendamento();
+        System.out.println(database.getAgendamentos().size());
        
     }
     
@@ -54,7 +62,7 @@ public class telaAgendamento extends javax.swing.JFrame {
     
     protected void atualizarTabelaCheckOut() {
         String[] colunas = {"Procedimento", "Tipo", "Enfermeiro", "Valor", "Data de Realização"};
-        Object[][] dados = new Object[checkOutExames.size() + checkOutVacina.size()][5];
+        Object[][] dados = new Object[checkOutExames.size() + checkOutVacinas.size()][5];
 
         int i = 0;
         for (Exame exame : checkOutExames) {
@@ -67,7 +75,7 @@ public class telaAgendamento extends javax.swing.JFrame {
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        for (Vacina vacina : checkOutVacina) {
+        for (Vacina vacina : checkOutVacinas) {
             dados[i][0] = "Vacina"; 
             dados[i][1] = vacina.getTipoVacina(); 
             dados[i][2] = vacina.getEnfermeiroAssociado().getNome(); 
@@ -90,11 +98,11 @@ public class telaAgendamento extends javax.swing.JFrame {
     }
 
     public ArrayList<Vacina> getCheckOutVacina() {
-        return checkOutVacina;
+        return checkOutVacinas;
     }
 
     public void setCheckOutVacina(ArrayList<Vacina> checkOutVacina) {
-        this.checkOutVacina = checkOutVacina;
+        this.checkOutVacinas = checkOutVacina;
     }
     
     
@@ -375,7 +383,13 @@ public class telaAgendamento extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaAgendamento().setVisible(true);
+                try {
+                    new telaAgendamento().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(telaAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(telaAgendamento.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

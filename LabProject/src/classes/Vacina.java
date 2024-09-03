@@ -96,4 +96,12 @@ public class Vacina {
         this.pacienteAssociado = pacienteAssociado;
     }
     
+    public String getCpfPacienteAssociado() {
+        return this.pacienteAssociado.getCpf();
+    }
+    
+    public String getCpfEnfermeiroAssociado() {
+        return this.getEnfermeiroAssociado().getCpf();
+    }
+    
 }

@@ -62,5 +62,20 @@ public abstract class Exame {
         }
     }
     
+    public String getTipoExame() {
+        if(this instanceof Sorologico) {
+            return ((Sorologico)this).getPatologia();
+        } else {
+            return ((Hemograma)this).getAlvo();
+        }
+    }
+    
+    public String getCpfPacienteAssociado() {
+        return this.pacienteAssociado.getCpf();
+    }
+    
+    public String getCpfEnfermeiroAssociado() {
+        return this.getEnfermeiroAssociado().getCpf();
+    }
     
 }
