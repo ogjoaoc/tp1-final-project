@@ -254,11 +254,11 @@ public class telaEditarPaciente extends javax.swing.JFrame {
             else sexo = "Feminino";
 
             Paciente pacienteNovo = new Paciente(nome, cpf, sexo, dataNascimento, email, tipoSanguineo, convenio);
+
+            this.telaPesquisarPaciente.database.atualizarPaciente(pacienteAntigo, pacienteNovo);
+            this.telaPesquisarPaciente.atualizarTabela();
             
-            bancoDeDados.atualizarPaciente(pacienteAntigo, pacienteNovo);
-         
             this.pacienteAntigo = pacienteNovo;
-            this.telaPesquisarPaciente.carregarTabela(bancoDeDados.getPacientes());
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 

@@ -66,7 +66,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
         if (debounceTimer != null) {
             debounceTimer.stop();
         }
-
+        
         debounceTimer = new Timer(300, e -> atualizarBusca());  // 300ms debounce
         debounceTimer.setRepeats(false);  // Executar apenas uma vez
         debounceTimer.start();
@@ -99,6 +99,10 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
         for (Paciente p : pacientes) {
             model.addRow(new Object[]{p.getNome(), p.getCpf(), p.getSexo(), p.getEmail()});
         }
+    }
+    
+    public void atualizarTabela(){
+        carregarTabela(database.getPacientes());
     }
     
     private void configurarPlaceholder() {
