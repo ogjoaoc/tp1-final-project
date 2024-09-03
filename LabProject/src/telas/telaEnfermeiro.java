@@ -1,6 +1,9 @@
 package telas;
 
 import classes.*;
+import interfaces.UserLogado;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class telaEnfermeiro extends javax.swing.JFrame {
     
@@ -9,6 +12,13 @@ public class telaEnfermeiro extends javax.swing.JFrame {
     public telaEnfermeiro() {
         initComponents();
         this.setResizable(false);
+        lblInfo.setText("Logado desde: " + formatarHoraLogin());
+    }
+    
+    public String formatarHoraLogin() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+        LocalDateTime dataHoraLogin = GerenciadorLogin.getInstance().getDataHoraLogin();
+        return dataHoraLogin.format(formatter);
     }
     
     @SuppressWarnings("unchecked")
@@ -23,11 +33,13 @@ public class telaEnfermeiro extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         lblInfo = new javax.swing.JLabel();
         btnMinhaConta = new javax.swing.JButton();
-        btnRealizarExame = new javax.swing.JButton();
-        btnRealizarVacina = new javax.swing.JButton();
+        btnDemandas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 197, 190));
+        setBounds(new java.awt.Rectangle(0, 25, 780, 500));
+        setMinimumSize(new java.awt.Dimension(780, 500));
+        setPreferredSize(new java.awt.Dimension(780, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -95,21 +107,13 @@ public class telaEnfermeiro extends javax.swing.JFrame {
             }
         });
 
-        btnRealizarExame.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        btnRealizarExame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconExame.png"))); // NOI18N
-        btnRealizarExame.setText("Realizar Exame");
-        btnRealizarExame.addActionListener(new java.awt.event.ActionListener() {
+        btnDemandas.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        btnDemandas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconDemandas.png"))); // NOI18N
+        btnDemandas.setText("   Demandas        ");
+        btnDemandas.setToolTipText("");
+        btnDemandas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRealizarExameActionPerformed(evt);
-            }
-        });
-
-        btnRealizarVacina.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        btnRealizarVacina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconVacina.png"))); // NOI18N
-        btnRealizarVacina.setText("Realizar Vacina");
-        btnRealizarVacina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRealizarVacinaActionPerformed(evt);
+                btnDemandasActionPerformed(evt);
             }
         });
 
@@ -118,51 +122,33 @@ public class telaEnfermeiro extends javax.swing.JFrame {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(btnRealizarExame)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRealizarVacina)
-                        .addGap(30, 30, 30)))
+                .addContainerGap()
+                .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                .addContainerGap(121, Short.MAX_VALUE)
+                .addComponent(btnDemandas)
+                .addGap(100, 100, 100)
                 .addComponent(btnMinhaConta)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(121, 121, 121))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addContainerGap(199, Short.MAX_VALUE)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRealizarExame, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRealizarVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMinhaConta))
-                .addGap(163, 163, 163)
+                    .addComponent(btnMinhaConta)
+                    .addComponent(btnDemandas))
+                .addGap(169, 169, 169)
                 .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, -1));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRealizarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarExameActionPerformed
-        telaRelatorioExames telaRelatorioExames = new telaRelatorioExames();
-        telaRelatorioExames.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnRealizarExameActionPerformed
-
-    private void btnRealizarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarVacinaActionPerformed
-        // TODO add your handling code here:
-        telaAplicarVacina telaAplicarVacina = new telaAplicarVacina();
-        telaAplicarVacina.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnRealizarVacinaActionPerformed
 
     private void btnSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSair1ActionPerformed
         telaLogin telaLogin = new telaLogin();
@@ -175,6 +161,12 @@ public class telaEnfermeiro extends javax.swing.JFrame {
         telaContaAtendente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMinhaContaActionPerformed
+
+    private void btnDemandasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemandasActionPerformed
+        telaDemandas telaDemandas = new telaDemandas();
+        telaDemandas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDemandasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,9 +205,8 @@ public class telaEnfermeiro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
+    private javax.swing.JButton btnDemandas;
     private javax.swing.JButton btnMinhaConta;
-    private javax.swing.JButton btnRealizarExame;
-    private javax.swing.JButton btnRealizarVacina;
     private javax.swing.JButton btnSair1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
