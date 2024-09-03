@@ -263,9 +263,9 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
         Exame novoExame = null;
         if (jRadioButton1.isSelected()) { // Sorológico
-            novoExame = new Sorologico(tipoExame, "01/09/2023", telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame)); // Data fixa por enquanto
+            novoExame = new Sorologico(tipoExame, "01/09/2023", telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false); // Data fixa por enquanto
         } else if (jRadioButton2.isSelected()) { // Hemograma
-            novoExame = new Hemograma(tipoExame, "01/09/2023" , telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame));
+            novoExame = new Hemograma(tipoExame, "01/09/2023" , telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false);
         }
 
         // Adicionar o exame à lista na tela principal

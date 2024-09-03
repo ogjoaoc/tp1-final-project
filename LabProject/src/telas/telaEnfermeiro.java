@@ -2,8 +2,12 @@ package telas;
 
 import classes.*;
 import interfaces.UserLogado;
+import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class telaEnfermeiro extends javax.swing.JFrame {
     
@@ -37,10 +41,12 @@ public class telaEnfermeiro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 197, 190));
-        setBounds(new java.awt.Rectangle(0, 25, 780, 500));
-        setMinimumSize(new java.awt.Dimension(780, 500));
-        setPreferredSize(new java.awt.Dimension(780, 500));
+        setBounds(new java.awt.Rectangle(0, 25, 775, 520));
+        setFocusCycleRoot(false);
+        setMinimumSize(new java.awt.Dimension(775, 520));
+        setPreferredSize(new java.awt.Dimension(775, 520));
         setResizable(false);
+        setSize(new java.awt.Dimension(775, 520));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -124,22 +130,22 @@ public class telaEnfermeiro extends javax.swing.JFrame {
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(384, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
-                .addComponent(btnDemandas)
-                .addGap(100, 100, 100)
-                .addComponent(btnMinhaConta)
-                .addGap(121, 121, 121))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDemandas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btnMinhaConta, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                .addContainerGap(199, Short.MAX_VALUE)
+                .addGap(196, 196, 196)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMinhaConta)
-                    .addComponent(btnDemandas))
-                .addGap(169, 169, 169)
+                    .addComponent(btnMinhaConta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDemandas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                 .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -159,12 +165,18 @@ public class telaEnfermeiro extends javax.swing.JFrame {
     private void btnMinhaContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinhaContaActionPerformed
         telaContaFuncionario telaContaAtendente = new telaContaFuncionario();
         telaContaAtendente.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btnMinhaContaActionPerformed
 
     private void btnDemandasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemandasActionPerformed
-        telaDemandas telaDemandas = new telaDemandas();
-        telaDemandas.setVisible(true);
+        telaDemandas telaDemandas;
+        try {
+            telaDemandas = new telaDemandas();
+            telaDemandas.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(telaEnfermeiro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(telaEnfermeiro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnDemandasActionPerformed
 

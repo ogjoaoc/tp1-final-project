@@ -11,8 +11,8 @@ public class Sorologico extends Exame{
         this.patologia = patologia;
     }
 
-    public Sorologico(String patologia, String dataRealizacao, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, double preco) {
-        super(dataRealizacao, pacienteAssociado, enfermeiroAssociado, preco);
+    public Sorologico(String patologia, String dataRealizacao, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, double preco, boolean status) {
+        super(dataRealizacao, pacienteAssociado, enfermeiroAssociado, preco, status);
         this.patologia = patologia;
     }
 

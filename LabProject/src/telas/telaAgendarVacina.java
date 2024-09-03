@@ -241,7 +241,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
             }
         }
 
-        Vacina novaVacina = new Vacina(tipoVacina, vacinaSelecionada.getValidade(), enfermeiroSelecionado, telaAgendamentoRef.getPacienteSelecionado(), vacinaSelecionada.getQtd(), vacinaSelecionada.getPreco());
+        Vacina novaVacina = new Vacina(tipoVacina, vacinaSelecionada.getValidade(), enfermeiroSelecionado, telaAgendamentoRef.getPacienteSelecionado(), vacinaSelecionada.getQtd(), vacinaSelecionada.getPreco(),false);
         telaAgendamentoRef.getCheckOutVacina().add(novaVacina);
         telaAgendamentoRef.atualizarTabelaCheckOut();
         this.dispose();

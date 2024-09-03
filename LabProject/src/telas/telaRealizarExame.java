@@ -60,9 +60,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 25, 750, 510));
-        setMaximumSize(new java.awt.Dimension(750, 510));
         setMinimumSize(new java.awt.Dimension(750, 510));
-        setPreferredSize(new java.awt.Dimension(750, 510));
         setSize(new java.awt.Dimension(750, 510));
 
         pnlBackgroundColor.setBackground(new java.awt.Color(248, 197, 190));
@@ -354,7 +352,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
                 .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 37, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

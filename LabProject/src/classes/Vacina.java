@@ -2,7 +2,7 @@ package classes;
 
 public class Vacina {
     private String tipoVacina, validade;
-    private boolean disponivel;
+    private boolean disponivel, status;
     private Enfermeiro enfermeiroAssociado;
     private Paciente pacienteAssociado;
     private int qtd;
@@ -19,13 +19,14 @@ public class Vacina {
         this.preco = preco;
     }
 
-    public Vacina(String tipoVacina, String validade, Enfermeiro enfermeiroAssociado, Paciente pacienteAssociado, int qtd, double preco) {
+    public Vacina(String tipoVacina, String validade, Enfermeiro enfermeiroAssociado, Paciente pacienteAssociado, int qtd, double preco, boolean status) {
         this.tipoVacina = tipoVacina;
         this.validade = validade;
         this.enfermeiroAssociado = enfermeiroAssociado;
         this.pacienteAssociado = pacienteAssociado;
         this.qtd = qtd;
         this.preco = preco;
+        this.status = status;
     }
     
     // métodos getters e setters
@@ -67,6 +68,14 @@ public class Vacina {
     
     public void setPreco(double preco){
         this.preco = preco;
+    }
+    
+    public boolean getStatus(){
+        return this.status;
+    }
+    
+    public void setStatus(boolean status){
+        this.status = status;
     }
     
     public boolean aplicaVacina() {

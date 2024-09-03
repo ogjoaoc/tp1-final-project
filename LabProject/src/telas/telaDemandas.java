@@ -4,19 +4,127 @@
  */
 package telas;
 
-/**
- *
- * @author analuisa
- */
+import classes.*;
+import classes.Exame;
+import classes.Agendamento;
+import database.BancoDeDados;
+import interfaces.UserLogado;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 public class telaDemandas extends javax.swing.JFrame {
-
-    /**
-     * Creates new form telaDemandas
-     */
-    public telaDemandas() {
+    
+    public BancoDeDados database = new BancoDeDados(); 
+    public Enfermeiro userLogado = (Enfermeiro) GerenciadorLogin.getInstance().getFuncionario();
+    
+    public ArrayList<Object> listaDemandas = new ArrayList<>();
+    public ArrayList<Object> listaDemandasPendentes = new ArrayList<>();
+    public ArrayList<Object> listaDemandasConcluidas = new ArrayList<>();
+    
+    public telaDemandas() throws IOException, FileNotFoundException, ParseException {
         initComponents();
+        this.setResizable(false);
+        setLocationRelativeTo(null);
+        
+        database.reescreverArquivoAgendamento();
+        database.lerArquivoAgendamento();
+        System.out.println(database.getAgendamentos()); // Debug
+        filtraAgendamentos();
+        
+        txtNumPendentes.setText(String.valueOf(listaDemandasPendentes.size()));
+        txtNumConcluidos.setText(String.valueOf(listaDemandasConcluidas.size()));
+        
+        carregarTabela();
+        
     }
+    
+    private void filtraAgendamentos(){
+        String cpfEnfermeiro = userLogado.getCpf();
+       
+        for (Agendamento agendamento : database.getAgendamentos()) {
+            
+            System.out.println(agendamento.getId());
+            System.out.println(agendamento.getListaExames());
+            System.out.println(agendamento.getListaVacinas());
+            
+            
+            for(Exame exame: agendamento.getListaExames()){
+                if(exame.getEnfermeiroAssociado().getCpf().equals(cpfEnfermeiro)){
+                    listaDemandas.add(exame);
+                    if(exame.getStatus() == false){
+                        listaDemandasPendentes.add(exame);
+                    } else{
+                        listaDemandasConcluidas.add(exame);
+                    }
+                }
+            }
+            
+            for(Vacina vacina: agendamento.getListaVacinas()){
+                if(vacina.getEnfermeiroAssociado().getCpf().equals(cpfEnfermeiro)){
+                    listaDemandas.add(vacina);
+                    if(vacina.getStatus() == false){
+                        listaDemandasPendentes.add(vacina);
+                    } else{
+                        listaDemandasConcluidas.add(vacina);
+                    }
+                }
+            } 
+            
+        }
+        // Debug
+        System.out.println("Total Demandas: " + listaDemandas.size());
+        System.out.println("Demandas Pendente: " + listaDemandasPendentes.size());
+        System.out.println("Demandas Concluídas: " + listaDemandasConcluidas.size());
+    }
+    
+    private void carregarTabela(){
+        String[] colunas = {"Procedimento", "Tipo", "Data", "Status"};
+        Object[][] dados = new Object[listaDemandas.size()][5];
+        
+        
+        int i = 0;
+        for(Object demanda : listaDemandas){
+                        
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            
+            if(demanda instanceof Exame){
+                dados[i][0] = ((Exame) demanda).getTipoExame(); 
+                dados[i][1] = "Exame";
+                dados[i][2] = ((Exame) demanda).getDataRealizacao();
+                if(((Exame) demanda).getStatus() == false){
+                    dados[i][3] = "Pendente"; 
+                } else{
+                    dados[i][3] = "Concluído";
+                }
+            }
 
+            else if(demanda instanceof Vacina){
+                dados[i][0] = ((Vacina) demanda).getTipoVacina();
+                dados[i][1] = "Vacina"; 
+                dados[i][2] = sdf.format(new Date());
+                if(((Vacina) demanda).getStatus() == false){
+                    dados[i][3] = "Pendente"; 
+                } else{
+                    dados[i][3] = "Concluído";
+                }
+            }
+            
+            i++;
+        }
+        
+        DefaultTableModel modelo = new DefaultTableModel(dados, colunas);
+        tblDemandas.setModel(modelo); // Supondo que tabelaDemandas é o nome do seu JTable
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,6 +147,7 @@ public class telaDemandas extends javax.swing.JFrame {
         txtNumConcluidos = new javax.swing.JTextField();
         btnAvancar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        btnVisualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +182,7 @@ public class telaDemandas extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Tipo", "Procedimento", "Data", "Status"
+                "Procedimento", "Tipo", "Data", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -84,6 +193,7 @@ public class telaDemandas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblDemandas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane1.setViewportView(tblDemandas);
 
         lblDemandasPendentes.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -91,20 +201,24 @@ public class telaDemandas extends javax.swing.JFrame {
         lblDemandasPendentes.setText("Demandas Pendentes");
 
         txtNumPendentes.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        txtNumPendentes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNumPendentes.setBounds(new java.awt.Rectangle(0, 0, 100, 36));
+        txtNumPendentes.setMaximumSize(new java.awt.Dimension(100, 36));
+        txtNumPendentes.setMinimumSize(new java.awt.Dimension(100, 36));
+        txtNumPendentes.setPreferredSize(new java.awt.Dimension(100, 36));
 
         javax.swing.GroupLayout pnlDemandasPendentesLayout = new javax.swing.GroupLayout(pnlDemandasPendentes);
         pnlDemandasPendentes.setLayout(pnlDemandasPendentesLayout);
         pnlDemandasPendentesLayout.setHorizontalGroup(
             pnlDemandasPendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDemandasPendentesLayout.createSequentialGroup()
-                .addGroup(pnlDemandasPendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDemandasPendentesLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(lblDemandasPendentes))
-                    .addGroup(pnlDemandasPendentesLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(txtNumPendentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
+                .addComponent(lblDemandasPendentes)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDemandasPendentesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtNumPendentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
         );
         pnlDemandasPendentesLayout.setVerticalGroup(
             pnlDemandasPendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,20 +235,24 @@ public class telaDemandas extends javax.swing.JFrame {
         lblDemandasConcluidas.setText("Demandas Concluídas");
 
         txtNumConcluidos.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        txtNumConcluidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNumConcluidos.setBounds(new java.awt.Rectangle(0, 0, 100, 36));
+        txtNumConcluidos.setMaximumSize(new java.awt.Dimension(100, 64));
+        txtNumConcluidos.setMinimumSize(new java.awt.Dimension(100, 64));
+        txtNumConcluidos.setPreferredSize(new java.awt.Dimension(100, 36));
 
         javax.swing.GroupLayout pnlDemandasConcluidasLayout = new javax.swing.GroupLayout(pnlDemandasConcluidas);
         pnlDemandasConcluidas.setLayout(pnlDemandasConcluidasLayout);
         pnlDemandasConcluidasLayout.setHorizontalGroup(
             pnlDemandasConcluidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDemandasConcluidasLayout.createSequentialGroup()
-                .addGroup(pnlDemandasConcluidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDemandasConcluidasLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(lblDemandasConcluidas))
-                    .addGroup(pnlDemandasConcluidasLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(txtNumConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21)
+                .addComponent(lblDemandasConcluidas)
                 .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDemandasConcluidasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtNumConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
         );
         pnlDemandasConcluidasLayout.setVerticalGroup(
             pnlDemandasConcluidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +261,7 @@ public class telaDemandas extends javax.swing.JFrame {
                 .addComponent(lblDemandasConcluidas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNumConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnAvancar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -162,6 +280,14 @@ public class telaDemandas extends javax.swing.JFrame {
             }
         });
 
+        btnVisualizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVisualizar.setText("Visualizar");
+        btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBackgroundColorLayout = new javax.swing.GroupLayout(pnlBackgroundColor);
         pnlBackgroundColor.setLayout(pnlBackgroundColorLayout);
         pnlBackgroundColorLayout.setHorizontalGroup(
@@ -172,11 +298,16 @@ public class telaDemandas extends javax.swing.JFrame {
             .addGroup(pnlBackgroundColorLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(pnlDemandasConcluidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnlDemandasPendentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlBackgroundColorLayout.createSequentialGroup()
+                        .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pnlDemandasConcluidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlDemandasPendentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlBackgroundColorLayout.createSequentialGroup()
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVisualizar)
+                        .addGap(18, 18, 18)))
                 .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAvancar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,7 +329,8 @@ public class telaDemandas extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -225,6 +357,10 @@ public class telaDemandas extends javax.swing.JFrame {
         telaEnfermeiro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVisualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,13 +392,20 @@ public class telaDemandas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDemandas().setVisible(true);
+                try {
+                    new telaDemandas().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvancar;
+    private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDemandasConcluidas;

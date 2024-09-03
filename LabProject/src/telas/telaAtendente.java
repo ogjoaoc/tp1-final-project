@@ -2,8 +2,12 @@ package telas;
 
 import classes.*;
 import interfaces.UserLogado;
+import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class telaAtendente extends javax.swing.JFrame {
     
@@ -162,9 +166,15 @@ public class telaAtendente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarPacienteActionPerformed
 
     private void btnAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendamentoActionPerformed
-        telaAgendamento telaAgendamento = new telaAgendamento();
-        telaAgendamento.setVisible(true);
-        this.dispose();
+        try {
+            telaAgendamento telaAgendamento = new telaAgendamento();
+            telaAgendamento.setVisible(true);
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(telaAtendente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(telaAtendente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAgendamentoActionPerformed
 
     private void btnMinhaContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinhaContaActionPerformed

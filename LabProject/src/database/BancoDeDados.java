@@ -119,7 +119,7 @@ public class BancoDeDados {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(",");
-
+                
                 int idLinha = Integer.parseInt(dados[0]);
 
                 if (idLinha != idAtual) {
@@ -149,6 +149,7 @@ public class BancoDeDados {
                         exame.getPacienteAssociado().setCpf(dados[5]);
                         exame.getEnfermeiroAssociado().setCpf(dados[6]);
                         exame.setPreco(Double.parseDouble(dados[7]));
+                        exame.setStatus(Boolean.parseBoolean(dados[8]));
                         agendamentoAtual.adicionarExame(exame);
                     } else if (dados[3].startsWith("Vacina")) {
                         Vacina vacina = new Vacina(dados[3], dados[4], Boolean.parseBoolean(dados[5]), Integer.parseInt(dados[6]), Double.parseDouble(dados[7]));
@@ -156,6 +157,7 @@ public class BancoDeDados {
                         vacina.getEnfermeiroAssociado().setCpf(dados[9]);
                         vacina.setQtd(Integer.parseInt(dados[10]));
                         vacina.setPreco(Double.parseDouble(dados[11]));
+                        vacina.setStatus(Boolean.parseBoolean(dados[12]));
                         agendamentoAtual.adicionarVacina(vacina);
                     }
                 }
@@ -169,7 +171,7 @@ public class BancoDeDados {
 
     }
     
-    public void adicionarAgendamento(Agendamento agendamento) throws IOException {
+    public void adicionarAgendamento(Agendamento agendamento) throws IOException, FileNotFoundException, ParseException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePathHash.get("agendamento"), true))) {
             String idAgendamento = String.valueOf(agendamento.getId());
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de data
@@ -184,7 +186,8 @@ public class BancoDeDados {
                 sb.append(exame.getDataRealizacao()).append(",");
                 sb.append(exame.getCpfPacienteAssociado()).append(",");
                 sb.append(exame.getCpfEnfermeiroAssociado()).append(",");
-                sb.append(exame.getPreco());
+                sb.append(exame.getPreco()).append(",");
+                sb.append(exame.getStatus());
                 bw.write(sb.toString());
                 bw.newLine();
             }
@@ -200,7 +203,8 @@ public class BancoDeDados {
                 sb.append(vacina.getCpfEnfermeiroAssociado()).append(",");
                 sb.append(vacina.getCpfPacienteAssociado()).append(",");
                 sb.append(vacina.getQtd()).append(",");
-                sb.append(vacina.getPreco());
+                sb.append(vacina.getPreco()).append(",");
+                sb.append(vacina.getStatus());
                 bw.write(sb.toString());
                 bw.newLine();
             }
@@ -209,6 +213,7 @@ public class BancoDeDados {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
     
     public void adicionarVacina(Vacina vacina) throws IOException{
@@ -476,7 +481,8 @@ public class BancoDeDados {
                     sb.append(exame.getDataRealizacao()).append(",");
                     sb.append(exame.getCpfPacienteAssociado()).append(",");
                     sb.append(exame.getCpfEnfermeiroAssociado()).append(",");
-                    sb.append(exame.getPreco());
+                    sb.append(exame.getPreco()).append(",");
+                    sb.append(exame.getStatus());
                     bw.write(sb.toString());
                     bw.newLine();
                 }
@@ -492,7 +498,8 @@ public class BancoDeDados {
                     sb.append(vacina.getCpfEnfermeiroAssociado()).append(",");
                     sb.append(vacina.getCpfPacienteAssociado()).append(",");
                     sb.append(vacina.getQtd()).append(",");
-                    sb.append(vacina.getPreco());
+                    sb.append(vacina.getPreco()).append(",");
+                    sb.append(vacina.getStatus());
                     bw.write(sb.toString());
                     bw.newLine();
                 }

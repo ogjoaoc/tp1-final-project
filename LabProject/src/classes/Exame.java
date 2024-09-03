@@ -5,6 +5,7 @@ public abstract class Exame {
     private Paciente pacienteAssociado;
     private Enfermeiro enfermeiroAssociado;
     private double preco;
+    private boolean status;
     
     
     // construtores
@@ -14,11 +15,12 @@ public abstract class Exame {
         this.preco = preco;
     }
 
-    public Exame(String dataRealizacao, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, double preco) {
+    public Exame(String dataRealizacao, Paciente pacienteAssociado, Enfermeiro enfermeiroAssociado, double preco, boolean status) {
         this.dataRealizacao = dataRealizacao;
         this.pacienteAssociado = pacienteAssociado;
         this.enfermeiroAssociado = enfermeiroAssociado;
         this.preco = preco;
+        this.status = status;
     }
 
     public String getDataRealizacao() {
@@ -45,6 +47,13 @@ public abstract class Exame {
         this.enfermeiroAssociado = enfermeiroAssociado;
     }
 
+    public boolean getStatus(){
+        return this.status;
+    }
+    
+    public void setStatus(boolean status){
+        this.status = status;
+    }
 
     public double getPreco() {
         return preco;
