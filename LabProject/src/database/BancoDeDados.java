@@ -371,22 +371,22 @@ public class BancoDeDados {
     }
 
     public void atualizarAgendamento(Agendamento agendamentoAtualizado) {
-    int idAgendamento = agendamentoAtualizado.getId();
-    System.out.println("Iniciando atualização do agendamento: " + idAgendamento);
-    
-    for(int i = 0; i < agendamentos.size(); i++){
-        System.out.println("Comparando com agendamento: " + agendamentos.get(i).getId());
-        if(agendamentos.get(i).getId() == idAgendamento){
-            System.out.println("Agendamento encontrado. Atualizando...");
-            agendamentos.set(i, agendamentoAtualizado);
-            break;
+        int idAgendamento = agendamentoAtualizado.getId();
+        System.out.println("Iniciando atualização do agendamento: " + idAgendamento);
+
+        for(int i = 0; i < agendamentos.size(); i++){
+            System.out.println("Comparando com agendamento: " + agendamentos.get(i).getId());
+            if(agendamentos.get(i).getId() == idAgendamento){
+                System.out.println("Agendamento encontrado. Atualizando...");
+                agendamentos.set(i, agendamentoAtualizado);
+                break;
+            }
         }
+
+        System.out.println("Reescrevendo arquivo de agendamentos...");
+        reescreverArquivoAgendamento();
+        System.out.println("Arquivo de agendamentos atualizado.");
     }
-    
-    System.out.println("Reescrevendo arquivo de agendamentos...");
-    reescreverArquivoAgendamento();
-    System.out.println("Arquivo de agendamentos atualizado.");
-}
     
     public void atualizarFuncionario(Funcionario func) {
         
@@ -491,7 +491,7 @@ public class BancoDeDados {
     public void reescreverArquivoAgendamento() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Formato de data
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("agendamento"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePathHash.get("agendamento")))) {
 
             for (Agendamento agendamento : agendamentos) {
                 // Dados base, que tem em todos os Agendamentos
@@ -501,33 +501,35 @@ public class BancoDeDados {
 
                 // Escreve os dados de cada exame associado ao agendamento
                 for (Exame exame : agendamento.getListaExames()) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(linhaBase).append(",")
-                      .append(exame.getSubtipo()).append(",")
-                      .append(exame.getTipoExame()).append(",")
-                      .append(exame.getDataRealizacao()).append(",")
-                      .append(exame.getCpfEnfermeiroAssociado()).append(",")
-                      .append(exame.getCpfPacienteAssociado()).append(",")
-                      .append(exame.getPreco()).append(",")
-                      .append(exame.getStatus());
+                    String result = linhaBase + "," +
+                                    exame.getSubtipo() + "," +
+                                    exame.getTipoExame() + "," +
+                                    exame.getDataRealizacao() + "," +
+                                    exame.getCpfEnfermeiroAssociado() + "," +
+                                    exame.getCpfPacienteAssociado() + "," +
+                                    exame.getPreco() + "," +
+                                    exame.getStatus();
+                    
+                    System.out.println(result);
 
-                    bw.write(sb.toString());
+                    bw.write(result);
                     bw.newLine();
                 }
 
                 // Escreve os dados de cada vacina associada ao agendamento
                 for (Vacina vacina : agendamento.getListaVacinas()) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(linhaBase).append(",")
-                      .append(vacina.getTipoVacina()).append(",")
-                      .append(vacina.getValidade()).append(",")
-                      .append(vacina.getCpfEnfermeiroAssociado()).append(",")
-                      .append(vacina.getCpfPacienteAssociado()).append(",")
-                      .append(vacina.getDose()).append(",")
-                      .append(vacina.getPreco()).append(",")
-                      .append(vacina.getStatus());
+                    String result = linhaBase + "," +
+                                    vacina.getTipoVacina() + "," +
+                                    vacina.getValidade() + "," +
+                                    vacina.getCpfEnfermeiroAssociado() + "," +
+                                    vacina.getCpfPacienteAssociado() + "," +
+                                    vacina.getDose() + "," +
+                                    vacina.getPreco() + "," +
+                                    vacina.getStatus();
+                    
+                    System.out.println(result);
 
-                    bw.write(sb.toString());
+                    bw.write(result);
                     bw.newLine();
                 }
             }
