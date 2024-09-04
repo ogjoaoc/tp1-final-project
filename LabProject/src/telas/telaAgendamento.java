@@ -69,7 +69,7 @@ public class telaAgendamento extends javax.swing.JFrame {
                 System.out.println("  Validade da Vacina: " + v.getValidade());
                 System.out.println("  CPF do Paciente Associado: " + v.getCpfPacienteAssociado());
                 System.out.println("  CPF do Enfermeiro Associado: " + v.getCpfEnfermeiroAssociado());
-                System.out.println("  Quantidade: " + v.getQtd());
+                System.out.println("  Dosagem: " + v.getDose());
                 System.out.println("  Preço: " + v.getPreco());
             }
 

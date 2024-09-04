@@ -11,8 +11,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +24,7 @@ public class telaDemandas extends javax.swing.JFrame {
     public BancoDeDados database = new BancoDeDados(); 
     public Enfermeiro userLogado = (Enfermeiro) GerenciadorLogin.getInstance().getFuncionario();
     
-    public ArrayList<Object> listaDemandas = new ArrayList<>();
+    public ArrayList<Map.Entry<Integer,Object>> listaDemandas = new ArrayList<>();
     public ArrayList<Object> listaDemandasPendentes = new ArrayList<>();
     public ArrayList<Object> listaDemandasConcluidas = new ArrayList<>();
     
@@ -55,7 +57,7 @@ public class telaDemandas extends javax.swing.JFrame {
                 //System.out.println(exame);
                 //System.out.println(exame.getEnfermeiroAssociado().getCpf());
                 if(exame.getEnfermeiroAssociado().getCpf().equals(cpfEnfermeiro)){
-                    listaDemandas.add(exame);
+                    listaDemandas.add(new AbstractMap.SimpleEntry<>(agendamento.getId(),exame));
                     if(exame.getStatus() == false){
                         listaDemandasPendentes.add(exame);
                     } else{
@@ -66,7 +68,7 @@ public class telaDemandas extends javax.swing.JFrame {
             
             for(Vacina vacina: agendamento.getListaVacinas()){
                 if(vacina.getEnfermeiroAssociado().getCpf().equals(cpfEnfermeiro)){
-                    listaDemandas.add(vacina);
+                    listaDemandas.add(new AbstractMap.SimpleEntry<>(agendamento.getId(),vacina));
                     if(vacina.getStatus() == false){
                         listaDemandasPendentes.add(vacina);
                     } else{
@@ -83,34 +85,36 @@ public class telaDemandas extends javax.swing.JFrame {
     }
     
     private void carregarTabela(){
-        String[] colunas = {"Procedimento", "Tipo", "Data", "Status"};
+        String[] colunas = {"ID", "Procedimento", "Tipo", "Data", "Status"};
         Object[][] dados = new Object[listaDemandas.size()][5];
         
         
         int i = 0;
-        for(Object demanda : listaDemandas){
+        for( Map.Entry<Integer, Object> pair : listaDemandas){
                         
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             
-            if(demanda instanceof Exame){
-                dados[i][0] = ((Exame) demanda).getTipoExame(); 
-                dados[i][1] = "Exame";
-                dados[i][2] = ((Exame) demanda).getDataRealizacao();
-                if(((Exame) demanda).getStatus() == false){
-                    dados[i][3] = "Pendente"; 
+            if(pair.getValue() instanceof Exame){
+                dados[i][0] = pair.getKey();
+                dados[i][1] = ((Exame) pair.getValue()).getTipoExame(); 
+                dados[i][2] = "Exame";
+                dados[i][3] = ((Exame) pair.getValue()).getDataRealizacao();
+                if(((Exame) pair.getValue()).getStatus() == false){
+                    dados[i][4] = "Pendente"; 
                 } else{
-                    dados[i][3] = "Concluído";
+                    dados[i][4] = "Concluído";
                 }
             }
 
-            else if(demanda instanceof Vacina){
-                dados[i][0] = ((Vacina) demanda).getTipoVacina();
-                dados[i][1] = "Vacina"; 
-                dados[i][2] = sdf.format(new Date());
-                if(((Vacina) demanda).getStatus() == false){
-                    dados[i][3] = "Pendente"; 
+            else if(pair.getValue() instanceof Vacina){
+                dados[i][0] = pair.getKey();
+                dados[i][1] = ((Vacina) pair.getValue()).getTipoVacina();
+                dados[i][2] = "Vacina"; 
+                dados[i][3] = sdf.format(new Date());
+                if(((Vacina) pair.getValue()).getStatus() == false){
+                    dados[i][4] = "Pendente"; 
                 } else{
-                    dados[i][3] = "Concluído";
+                    dados[i][4] = "Concluído";
                 }
             }
             
@@ -169,17 +173,17 @@ public class telaDemandas extends javax.swing.JFrame {
 
         tblDemandas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Procedimento", "Tipo", "Data", "Status"
+                "ID", "Procedimento", "Tipo", "Data", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -195,7 +199,6 @@ public class telaDemandas extends javax.swing.JFrame {
 
         txtNumPendentes.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtNumPendentes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNumPendentes.setBounds(new java.awt.Rectangle(0, 0, 100, 36));
         txtNumPendentes.setMaximumSize(new java.awt.Dimension(100, 36));
         txtNumPendentes.setMinimumSize(new java.awt.Dimension(100, 36));
         txtNumPendentes.setPreferredSize(new java.awt.Dimension(100, 36));
@@ -229,7 +232,6 @@ public class telaDemandas extends javax.swing.JFrame {
 
         txtNumConcluidos.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtNumConcluidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNumConcluidos.setBounds(new java.awt.Rectangle(0, 0, 100, 36));
         txtNumConcluidos.setMaximumSize(new java.awt.Dimension(100, 64));
         txtNumConcluidos.setMinimumSize(new java.awt.Dimension(100, 64));
         txtNumConcluidos.setPreferredSize(new java.awt.Dimension(100, 36));
@@ -344,14 +346,21 @@ public class telaDemandas extends javax.swing.JFrame {
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
         int idx = tblDemandas.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
         if (idx >= 0) {
-            if(listaDemandas.get(idx) instanceof Exame){
+            if(listaDemandas.get(idx).getValue() instanceof Exame){
                 telaRealizarExame telaRealizarExame = new telaRealizarExame((Exame) listaDemandas.get(idx));
                 telaRealizarExame.setVisible(true);
                 this.dispose();
             }
-            else if(listaDemandas.get(idx) instanceof Vacina){
-                telaAplicarVacina telaAplicarVacina = new telaAplicarVacina((Vacina) listaDemandas.get(idx));
-                telaAplicarVacina.setVisible(true);
+            else if(listaDemandas.get(idx).getValue() instanceof Vacina){
+                telaAplicarVacina telaAplicarVacina;
+                try {
+                    telaAplicarVacina = new telaAplicarVacina(listaDemandas.get(idx).getKey(), (Vacina) listaDemandas.get(idx).getValue());
+                    telaAplicarVacina.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 this.dispose();
             }
         }

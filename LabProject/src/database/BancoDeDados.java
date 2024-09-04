@@ -163,7 +163,7 @@ public class BancoDeDados {
                         Hemograma exame = new Hemograma(dados[4], dados[5], pacienteAssociado, enfermeiroAssociado, Double.parseDouble(dados[8]), Boolean.parseBoolean(dados[9]));
                         agendamentoAtual.adicionarExame(exame);
                     } else if (dados[3].equals("Vacina")) {
-                        Vacina vacina = new Vacina(dados[4], dados[5], enfermeiroAssociado, pacienteAssociado, Integer.parseInt(dados[8]), Double.parseDouble(dados[9]), Boolean.parseBoolean(dados[10]));
+                        Vacina vacina = new Vacina(dados[4], dados[5], enfermeiroAssociado, pacienteAssociado, dados[8], Double.parseDouble(dados[9]), Boolean.parseBoolean(dados[10]));
                         agendamentoAtual.adicionarVacina(vacina);
                     }
                 }
@@ -208,7 +208,7 @@ public class BancoDeDados {
                 sb.append(vacina.getValidade()).append(",");
                 sb.append(vacina.getCpfEnfermeiroAssociado()).append(",");
                 sb.append(vacina.getCpfPacienteAssociado()).append(",");
-                sb.append(vacina.getQtd()).append(",");
+                sb.append(vacina.getDose()).append(",");
                 sb.append(vacina.getPreco()).append(",");
                 sb.append(vacina.getStatus());
                 bw.write(sb.toString());
@@ -370,6 +370,23 @@ public class BancoDeDados {
         reescreverArquivo("exame");
     }
 
+    public void atualizarAgendamento(Agendamento agendamentoAtualizado) {
+    int idAgendamento = agendamentoAtualizado.getId();
+    System.out.println("Iniciando atualização do agendamento: " + idAgendamento);
+    
+    for(int i = 0; i < agendamentos.size(); i++){
+        System.out.println("Comparando com agendamento: " + agendamentos.get(i).getId());
+        if(agendamentos.get(i).getId() == idAgendamento){
+            System.out.println("Agendamento encontrado. Atualizando...");
+            agendamentos.set(i, agendamentoAtualizado);
+            break;
+        }
+    }
+    
+    System.out.println("Reescrevendo arquivo de agendamentos...");
+    reescreverArquivoAgendamento();
+    System.out.println("Arquivo de agendamentos atualizado.");
+}
     
     public void atualizarFuncionario(Funcionario func) {
         
@@ -472,40 +489,44 @@ public class BancoDeDados {
     }
     
     public void reescreverArquivoAgendamento() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Formato de data
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("agendamento"))) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de data
 
             for (Agendamento agendamento : agendamentos) {
-                // Escreve os dados dos exames associados
+                // Dados base, que tem em todos os Agendamentos
+                String linhaBase = agendamento.getId() + "," + 
+                                   sdf.format(agendamento.getDataCriado()) + "," + 
+                                   agendamento.getValorTotal();
+
+                // Escreve os dados de cada exame associado ao agendamento
                 for (Exame exame : agendamento.getListaExames()) {
                     StringBuilder sb = new StringBuilder();
-                    sb.append(agendamento.getId()).append(",");
-                    sb.append(sdf.format(agendamento.getDataCriado())).append(",");
-                    sb.append(agendamento.getValorTotal()).append(",");
-                    sb.append((exame.getSubtipo())).append(",");
-                    sb.append(exame.getTipoExame()).append(",");
-                    sb.append(exame.getDataRealizacao()).append(",");
-                    sb.append(exame.getCpfPacienteAssociado()).append(",");
-                    sb.append(exame.getCpfEnfermeiroAssociado()).append(",");
-                    sb.append(exame.getPreco()).append(",");
-                    sb.append(exame.getStatus());
+                    sb.append(linhaBase).append(",")
+                      .append(exame.getSubtipo()).append(",")
+                      .append(exame.getTipoExame()).append(",")
+                      .append(exame.getDataRealizacao()).append(",")
+                      .append(exame.getCpfEnfermeiroAssociado()).append(",")
+                      .append(exame.getCpfPacienteAssociado()).append(",")
+                      .append(exame.getPreco()).append(",")
+                      .append(exame.getStatus());
+
                     bw.write(sb.toString());
                     bw.newLine();
                 }
 
-                // Escreve os dados das vacinas associadas
+                // Escreve os dados de cada vacina associada ao agendamento
                 for (Vacina vacina : agendamento.getListaVacinas()) {
                     StringBuilder sb = new StringBuilder();
-                    sb.append(agendamento.getId()).append(",");
-                    sb.append(sdf.format(agendamento.getDataCriado())).append(",");
-                    sb.append(agendamento.getValorTotal()).append(",");
-                    sb.append(vacina.getTipoVacina()).append(",");
-                    sb.append(vacina.getValidade()).append(",");
-                    sb.append(vacina.getCpfEnfermeiroAssociado()).append(",");
-                    sb.append(vacina.getCpfPacienteAssociado()).append(",");
-                    sb.append(vacina.getQtd()).append(",");
-                    sb.append(vacina.getPreco()).append(",");
-                    sb.append(vacina.getStatus());
+                    sb.append(linhaBase).append(",")
+                      .append(vacina.getTipoVacina()).append(",")
+                      .append(vacina.getValidade()).append(",")
+                      .append(vacina.getCpfEnfermeiroAssociado()).append(",")
+                      .append(vacina.getCpfPacienteAssociado()).append(",")
+                      .append(vacina.getDose()).append(",")
+                      .append(vacina.getPreco()).append(",")
+                      .append(vacina.getStatus());
+
                     bw.write(sb.toString());
                     bw.newLine();
                 }
@@ -513,6 +534,7 @@ public class BancoDeDados {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     

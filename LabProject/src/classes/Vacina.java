@@ -1,7 +1,7 @@
 package classes;
 
 public class Vacina {
-    private String tipoVacina, validade;
+    private String tipoVacina, validade, dose;
     private boolean disponivel, status;
     private Enfermeiro enfermeiroAssociado;
     private Paciente pacienteAssociado;
@@ -19,12 +19,12 @@ public class Vacina {
         this.preco = preco;
     }
 
-    public Vacina(String tipoVacina, String validade, Enfermeiro enfermeiroAssociado, Paciente pacienteAssociado, int qtd, double preco, boolean status) {
+    public Vacina(String tipoVacina, String validade, Enfermeiro enfermeiroAssociado, Paciente pacienteAssociado, String dose, double preco, boolean status) {
         this.tipoVacina = tipoVacina;
         this.validade = validade;
         this.enfermeiroAssociado = enfermeiroAssociado;
         this.pacienteAssociado = pacienteAssociado;
-        this.qtd = qtd;
+        this.dose = dose;
         this.preco = preco;
         this.status = status;
     }
@@ -60,6 +60,14 @@ public class Vacina {
 
     public void setQtd(int qtd) {
         this.qtd = qtd;
+    }
+    
+    public String getDose(){
+        return this.dose;
+    }
+    
+    public void setDose(String dose){
+        this.dose = dose;
     }
     
     public double getPreco(){

@@ -223,6 +223,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         
         String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
         String tipoVacina = (String) cbTipoVacina.getSelectedItem();
+        String dosagem = (String) cbDose.getSelectedItem();
         String precoVacina = txtPreco.getText();
 
         Enfermeiro enfermeiroSelecionado = null;
@@ -241,7 +242,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
             }
         }
 
-        Vacina novaVacina = new Vacina(tipoVacina, vacinaSelecionada.getValidade(), enfermeiroSelecionado, telaAgendamentoRef.getPacienteSelecionado(), vacinaSelecionada.getQtd(), vacinaSelecionada.getPreco(),false);
+        Vacina novaVacina = new Vacina(tipoVacina, vacinaSelecionada.getValidade(), enfermeiroSelecionado, telaAgendamentoRef.getPacienteSelecionado(), dosagem, vacinaSelecionada.getPreco(),false);
         telaAgendamentoRef.getCheckOutVacina().add(novaVacina);
         telaAgendamentoRef.atualizarTabelaCheckOut();
         this.dispose();

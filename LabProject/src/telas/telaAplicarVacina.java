@@ -2,21 +2,31 @@ package telas;
 
 import classes.*;
 import classes.Vacina;
+import database.BancoDeDados;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class telaAplicarVacina extends javax.swing.JFrame {
 
-    /**
-     * Creates new form telaAplicarVacina
-     */
-    public telaAplicarVacina(Vacina vacina) {
+    BancoDeDados database = new BancoDeDados();
+    private Vacina vacinaAplicada;
+    private int idAgendamento;
+    
+    public telaAplicarVacina(int id, Vacina vacina) throws IOException, FileNotFoundException, ParseException {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
+        
+        vacinaAplicada = vacina;
+        idAgendamento = id;
+        
+        database.lerArquivo("vacina");
+        database.lerArquivoAgendamento();
         
         preencherCampos(vacina);
         desabilitarCampos();
@@ -39,7 +49,7 @@ public class telaAplicarVacina extends javax.swing.JFrame {
         
         // Dados Exame
         txtData.setText(vacina.getValidade());
-        //txtDose.setText(vacina.get);
+        txtDose.setText(vacina.getDose());
         txtVacina.setText(vacina.getTipoVacina());
     
     }
@@ -399,7 +409,20 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAplicarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarVacinaActionPerformed
-        // TODO add your handling code here:
+        boolean isDisponivel = false;
+        
+        for(Vacina vac: database.getVacinas()){
+            if(vac.getTipoVacina().equals(vacinaAplicada.getTipoVacina())){
+                vac.aplicaVacina();
+                database.atualizarVacina(vac);
+                isDisponivel = true;    
+                break;
+            }
+        }
+        
+        if(!isDisponivel){
+            JOptionPane.showMessageDialog(null,"Vacina indisponível no estoque!", "Mensagem",JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnAplicarVacinaActionPerformed
 
     private void btnCartaoVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartaoVacinaActionPerformed
@@ -407,7 +430,27 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCartaoVacinaActionPerformed
 
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
-        // TODO add your handling code here:
+        // Atualiza a vacina no agendamento
+        for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
+            System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
+            
+            if(agendamentoAtualizado.getId() == idAgendamento){
+                for (int i = 0; i < agendamentoAtualizado.getListaVacinas().size(); i++) {
+                    Vacina vacinaAtual = agendamentoAtualizado.getListaVacinas().get(i);
+                    System.out.println("Verificando vacina: " + vacinaAtual.getTipoVacina() + " - Status: " + vacinaAtual.getStatus()); // Debug da vacina atual
+
+                    if (vacinaAtual.getTipoVacina().equals(vacinaAplicada.getTipoVacina())) {
+                        System.out.println("Vacina encontrada: " + vacinaAplicada.getTipoVacina()); // Confirma que a vacina foi encontrada
+                        vacinaAplicada.setStatus(true);
+                        agendamentoAtualizado.getListaVacinas().set(i, vacinaAplicada);
+                        System.out.println("Vacina atualizada: " + vacinaAplicada.getTipoVacina() + " - Novo Status: " + vacinaAplicada.getStatus()); // Confirma que o status foi atualizado
+                        database.atualizarAgendamento(agendamentoAtualizado);
+                        System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
+                        break;
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_btnConcluirActionPerformed
 
     /**
