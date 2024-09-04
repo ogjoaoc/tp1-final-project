@@ -35,14 +35,12 @@ public class Paciente extends Pessoa {
         this.convenio = convenio;
     }
 
-    /*public boolean isPreferencial() {
+    /*public String isPreferencial() {
         return preferencial;
     }
 
-    public void setPreferencial(boolean preferencial) {
+    /*public void setPreferencial(boolean preferencial) {
         this.preferencial = preferencial;
     }*/
-    
-    
     
 }

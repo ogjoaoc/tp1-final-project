@@ -97,7 +97,7 @@ public class Vacina {
         this.enfermeiroAssociado = enfermeiroAssociado;
     }
 
-    public Paciente pacienteAssociado() {
+    public Paciente getPacienteAssociado() {
         return pacienteAssociado;
     }
 
