@@ -3,7 +3,9 @@ package telas;
 import classes.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -539,6 +541,8 @@ public class telaPagamento extends javax.swing.JFrame {
         try {
             telaPrincipalAgendamento.database.adicionarAgendamento(novoAgendamento);
         } catch (IOException ex) {
+            Logger.getLogger(telaPagamento.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(telaPagamento.class.getName()).log(Level.SEVERE, null, ex);
         }
         telaPrincipalAgendamento.database.reescreverArquivoAgendamento();

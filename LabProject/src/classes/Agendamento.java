@@ -14,7 +14,8 @@ public class Agendamento {
     // gerar csv no formato id, tipo, cpfPaciente, cpfEnfermeiro, dataCriado, dataAgendado, { info exame ou info vacina }
     
     public Agendamento () {
-        
+        this.listaExames = new ArrayList<>();
+        this.listaVacinas = new ArrayList<>();
     }
 
     public Agendamento(int id, ArrayList<Exame> listaExames, ArrayList<Vacina> listaVacinas, double valorTotal) {

@@ -101,7 +101,7 @@ public class Vacina {
         return pacienteAssociado;
     }
 
-    public void setPacienteASsociado(Paciente pacienteAssociado) {
+    public void setPacienteAssociado(Paciente pacienteAssociado) {
         this.pacienteAssociado = pacienteAssociado;
     }
     

@@ -111,20 +111,23 @@ public class BancoDeDados {
     }
     
     public void lerArquivoAgendamento() throws FileNotFoundException, IOException, ParseException {
+        
         Agendamento agendamentoAtual = null;
         int idAtual = -1;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Supondo o formato de data "yyyy-MM-dd"
-
-        try (BufferedReader br = new BufferedReader(new FileReader("agendamento"))) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Ajuste o formato de data conforme necessário
+        lerArquivo("paciente");
+        lerArquivo("enfermeiro");
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(filePathHash.get("agendamento")))) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(",");
-                
+
                 int idLinha = Integer.parseInt(dados[0]);
 
                 if (idLinha != idAtual) {
                     if (agendamentoAtual != null) {
-                        agendamentos.add(agendamentoAtual); 
+                        agendamentos.add(agendamentoAtual);
                     }
                     // Cria um novo agendamento
                     agendamentoAtual = new Agendamento();
@@ -134,30 +137,33 @@ public class BancoDeDados {
                     idAtual = idLinha;
                 }
 
-                // Adiciona exames ou vacinas ao agendamento atual
+                String cpfPaciente = dados[7];
+                String cpfEnfermeiro = dados[6];
+                System.out.println(cpfPaciente);
+                System.out.println(cpfEnfermeiro);
+                
+                System.out.println(pacientes.size());
+                System.out.println(enfermeiros.size());
+                Paciente pacienteAssociado = pacientes.stream()
+                        .filter(p -> p.getCpf().equals(cpfPaciente))
+                        .findFirst()
+                        .orElse(null);
+                Enfermeiro enfermeiroAssociado = enfermeiros.stream()
+                        .filter(e -> e.getCpf().equals(cpfEnfermeiro))
+                        .findFirst()
+                        .orElse(null);
+                System.out.println(pacienteAssociado.getNome());
+                System.out.println(enfermeiroAssociado.getNome());
+
                 if (dados.length > 3) { // Verifica se há dados suficientes na linha
-                    if (dados[3].startsWith("Exame")) {
-                        Exame exame;
-                        if (dados[3].equals("Sorológico")) {
-                            exame = new Sorologico(dados[3], Double.parseDouble(dados[7]));
-                        } else if (dados[3].equals("Hemograma")) {
-                            exame = new Hemograma(dados[3], Double.parseDouble(dados[7]));
-                        } else {
-                            continue; // Tipo de exame não reconhecido
-                        }
-                        exame.setDataRealizacao(dados[4]); // Converte a data para Date
-                        exame.getPacienteAssociado().setCpf(dados[5]);
-                        exame.getEnfermeiroAssociado().setCpf(dados[6]);
-                        exame.setPreco(Double.parseDouble(dados[7]));
-                        exame.setStatus(Boolean.parseBoolean(dados[8]));
+                    if (dados[3].startsWith("Sorológico")) {
+                        Sorologico exame = new Sorologico(dados[4], dados[5], pacienteAssociado, enfermeiroAssociado, Double.parseDouble(dados[8]), Boolean.parseBoolean(dados[9]));
                         agendamentoAtual.adicionarExame(exame);
-                    } else if (dados[3].startsWith("Vacina")) {
-                        Vacina vacina = new Vacina(dados[3], dados[4], Boolean.parseBoolean(dados[5]), Integer.parseInt(dados[6]), Double.parseDouble(dados[7]));
-                        vacina.pacienteAssociado().setCpf(dados[8]);
-                        vacina.getEnfermeiroAssociado().setCpf(dados[9]);
-                        vacina.setQtd(Integer.parseInt(dados[10]));
-                        vacina.setPreco(Double.parseDouble(dados[11]));
-                        vacina.setStatus(Boolean.parseBoolean(dados[12]));
+                    } else if (dados[3].startsWith("Hemograma")) {
+                        Hemograma exame = new Hemograma(dados[4], dados[5], pacienteAssociado, enfermeiroAssociado, Double.parseDouble(dados[8]), Boolean.parseBoolean(dados[9]));
+                        agendamentoAtual.adicionarExame(exame);
+                    } else if (dados[3].equals("Vacina")) {
+                        Vacina vacina = new Vacina(dados[4], dados[5], enfermeiroAssociado, pacienteAssociado, Integer.parseInt(dados[8]), Double.parseDouble(dados[9]), Boolean.parseBoolean(dados[10]));
                         agendamentoAtual.adicionarVacina(vacina);
                     }
                 }
@@ -168,8 +174,8 @@ public class BancoDeDados {
                 agendamentos.add(agendamentoAtual);
             }
         }
-
     }
+
     
     public void adicionarAgendamento(Agendamento agendamento) throws IOException, FileNotFoundException, ParseException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePathHash.get("agendamento"), true))) {
@@ -184,8 +190,8 @@ public class BancoDeDados {
                 sb.append((exame.getSubtipo())).append(",");
                 sb.append(exame.getTipoExame()).append(",");
                 sb.append(exame.getDataRealizacao()).append(",");
-                sb.append(exame.getCpfPacienteAssociado()).append(",");
                 sb.append(exame.getCpfEnfermeiroAssociado()).append(",");
+                sb.append(exame.getCpfPacienteAssociado()).append(",");
                 sb.append(exame.getPreco()).append(",");
                 sb.append(exame.getStatus());
                 bw.write(sb.toString());
