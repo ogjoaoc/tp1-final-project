@@ -241,7 +241,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
             txtDataNascimento.getText().equals("") ||
             txtEmail.getText().equals("")) {
             
-            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             String tipoSanguineo = (String) cmbTipoSanguineo.getSelectedItem();
             String convenio = (String) cmbConvenio.getSelectedItem();
@@ -259,6 +259,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
             this.telaPesquisarPaciente.atualizarTabela();
             
             this.pacienteAntigo = pacienteNovo;
+            JOptionPane.showMessageDialog(null, "Paciente atualizado com sucesso!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 

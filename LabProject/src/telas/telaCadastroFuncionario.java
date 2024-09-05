@@ -292,7 +292,7 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
         if(txtCpf.getText().equals("") || txtData.getText().equals("") || txtEmail.getText().equals("") || txtNome.getText().equals("") ||
                 txtSenha.getText().equals("") || sexo.equals("") || funcao.equals("") || txtSalario.equals("")) {
             Toolkit.getDefaultToolkit().beep();
-            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             String nome = txtNome.getText();
             String cpf = txtCpf.getText();

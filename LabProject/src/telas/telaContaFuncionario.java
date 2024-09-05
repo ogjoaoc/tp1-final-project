@@ -222,7 +222,7 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if(txtNome.getText().equals("") || txtCpf.equals("") || txtSenha.equals("") || txtData.equals("") || txtEmail.equals("")) {
-            JOptionPane.showMessageDialog(null,"Todos os campos devem ser inseridos!", "Mensagem",JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Todos os campos devem ser inseridos!", "Aviso",JOptionPane.WARNING_MESSAGE);
         } else {
             String nome = txtNome.getText(), cpf = txtCpf.getText(), email = txtEmail.getText(), senha = txtSenha.getText(), data = txtData.getText();
             if(userLogado.getFuncionario() instanceof Atendente) {

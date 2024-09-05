@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class telaRealizarExame extends javax.swing.JFrame {
@@ -458,22 +459,26 @@ public class telaRealizarExame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
-        for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
-            System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
-            
-            if(agendamentoAtualizado.getId() == idAgendamento){
-                for (int i = 0; i < agendamentoAtualizado.getListaExames().size(); i++) {
-                    Exame exameAtual = agendamentoAtualizado.getListaExames().get(i);
-                    System.out.println("Verificando vacina: " + exameAtual.getTipoExame() + " - Status: " + exameAtual.getStatus()); // Debug da vacina atual
+        if(txtResultado.equals("")){
+            JOptionPane.showMessageDialog(null, "É necessário preencher o resultado antes de concluir!", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else{
+            for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
+                System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
 
-                    if (exameAtual.getTipoExame().equals(exameRealizado.getTipoExame())) {
-                        System.out.println("Vacina encontrada: " + exameRealizado.getTipoExame()); // Confirma que a vacina foi encontrada
-                        exameRealizado.setStatus(true);
-                        agendamentoAtualizado.getListaExames().set(i, exameRealizado);
-                        System.out.println("Vacina atualizada: " + exameRealizado.getTipoExame() + " - Novo Status: " + exameRealizado.getStatus()); // Confirma que o status foi atualizado
-                        database.atualizarAgendamento(agendamentoAtualizado);
-                        System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
-                        break;
+                if(agendamentoAtualizado.getId() == idAgendamento){
+                    for (int i = 0; i < agendamentoAtualizado.getListaExames().size(); i++) {
+                        Exame exameAtual = agendamentoAtualizado.getListaExames().get(i);
+                        System.out.println("Verificando vacina: " + exameAtual.getTipoExame() + " - Status: " + exameAtual.getStatus()); // Debug da vacina atual
+
+                        if (exameAtual.getTipoExame().equals(exameRealizado.getTipoExame())) {
+                            System.out.println("Vacina encontrada: " + exameRealizado.getTipoExame()); // Confirma que a vacina foi encontrada
+                            exameRealizado.setStatus(true);
+                            agendamentoAtualizado.getListaExames().set(i, exameRealizado);
+                            System.out.println("Vacina atualizada: " + exameRealizado.getTipoExame() + " - Novo Status: " + exameRealizado.getStatus()); // Confirma que o status foi atualizado
+                            database.atualizarAgendamento(agendamentoAtualizado);
+                            System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
+                            break;
+                        }
                     }
                 }
             }

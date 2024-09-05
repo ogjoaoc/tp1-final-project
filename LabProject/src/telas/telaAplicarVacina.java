@@ -16,6 +16,7 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     BancoDeDados database = new BancoDeDados();
     private Vacina vacinaAplicada;
     private int idAgendamento;
+    private boolean aplicado = false;
     
     public telaAplicarVacina(int id, Vacina vacina) throws IOException, FileNotFoundException, ParseException {
         initComponents();
@@ -73,9 +74,6 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollBar1 = new javax.swing.JScrollBar();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         pnlBackgroundColor = new javax.swing.JPanel();
         pnlDadosPaciente = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
@@ -102,11 +100,6 @@ public class telaAplicarVacina extends javax.swing.JFrame {
         btnAplicarVacina = new javax.swing.JButton();
         btnCartaoVacina = new javax.swing.JButton();
         btnConcluir = new javax.swing.JButton();
-
-        jMenuItem1.setText("jMenuItem1");
-
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 25, 760, 440));
@@ -409,20 +402,21 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAplicarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarVacinaActionPerformed
-        boolean isDisponivel = false;
         
         for(Vacina vac: database.getVacinas()){
             if(vac.getTipoVacina().equals(vacinaAplicada.getTipoVacina())){
-                vac.aplicaVacina();
-                database.atualizarVacina(vac);
-                isDisponivel = true;    
-                break;
+                if(vac.isDisponivel()){
+                    vac.aplicaVacina();
+                    database.atualizarVacina(vac);
+                    aplicado = true;
+                    break;
+                } else{
+                    JOptionPane.showMessageDialog(null,"Vacina indisponível no estoque!", "Mensagem",JOptionPane.WARNING_MESSAGE);
+                    break;
+                }
             }
         }
         
-        if(!isDisponivel){
-            JOptionPane.showMessageDialog(null,"Vacina indisponível no estoque!", "Mensagem",JOptionPane.WARNING_MESSAGE);
-        }
     }//GEN-LAST:event_btnAplicarVacinaActionPerformed
 
     private void btnCartaoVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartaoVacinaActionPerformed
@@ -430,26 +424,29 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCartaoVacinaActionPerformed
 
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
-        // Atualiza a vacina no agendamento
-        for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
-            System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
-            
-            if(agendamentoAtualizado.getId() == idAgendamento){
-                for (int i = 0; i < agendamentoAtualizado.getListaVacinas().size(); i++) {
-                    Vacina vacinaAtual = agendamentoAtualizado.getListaVacinas().get(i);
-                    System.out.println("Verificando vacina: " + vacinaAtual.getTipoVacina() + " - Status: " + vacinaAtual.getStatus()); // Debug da vacina atual
+        if(aplicado){
+            for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
+                System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
 
-                    if (vacinaAtual.getTipoVacina().equals(vacinaAplicada.getTipoVacina())) {
-                        System.out.println("Vacina encontrada: " + vacinaAplicada.getTipoVacina()); // Confirma que a vacina foi encontrada
-                        vacinaAplicada.setStatus(true);
-                        agendamentoAtualizado.getListaVacinas().set(i, vacinaAplicada);
-                        System.out.println("Vacina atualizada: " + vacinaAplicada.getTipoVacina() + " - Novo Status: " + vacinaAplicada.getStatus()); // Confirma que o status foi atualizado
-                        database.atualizarAgendamento(agendamentoAtualizado);
-                        System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
-                        break;
+                if(agendamentoAtualizado.getId() == idAgendamento){
+                    for (int i = 0; i < agendamentoAtualizado.getListaVacinas().size(); i++) {
+                        Vacina vacinaAtual = agendamentoAtualizado.getListaVacinas().get(i);
+                        System.out.println("Verificando vacina: " + vacinaAtual.getTipoVacina() + " - Status: " + vacinaAtual.getStatus()); // Debug da vacina atual
+
+                        if (vacinaAtual.getTipoVacina().equals(vacinaAplicada.getTipoVacina())) {
+                            System.out.println("Vacina encontrada: " + vacinaAplicada.getTipoVacina()); // Confirma que a vacina foi encontrada
+                            vacinaAplicada.setStatus(true);
+                            agendamentoAtualizado.getListaVacinas().set(i, vacinaAplicada);
+                            System.out.println("Vacina atualizada: " + vacinaAplicada.getTipoVacina() + " - Novo Status: " + vacinaAplicada.getStatus()); // Confirma que o status foi atualizado
+                            database.atualizarAgendamento(agendamentoAtualizado);
+                            System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
+                            break;
+                        }
                     }
                 }
             }
+        } else{
+            JOptionPane.showMessageDialog(null,"Vacina não aplicada!", "Mensagem",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnConcluirActionPerformed
 
@@ -493,9 +490,6 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     private javax.swing.JButton btnCartaoVacina;
     private javax.swing.JButton btnConcluir;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel lblConvenio;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblDose;

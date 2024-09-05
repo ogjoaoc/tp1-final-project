@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class telaDemandas extends javax.swing.JFrame {
@@ -367,28 +368,33 @@ public class telaDemandas extends javax.swing.JFrame {
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
         int idx = tblDemandas.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
         if (idx >= 0) {
-            if(listaDemandas.get(idx).getValue() instanceof Exame){
-                try {
-                    telaRealizarExame telaRealizarExame = new telaRealizarExame(listaDemandas.get(idx).getKey(),(Exame) listaDemandas.get(idx).getValue());
-                    telaRealizarExame.setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParseException ex) {
-                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+            if(tblDemandas.getValueAt(idx,4).equals("Pendente")){
+                if(listaDemandas.get(idx).getValue() instanceof Exame){
+                    try {
+                        telaRealizarExame telaRealizarExame = new telaRealizarExame(listaDemandas.get(idx).getKey(),(Exame) listaDemandas.get(idx).getValue());
+                        telaRealizarExame.setVisible(true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    this.dispose();
                 }
-                this.dispose();
+                else if(listaDemandas.get(idx).getValue() instanceof Vacina){
+                    telaAplicarVacina telaAplicarVacina;
+                    try {
+                        telaAplicarVacina = new telaAplicarVacina(listaDemandas.get(idx).getKey(), (Vacina) listaDemandas.get(idx).getValue());
+                        telaAplicarVacina.setVisible(true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    this.dispose();
+                }
             }
-            else if(listaDemandas.get(idx).getValue() instanceof Vacina){
-                telaAplicarVacina telaAplicarVacina;
-                try {
-                    telaAplicarVacina = new telaAplicarVacina(listaDemandas.get(idx).getKey(), (Vacina) listaDemandas.get(idx).getValue());
-                    telaAplicarVacina.setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParseException ex) {
-                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                this.dispose();
+            else {
+                JOptionPane.showMessageDialog(null,"Demanda já concluída", "Mensagem",JOptionPane.PLAIN_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnAvancarActionPerformed

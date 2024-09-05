@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.Timer;
@@ -386,10 +387,13 @@ public class telaAgendamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
-        // TODO add your handling code here:
-        telaPagamento telaPag = new telaPagamento(this);
-        telaPag.setVisible(true);
-        this.dispose();
+        if(checkOutVacinas.size() == 0 && checkOutExames.size() == 0){
+            JOptionPane.showMessageDialog(null,"Nenhum procedimento cadastrado.", "Aviso",JOptionPane.WARNING_MESSAGE);                
+        } else {
+            telaPagamento telaPag = new telaPagamento(this);
+            telaPag.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnAvancarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

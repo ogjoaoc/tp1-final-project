@@ -221,7 +221,7 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             txtDataNascimento.getText().equals("") ||
             txtEmail.getText().equals("")) {
             
-            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             String tipoSanguineo = (String) cmbTipoSanguineo.getSelectedItem();
             //boolean preferencial = rdbSim.isSelected();

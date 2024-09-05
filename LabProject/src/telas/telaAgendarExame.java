@@ -8,6 +8,7 @@ import java.awt.event.ItemListener;
 import static java.lang.Double.parseDouble;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
@@ -44,7 +45,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                jTextField1.setText("");
+                txtPreco.setText("");
                 if (jRadioButton1.isSelected()) {
                     cbTipoExame.setEnabled(true);
                     carregarExames(); 
@@ -124,7 +125,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
                     }
                 }
                 if (!preco.isEmpty()) {
-                    jTextField1.setText(preco);
+                    txtPreco.setText(preco);
                     break;
                 }
             }
@@ -146,7 +147,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         lblSelecionarPaciente3 = new javax.swing.JLabel();
         cbTipoExame = new javax.swing.JComboBox<>();
         lblSelecionarPaciente4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPreco = new javax.swing.JTextField();
         btnAgendar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
 
@@ -209,7 +210,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         lblSelecionarPaciente4.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         lblSelecionarPaciente4.setText("Enfermeiro:");
         background.add(lblSelecionarPaciente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 120, 40));
-        background.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 190, 40));
+        background.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 190, 40));
 
         btnAgendar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgendar.setText("Agendar");
@@ -248,30 +249,36 @@ public class telaAgendarExame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
-        String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
-        String tipoExame = (String) cbTipoExame.getSelectedItem();
-        String precoExame = jTextField1.getText();
+        if(cbTipoExame.getSelectedItem().equals("Selecione um tipo...") || cbEnfermeiro.getSelectedItem().equals("Nome do enfermeiro...") ||
+           txtPreco.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Todos os campos devem ser preechidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
+        } else{
+        
+            String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
+            String tipoExame = (String) cbTipoExame.getSelectedItem();
+            String precoExame = txtPreco.getText();
 
-        // Encontrar o enfermeiro selecionado no banco de dados
-        Enfermeiro enfermeiroSelecionado = null;
-        for (Enfermeiro enf : enfermeiros) {
-            if (enf.getNome().equals(nomeEnfermeiro)) {
-                enfermeiroSelecionado = enf;
-                break;
+            // Encontrar o enfermeiro selecionado no banco de dados
+            Enfermeiro enfermeiroSelecionado = null;
+            for (Enfermeiro enf : enfermeiros) {
+                if (enf.getNome().equals(nomeEnfermeiro)) {
+                    enfermeiroSelecionado = enf;
+                    break;
+                }
             }
-        }
 
-        Exame novoExame = null;
-        if (jRadioButton1.isSelected()) { // Sorológico
-            novoExame = new Sorologico(tipoExame, "01/09/2023", telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false); // Data fixa por enquanto
-        } else if (jRadioButton2.isSelected()) { // Hemograma
-            novoExame = new Hemograma(tipoExame, "01/09/2023" , telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false);
-        }
+            Exame novoExame = null;
+            if (jRadioButton1.isSelected()) { // Sorológico
+                novoExame = new Sorologico(tipoExame, "01/09/2023", telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false); // Data fixa por enquanto
+            } else if (jRadioButton2.isSelected()) { // Hemograma
+                novoExame = new Hemograma(tipoExame, "01/09/2023" , telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false);
+            }
 
-        // Adicionar o exame à lista na tela principal
-        telaAgendamentoRef.getCheckOutExames().add(novoExame);
-        telaAgendamentoRef.atualizarTabelaCheckOut();
-        this.dispose();
+            // Adicionar o exame à lista na tela principal
+            telaAgendamentoRef.getCheckOutExames().add(novoExame);
+            telaAgendamentoRef.atualizarTabelaCheckOut();
+            this.dispose();
+        }
     }//GEN-LAST:event_btnAgendarActionPerformed
 
     /**
@@ -318,12 +325,12 @@ public class telaAgendarExame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoExame;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblSelecionarPaciente1;
     private javax.swing.JLabel lblSelecionarPaciente2;
     private javax.swing.JLabel lblSelecionarPaciente3;
     private javax.swing.JLabel lblSelecionarPaciente4;
     private javax.swing.JPanel panelTitle;
+    private javax.swing.JTextField txtPreco;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 }

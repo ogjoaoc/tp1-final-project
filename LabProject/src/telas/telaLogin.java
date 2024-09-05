@@ -148,7 +148,7 @@ public class telaLogin extends javax.swing.JFrame {
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null,
                 "Todos os campos devem ser preenchidos.", "Aviso",
-                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.WARNING_MESSAGE);
             txtLogin.setText("");
             txtSenha.setText("");
 
@@ -201,7 +201,7 @@ public class telaLogin extends javax.swing.JFrame {
                 
                 // abrir interface atendente
                 Toolkit.getDefaultToolkit().beep();
-                JOptionPane.showMessageDialog(null,"Login realizado com sucesso.", "Aviso",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Login realizado com sucesso.", "Mensagem",JOptionPane.INFORMATION_MESSAGE);
                 telaAtendente telaAtendente = new telaAtendente();
                 telaAtendente.setVisible(true);
                 this.dispose();
@@ -209,7 +209,7 @@ public class telaLogin extends javax.swing.JFrame {
             } else if (tipoDeUsuario.equals("enfermeiro")) {
                 // abrir interface enfermeiro
                 Toolkit.getDefaultToolkit().beep();
-                JOptionPane.showMessageDialog(null,"Login realizado com sucesso.", "Aviso",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Login realizado com sucesso.", "Mensagem",JOptionPane.INFORMATION_MESSAGE);
                 telaEnfermeiro telaEnfermeiro = new telaEnfermeiro();
                 telaEnfermeiro.setVisible(true);
                 this.dispose();

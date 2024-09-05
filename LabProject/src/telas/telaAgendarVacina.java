@@ -155,7 +155,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         lblVacina.setText("Vacina:");
         background.add(lblVacina, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 120, 40));
 
-        cbDose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleciona a dose...", "1ª Dose", "2ª Dose", "Dose de reforço" }));
+        cbDose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a dose...", "1ª Dose", "2ª Dose", "Dose de reforço" }));
         background.add(cbDose, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 190, 40));
 
         cbTipoVacina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um tipo...", " " }));
@@ -220,32 +220,36 @@ public class telaAgendarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
-        
-        String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
-        String tipoVacina = (String) cbTipoVacina.getSelectedItem();
-        String dosagem = (String) cbDose.getSelectedItem();
-        String precoVacina = txtPreco.getText();
+        if(cbEnfermeiro.getSelectedItem().equals("Nome do enfermeiro...") || cbTipoVacina.getSelectedItem().equals("Selecione um tipo...") ||
+           cbDose.getSelectedItem().equals("Selecione a dose...") || txtPreco.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Todos os campos devem ser preechidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
+        } else{
+            String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
+            String tipoVacina = (String) cbTipoVacina.getSelectedItem();
+            String dosagem = (String) cbDose.getSelectedItem();
+            String precoVacina = txtPreco.getText();
 
-        Enfermeiro enfermeiroSelecionado = null;
-        for (Enfermeiro enf : enfermeiros) {
-            if (enf.getNome().equals(nomeEnfermeiro)) {
-                enfermeiroSelecionado = enf;
-                break;
+            Enfermeiro enfermeiroSelecionado = null;
+            for (Enfermeiro enf : enfermeiros) {
+                if (enf.getNome().equals(nomeEnfermeiro)) {
+                    enfermeiroSelecionado = enf;
+                    break;
+                }
             }
-        }
-        
-        Vacina vacinaSelecionada = null;
-        for (Vacina vac : vacinas) {
-            if(vac.getTipoVacina().equals(tipoVacina)) {
-                vacinaSelecionada = vac;
-                break;
-            }
-        }
 
-        Vacina novaVacina = new Vacina(tipoVacina, vacinaSelecionada.getValidade(), enfermeiroSelecionado, telaAgendamentoRef.getPacienteSelecionado(), dosagem, vacinaSelecionada.getPreco(),false);
-        telaAgendamentoRef.getCheckOutVacina().add(novaVacina);
-        telaAgendamentoRef.atualizarTabelaCheckOut();
-        this.dispose();
+            Vacina vacinaSelecionada = null;
+            for (Vacina vac : vacinas) {
+                if(vac.getTipoVacina().equals(tipoVacina)) {
+                    vacinaSelecionada = vac;
+                    break;
+                }
+            }
+
+            Vacina novaVacina = new Vacina(tipoVacina, vacinaSelecionada.getValidade(), enfermeiroSelecionado, telaAgendamentoRef.getPacienteSelecionado(), dosagem, vacinaSelecionada.getPreco(),false);
+            telaAgendamentoRef.getCheckOutVacina().add(novaVacina);
+            telaAgendamentoRef.atualizarTabelaCheckOut();
+            this.dispose();
+        }
     }//GEN-LAST:event_btnAgendarActionPerformed
 
     /**

@@ -444,7 +444,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         if(txtVacina.getText().equals("") || txtValidade.getText().equals("") ||
            txtQuantidade.getText().equals("") || txtPreco.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Todos os campos devem ser inseridos!", "Mensagem",JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Todos os campos devem ser inseridos!", "Aviso",JOptionPane.WARNING_MESSAGE);
         } else{
             String nomeVacina = txtVacina.getText();
             String validade = txtValidade.getText();
@@ -489,7 +489,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
             habilitarCampos(false, true, true, true);
             habilitarBotoes(false, true, true, true, true);
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma vacina para editar.", "Mensagem", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione uma vacina para editar.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }                                         
 
@@ -514,7 +514,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
                 limparBarraPesquisa();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma vacina para excluir.", "Mensagem", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione uma vacina para excluir.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }   
     }                                          
 

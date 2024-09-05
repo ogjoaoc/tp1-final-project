@@ -371,7 +371,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if (txtExame.getText().equals("") || cmbTipo.getSelectedIndex() == 0 || txtPreco.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Todos os campos devem ser inseridos!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preechidos!", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
         else{
             String nomeExame = txtExame.getText();
@@ -428,7 +428,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
             habilitarCampos(true, true, true);
             habilitarBotoes(false, true, true, true, true);
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um exame para editar.", "Mensagem", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione um exame para editar.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -453,7 +453,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
                 limparBarraPesquisa();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um exame para excluir.", "Mensagem", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione um exame para excluir.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }   
     }//GEN-LAST:event_btnExcluirActionPerformed
 
