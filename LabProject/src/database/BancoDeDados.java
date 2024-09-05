@@ -184,33 +184,33 @@ public class BancoDeDados {
 
             for (Exame exame : agendamento.getListaExames()) {
                 StringBuilder sb = new StringBuilder();
-                sb.append(idAgendamento).append(",");
-                sb.append(sdf.format(agendamento.getDataCriado())).append(",");
-                sb.append(agendamento.getValorTotal()).append(",");
-                sb.append((exame.getSubtipo())).append(",");
-                sb.append(exame.getTipoExame()).append(",");
-                sb.append(exame.getDataRealizacao()).append(",");
-                sb.append(exame.getCpfEnfermeiroAssociado()).append(",");
-                sb.append(exame.getCpfPacienteAssociado()).append(",");
-                sb.append(exame.getPreco()).append(",");
-                sb.append(exame.getStatus());
+                    sb.append(idAgendamento).append(",");
+                    sb.append(sdf.format(agendamento.getDataCriado())).append(",");
+                    sb.append(agendamento.getValorTotal()).append(",");
+                    sb.append((exame.getSubtipo())).append(",");
+                    sb.append(exame.getTipoExame()).append(",");
+                    sb.append(exame.getDataRealizacao()).append(",");
+                    sb.append(exame.getCpfEnfermeiroAssociado()).append(",");
+                    sb.append(exame.getCpfPacienteAssociado()).append(",");
+                    sb.append(exame.getPreco()).append(",");
+                    sb.append(exame.getStatus());
                 bw.write(sb.toString());
                 bw.newLine();
             }
 
             for (Vacina vacina : agendamento.getListaVacinas()) {
                 StringBuilder sb = new StringBuilder();
-                sb.append(idAgendamento).append(",");
-                sb.append(sdf.format(agendamento.getDataCriado())).append(",");
-                sb.append(agendamento.getValorTotal()).append(",");
-                sb.append("Vacina").append(",");
-                sb.append(vacina.getTipoVacina()).append(",");
-                sb.append(vacina.getValidade()).append(",");
-                sb.append(vacina.getCpfEnfermeiroAssociado()).append(",");
-                sb.append(vacina.getCpfPacienteAssociado()).append(",");
-                sb.append(vacina.getDose()).append(",");
-                sb.append(vacina.getPreco()).append(",");
-                sb.append(vacina.getStatus());
+                    sb.append(idAgendamento).append(",");
+                    sb.append(sdf.format(agendamento.getDataCriado())).append(",");
+                    sb.append(agendamento.getValorTotal()).append(",");
+                    sb.append("Vacina").append(",");
+                    sb.append(vacina.getTipoVacina()).append(",");
+                    sb.append(vacina.getValidade()).append(",");
+                    sb.append(vacina.getCpfEnfermeiroAssociado()).append(",");
+                    sb.append(vacina.getCpfPacienteAssociado()).append(",");
+                    sb.append(vacina.getDose()).append(",");
+                    sb.append(vacina.getPreco()).append(",");
+                    sb.append(vacina.getStatus());
                 bw.write(sb.toString());
                 bw.newLine();
             }
@@ -519,6 +519,7 @@ public class BancoDeDados {
                 // Escreve os dados de cada vacina associada ao agendamento
                 for (Vacina vacina : agendamento.getListaVacinas()) {
                     String result = linhaBase + "," +
+                                    "Vacina," +
                                     vacina.getTipoVacina() + "," +
                                     vacina.getValidade() + "," +
                                     vacina.getCpfEnfermeiroAssociado() + "," +
