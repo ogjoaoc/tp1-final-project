@@ -347,7 +347,7 @@ public class telaDemandas extends javax.swing.JFrame {
         int idx = tblDemandas.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
         if (idx >= 0) {
             if(listaDemandas.get(idx).getValue() instanceof Exame){
-                telaRealizarExame telaRealizarExame = new telaRealizarExame((Exame) listaDemandas.get(idx));
+                telaRealizarExame telaRealizarExame = new telaRealizarExame((Exame) listaDemandas.get(idx).getValue());
                 telaRealizarExame.setVisible(true);
                 this.dispose();
             }
