@@ -79,6 +79,13 @@ public class telaAgendamento extends javax.swing.JFrame {
        
     }
     
+    protected void limparTela(){
+        txtPaciente.setText("");
+        checkOutExames.clear();
+        checkOutVacinas.clear();
+        atualizarTabelaCheckOut();
+    }
+    
     protected Paciente getPacienteSelecionado() {
         String nomePacienteSelecionado = txtPaciente.getText();
         ArrayList<Paciente> auxiliarPacientes = database.getPacientes();
