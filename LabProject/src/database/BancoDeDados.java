@@ -114,7 +114,7 @@ public class BancoDeDados {
         
         Agendamento agendamentoAtual = null;
         int idAtual = -1;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Ajuste o formato de data conforme necessário
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Ajuste o formato de data conforme necessário
         lerArquivo("paciente");
         lerArquivo("enfermeiro");
         
@@ -132,7 +132,7 @@ public class BancoDeDados {
                     // Cria um novo agendamento
                     agendamentoAtual = new Agendamento();
                     agendamentoAtual.setId(idLinha);
-                    agendamentoAtual.setDataCriado(sdf.parse(dados[1])); // Converte a data para Date
+                    agendamentoAtual.setDataCriado(sdf.parse(dados[1])); // Converte a data para Date 
                     agendamentoAtual.setValorTotal(Double.parseDouble(dados[2]));
                     idAtual = idLinha;
                 }
@@ -152,8 +152,8 @@ public class BancoDeDados {
                         .filter(e -> e.getCpf().equals(cpfEnfermeiro))
                         .findFirst()
                         .orElse(null);
-                System.out.println(pacienteAssociado.getNome());
-                System.out.println(enfermeiroAssociado.getNome());
+                //System.out.println(pacienteAssociado.getNome());
+                //System.out.println(enfermeiroAssociado.getNome());
 
                 if (dados.length > 3) { // Verifica se há dados suficientes na linha
                     if (dados[3].startsWith("Sorológico")) {
