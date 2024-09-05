@@ -6,7 +6,11 @@ public class Pessoa {
     protected String sexo;
     protected String dataNascimento;
     protected String email;
-
+    
+    public Pessoa() {
+        
+    }
+    
     public Pessoa(String nome, String cpf, String sexo, String dataNascimento, String email) {
         this.nome = nome;
         this.cpf = cpf;

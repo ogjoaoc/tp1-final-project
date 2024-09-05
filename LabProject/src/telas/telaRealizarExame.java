@@ -1,13 +1,23 @@
 package telas;
 
 import classes.*;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
 import database.BancoDeDados;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 
 public class telaRealizarExame extends javax.swing.JFrame {
@@ -30,9 +40,60 @@ public class telaRealizarExame extends javax.swing.JFrame {
         desabilitarCampos();
         
     }
+    
+     public void exportarJFrameParaPDF(JFrame frame, String pdfPath) {
+        try {
+            // Define a cor de fundo do conteúdo do JFrame como branco
+            frame.getContentPane().setBackground(Color.WHITE);
+
+            // Pega o painel de conteúdo (sem a borda e o título da janela)
+            JPanel contentPanel = (JPanel) frame.getContentPane();
+
+            // Captura o conteúdo do JFrame (sem a janela) como uma imagem
+            BufferedImage image = new BufferedImage(contentPanel.getWidth(), contentPanel.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = image.createGraphics();
+            contentPanel.printAll(g2d); // Captura o conteúdo do JPanel
+            g2d.dispose();
+
+            // Salva a imagem em um arquivo temporário
+            File tempFile = new File("temp_image.png");
+            ImageIO.write(image, "png", tempFile);
+
+            // Cria o documento PDF com o tamanho de página A4
+            PdfWriter writer = new PdfWriter(pdfPath);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf, PageSize.A4);
+
+            // Carrega a imagem temporária
+            ImageData imageData = ImageDataFactory.create(tempFile.getAbsolutePath());
+            Image pdfImage = new Image(imageData);
+
+            // Ajusta a escala da imagem para caber na página A4
+            float imageWidth = pdfImage.getImageWidth();
+            float imageHeight = pdfImage.getImageHeight();
+            float pageWidth = PageSize.A4.getWidth() - document.getLeftMargin() - document.getRightMargin();
+            float pageHeight = PageSize.A4.getHeight() - document.getTopMargin() - document.getBottomMargin();
+
+            // Redimensiona a imagem para caber na página
+            if (imageWidth > pageWidth || imageHeight > pageHeight) {
+                pdfImage.scaleToFit(pageWidth, pageHeight);
+            }
+
+            // Adiciona a imagem ao PDF
+            document.add(pdfImage);
+
+            // Fecha o documento
+            document.close();
+
+            // Remove o arquivo temporário
+            tempFile.delete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private telaRealizarExame() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void preencherCampos(Exame exame){
@@ -486,20 +547,38 @@ public class telaRealizarExame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConcluirActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        telaDemandas telaDemandas;
+        telaDemandas telaDemandas = null;
+       
         try {
             telaDemandas = new telaDemandas();
-            telaDemandas.setVisible(true);
         } catch (IOException ex) {
-            Logger.getLogger(telaAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaRealizarExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (ParseException ex) {
-            Logger.getLogger(telaAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaRealizarExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        telaDemandas.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnGerarLaudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarLaudoActionPerformed
-        // TODO add your handling code here:
+        
+        if(txtResultado.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo de resultado deve ser preenchido!" , "Aviso", JOptionPane.WARNING_MESSAGE);
+        } 
+        // gerando novo Laudo
+        String info = txtResultado.getText();
+        String nomeExame = exameRealizado.getSubtipo() + " - " + exameRealizado.getTipoExame();
+        Laudo laudoAtual = new Laudo(
+                exameRealizado.getDataRealizacao(),
+                exameRealizado.getPacienteAssociado(),
+                exameRealizado.getEnfermeiroAssociado(),
+                info, nomeExame);
+        
+        templateLaudo resultado = new templateLaudo(laudoAtual);
+        resultado.setVisible(true);
+        telaLogin teste = new telaLogin();
+        exportarJFrameParaPDF(teste, "pdfteste.pdf");
     }//GEN-LAST:event_btnGerarLaudoActionPerformed
 
     /**
