@@ -1,6 +1,8 @@
 package telas;
 
 import classes.*;
+import database.BancoDeDados;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -9,13 +11,19 @@ import java.util.logging.Logger;
 
 public class telaRealizarExame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ResultadoExames
-     */
-    public telaRealizarExame(Exame exame) {
+    BancoDeDados database = new BancoDeDados();
+    private Exame exameRealizado;
+    private int idAgendamento;
+    
+    public telaRealizarExame(Integer id,Exame exame) throws IOException, FileNotFoundException, ParseException {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
+        
+        exameRealizado = exame;
+        idAgendamento = id;
+        
+        database.lerArquivoAgendamento();
         
         preencherCampos(exame);
         desabilitarCampos();
@@ -40,6 +48,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
         txtData.setText(exame.getDataRealizacao());
         txtTipo.setText(exame.getSubtipo());
         txtPatologia.setText(exame.getTipoExame());
+        
     
     }
     
@@ -55,6 +64,9 @@ public class telaRealizarExame extends javax.swing.JFrame {
         txtData.setEnabled(false);
         txtTipo.setEnabled(false);
         txtPatologia.setEnabled(false);
+        
+        // Campo Resultado
+        txtResultado.setEnabled(false);
     
     }
     
@@ -88,8 +100,10 @@ public class telaRealizarExame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
         btnSalvar = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
+        pnlBotoes = new javax.swing.JPanel();
         btnConcluir = new javax.swing.JButton();
+        btnGerarLaudo = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 25, 750, 510));
@@ -102,7 +116,6 @@ public class telaRealizarExame extends javax.swing.JFrame {
         pnlDadosPaciente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados do Paciente: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
         pnlDadosPaciente.setMaximumSize(new java.awt.Dimension(400, 176));
         pnlDadosPaciente.setMinimumSize(new java.awt.Dimension(400, 176));
-        pnlDadosPaciente.setSize(new java.awt.Dimension(400, 176));
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNome.setText("Nome:");
@@ -186,7 +199,6 @@ public class telaRealizarExame extends javax.swing.JFrame {
 
         pnlDadosExame.setBackground(new java.awt.Color(248, 197, 190));
         pnlDadosExame.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados do Exame: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
-        pnlDadosExame.setLocation(new java.awt.Point(400, 110));
         pnlDadosExame.setMaximumSize(new java.awt.Dimension(400, 110));
         pnlDadosExame.setMinimumSize(new java.awt.Dimension(400, 110));
         pnlDadosExame.setPreferredSize(new java.awt.Dimension(400, 110));
@@ -326,6 +338,24 @@ public class telaRealizarExame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        pnlBotoes.setBackground(new java.awt.Color(248, 197, 190));
+
+        btnConcluir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnConcluir.setText("Concluir");
+        btnConcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConcluirActionPerformed(evt);
+            }
+        });
+
+        btnGerarLaudo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnGerarLaudo.setText("Gerar Laudo");
+        btnGerarLaudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerarLaudoActionPerformed(evt);
+            }
+        });
+
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -334,13 +364,29 @@ public class telaRealizarExame extends javax.swing.JFrame {
             }
         });
 
-        btnConcluir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnConcluir.setText("Gerar Laudo / Concluir");
-        btnConcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConcluirActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout pnlBotoesLayout = new javax.swing.GroupLayout(pnlBotoes);
+        pnlBotoes.setLayout(pnlBotoesLayout);
+        pnlBotoesLayout.setHorizontalGroup(
+            pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotoesLayout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnGerarLaudo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+        );
+        pnlBotoesLayout.setVerticalGroup(
+            pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBotoesLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGerarLaudo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pnlBackgroundColorLayout = new javax.swing.GroupLayout(pnlBackgroundColor);
         pnlBackgroundColor.setLayout(pnlBackgroundColorLayout);
@@ -354,13 +400,11 @@ public class telaRealizarExame extends javax.swing.JFrame {
                     .addComponent(pnlDadosExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
-            .addGroup(pnlBackgroundColorLayout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundColorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         pnlBackgroundColorLayout.setVerticalGroup(
             pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,11 +417,9 @@ public class telaRealizarExame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(pnlDadosExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -408,12 +450,35 @@ public class telaRealizarExame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConvenioActionPerformed
 
     private void btnAddResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddResultadoActionPerformed
-        // TODO add your handling code here:
+        txtResultado.setEnabled(true);
     }//GEN-LAST:event_btnAddResultadoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
+        for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
+            System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
+            
+            if(agendamentoAtualizado.getId() == idAgendamento){
+                for (int i = 0; i < agendamentoAtualizado.getListaExames().size(); i++) {
+                    Exame exameAtual = agendamentoAtualizado.getListaExames().get(i);
+                    System.out.println("Verificando vacina: " + exameAtual.getTipoExame() + " - Status: " + exameAtual.getStatus()); // Debug da vacina atual
+
+                    if (exameAtual.getTipoExame().equals(exameRealizado.getTipoExame())) {
+                        System.out.println("Vacina encontrada: " + exameRealizado.getTipoExame()); // Confirma que a vacina foi encontrada
+                        exameRealizado.setStatus(true);
+                        agendamentoAtualizado.getListaExames().set(i, exameRealizado);
+                        System.out.println("Vacina atualizada: " + exameRealizado.getTipoExame() + " - Novo Status: " + exameRealizado.getStatus()); // Confirma que o status foi atualizado
+                        database.atualizarAgendamento(agendamentoAtualizado);
+                        System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
+                        break;
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_btnConcluirActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         telaDemandas telaDemandas;
@@ -428,9 +493,9 @@ public class telaRealizarExame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
+    private void btnGerarLaudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarLaudoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnConcluirActionPerformed
+    }//GEN-LAST:event_btnGerarLaudoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -501,6 +566,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddResultado;
     private javax.swing.JButton btnConcluir;
+    private javax.swing.JButton btnGerarLaudo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
@@ -514,6 +580,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
     private javax.swing.JLabel lblTipoSanguineo;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlBackgroundColor;
+    private javax.swing.JPanel pnlBotoes;
     private javax.swing.JPanel pnlDadosExame;
     private javax.swing.JPanel pnlDadosPaciente;
     private javax.swing.JPanel pnlResultados;

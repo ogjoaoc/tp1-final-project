@@ -368,8 +368,14 @@ public class telaDemandas extends javax.swing.JFrame {
         int idx = tblDemandas.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
         if (idx >= 0) {
             if(listaDemandas.get(idx).getValue() instanceof Exame){
-                telaRealizarExame telaRealizarExame = new telaRealizarExame((Exame) listaDemandas.get(idx).getValue());
-                telaRealizarExame.setVisible(true);
+                try {
+                    telaRealizarExame telaRealizarExame = new telaRealizarExame(listaDemandas.get(idx).getKey(),(Exame) listaDemandas.get(idx).getValue());
+                    telaRealizarExame.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 this.dispose();
             }
             else if(listaDemandas.get(idx).getValue() instanceof Vacina){
