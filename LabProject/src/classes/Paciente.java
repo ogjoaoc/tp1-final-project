@@ -1,22 +1,23 @@
 package classes;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public class Paciente extends Pessoa {
     private String tipoSanguineo;
     private String convenio;
-    //private boolean preferencial;
 
     public Paciente(String nome, String cpf, String sexo, String dataNascimento, String email, String tipoSanguineo) {
         super(nome, cpf, sexo, dataNascimento, email);
         this.tipoSanguineo = tipoSanguineo;
         this.convenio = "Sem convênio.";
-        //this.preferencial = preferencial;
     }
     
-    public Paciente(String nome, String cpf, String sexo, String dataNascimento, String email, String tipoSanguineo, String convenio /*boolean preferencial,*/) {
+    public Paciente(String nome, String cpf, String sexo, String dataNascimento, String email, String tipoSanguineo, String convenio) {
         super(nome, cpf, sexo, dataNascimento, email);
         this.tipoSanguineo = tipoSanguineo;
         this.convenio = convenio;
-        //this.preferencial = preferencial;
     }
     
     public String getTipoSanguineo() {
@@ -35,12 +36,14 @@ public class Paciente extends Pessoa {
         this.convenio = convenio;
     }
 
-    /*public String isPreferencial() {
-        return preferencial;
-    }
+    public boolean isPreferencial(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    /*public void setPreferencial(boolean preferencial) {
-        this.preferencial = preferencial;
-    }*/
-    
+        LocalDate dataNasc = LocalDate.parse(dataNascimento, formatter);
+        LocalDate dataAtual = LocalDate.now();
+        
+        Period periodo = Period.between(dataNasc, dataAtual);
+        
+        return periodo.getYears() >= 65;
+    }
 }

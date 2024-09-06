@@ -39,27 +39,41 @@ public class telaPagamento extends javax.swing.JFrame {
     private void atualizarTabelaPagamento() {
         
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"Item", "Info", "Valor"});
+        modelo.setColumnIdentifiers(new String[]{"Item", "Info", "Valor", "Desconto"});
         double valorTotal = 0.0;
+        double desconto = 0.0;
+        Paciente paciente = telaPrincipalAgendamento.getPacienteSelecionado();
 
         for (Exame exame : pagamentoExames) {
             String[] linha = {
-                "Exame", exame.getSubtipo(), String.format("$%.2f", exame.getPreco())
+                "Exame", exame.getSubtipo(), String.format("R$ %.2f", exame.getPreco()),
+                String.format("R$ %.2f", exame.getPreco()-exame.precoConvenio(paciente.getConvenio()))
             };
             modelo.addRow(linha);
-            valorTotal += exame.getPreco();
+            valorTotal += exame.precoConvenio(paciente.getConvenio());
+            desconto += exame.getPreco()-exame.precoConvenio(paciente.getConvenio());
         }
 
         for (Vacina vacina : pagamentoVacinas) {
             String[] linha = {
-                "Vacina", vacina.getTipoVacina(), String.format("$%.2f", vacina.getPreco())
+                "Vacina", vacina.getTipoVacina(), String.format("R$ %.2f", vacina.getPreco()),
+                String.format("R$%.2f", vacina.getPreco()-vacina.precoConvenio(paciente.getConvenio()))
             };
             modelo.addRow(linha);
-            valorTotal += vacina.getPreco();
+            valorTotal += vacina.precoConvenio(paciente.getConvenio());
+            desconto += vacina.getPreco()-vacina.precoConvenio(paciente.getConvenio());
+        }
+        
+        lblDesconto.setText("Desconto: R$ " + String.format("%.2f", desconto));
+        
+        if (paciente.isPreferencial()){
+            valorTotal *= 0.7; // 30% de desconto
+            lblValorTotalPanel.setText(String.format("Valor total: R$%.2f (Preferencial)", valorTotal));
+        } else {
+            lblValorTotalPanel.setText(String.format("Valor total: R$%.2f", valorTotal));
         }
 
         jTable1.setModel(modelo);
-        lblValorTotalPanel.setText(String.format("Valor total: $%.2f", valorTotal));
         valorTotalAgendamento = valorTotal;
     }
 
@@ -204,6 +218,7 @@ public class telaPagamento extends javax.swing.JFrame {
         pnlPix = new javax.swing.JPanel();
         pnlValorTotal = new javax.swing.JPanel();
         lblTitleCheckOut = new javax.swing.JLabel();
+        lblDesconto = new javax.swing.JLabel();
         lblValorTotalPanel = new javax.swing.JLabel();
         separatorCheckOut = new javax.swing.JSeparator();
         tblCheckOut = new javax.swing.JScrollPane();
@@ -414,6 +429,8 @@ public class telaPagamento extends javax.swing.JFrame {
         lblTitleCheckOut.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitleCheckOut.setText("Check-out:");
 
+        lblDesconto.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+
         lblValorTotalPanel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblValorTotalPanel.setText("Valor total:  $");
 
@@ -454,6 +471,7 @@ public class telaPagamento extends javax.swing.JFrame {
             .addGroup(pnlValorTotalLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(pnlValorTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDesconto)
                     .addComponent(lblValorTotalPanel)
                     .addComponent(lblTitleCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -467,7 +485,9 @@ public class telaPagamento extends javax.swing.JFrame {
                 .addComponent(tblCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(separatorCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(lblDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblValorTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -596,6 +616,7 @@ public class telaPagamento extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCVV;
     private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblDesconto;
     private javax.swing.JLabel lblIconCard;
     private javax.swing.JLabel lblNomeTitular;
     private javax.swing.JLabel lblNumCartao;

@@ -29,6 +29,33 @@ public class Vacina {
         this.status = status;
     }
     
+    public double precoConvenio(String convenio){
+        switch (convenio){
+            // Sem Convênio, Unimed, Amil, Bradesco Saúde, Porto Seguro
+            case "Sem Convênio" -> {
+                return preco;
+            }
+            case "Unimed" -> {
+                return preco*0.9;
+            }
+            case "Amil" -> {
+                return preco*0.85;
+            }
+            case "Bradesco" -> {
+                return preco*0.8;
+            }
+            case "Bradesco Saúde" -> {
+                return preco*0.75;
+            }
+            case "Porto Seguro" -> {
+                return preco*0.7;
+            }
+            default ->{
+                return preco;
+            }
+        }
+    }
+    
     // métodos getters e setters
     public String getTipoVacina() {
         return tipoVacina;

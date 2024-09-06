@@ -467,6 +467,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblDesconto" min="-2" max="-2" attributes="0"/>
                           <Component id="lblValorTotalPanel" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTitleCheckOut" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
@@ -483,7 +484,9 @@
                       <Component id="tblCheckOut" min="-2" pref="246" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="separatorCheckOut" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="60" max="32767" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <Component id="lblDesconto" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblValorTotalPanel" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -497,6 +500,13 @@
                   <Font name="Segoe UI" size="20" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Check-out:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDesconto">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="20" style="1"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblValorTotalPanel">
