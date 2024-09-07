@@ -1,15 +1,31 @@
+// Classe: BancoDeDados
+// Gerencia a leitura e escrita de dados em arquivos CSV para entidades como Enfermeiro, Atendente, Paciente, etc.
+// Infelizmente, foi implementada antes da aula de Interfaces, por isso é um tanto quanto complexa :P.
+// Possuí métodos completos para CRUD.
+// Criação de objetos na database.
+// Leitura de arquivos para objetos.
+// Edição de objetos já existentes na database.
+// Deleção de objetos já existentes na database.
+// Organização de arquivos:
+// - dadosAgendamento.csv: id, dataCriacao,valorTotal,subtipoExame(Vacina),tipoExame(Vacina),dataRealizacao,cpfPacienteAssociado,cpfEnfermeiroAssociado,status
+// - dadosAtendente.csv: nome, cpf, sexo, dataNascimento, email, senha, salário, turno, credencial, qtdAgendamentos
+// - dadosEnfermeiro.csv: nome, cpf, sexo, dataNascimento, email, senha, salário, disponibilidade
+// - dadosExame.csv: tipoExame, alvo(Patologia), preco
+// - dadosPaciente.csv: tipoSanguineo, convenio, nome, cpf, sexo, dataNascimento, email
+// - dadosVacina.csv: tipoVacina, dataAplicacao, disponibilidade, qtd, preco
+
 package database;
 import classes.*;
 import java.io.*;
-import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 public class BancoDeDados {
+    
+//    Estruturas de dados utilizadas para manipulação dos objetos, e dos caminhos locais de cada arquivo.
     
     private final ArrayList<Enfermeiro> enfermeiros;
     private final ArrayList<Atendente> atendentes;
@@ -20,8 +36,14 @@ public class BancoDeDados {
     private final ArrayList<Agendamento> agendamentos;
     private final HashMap<String, String> filePathHash; 
   
+    
+//    Construtor 
+    
     public BancoDeDados() {
         
+        
+//      Instanciação das EDA's.
+
         this.enfermeiros = new ArrayList<>();
         this.atendentes = new ArrayList<>();
         this.pacientes = new ArrayList<>();
@@ -31,7 +53,8 @@ public class BancoDeDados {
         this.agendamentos = new ArrayList<>();
         this.filePathHash = new HashMap<>();
        
-        
+//      Mapeamento dos caminhos locais de arquivos para uso.
+
         filePathHash.put("enfermeiro", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosEnfermeiro.csv").toString());
         filePathHash.put("atendente", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosAtendente.csv").toString());
         filePathHash.put("paciente", Paths.get(System.getProperty("user.dir"), "src", "database", "dadosPaciente.csv").toString());
@@ -40,6 +63,10 @@ public class BancoDeDados {
         filePathHash.put("agendamento", Paths.get(System.getProperty("user.dir"),"src", "database","dadosAgendamento.csv").toString());
         
     }
+    
+//    Método polimórfico escreverDadosBase() responsável pela escrita de dados Bases de alguns objetos.
+//    Utiliza a StringBuilder, uma classe que facilita a manipulação de strings de maneira mais eficiente 
+//    do que o uso de concatenadores de strings tradicionais (+).
     
     public StringBuilder escreverDadosBase(Vacina vacina){
         StringBuilder sb = new StringBuilder(); sb.append(vacina.getTipoVacina()).append(","); sb.append(vacina.getValidade()).append(",");
@@ -69,6 +96,9 @@ public class BancoDeDados {
     }
     
 
+//    Método para leitura de qualquer Arquivo, alternando por subtipos
+//    Após a leitura, os objetos são criados e inseridos nas suas respectivas EDA's.
+   
     public void lerArquivo(String tipo) {
         
         try (BufferedReader br = new BufferedReader(new FileReader(filePathHash.get(tipo)))) {
@@ -109,6 +139,8 @@ public class BancoDeDados {
         }
         
     }
+    
+//    Método específico para leitura do arquivo de Agendamentos, devido a sua complexidade singular
     
     public void lerArquivoAgendamento() throws FileNotFoundException, IOException, ParseException {
         
@@ -176,6 +208,7 @@ public class BancoDeDados {
         }
     }
 
+//      Métodos utilizados para adicionar objetos unitários na database.
     
     public void adicionarAgendamento(Agendamento agendamento) throws IOException, FileNotFoundException, ParseException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePathHash.get("agendamento"), true))) {
@@ -293,7 +326,10 @@ public class BancoDeDados {
             }
         }
     }
-
+    
+    
+//    Métodos utilizados para deleção de objetos da database.
+    
     public void removerVacina(String tipoVacina){
        
         vacinas.removeIf(v -> v.getTipoVacina().equals(tipoVacina));
@@ -333,6 +369,8 @@ public class BancoDeDados {
         funcionarios.removeIf(f -> f.getCpf().equals(cpf));
         
     }
+    
+//    Métodos específicos para atualização de objetos na database.
     
     public void atualizarVacina(Vacina vacina) {
         String tipoVacina = vacina.getTipoVacina();
@@ -430,6 +468,9 @@ public class BancoDeDados {
         }
         return null;
     }
+  
+    
+//    Método polimórfico responsável pela atualização e reescrita dos arquivos de diferentes tipos.
     
     public void reescreverArquivo(String nomeArquivo){
         String filePath = filePathHash.get(nomeArquivo);
@@ -541,7 +582,7 @@ public class BancoDeDados {
     }
 
     
-    
+    // Getters e setters
     
     public ArrayList<Enfermeiro> getEnfermeiros() {
         return enfermeiros;
