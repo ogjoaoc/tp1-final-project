@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+// Interface Gráfica: telaEstoqueVacina
+// Tela auxiliar para cadastro de Vacinas na base de dados.
+// É permitida a criação, edição, pesquisa e exclução de vacinas já preexistentes.
+// Somente o administrador tem o privilégio para manipular essa tela.
 
-// falta terminar de implementar os botões de editar e excluir.
 package telas;
 
 import database.BancoDeDados;
 import classes.*;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
@@ -20,25 +18,30 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import static java.lang.Integer.parseInt;
-import static java.lang.Double.parseDouble;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 
 public class telaEstoqueVacina extends javax.swing.JFrame{
-    // Instanciando database    
+
+//    Instanciando database e autalizando placeholder.
+    
     BancoDeDados bancoDeDados = new BancoDeDados();
     private String estadoSalvar;
     private final String placeholderText = "Pesquisar por nome ou validade...";
     
+//    Construtor
+    
     public telaEstoqueVacina() {
+        
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
         this.setResizable(false);
+        setTitle("Admin - Estoque de Vacinas");
+
         bancoDeDados.lerArquivo("vacina");
         
         // Adiciona a tecla ENTER a funcionalidade de avançar os campos de texto
+        
         txtVacina.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -77,12 +80,15 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
         habilitarBotoes(true,false,true,true,false);
         
         // Adicionar o listener para monitorar o campo de texto
+        
         addSearchListener();
         
         // Inicializar a tabela com todos os funcionários
+        
         carregarTabela(bancoDeDados.getVacinas());
         
         // Configurar o texto de instrução
+        
         configurarPlaceholder();
         
     }
@@ -424,11 +430,9 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
     }// </editor-fold>                        
     
     private void txtPrecoActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
     }
             
     private void txtVacinaActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
     }                                         
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -438,30 +442,41 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
     }                                         
 
     private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
     }                                             
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+//    O botão "Salvar" é responsável pela instanciação e criação na base de dados do novo objeto Vacina.
+    
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {       
+        
         if(txtVacina.getText().equals("") || txtValidade.getText().equals("") ||
            txtQuantidade.getText().equals("") || txtPreco.getText().equals("")){
+            
             JOptionPane.showMessageDialog(null,"Todos os campos devem ser inseridos!", "Aviso",JOptionPane.WARNING_MESSAGE);
+            
         } else{
+            
             String nomeVacina = txtVacina.getText();
             String validade = txtValidade.getText();
             int qtd = Integer.parseInt(txtQuantidade.getText());
             double preco = Double.parseDouble(txtPreco.getText());
             
-            if(estadoSalvar.equals("cadastro")){
-                // Adiciona uma nova vacina ao estoque
+            if(estadoSalvar.equals("cadastro")) {
+
+//                Tratamento de Exceções no processo de cadastro.
+
                 try {
                     boolean disponivel = true;
                     Vacina vacina = new Vacina(nomeVacina, validade, disponivel, qtd, preco);
                     bancoDeDados.adicionarVacina(vacina);
                     carregarTabela(bancoDeDados.getVacinas());
-                } catch (IOException ex) {}
-            }
-            else if(estadoSalvar.equals("edicao")){
-                // Atualiza a vacina selecionada
+                } catch (IOException ex) {
+                    System.out.println("Erro durante instanciação da vacina...");
+                }
+                
+            } else if(estadoSalvar.equals("edicao")){
+                
+//                 Atualiza a vacina selecionada;
+                
                 Vacina vacinaEditada = new Vacina(nomeVacina,validade,true,qtd,preco);
                 bancoDeDados.atualizarVacina(vacinaEditada);
                 carregarTabela(bancoDeDados.getVacinas());
@@ -472,35 +487,53 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
         habilitarCampos(false,false,false,false);
         habilitarBotoes(true,false,true,true,true);
         limparBarraPesquisa();
+        
     }                                         
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        int idx = tblVacinas.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
+//        O botão "Editar" é responsável pela atualização de objetos já existentes na base de dados.
+    
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {       
+        
+        int idx = tblVacinas.getSelectedRow(); 
+        
         if (idx >= 0) {
 
             // Preenche os campos com os dados da vacina selecionada
+            
             txtVacina.setText(tblVacinas.getValueAt(idx, 0).toString());
             txtValidade.setText(tblVacinas.getValueAt(idx, 1).toString());
             txtQuantidade.setText(tblVacinas.getValueAt(idx, 2).toString());
             txtPreco.setText(tblVacinas.getValueAt(idx,3).toString());
 
             // Define o estado para "edicao" e habilita os campos
+            
             estadoSalvar = "edicao";
             habilitarCampos(false, true, true, true);
             habilitarBotoes(false, true, true, true, true);
+            
         } else {
+            
             JOptionPane.showMessageDialog(null, "Selecione uma vacina para editar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            
         }
     }                                         
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        int idx = tblVacinas.getSelectedRow(); // índice da linha selecionada na tabela
+//        O botão "Salvar" é responsável pela instanciação e criação na base de dados do novo objeto Vacina.
+    
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {  
+        
+        int idx = tblVacinas.getSelectedRow(); 
         
         if (idx >= 0) {
+            
             // Confirmação antes de excluir
+            
             int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esta vacina?", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+            
             if (confirmacao == JOptionPane.YES_OPTION) {
+                
                 // Remove a vacina da lista
+                
                 String vacinaExcluida = tblVacinas.getValueAt(idx,0).toString();
                 bancoDeDados.removerVacina(vacinaExcluida);
 
@@ -508,26 +541,36 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
                 carregarTabela(bancoDeDados.getVacinas());
 
                 // Limpa os campos e desabilita os botões de edição e exclusão
+                
                 limparCampos();
                 habilitarCampos(false, false, false, false);
                 habilitarBotoes(true, false, true, true, true);
                 limparBarraPesquisa();
+                
             }
+            
         } else {
+            
             JOptionPane.showMessageDialog(null, "Selecione uma vacina para excluir.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            
         }   
     }                                          
 
     private void txtBarraPesquisaActionPerformed(java.awt.event.ActionEvent evt) {}                                                
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+//    Abaixo seguem diversos métodos auxiliares para manipulação é limpeza dos campos de texto.
+    
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {
+        
         limparCampos();
         habilitarCampos(true,true,true,true);
         habilitarBotoes(true,true,false,false,true);
         estadoSalvar = "cadastro";
+        
     }                                            
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {        
+        
         limparCampos();
         habilitarCampos(false,false,false,false);
         habilitarBotoes(true,false,true,true,false);
@@ -536,35 +579,45 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
     }                                           
     
     private void limparCampos(){
+        
        txtVacina.setText("");
        txtValidade.setText("");
        txtQuantidade.setText("");
        txtPreco.setText("");
+       
     }
     
     private void habilitarCampos(boolean vacina, boolean val, boolean qtd, boolean preco){
+        
         txtVacina.setEnabled(vacina);
         txtValidade.setEnabled(val);
         txtQuantidade.setEnabled(qtd);
         txtPreco.setEnabled(preco);
+        
     }
     
     private void habilitarBotoes(boolean cad, boolean salvar, boolean editar, boolean excluir, boolean cancelar){
+        
         btnCadastrar.setEnabled(cad);
         btnSalvar.setEnabled(salvar);
         btnEditar.setEnabled(editar);
         btnExcluir.setEnabled(excluir);
         btnCancelar.setEnabled(cancelar);
+        
     }
     
-    // arrumar carregamento da tabela
+
+//    Método auxiliar para carregar dados das vacinas presentes na base de dados diretamente na tabela.
+    
     private void carregarTabela(ArrayList<Vacina> vacinas) {
+        
         DefaultTableModel model = (DefaultTableModel) tblVacinas.getModel();
-        model.setRowCount(0);  // Limpar a tabela
+        model.setRowCount(0);  
 
         for (Vacina v : vacinas) {
             model.addRow(new Object[]{v.getTipoVacina(),v.getValidade(),v.getQtd(),v.getPreco()});
         }
+        
     }
     
     

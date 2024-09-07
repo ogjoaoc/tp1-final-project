@@ -1,10 +1,13 @@
+// Interface Gráfica: telaCadastroExame
+// Tela auxiliar para cadastrar objetos do tipo Exame na base de dados.
+// Somente administradores tem o privilégio de manipular essa tela.
+// É possível criar, excluir, editar e pesquisar exames já existentes na base de dados.
+
 package telas;
 
 import database.BancoDeDados;
 import classes.*;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -14,26 +17,32 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import static java.lang.Integer.parseInt;
-import static java.lang.Double.parseDouble;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import telas.telaAdmin;
+
 
 public class telaCadastroExame extends javax.swing.JFrame {
+    
+//    Instanciando base de dados e auxiliares.
 
     BancoDeDados bancoDeDados = new BancoDeDados();
     private String estadoSalvar;
     private final String placeholderText = "Pesquisar por nome...";
     
+    
+//    Construtor
+
     public telaCadastroExame() {
+        
         initComponents();
         this.setResizable(false);
-        setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        this.setTitle("Admin - Cadastro de Exames");
+        this.setLocationRelativeTo(null);
+        
         bancoDeDados.lerArquivo("exame");
         
         // Adiciona a tecla ENTER a funcionalidade de avançar os campos de texto
+        
         txtExame.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -56,12 +65,15 @@ public class telaCadastroExame extends javax.swing.JFrame {
         habilitarBotoes(true,false,true,true,false);
         
         //Adicionar o listener para monitorar o campo de texto
+        
         addSearchListener();
         
         // Inicializar a tabela com todos os exames
+        
         carregarTabela(bancoDeDados.getExames());
         
         // Configurar o texto de instrução
+        
         configurarPlaceholder();
         
     }
@@ -98,62 +110,80 @@ public class telaCadastroExame extends javax.swing.JFrame {
     }
 
     private void atualizarBusca() {
+        
         String textoBusca = txtBarraPesquisa.getText().toLowerCase();
         
-        // Verificar se o campo de busca está vazio
         if (textoBusca.isEmpty() || textoBusca.equals(placeholderText.toLowerCase())) {
-            // Exibir todos os funcionários se o campo estiver vazio
+            
+            // Exibir todos os exames se o campo estiver vazio
+            
             carregarTabela(bancoDeDados.getExames());
+            
         } else {
-            // Filtrar os funcionários com base no nome ou CPF
+            
+//            Filtro utilizando a EDA List, e o método stream(), para retirar linhas com o nome digitado.
+            
             List<Exame> examesFiltrados = bancoDeDados.getExames().stream()
                 .filter(e -> (e instanceof Sorologico && ((Sorologico) e).getPatologia().toLowerCase().contains(textoBusca.toLowerCase())) ||
                         (e instanceof Hemograma && ((Hemograma) e).getAlvo().toLowerCase().contains(textoBusca.toLowerCase())))
                 .toList();
 
-            // Criar um novo ArrayList com os elementos filtrados
+//             Convertendo a List para ArrayList, para seguir os padrões da base de dados.
+            
             ArrayList<Exame> examesArrayList = new ArrayList<>(examesFiltrados);
 
-            // Atualizar a tabela
             carregarTabela(examesArrayList);
+            
         }
     }
     
+//        Método auxiliar para configuração do placeholder.
+    
     private void configurarPlaceholder() {
+        
         txtBarraPesquisa.setText(placeholderText);
         txtBarraPesquisa.setForeground(Color.GRAY);
 
         txtBarraPesquisa.addFocusListener(new FocusListener() {
+            
             @Override
             public void focusGained(FocusEvent e) {
+                
                 if (txtBarraPesquisa.getText().equals(placeholderText)) {
                     txtBarraPesquisa.setText("");
                     txtBarraPesquisa.setForeground(Color.BLACK);
                 }
+                
             }
 
             @Override
             public void focusLost(FocusEvent e) {
+                
                 if (txtBarraPesquisa.getText().isEmpty()) {
                     txtBarraPesquisa.setForeground(Color.GRAY);
                     txtBarraPesquisa.setText(placeholderText);
                 }
+                
             }
         });
     }
     
+//        Método auxiliar para carregar dados dos exames da base de dados na tebela.
+    
     private void carregarTabela(ArrayList<Exame> exames) {
+        
         DefaultTableModel model = (DefaultTableModel) tblExames.getModel();
-        model.setRowCount(0);  // Limpar a tabela
+        model.setRowCount(0);  
         
         for(Exame e : exames){
-            if(e instanceof Sorologico){
-                model.addRow(new Object[]{"Sorológico", ((Sorologico) e).getPatologia(), e.getPreco()});
-            }
-            else if(e instanceof Hemograma){
-             model.addRow(new Object[]{"Hemograma",((Hemograma) e).getAlvo(), e.getPreco()});
+            switch (e) {
+                case Sorologico sorologico -> model.addRow(new Object[]{"Sorológico", sorologico.getPatologia(), e.getPreco()});
+                case Hemograma hemograma -> model.addRow(new Object[]{"Hemograma",hemograma.getAlvo(), e.getPreco()});
+                default -> {
+                }
             }
         }
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -363,46 +393,66 @@ public class telaCadastroExame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        
         limparCampos();
         habilitarCampos(true,true,true);
         habilitarBotoes(true,true,false,false,true);
         estadoSalvar = "cadastro";
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+       
         if (txtExame.getText().equals("") || cmbTipo.getSelectedIndex() == 0 || txtPreco.getText().equals("")) {
+            
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preechidos!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            
         }
+        
         else{
+            
             String nomeExame = txtExame.getText();
             String tipoExame = (String) cmbTipo.getSelectedItem();
             double preco = Double.parseDouble(txtPreco.getText());
             
             if(estadoSalvar.equals("cadastro")){
-                // Adiciona um novo exame ao banco de dados
+                
                 if(tipoExame.equals("Sorológico")){
+                    
                     Sorologico exame = new Sorologico(nomeExame,preco);
+                    
                     try {
                         bancoDeDados.adicionarExame((Exame) exame);
-                    } catch (IOException ex) {}
+                    } catch (IOException ex) {
+                        System.out.println("Erro ao adicionar exame na base de dados...");
+                    }
+                    
                 } else if(tipoExame.equals("Hemograma")){
+                    
                     Hemograma exame = new Hemograma(nomeExame, preco);
+                    
                     try {
                         bancoDeDados.adicionarExame((Exame) exame);
-                    } catch (IOException ex) {}
+                    } catch (IOException ex) {
+                        System.out.println("Erro ao adicionar exame na base de dados...");
+                    }
                 }
                 carregarTabela(bancoDeDados.getExames());
                 
-            }
-            else if(estadoSalvar.equals("edicao")){
-                // Atualiza o exame selecionado
+            } else if(estadoSalvar.equals("edicao")) {
+                
                 if(tipoExame.equals("Sorológico")){
+
                     Sorologico exameEditado = new Sorologico(nomeExame,preco);
                     bancoDeDados.atualizarExame((Exame) exameEditado);
+
                 } else if(tipoExame.equals("Hemograma")){
+
                     Hemograma exameEditado = new Hemograma(nomeExame, preco);
                     bancoDeDados.atualizarExame((Exame) exameEditado);
+
                 }
+
                 carregarTabela(bancoDeDados.getExames());
 
             }
@@ -411,114 +461,114 @@ public class telaCadastroExame extends javax.swing.JFrame {
         limparCampos();
         habilitarCampos(false,false,false);
         habilitarBotoes(true,false,true,true,true);
-        limparBarraPesquisa();                              
+        limparBarraPesquisa();           
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int idx = tblExames.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
+       
+        int idx = tblExames.getSelectedRow(); 
+        
         if (idx >= 0) {
 
-            // Preenche os campos com os dados da vacina selecionada
             txtExame.setText(tblExames.getValueAt(idx, 1).toString());
             txtPreco.setText(tblExames.getValueAt(idx, 2).toString());
             cmbTipo.setSelectedItem(tblExames.getValueAt(idx, 0).toString());
 
-            // Define o estado para "edicao" e habilita os campos
             estadoSalvar = "edicao";
             habilitarCampos(true, true, true);
             habilitarBotoes(false, true, true, true, true);
+            
         } else {
+            
             JOptionPane.showMessageDialog(null, "Selecione um exame para editar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
+//        O botão excluir é responsável pela exclusão do objeto Funcionário selecionado da base de dados.
+    
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        int idx = tblExames.getSelectedRow(); // índice da linha selecionada na tabela
+        
+        int idx = tblExames.getSelectedRow(); 
         
         if (idx >= 0) {
-            // Confirmação antes de excluir
+            
             int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este exame?", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+            
             if (confirmacao == JOptionPane.YES_OPTION) {
+
                 // Remove a vacina da lista
+
                 String exameExcluido = tblExames.getValueAt(idx,1).toString();
                 bancoDeDados.removerExame(exameExcluido);
 
                 // Atualiza a tabela
+                
                 carregarTabela(bancoDeDados.getExames());
 
                 // Limpa os campos e desabilita os botões de edição e exclusão
+                
                 limparCampos();
                 habilitarCampos(false, false, false);
                 habilitarBotoes(true, false, true, true, true);
                 limparBarraPesquisa();
             }
+            
         } else {
+            
             JOptionPane.showMessageDialog(null, "Selecione um exame para excluir.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            
         }   
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        
         limparCampos();
         habilitarCampos(false,false,false);
         habilitarBotoes(true,false,true,true,false);
         limparBarraPesquisa();
+        
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+//    Abaixo seguem métodos auxiliares para limpeza de campos e organização.
+    
     private void limparCampos(){
+       
        txtExame.setText("");
        txtPreco.setText("");
        cmbTipo.setSelectedIndex(0);
+       
     }
     
     private void habilitarCampos(boolean exame, boolean preco, boolean tipo){
+        
         txtExame.setEnabled(exame);
         txtPreco.setEnabled(preco);
         cmbTipo.setEnabled(tipo);
+        
     }
     
     private void habilitarBotoes(boolean cad, boolean salvar, boolean editar, boolean excluir, boolean cancelar){
+        
         btnCadastrar.setEnabled(cad);
         btnSalvar.setEnabled(salvar);
         btnEditar.setEnabled(editar);
         btnExcluir.setEnabled(excluir);
         btnCancelar.setEnabled(cancelar);
+        
     }
     
     private void limparBarraPesquisa(){
+        
         txtBarraPesquisa.setText(placeholderText);
         txtBarraPesquisa.setForeground(Color.GRAY);
+        
     }
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaCadastroExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaCadastroExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaCadastroExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaCadastroExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new telaCadastroExame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new telaCadastroExame().setVisible(true);
         });
     }
 

@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+// Interface Gráfica: telaPesquisarPaciente
+
 package telas;
 
-import classes.Funcionario;
 import classes.Paciente;
 import database.BancoDeDados;
 import java.awt.Color;
@@ -17,10 +14,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author analuisa
- */
 public class telaPesquisarPaciente extends javax.swing.JFrame {
 
     BancoDeDados database = new BancoDeDados(); 

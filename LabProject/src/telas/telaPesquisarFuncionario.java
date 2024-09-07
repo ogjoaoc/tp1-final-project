@@ -1,10 +1,13 @@
+// Interface Gráfica: telaPesquisarPaciente
+// Tela auxiliar para pesquisa de algum funcionário cadastrado na base de dados.
+// Pesquisa habilitada por CPF ou Nome.
+
 package telas;
 
 import database.BancoDeDados;
 import classes.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -16,12 +19,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class telaPesquisarFuncionario extends javax.swing.JFrame {
 
+//    Instanciando base de dados e configuração do placeHolder.
+    
     BancoDeDados database = new BancoDeDados(); 
     private final String placeholderText = "Pesquisar por CPF ou nome...";
     
+//    Construtor
+//    Por padrão com redimensionamento desabilitado e centralização.
+    
     public telaPesquisarFuncionario() {
+        
         initComponents();
-        this.setResizable(false); // Desativar redimensionamento da tela
+        this.setResizable(false); 
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        this.setTitle("Admin - Pesquisa de Funcionários");
+        
         
         // Ler os dados dos arquivos
         database.lerArquivo("atendente");
@@ -33,7 +45,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         // Inicializar a tabela com todos os funcionários
         carregarTabela(database.getFuncionarios());
         
-        // Configurar o texto de instrução
+        // Inicilizando o placeholder.
         configurarPlaceholder();
     }
 
@@ -69,38 +81,47 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
     }
 
     private void atualizarBusca() {
+        
         String textoBusca = jTextField1.getText().toLowerCase();
         
-        // Verificar se o campo de busca está vazio
         if (textoBusca.isEmpty() || textoBusca.equals(placeholderText.toLowerCase())) {
-            // Exibir todos os funcionários se o campo estiver vazio
-            carregarTabela(database.getFuncionarios());
-        } else {
-            // Filtrar os funcionários com base no nome ou CPF
-            List<Funcionario> funcionariosFiltrados = database.getFuncionarios().stream()
-                .filter(f -> f.getNome().toLowerCase().contains(textoBusca) || f.getCpf().contains(textoBusca))
-                .toList();
 
-            // Criar um novo ArrayList com os elementos filtrados
+            carregarTabela(database.getFuncionarios());
+
+        } else {
+
+//            Filtro utilizando a EDA List, e o método stream(), para retirar linhas com o nome ou cpf digitado.
+
+            List<Funcionario> funcionariosFiltrados = database.getFuncionarios().stream()
+                .filter(f -> f.getNome().toLowerCase().contains(textoBusca) || f.getCpf().contains(textoBusca)).toList();
+
+//             Convertendo a List para ArrayList, para seguir os padrões da base de dados.
             ArrayList<Funcionario> funcionariosArrayList = new ArrayList<>(funcionariosFiltrados);
 
-            // Atualizar a tabela
             carregarTabela(funcionariosArrayList);
         }
     }
 
+//    Método auxiliar para carregar dados dos funcionários da base de dados na tebela.
+    
     private void carregarTabela(ArrayList<Funcionario> funcionarios) {
+        
         DefaultTableModel model = (DefaultTableModel) tblFuncionarios.getModel();
-        model.setRowCount(0);  // Limpar a tabela
+        model.setRowCount(0);  
 
         for (Funcionario f : funcionarios) {
+            
             String funcao;
             if (f instanceof Enfermeiro) funcao = "Enfermeiro";
             else funcao = "Atendente";
             model.addRow(new Object[]{f.getNome(), f.getCpf(), f.getSexo(), f.getEmail(), funcao});
+        
         }
     }
 
+    
+//    Método auxiliar para configuração do placeholder.
+    
     private void configurarPlaceholder() {
         jTextField1.setText(placeholderText);
         jTextField1.setForeground(Color.GRAY);
@@ -129,7 +150,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         pnlBkGround = new javax.swing.JPanel();
         pnlPesquisa = new javax.swing.JPanel();
         lblPaciente = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();  // Alterado para JTextField
+        jTextField1 = new javax.swing.JTextField();  
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFuncionarios = new javax.swing.JTable();
         btnDemitir = new javax.swing.JButton();
@@ -139,7 +160,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(931, 584));
 
         pnlBkGround.setBackground(new java.awt.Color(248, 197, 190));
-        pnlBkGround.setLayout(new BorderLayout()); // Usar BorderLayout
+        pnlBkGround.setLayout(new BorderLayout()); 
 
         pnlPesquisa.setBackground(new java.awt.Color(248, 197, 190));
         javax.swing.GroupLayout pnlPesquisaLayout = new javax.swing.GroupLayout(pnlPesquisa);
@@ -174,28 +195,20 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
 
         btnDemitir.setFont(new java.awt.Font("Segoe UI", 1, 18));
         btnDemitir.setText("Demitir");
-        btnDemitir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDemitirActionPerformed(evt);
-            }
-        });
+        btnDemitir.addActionListener(this::btnDemitirActionPerformed);
 
         btnVoltarResult.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVoltarResult.setText("Voltar");
-        btnVoltarResult.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarResultActionPerformed(evt);
-            }
-        });
+        btnVoltarResult.addActionListener(this::btnVoltarResultActionPerformed);
         
-        JPanel btnPanel = new JPanel(); // Painel para o botão
+        JPanel btnPanel = new JPanel(); 
         btnPanel.setBackground(new java.awt.Color(248, 197, 190));
         btnPanel.add(btnDemitir);
-        btnPanel.add(btnVoltarResult); // Adicionar o botão ao painel
+        btnPanel.add(btnVoltarResult); 
 
         pnlBkGround.add(pnlPesquisa, BorderLayout.NORTH);
         pnlBkGround.add(jScrollPane1, BorderLayout.CENTER);
-        pnlBkGround.add(btnPanel, BorderLayout.SOUTH); // Adicionar o painel com o botão ao sul
+        pnlBkGround.add(btnPanel, BorderLayout.SOUTH); 
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,28 +233,41 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         this.dispose();
     }   
     
+    
+//    O botão de demitir é responsável pela exclusão do objeto Funcionário selecionado da base de dados.
+    
     private void btnDemitirActionPerformed(java.awt.event.ActionEvent evt) {
+
         int idx = tblFuncionarios.getSelectedRow();
         
         if (idx >= 0) {
-            // Confirmação antes de excluir
+
             int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja demitir o funcionário?", "Confirmar Demissão", JOptionPane.YES_NO_OPTION);
+            
             if (confirmacao == JOptionPane.YES_OPTION) {
-                // Remove o funcionario da lista
+
                 if(tblFuncionarios.getValueAt(idx,4).equals("Enfermeiro")){
+                    
                     String cpf = tblFuncionarios.getValueAt(idx,1).toString();
                     database.removerPessoa("enfermeiro", cpf);
+                    
                 }
                 
                 else if(tblFuncionarios.getValueAt(idx,4).equals("Atendente")){
+                    
                     String cpf = tblFuncionarios.getValueAt(idx,1).toString();
                     database.removerPessoa("atendente", cpf);
+                    
                 }
                 
                 carregarTabela(database.getFuncionarios());
+                
             }
+            
         } else{
+            
             JOptionPane.showMessageDialog(this,"Selecione um funcionário para demitir.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            
         }
     }  
 
@@ -253,19 +279,11 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaPesquisarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaPesquisarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaPesquisarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(telaPesquisarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new telaPesquisarFuncionario().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new telaPesquisarFuncionario().setVisible(true);
         });
     }
 

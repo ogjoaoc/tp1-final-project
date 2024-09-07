@@ -1,27 +1,45 @@
+// Interface Gráfica: telaLogin
+// Tela que redireciona os usuários após o login de acordo com suas especificações.
+// Usuário administrador possuí login padrão.
+// Cpf "000.000.000-00" e Senha 1234 ou, utilizando o atalho Ctrl + P.
+// A lógica da tela é procurar a partir da senha digitada algum usuário na base de dados. Se existir um usuário com aquela senha, é retornado o tipo de usuário
+// e o objeto do mesmo para armazenamento no Gerenciador de Login.
+
 package telas;
 
 import classes.*;
 import database.BancoDeDados;
 import interfaces.UserLogado;
-import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 public class telaLogin extends javax.swing.JFrame {
 
+//    Instanciando base de dados
+    
     BancoDeDados database = new BancoDeDados();
+
+//    Construtor
     
     public telaLogin() {
         
         initComponents();
         this.setResizable(false);
-        Image icon = new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage();
-        setIconImage(icon);
+        setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        
         database.lerArquivo("enfermeiro");
         database.lerArquivo("atendente");
+        
+//        Método auxiliar para garantir atalho na digitação dos campos
+
         txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
         
+//        O foco para os campos altera no momento que o usuário termina a digitação e pressiona enter.
+            
         @Override
         public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
@@ -38,7 +56,26 @@ public class telaLogin extends javax.swing.JFrame {
                 }
             }
         });
+        
+//        Módulo para atalho Ctrl + P ocasionar no login como Administrador.
 
+        this.getRootPane().getInputMap().put(KeyStroke.getKeyStroke("ctrl P"), "loginAdmin");
+        this.getRootPane().getActionMap().put("loginAdmin", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Toolkit.getDefaultToolkit().beep();
+                JOptionPane.showMessageDialog(null, "Login realizado com sucesso.", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                new telaAdmin().setVisible(true);
+                dispose();  
+            }
+        });
+        
+//         Módulo para atalho ESC ocasionar o retorno à tela de login (pressionar o botão Sair).
+
+        this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "exitToLogin");
+        this.getRootPane().getActionMap().put("exitToLogin", new AbstractAction() {
+        @Override public void actionPerformed(ActionEvent e) { btnSair.doClick(); } });
+        
     }
     
 
@@ -140,37 +177,24 @@ public class telaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         
+//        O método responsável pelo botão "Entrar" garante o redirecionamento correto do usuário, e a confirmação do Login, ou retificação do preenchimento dos campos.
+
         String login = txtLogin.getText();
         String senha = txtSenha.getText();
 
         if (login.equals("") || senha.equals("")) {
             
             Toolkit.getDefaultToolkit().beep();
-            JOptionPane.showMessageDialog(null,
-                "Todos os campos devem ser preenchidos.", "Aviso",
-                JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos.", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtLogin.setText("");
             txtSenha.setText("");
 
         } else if (login.equals("000.000.000-00") && senha.equals("1234")) {
             
-            // abrir interface de ADM (cadastros e afins)
+            Toolkit.getDefaultToolkit().beep(); 
+            JOptionPane.showMessageDialog(null,"Login realizado com sucesso.", "Mensagem",JOptionPane.INFORMATION_MESSAGE);
             telaAdmin telaAdmin = new telaAdmin();
             telaAdmin.setVisible(true);
-            this.dispose();
-            
-        } else if (login.equals("enfermeiro") && senha.equals("1234")) {
-            
-            // abrir interface do enfermeiro
-            telaEnfermeiro telaEnfermeiro = new telaEnfermeiro();
-            telaEnfermeiro.setVisible(true);
-            this.dispose();
-            
-        } else if (login.equals("atendente") && senha.equals("1234")) {
-            
-            // abrir interface do atendente
-            telaAtendente telaAtendente = new telaAtendente();
-            telaAtendente.setVisible(true);
             this.dispose();
             
         } else {
@@ -189,7 +213,8 @@ public class telaLogin extends javax.swing.JFrame {
                 }
             }
             
-            // Seta usuário logado no "SessionManager"
+            // Seta usuário logado no Gerenciador de Login.
+            
             GerenciadorLogin.getInstance().setUserLogado(userLogado);
             
             if(tipoDeUsuario.equals("")) {
@@ -199,7 +224,6 @@ public class telaLogin extends javax.swing.JFrame {
             
             } else if(tipoDeUsuario.equals("atendente")) {
                 
-                // abrir interface atendente
                 Toolkit.getDefaultToolkit().beep();
                 JOptionPane.showMessageDialog(null,"Login realizado com sucesso.", "Mensagem",JOptionPane.INFORMATION_MESSAGE);
                 telaAtendente telaAtendente = new telaAtendente();
@@ -207,7 +231,7 @@ public class telaLogin extends javax.swing.JFrame {
                 this.dispose();
                 
             } else if (tipoDeUsuario.equals("enfermeiro")) {
-                // abrir interface enfermeiro
+                
                 Toolkit.getDefaultToolkit().beep();
                 JOptionPane.showMessageDialog(null,"Login realizado com sucesso.", "Mensagem",JOptionPane.INFORMATION_MESSAGE);
                 telaEnfermeiro telaEnfermeiro = new telaEnfermeiro();
@@ -225,34 +249,7 @@ public class telaLogin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new telaLogin().setVisible(true);
