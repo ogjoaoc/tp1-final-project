@@ -8,6 +8,7 @@ package telas;
 import database.BancoDeDados;
 import classes.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
         });
         
         limparCampos();
+        escAtalho();
         habilitarCampos(false,false,false);
         habilitarBotoes(true,false,true,true,false);
         
@@ -166,6 +168,17 @@ public class telaCadastroExame extends javax.swing.JFrame {
                 
             }
         });
+    }
+    
+    
+//    Módulo auxiliar para tecla ESCAPE retornar a tela anterior
+    
+    private void escAtalho() {
+
+        this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "exitToLogin");
+        this.getRootPane().getActionMap().put("exitToLogin", new AbstractAction() {
+        @Override public void actionPerformed(ActionEvent e) { btnSair.doClick(); } });
+        
     }
     
 //        Método auxiliar para carregar dados dos exames da base de dados na tebela.

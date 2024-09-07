@@ -8,6 +8,7 @@ import database.BancoDeDados;
 import classes.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         this.setResizable(false); 
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
         this.setTitle("Admin - Pesquisa de Funcionários");
+        escAtalho();
         
         
         // Ler os dados dos arquivos
@@ -47,6 +49,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         
         // Inicilizando o placeholder.
         configurarPlaceholder();
+        
     }
 
     private Timer debounceTimer;
@@ -143,6 +146,16 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    
+//    Módulo para ao pressionar a tecla ESCAPE retornar a tela anterior.
+    
+    private void escAtalho() {
+
+        this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "exitToLogin");
+        this.getRootPane().getActionMap().put("exitToLogin", new AbstractAction() {
+        @Override public void actionPerformed(ActionEvent e) { btnVoltarResult.doClick(); } });
+        
     }
 
     @SuppressWarnings("unchecked")

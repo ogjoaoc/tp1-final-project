@@ -76,6 +76,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
         });
         
         limparCampos();
+        escAtalho();
         habilitarCampos(false,false,false,false);
         habilitarBotoes(true,false,true,true,false);
         
@@ -167,6 +168,17 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
             }
         });
     }
+    
+//             Módulo para ao pressionar ESCAPE retornar a tela anterior
+    
+    private void escAtalho() {
+
+        this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "exitToLogin");
+        this.getRootPane().getActionMap().put("exitToLogin", new AbstractAction() {
+        @Override public void actionPerformed(ActionEvent e) { btnVoltar.doClick(); } });
+        
+    }
+            
     
     private void limparBarraPesquisa(){
         txtBarraPesquisa.setText(placeholderText);

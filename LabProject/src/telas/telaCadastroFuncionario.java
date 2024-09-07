@@ -7,13 +7,16 @@ import classes.Atendente;
 import classes.Enfermeiro;
 import database.BancoDeDados;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.util.Random;
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 public final class telaCadastroFuncionario extends javax.swing.JFrame {
 
-    // Instanciando database    
+//     Instanciando database    
     
     BancoDeDados bancoDeDados = new BancoDeDados();
 
@@ -31,6 +34,12 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
         bancoDeDados.lerArquivo("enfermeiro");
         bancoDeDados.lerArquivo("atendente");
         inicializarButtonGroup();
+        
+        //        Módulo para ao pressionar ESCAPE retornar a tela anterior
+
+        this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "exitToLogin");
+        this.getRootPane().getActionMap().put("exitToLogin", new AbstractAction() {
+        @Override public void actionPerformed(ActionEvent e) { btnSair.doClick(); } });
         
     }
     
