@@ -11,10 +11,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
-/**
- *
- * @author joaoc
- */
 public class telaAgendarExame extends javax.swing.JFrame {
 
     private BancoDeDados database = new BancoDeDados();
@@ -36,13 +32,16 @@ public class telaAgendarExame extends javax.swing.JFrame {
     }
 
     private void configurarBotoes() {
-        // agrupando os radio buttons
+        
+//         Agrupando os radio buttons
+
         buttonGroup = new ButtonGroup();
         buttonGroup.add(jRadioButton1);
         buttonGroup.add(jRadioButton2);
 
-        // adicionar listener para ativar/desativar a combobox com base no radio button selecionado
-        ActionListener actionListener = new ActionListener() {
+//         Adicionar listener para ativar/desativar a combobox com base no radio button selecionado
+        
+ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 txtPreco.setText("");
@@ -281,9 +280,6 @@ public class telaAgendarExame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgendarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

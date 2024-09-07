@@ -1,3 +1,9 @@
+// Interface Gráfica: telaAgendamento
+// Responsável pela gestão de agendamentos de exames e vacinas para pacientes.
+// Permite adicionar exames e vacinas ao check-out, exibir os procedimentos agendados,
+// e avançar para a tela de pagamento. Inclui funcionalidade de auto-completar para nomes
+// de pacientes e placeholders para campos de texto.
+
 package telas;
 
 import database.BancoDeDados;
@@ -23,32 +29,45 @@ import javax.swing.event.DocumentListener;
 
 public class telaAgendamento extends javax.swing.JFrame {
     
+//    Instanciando banco de dados e auxiliares.
+    
     private JPopupMenu popupPaciente = new JPopupMenu();
     protected BancoDeDados database = new BancoDeDados(); 
     private Timer debounceTimer;
     
+//    Declaração de EDA's auxiliares para manipulação do "carrinho".
+    
     ArrayList<Exame> checkOutExames;
     ArrayList<Vacina> checkOutVacinas;
     
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.
     
     public telaAgendamento() throws IOException, FileNotFoundException, ParseException {
+        
         initComponents();
         this.setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
+//        Métodos para inicialização de placeholders
+
         setupAutoComplete();
         setupPlaceholders();
         
+//        Carregando dados dos pacientes, para pesquisa
+
         database.lerArquivo("paciente");
         
+//       Instanciando EDA's e atualizando tabela com o "carrinho".
+
         this.checkOutExames = new ArrayList<>();
         this.checkOutVacinas = new ArrayList<>();
         atualizarTabelaCheckOut();
         
         database.lerArquivoAgendamento();
         
-        // DEBUG
+//         Trecho de DEBUG...           ---------------------------------------------
         for (Agendamento a : database.getAgendamentos()) {;
             System.out.println("Agendamento ID: " + a.getId());
             System.out.println("Data de Criação: " + a.getDataCriado());
@@ -76,8 +95,10 @@ public class telaAgendamento extends javax.swing.JFrame {
 
             System.out.println("-------------------------------------------------");
         }
-       
+//      ---------------------------------------------------------------------------------- 
     }
+    
+//    Método para reinicializar campos.
     
     protected void limparTela(){
         txtPaciente.setText("");
@@ -85,6 +106,8 @@ public class telaAgendamento extends javax.swing.JFrame {
         checkOutVacinas.clear();
         atualizarTabelaCheckOut();
     }
+    
+//    getter do objeto pacienteSelecionado.
     
     protected Paciente getPacienteSelecionado() {
         String nomePacienteSelecionado = txtPaciente.getText();
@@ -96,6 +119,8 @@ public class telaAgendamento extends javax.swing.JFrame {
         }
         return null;
     }
+    
+//    Método para atualização da tabela de checkOut.
     
     protected void atualizarTabelaCheckOut() {
         String[] colunas = {"Procedimento", "Tipo", "Enfermeiro", "Valor", "Data de Realização"};
@@ -125,6 +150,7 @@ public class telaAgendamento extends javax.swing.JFrame {
         jTable1.setModel(modeloTabela);
     }
     
+//    Getters e setters.
 
     public ArrayList<Exame> getCheckOutExames() {
         return checkOutExames;
@@ -143,10 +169,17 @@ public class telaAgendamento extends javax.swing.JFrame {
     }
     
     
+//     Configura a funcionalidade de auto-completar para o campo de texto do paciente, e
+//     adiciona um DocumentListener ao campo de texto que ativa o auto-completar quando
+//     o texto é alterado.
     
     private void setupAutoComplete() {
         txtPaciente.getDocument().addDocumentListener(new telaAgendamento.AutoCompleteListener(txtPaciente));
     }
+    
+//     Classe interna que implementa DocumentListener para fornecer sugestões de auto-completar.
+//     Utiliza um Timer para debouncer e mostra sugestões em um JPopupMenu com base no texto
+//     inserido pelo usuário, poder atualizar a lista de sugestões a partir dos nomes de pacientes.
     
     private class AutoCompleteListener implements DocumentListener {
         private JTextField textField;
@@ -186,7 +219,9 @@ public class telaAgendamento extends javax.swing.JFrame {
             debounceTimer.setRepeats(false);
             debounceTimer.start();
         }
-
+        
+        // Exibe as sugestões no popup menu com base no texto inserido.
+        
         private void showSuggestions() {
             
             popupMenu.removeAll();
@@ -219,6 +254,8 @@ public class telaAgendamento extends javax.swing.JFrame {
             }
           
         }
+        
+        // Retorna uma lista de sugestões com base no texto de busca fornecido.
 
         private ArrayList<String> buscarSugestoes(String textoBusca) {
             ArrayList<String> resultados = new ArrayList<>();
@@ -234,6 +271,10 @@ public class telaAgendamento extends javax.swing.JFrame {
         configurarPlaceholder(txtPaciente, "Digite o nome do paciente...");     
     }
 
+//     Configura um placeholder para um campo de texto. O placeholder é exibido quando
+//     o campo está vazio e é substituído quando o campo recebe o foco, podendo retornar o texto
+//     e a cor original quando o campo perde o foco.
+    
     private void configurarPlaceholder(JTextField textField, String placeholderText) {
         textField.setText(placeholderText);
         textField.setForeground(Color.GRAY);
@@ -394,6 +435,9 @@ public class telaAgendamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
+        
+//        Só é possível avançar caso todos os campos e pelomenos 1 exame, ou 1 vacina, tenha(m) sidos adicionados ao check-out.
+
         if(checkOutVacinas.size() == 0 && checkOutExames.size() == 0){
             JOptionPane.showMessageDialog(null,"Nenhum procedimento cadastrado.", "Aviso",JOptionPane.WARNING_MESSAGE);                
         } else {
@@ -401,6 +445,7 @@ public class telaAgendamento extends javax.swing.JFrame {
             telaPag.setVisible(true);
             this.dispose();
         }
+        
     }//GEN-LAST:event_btnAvancarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
