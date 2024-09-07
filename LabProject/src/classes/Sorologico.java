@@ -1,9 +1,17 @@
+// Classe: Hemograma
+// Classe com alta especialização para classificar um Exame do tipo Sorológico.
+
 package classes;
 
 public class Sorologico extends Exame{
+    
+//    Atributo de um exame do tipo Sorológico;
+//    patologia: tipo de agente requisitado para teste ou diagnóstico dado o Paciente (ex: Dengue, Zika Vírus, Aids).
+    
     private String patologia;
     
-    // Construtores
+//      Construtores
+    
     public Sorologico(){};
 
     public Sorologico(String patologia, double preco) {
@@ -16,7 +24,8 @@ public class Sorologico extends Exame{
         this.patologia = patologia;
     }
 
-    // métodos getters e setters
+//    Getters e setters
+    
     public String getPatologia(){
         return this.patologia;
     }

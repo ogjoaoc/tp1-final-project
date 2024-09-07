@@ -1,14 +1,29 @@
+// Classe: Exame
+// A classe é abstrata, e pode ser instanciada de forma polimórfica.
+// Um exame é instanciado em diferentes momentos, tanto no cadastro de novos tipos de Exames, quanto
+// durante o agendamento por parte de um usuário do tipo Atendente.
+// Há métodos auxiliares para identificação de subclasses.
+
 package classes;
 
 public abstract class Exame {
+    
+//     Atributos de um Exame:
+//     - dataRealizacao: A data em que o exame deverá ser realizado. Exemplo: "2024-10-15" (representando 15 de outubro de 2024).
+//     - pacienteAssociado: O paciente associado ao exame. Exemplo: um objeto do tipo Paciente que representa o paciente que vai fazer o exame.
+//     - enfermeiroAssociado: O enfermeiro associado ao exame. Exemplo: um objeto do tipo Enfermeiro que é responsável pelo exame.
+//     - preco: O preço do exame. Exemplo: 150.00 (representando o custo de 150 reais do exame).
+//     - status: Indica se o exame foi concluído (true) ou não (false). Exemplo: true (o exame foi concluído) ou false (o exame não foi concluído).
+    
+    
     private String dataRealizacao;
     private Paciente pacienteAssociado;
     private Enfermeiro enfermeiroAssociado;
     private double preco;
     private boolean status;
     
+ //     Construtores
     
-    // construtores
     public Exame(){};
     
     public Exame(double preco){
@@ -22,6 +37,8 @@ public abstract class Exame {
         this.preco = preco;
         this.status = status;
     }
+    
+//    Método auxiliar para saber qual o valor do desconto oferecido pelos diferentes tipos de Convênios cadastrados.
     
     public double precoConvenio(String convenio){
         switch (convenio){
@@ -50,6 +67,8 @@ public abstract class Exame {
         }
     }
 
+//    Getter e setter
+    
     public String getDataRealizacao() {
         return dataRealizacao;
     }

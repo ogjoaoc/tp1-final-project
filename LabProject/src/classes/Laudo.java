@@ -1,11 +1,5 @@
 package classes;
 
-import java.util.Date;
-
-/**
- *
- * @author joaoc
- */
 public class Laudo {
     String dataCriacao;
     Paciente pacienteAssociado;

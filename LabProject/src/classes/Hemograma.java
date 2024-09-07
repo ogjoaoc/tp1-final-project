@@ -1,9 +1,17 @@
+// Classe: Hemograma
+// Classe com alta especialização para classificar um Exame do tipo Hemograma.
+
 package classes;
 
 public class Hemograma extends Exame {
+    
+//    Atributo de um exame do tipo Hemograma;
+//    alvo: tipo de agente requisitado para análise no sangue do Paciente.
+    
     private String alvo;
     
-    // Construtores
+//    Construtores
+    
     public Hemograma(){};
 
     public Hemograma(String alvo, double preco) {
@@ -16,7 +24,9 @@ public class Hemograma extends Exame {
         this.alvo = alvo;
     }
 
-    // métodos getters e setters
+
+//    Getters e setters
+    
     public String getAlvo(){
         return this.alvo;
     }

@@ -1,6 +1,25 @@
+// Classe: Vacina
+// Uma vacina é instanciada em diferentes momentos, tanto no cadastro de novos tipos de Vacinas, quanto
+// durante o agendamento por parte de um usuário do tipo Atendente.
+// Há métodos auxiliares para identificação do preço do convênio e aplicação da vacina.
+
+
 package classes;
 
 public class Vacina {
+    
+//     Atributos de uma Vacina:
+//     - tipoVacina: Tipo da vacina (ex: Covid-19, Gripe, Hepatite).
+//     - validade: Data de validade da vacina.
+//     - dose: Dose da vacina (ex: 1ª dose, 2ª dose, dose de reforço).
+//     - disponivel: Indica se a vacina está disponível em estoque (true) ou não (false).
+//     - status: Indica se a vacina foi aplicada (true) ou ainda está pendente (false).
+//     - enfermeiroAssociado: Enfermeiro responsável pela aplicação da vacina.
+//     - pacienteAssociado: Paciente que receberá ou recebeu a vacina.
+//     - qtd: Quantidade disponível da vacina.
+//     - preco: Preço da vacina.
+
+    
     private String tipoVacina, validade, dose;
     private boolean disponivel, status;
     private Enfermeiro enfermeiroAssociado;
@@ -8,7 +27,8 @@ public class Vacina {
     private int qtd;
     private double preco;
     
-    // Construtores
+//      Construtores
+    
     public Vacina(){}; 
     
     public Vacina(String tipoVacina, String validade, boolean disponivel, int qtd, double preco) {
@@ -28,6 +48,8 @@ public class Vacina {
         this.preco = preco;
         this.status = status;
     }
+    
+//    Método auxiliar para saber qual o valor do desconto oferecido pelos diferentes tipos de Convênios cadastrados.
     
     public double precoConvenio(String convenio){
         switch (convenio){
@@ -56,7 +78,8 @@ public class Vacina {
         }
     }
     
-    // métodos getters e setters
+//      Getters e setters
+    
     public String getTipoVacina() {
         return tipoVacina;
     }
@@ -112,6 +135,9 @@ public class Vacina {
     public void setStatus(boolean status){
         this.status = status;
     }
+    
+    
+//    Método auxiliar responsável por validar a aplicação de uma vacina.
     
     public boolean aplicaVacina() {
         if (disponivel && qtd > 0) {

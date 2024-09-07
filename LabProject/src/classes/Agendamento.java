@@ -1,3 +1,8 @@
+// Classe: Agendamento
+// Objeto instanciado por um usuário do tipo Atendente ao final da interface de pagamento.
+// Fito de de armazenar o conjunto de exames e vacinas de um Paciente no sistema. 
+// Também é utilizado na logística de realização de exames dos usuários do tipo Enfermeiro.
+
 package classes;
 
 import java.util.ArrayList;
@@ -5,13 +10,25 @@ import java.util.Date;
 
 public class Agendamento {
     
-    private int id; 
+    
+//    Atributos de um agendamento;
+//    - Identificação.
+//    - Vetor de Exames associados aquele agendamento.
+//    - Vetor de vacinas associadas aquele agendamento.
+//    - Data de criação.
+//    - Valor total $.
+
+            private int id; 
     private ArrayList<Exame> listaExames;
     private ArrayList<Vacina> listaVacinas;
     private Date dataCriado;
     private double valorTotal = 0f;
     
-    // gerar csv no formato id, tipo, cpfPaciente, cpfEnfermeiro, dataCriado, dataAgendado, { info exame ou info vacina }
+//     Um agendamento é salvo na database no arquivo dadosAgendamento.csv
+//     no formato id,dataCriacao,valorTotal,subtipoExame(Vacina),tipoExame(Vacina),dataRealizacao,cpfPacienteAssociado,cpfEnfermeiroAssociado,status(Realizado ou não)
+
+    
+//    Construtores
     
     public Agendamento () {
         this.listaExames = new ArrayList<>();
@@ -25,6 +42,8 @@ public class Agendamento {
         this.dataCriado = new Date();
         this.valorTotal = valorTotal;
     }
+    
+//    Getters e setters
     
     public int getId() {
         return id;
