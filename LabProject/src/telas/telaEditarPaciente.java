@@ -19,6 +19,8 @@ public class telaEditarPaciente extends javax.swing.JFrame {
 
     }
     
+    // Construtor recebe um paciente e a instancia da tela pesquisar paciente que foi chamado,
+    // E carrega os dados do paciente nos campos
     public telaEditarPaciente(Paciente p, telaPesquisarPaciente telaPesquisarPaciente) {
         initComponents();
         this.setResizable(false);
@@ -222,6 +224,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTipoSanguineoActionPerformed
 
+    // Botão para salvar os dados editados do paciente
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if (txtNome.getText().equals("") ||
             txtCPF.getText().equals("") ||

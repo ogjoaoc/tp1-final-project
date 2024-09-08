@@ -42,6 +42,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
     
     private Timer debounceTimer;
 
+    // Método que detecta qualquer edição no campo de busca e chama debounceBusca
     private void addSearchListener() {
         txtBusca.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -66,11 +67,12 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
             debounceTimer.stop();
         }
         
-        debounceTimer = new Timer(300, e -> atualizarBusca());  // 300ms debounce
+        debounceTimer = new Timer(300, e -> atualizarBusca());  // instancia o Timer que após 300ms chama atualizarBusca
         debounceTimer.setRepeats(false);  // Executar apenas uma vez
-        debounceTimer.start();
+        debounceTimer.start(); // Inicia o Timer
     }
 
+    // Atualiza a tabela com os funcionarios de acordo com o texto da busca (CPF ou nome)
     private void atualizarBusca() {
         String textoBusca = txtBusca.getText().toLowerCase();
         
@@ -78,7 +80,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
         if (textoBusca.isEmpty() || textoBusca.equals(placeholderText.toLowerCase())) {
             carregarTabela(database.getPacientes());
         } else {
-            // Filtrar os funcionários com base no nome ou CPF
+            // Filtrar os Pacientes com base no nome ou CPF
             List<Paciente> pacientesFiltrados = database.getPacientes().stream()
                 .filter(f -> f.getNome().toLowerCase().contains(textoBusca) || f.getCpf().contains(textoBusca))
                 .toList();
@@ -86,11 +88,12 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
             // Criar um novo ArrayList com os elementos filtrados
             ArrayList<Paciente> pacientesArrayList = new ArrayList<>(pacientesFiltrados);
 
-            // Atualizar a tabela
+            // Atualiza a tabela
             carregarTabela(pacientesArrayList);
         }
     }
-    
+   
+    // Método para carregar dados dos funcionários da base de dados na tebela.
     public void carregarTabela(ArrayList<Paciente> pacientes) {
         DefaultTableModel model = (DefaultTableModel) tblPacientes.getModel();
         model.setRowCount(0);  // Limpar a tabela
@@ -104,6 +107,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
         carregarTabela(database.getPacientes());
     }
     
+    //    Método auxiliar para configuração do placeholder.
     private void configurarPlaceholder() {
         txtBusca.setText(placeholderText);
         txtBusca.setForeground(Color.GRAY);
@@ -264,7 +268,8 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscaActionPerformed
-
+    
+    // Ao clicar em um Paciente na tabela abre uma tela para edição do paciente
     private void tblPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPacientesMouseClicked
         int idx = tblPacientes.getSelectedRow();
         
@@ -272,7 +277,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
         Paciente paciente = database.encontrarPaciente((String) cpf);
         
         if (editPaciente != null && editPaciente.isVisible()) {
-            // Se estiver visível, traz para frente
+            // Se tela estiver aberta, traz para frente
             editPaciente.toFront();
             editPaciente.requestFocus();
         } else {

@@ -54,8 +54,9 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
 
     private Timer debounceTimer;
 
+    // Método que detecta qualquer edição no campo de busca e chama debounceBusca
     private void addSearchListener() {
-        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+        txtBusca.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 debounceBusca();
@@ -78,35 +79,36 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
             debounceTimer.stop();
         }
 
-        debounceTimer = new Timer(300, e -> atualizarBusca());  // 300ms debounce
+        debounceTimer = new Timer(300, e -> atualizarBusca());  // instancia o Timer que após 300ms chama atualizarBusca
         debounceTimer.setRepeats(false);  // Executar apenas uma vez
-        debounceTimer.start();
+        debounceTimer.start(); // Inicia o timer
     }
 
+    // Atualiza a tabela com os funcionarios de acordo com o texto da busca (CPF ou nome)
     private void atualizarBusca() {
         
-        String textoBusca = jTextField1.getText().toLowerCase();
+        String textoBusca = txtBusca.getText().toLowerCase();
         
+        // Verificar se o campo de busca está vazio
         if (textoBusca.isEmpty() || textoBusca.equals(placeholderText.toLowerCase())) {
 
             carregarTabela(database.getFuncionarios());
 
         } else {
 
-//            Filtro utilizando a EDA List, e o método stream(), para retirar linhas com o nome ou cpf digitado.
-
+            // Filtrar os Pacientes com base no nome ou CPF
             List<Funcionario> funcionariosFiltrados = database.getFuncionarios().stream()
                 .filter(f -> f.getNome().toLowerCase().contains(textoBusca) || f.getCpf().contains(textoBusca)).toList();
 
-//             Convertendo a List para ArrayList, para seguir os padrões da base de dados.
+            // Criar um novo ArrayList com os elementos filtrados
             ArrayList<Funcionario> funcionariosArrayList = new ArrayList<>(funcionariosFiltrados);
 
+            // Atualiza a tabela
             carregarTabela(funcionariosArrayList);
         }
     }
 
-//    Método auxiliar para carregar dados dos funcionários da base de dados na tebela.
-    
+    // Método para carregar dados dos funcionários da base de dados na tebela.
     private void carregarTabela(ArrayList<Funcionario> funcionarios) {
         
         DefaultTableModel model = (DefaultTableModel) tblFuncionarios.getModel();
@@ -123,26 +125,25 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
     }
 
     
-//    Método auxiliar para configuração do placeholder.
-    
+    // Método auxiliar para configuração do placeholder.
     private void configurarPlaceholder() {
-        jTextField1.setText(placeholderText);
-        jTextField1.setForeground(Color.GRAY);
+        txtBusca.setText(placeholderText);
+        txtBusca.setForeground(Color.GRAY);
 
-        jTextField1.addFocusListener(new FocusListener() {
+        txtBusca.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (jTextField1.getText().equals(placeholderText)) {
-                    jTextField1.setText("");
-                    jTextField1.setForeground(Color.BLACK);
+                if (txtBusca.getText().equals(placeholderText)) {
+                    txtBusca.setText("");
+                    txtBusca.setForeground(Color.BLACK);
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (jTextField1.getText().isEmpty()) {
-                    jTextField1.setForeground(Color.GRAY);
-                    jTextField1.setText(placeholderText);
+                if (txtBusca.getText().isEmpty()) {
+                    txtBusca.setForeground(Color.GRAY);
+                    txtBusca.setText(placeholderText);
                 }
             }
         });
@@ -163,7 +164,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         pnlBkGround = new javax.swing.JPanel();
         pnlPesquisa = new javax.swing.JPanel();
         lblPaciente = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();  
+        txtBusca = new javax.swing.JTextField();  
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFuncionarios = new javax.swing.JTable();
         btnDemitir = new javax.swing.JButton();
@@ -184,7 +185,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
                 .addGap(156, 156, 156)
                 .addComponent(lblPaciente)
                 .addGap(27, 27, 27)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(174, Short.MAX_VALUE))
         );
         pnlPesquisaLayout.setVerticalGroup(
@@ -193,7 +194,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPaciente)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
@@ -240,6 +241,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    // Ao clicar em voltar, vai para tela principal do admin
     private void btnVoltarResultActionPerformed(java.awt.event.ActionEvent evt) {                                                
         telaAdmin admin = new telaAdmin();
         admin.setVisible(true);
@@ -303,7 +305,7 @@ public class telaPesquisarFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnVoltarResult;
     private javax.swing.JButton btnDemitir;
-    private javax.swing.JTextField jTextField1;  // Alterado para JTextField
+    private javax.swing.JTextField txtBusca;  // Alterado para JTextField
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPaciente;
     private javax.swing.JPanel pnlBkGround;
