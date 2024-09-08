@@ -1,3 +1,9 @@
+// Interface Gráfica: telaAtendente
+// responsável pela conexão das principais funcões do usuário Atendente
+// Cadastrar pacientes, pesquisar e editar os dados
+// Adicionar agendamentos, com exames e vacinas, e finalizar pagamento
+// Alterar os dados da própria conta
+
 package telas;
 
 import classes.*;
@@ -10,20 +16,28 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class telaAtendente extends javax.swing.JFrame {
-    
+
+//    Variável para armazenar o usuário logado
     Atendente userLogado = (Atendente) GerenciadorLogin.getInstance().getFuncionario();
     
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.
+    
     public telaAtendente() {
-        
         initComponents();
         this.setResizable(false);
-        lblNome.setText("                     Logado desde: " + formatarHoraLogin());
+        setLocationRelativeTo(null);
+        
+//        Carrega a data e o horário que o usuário entrou no sistema        
+        lblNome.setText("Logado desde: " + formatarHoraLogin());
 
+//        Define o ícone e o título da janela
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
         this.setTitle("Atendente - Gerenciamento");
         
     }
     
+//    Método para formatar a data e o horário  
     public String formatarHoraLogin() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm:ss");
         LocalDateTime dataHoraLogin = GerenciadorLogin.getInstance().getDataHoraLogin();
@@ -41,10 +55,9 @@ public class telaAtendente extends javax.swing.JFrame {
         btnCadastrarPaciente = new javax.swing.JButton();
         btnAgendamento = new javax.swing.JButton();
         btnMinhaConta = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        pnlTitle = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 197, 190));
@@ -53,7 +66,7 @@ public class telaAtendente extends javax.swing.JFrame {
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        background.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 450, 340, 30));
+        background.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 320, 30));
 
         lblInfo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblInfo.setText("<html>Logado como: <i>Atendente</i></html>");
@@ -112,40 +125,28 @@ public class telaAtendente extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
+        pnlTitle.setLayout(pnlTitleLayout);
+        pnlTitleLayout.setHorizontalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
                 .addContainerGap(308, Short.MAX_VALUE)
-                .addComponent(txtTitle)
-                .addGap(271, 271, 271)
+                .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(261, 261, 261)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTitle)
-                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        pnlTitleLayout.setVerticalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 785, -1));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 23, Short.MAX_VALUE)
-        );
-
-        background.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 785, -1));
+        background.add(pnlTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 785, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,10 +241,9 @@ public class telaAtendente extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarPaciente1;
     private javax.swing.JButton btnMinhaConta;
     private javax.swing.JButton btnSair;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JPanel pnlTitle;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 }

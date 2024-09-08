@@ -61,7 +61,7 @@ public class telaDemandas extends javax.swing.JFrame {
         
     }
 
-//    Filtra os agendamentos a partir do cpf do Enfermeiro logado.
+//  Filtra os agendamentos a partir do cpf do Enfermeiro logado.
     
     private void filtraAgendamentos(){
         String cpfEnfermeiro = userLogado.getCpf();
@@ -124,7 +124,7 @@ public class telaDemandas extends javax.swing.JFrame {
     System.out.println("Demandas Concluídas: " + listaDemandasConcluidas.size());
 }
 
-//        Método auxiliar para carregar dados dos exames e vacinas da lista de demandas na tebela.
+//  Método auxiliar para carregar dados dos exames e vacinas da lista de demandas na tebela.
  
     private void carregarTabela(){
         String[] colunas = {"ID", "Procedimento", "Tipo", "Data", "Status"};
