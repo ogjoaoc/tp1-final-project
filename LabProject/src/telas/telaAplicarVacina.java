@@ -517,9 +517,9 @@ public final class telaAplicarVacina extends javax.swing.JFrame {
         
         } else {
             
-            ComprovanteVacina comprovanteAtual = new ComprovanteVacina(vacinaAplicada.getPacienteAssociado(), vacinaAplicada.getEnfermeiroAssociado());
+            //ComprovanteVacina comprovanteAtual = new ComprovanteVacina(vacinaAplicada.getPacienteAssociado(), vacinaAplicada.getEnfermeiroAssociado());
             
-            templateComprovanteVacina resultado = new templateComprovanteVacina(comprovanteAtual); 
+            templateComprovanteVacina resultado = new templateComprovanteVacina(vacinaAplicada); 
             resultado.setVisible(false);
             
             

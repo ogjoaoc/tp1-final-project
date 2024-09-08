@@ -1,6 +1,9 @@
 package telas;
 
 import classes.ComprovanteVacina;
+import classes.Vacina;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class templateComprovanteVacina extends javax.swing.JFrame {
 
@@ -8,11 +11,16 @@ public class templateComprovanteVacina extends javax.swing.JFrame {
     
     public templateComprovanteVacina() {}
     
-    public templateComprovanteVacina(ComprovanteVacina comprovante) {
+    public templateComprovanteVacina(Vacina vacina) {
         
         initComponents();
-        this.comprovanteVacinaAtual = comprovante;
-    
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        txtNome.setText(vacina.getPacienteAssociado().getNome());
+        txtData.setText(LocalDate.now().format(formatter));
+        txtEnfermeiro.setText(vacina.getEnfermeiroAssociado().getNome());
+        txtVacina.setText(vacina.getTipoVacina());
+        txtDose.setText(vacina.getDose());
     }
 
     @SuppressWarnings("unchecked")
