@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import static java.lang.Double.parseDouble;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -38,6 +40,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        atualizarCalendario();
     
     //  Configura os botões da interface e o comboBox de exames
         configurarBotoes();
@@ -167,6 +170,13 @@ public class telaAgendarExame extends javax.swing.JFrame {
             }
         }
     }
+    
+    private void atualizarCalendario() {
+        calendario.setLocale(new Locale("pt", "BR"));
+        calendario.setDateFormatString("dd/MM/yyyy");
+        calendarioUnable.setLocale(new Locale("pt", "BR"));
+        calendarioUnable.setEnabled(false);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -175,7 +185,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         panelTitle = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
-        lblPreco = new javax.swing.JLabel();
+        lblRealizar = new javax.swing.JLabel();
         rbtnSorologico = new javax.swing.JRadioButton();
         rbtnHemograma = new javax.swing.JRadioButton();
         lblExame = new javax.swing.JLabel();
@@ -184,8 +194,12 @@ public class telaAgendarExame extends javax.swing.JFrame {
         cbTipoExame = new javax.swing.JComboBox<>();
         lblEnfermeiro = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
-        btnAgendar = new javax.swing.JButton();
+        lblPreco1 = new javax.swing.JLabel();
+        calendario = new com.toedter.calendar.JDateChooser();
         btnVoltar = new javax.swing.JButton();
+        btnAgendar = new javax.swing.JButton();
+        panelCalendario = new javax.swing.JPanel();
+        calendarioUnable = new com.toedter.calendar.JCalendar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -215,47 +229,46 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
         background.add(panelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 60));
 
-        lblPreco.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
-        lblPreco.setText("Preço:");
-        background.add(lblPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 40));
+        lblRealizar.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        lblRealizar.setText("Realizar em:");
+        background.add(lblRealizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 120, 40));
 
         rbtnSorologico.setBackground(new java.awt.Color(248, 197, 190));
         rbtnSorologico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rbtnSorologico.setText("Sorológico");
-        background.add(rbtnSorologico, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
+        background.add(rbtnSorologico, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         rbtnHemograma.setBackground(new java.awt.Color(248, 197, 190));
         rbtnHemograma.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rbtnHemograma.setText("Hemograma");
-        background.add(rbtnHemograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        background.add(rbtnHemograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, -1, -1));
 
         lblExame.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         lblExame.setText("Exame:");
         background.add(lblExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 120, 40));
 
         cbEnfermeiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do enfermeiro...", " " }));
-        background.add(cbEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 190, 40));
+        background.add(cbEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 190, 40));
 
         lblTipo.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         lblTipo.setText("Tipo:");
         background.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 120, 40));
 
         cbTipoExame.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um tipo...", " " }));
-        background.add(cbTipoExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 190, 40));
+        background.add(cbTipoExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 190, 40));
 
         lblEnfermeiro.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         lblEnfermeiro.setText("Enfermeiro:");
         background.add(lblEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 120, 40));
-        background.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 190, 40));
+        background.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 190, 40));
 
-        btnAgendar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgendar.setText("Agendar");
-        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgendarActionPerformed(evt);
-            }
-        });
-        background.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 140, 40));
+        lblPreco1.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        lblPreco1.setText("Preço:");
+        background.add(lblPreco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 40));
+
+        calendario.setDateFormatString("dd/MM/yyyy");
+        calendario.setMinSelectableDate(new java.util.Date(-62135755120000L));
+        background.add(calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 190, 40));
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnVoltar.setText("Voltar");
@@ -264,7 +277,31 @@ public class telaAgendarExame extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        background.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 140, 40));
+        background.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 140, 40));
+
+        btnAgendar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgendar.setText("Agendar");
+        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendarActionPerformed(evt);
+            }
+        });
+        background.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 140, 40));
+
+        calendarioUnable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout panelCalendarioLayout = new javax.swing.GroupLayout(panelCalendario);
+        panelCalendario.setLayout(panelCalendarioLayout);
+        panelCalendarioLayout.setHorizontalGroup(
+            panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(calendarioUnable, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+        );
+        panelCalendarioLayout.setVerticalGroup(
+            panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(calendarioUnable, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+        );
+
+        background.add(panelCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 220, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -274,7 +311,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
         );
 
         pack();
@@ -290,14 +327,15 @@ public class telaAgendarExame extends javax.swing.JFrame {
 //      Caso contrário, busca o enfermeiro selecionado no banco de dados, cria um novo exame (Sorológico ou Hemograma),
 //      adiciona-o ao carrinho de exames e atualiza a tabela de checkout na tela principal.
  
-        if(cbTipoExame.getSelectedItem().equals("Selecione um tipo...") || cbEnfermeiro.getSelectedItem().equals("Nome do enfermeiro...") ||
-           txtPreco.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
+        if(cbEnfermeiro.getSelectedItem().equals("Nome do enfermeiro...") || txtPreco.getText().equals("") ||
+                cbTipoExame.getSelectedItem().equals("Selecione um tipo...") || calendario.getDate() == null){ 
+                JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
         } else{
         
             String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
             String tipoExame = (String) cbTipoExame.getSelectedItem();
             String precoExame = txtPreco.getText();
+            String dataRealizacao = new SimpleDateFormat("dd/MM/yyyy").format(calendario.getDate());
 
             // Encontrar o enfermeiro selecionado no banco de dados
             Enfermeiro enfermeiroSelecionado = null;
@@ -310,9 +348,9 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
             Exame novoExame = null;
             if (rbtnSorologico.isSelected()) { // Sorológico
-                novoExame = new Sorologico(tipoExame, "01/09/2023", telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false); // Data fixa por enquanto
+                novoExame = new Sorologico(tipoExame, dataRealizacao, telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false); // Data fixa por enquanto
             } else if (rbtnHemograma.isSelected()) { // Hemograma
-                novoExame = new Hemograma(tipoExame, "01/09/2023" , telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false);
+                novoExame = new Hemograma(tipoExame, dataRealizacao , telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false);
             }
 
             // Adicionar o exame à lista na tela principal
@@ -360,12 +398,16 @@ public class telaAgendarExame extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton btnAgendar;
     private javax.swing.JButton btnVoltar;
+    private com.toedter.calendar.JDateChooser calendario;
+    private com.toedter.calendar.JCalendar calendarioUnable;
     private javax.swing.JComboBox<String> cbEnfermeiro;
     private javax.swing.JComboBox<String> cbTipoExame;
     private javax.swing.JLabel lblEnfermeiro;
     private javax.swing.JLabel lblExame;
-    private javax.swing.JLabel lblPreco;
+    private javax.swing.JLabel lblPreco1;
+    private javax.swing.JLabel lblRealizar;
     private javax.swing.JLabel lblTipo;
+    private javax.swing.JPanel panelCalendario;
     private javax.swing.JPanel panelTitle;
     private javax.swing.JRadioButton rbtnHemograma;
     private javax.swing.JRadioButton rbtnSorologico;
