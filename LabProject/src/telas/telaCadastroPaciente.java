@@ -1,3 +1,7 @@
+// Interface Gráfica: telaCadastroExame
+// Tela auxiliar para cadastrar Pacientes na base de dados.
+// Inserindo dados como: nome, email, CPF, data de nascimento, tipo Sanguíneo, sexo e convênio. 
+
 package telas;
 
 import classes.Paciente;
@@ -7,14 +11,18 @@ import javax.swing.JOptionPane;
 
 public class telaCadastroPaciente extends javax.swing.JFrame {
 
+//    Intanciando o banco de dados
     BancoDeDados bancoDeDados = new BancoDeDados();
     
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.        
+    
     public telaCadastroPaciente() {
-        
         initComponents();
         this.setResizable(false);
-        
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
+//        Define o ícone e o título da janela
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
         this.setTitle("Atendente - Cadastro de Pacientes");
     }
@@ -206,6 +214,11 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbTipoSanguineoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+//      Verifica se os campos obrigatórios estão preenchidos.
+//      Se algum campo estiver vazio, exibe uma mensagem de aviso.
+//      Caso contrário, cria um objeto Paciente com os dados fornecidos e o adiciona ao banco de dados.
+//      Exibe uma mensagem de sucesso e redireciona para a tela principal do atendente.
+        
         if (txtNome.getText().equals("") ||
             txtCPF.getText().equals("") ||
             groupSexo.getSelection() == null ||
