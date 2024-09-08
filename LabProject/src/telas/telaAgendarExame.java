@@ -1,3 +1,7 @@
+// Interface Gráfica: telaAgendarExame
+// Responsável pelo preenchimento de dados para o agendamento de exames.
+// Podendo definir: o tipo de exame, o exame e o enfermeiro, para adicionar ao agendamento.
+
 package telas;
 
 import classes.*;
@@ -13,22 +17,33 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class telaAgendarExame extends javax.swing.JFrame {
 
+//    Instanciando banco de dados e auxiliares.
+    
     private BancoDeDados database = new BancoDeDados();
     private ButtonGroup buttonGroup;
+    private telaAgendamento telaAgendamentoRef;
+    
+//    Declaração de EDA's auxiliares para armazenar os exames e enfermeiros.
+    
     private ArrayList<Exame> exames; 
     private ArrayList<Enfermeiro> enfermeiros; 
-    private telaAgendamento telaAgendamentoRef;
-
+    
     public telaAgendarExame() {}
     
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.
+
     public telaAgendarExame(telaAgendamento ref) {
         initComponents();
-        configurarBotoes();
-        configurarComboBoxExame(); 
         setResizable(false);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        telaAgendamentoRef = ref;
+    
+    //  Configura os botões da interface e o comboBox de exames
+        configurarBotoes();
+        configurarComboBoxExame(); 
+         
+        telaAgendamentoRef = ref; // Atribui a referência da tela de agendamento principal
     }
 
     private void configurarBotoes() {
@@ -36,19 +51,19 @@ public class telaAgendarExame extends javax.swing.JFrame {
 //         Agrupando os radio buttons
 
         buttonGroup = new ButtonGroup();
-        buttonGroup.add(jRadioButton1);
-        buttonGroup.add(jRadioButton2);
+        buttonGroup.add(rbtnSorologico);
+        buttonGroup.add(rbtnHemograma);
 
 //         Adicionar listener para ativar/desativar a combobox com base no radio button selecionado
         
-ActionListener actionListener = new ActionListener() {
+        ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 txtPreco.setText("");
-                if (jRadioButton1.isSelected()) {
+                if (rbtnSorologico.isSelected()) {
                     cbTipoExame.setEnabled(true);
                     carregarExames(); 
-                } else if (jRadioButton2.isSelected()) {
+                } else if (rbtnHemograma.isSelected()) {
                     cbTipoExame.setEnabled(true);
                     carregarExames(); 
                 }
@@ -57,25 +72,34 @@ ActionListener actionListener = new ActionListener() {
             }
         };
 
-        jRadioButton1.addActionListener(actionListener);
-        jRadioButton2.addActionListener(actionListener);    
+        rbtnSorologico.addActionListener(actionListener);
+        rbtnHemograma.addActionListener(actionListener);    
 
         cbTipoExame.setEnabled(false);  
         cbEnfermeiro.setEnabled(false); 
     }
 
+    
+//  Carrega a lista de exames do banco de dados e inclui na comboBox
+//  Dependendo do tipo de exame selecionado (Sorológico ou Hemograma)
+//  E aplica a funcionalidade de autocompletar no comboBox.
+ 
     private void carregarExames() {
-        database.lerArquivo("exame");
+        database.lerArquivo("exame"); // Lê os exames do arquivo
         exames = database.getExames();
         cbTipoExame.removeAllItems();
 
-        if (jRadioButton1.isSelected()) {
+    //  Adiciona as patologias dos exames Sorológicos ao comboBox
+        if (rbtnSorologico.isSelected()) {
             for (Exame exame : exames) {
                 if (exame instanceof Sorologico) {
                     cbTipoExame.addItem(((Sorologico) exame).getPatologia());
                 }
             }
-        } else if (jRadioButton2.isSelected()) {
+        }
+        
+    //  Adiciona os alvos dos exames de Hemograma ao comboBox
+        else if (rbtnHemograma.isSelected()) {
             for (Exame exame : exames) {
                 if (exame instanceof Hemograma) {
                     cbTipoExame.addItem(((Hemograma) exame).getAlvo());
@@ -83,20 +107,28 @@ ActionListener actionListener = new ActionListener() {
             }
         }
 
-        AutoCompleteDecorator.decorate(cbTipoExame);
+        AutoCompleteDecorator.decorate(cbTipoExame); // Aplica autocompletar ao comboBox
     }
 
+//  Carrega a lista de enfermeiros do banco de dados e inclui na comboBox de enfermeiros.
+//  E aplica a funcionalidade de autocompletar no comboBox.
+    
     private void carregarEnfermeiros() {
-        database.lerArquivo("enfermeiro");
+        database.lerArquivo("enfermeiro"); // Lê os enfermeiros do arquivo
         enfermeiros = database.getEnfermeiros(); 
         cbEnfermeiro.removeAllItems();
-
+        
+        // Adiciona os nomes dos enfermeiros ao comboBox
         for (Enfermeiro enfermeiro : enfermeiros) {
             cbEnfermeiro.addItem(enfermeiro.getNome());
         }
 
-        AutoCompleteDecorator.decorate(cbEnfermeiro);
+        AutoCompleteDecorator.decorate(cbEnfermeiro); // Aplica autocompletar ao comboBox
     }
+
+    
+//  Configura o comboBox de tipos de exame para reagir à seleção de itens.
+//  Quando o usuário seleciona um novo item no comboBox, o preço é atualizado.
 
     private void configurarComboBoxExame() {
         cbTipoExame.addItemListener(new ItemListener() {
@@ -109,16 +141,21 @@ ActionListener actionListener = new ActionListener() {
         });
     }
 
+    
+//  Atualiza o campo de preço de acordo com o exame selecionado no comboBox.
+//  Verifica se o exame selecionado é Sorológico ou Hemograma e, 
+//  se houver correspondência com o item selecionado, define o preço no campo de texto.
+
     private void atualizarPreco() {
         String selectedExame = (String) cbTipoExame.getSelectedItem();
         if (selectedExame != null) {
             for (Exame exame : exames) {
                 String preco = "";
-                if (jRadioButton1.isSelected() && exame instanceof Sorologico) {
+                if (rbtnSorologico.isSelected() && exame instanceof Sorologico) {
                     if (((Sorologico) exame).getPatologia().equals(selectedExame)) {
                         preco = String.valueOf(((Sorologico) exame).getPreco());
                     }
-                } else if (jRadioButton2.isSelected() && exame instanceof Hemograma) {
+                } else if (rbtnHemograma.isSelected() && exame instanceof Hemograma) {
                     if (((Hemograma) exame).getAlvo().equals(selectedExame)) {
                         preco = String.valueOf(((Hemograma) exame).getPreco());
                     }
@@ -138,14 +175,14 @@ ActionListener actionListener = new ActionListener() {
         background = new javax.swing.JPanel();
         panelTitle = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
-        lblSelecionarPaciente1 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        lblSelecionarPaciente2 = new javax.swing.JLabel();
+        lblPreco = new javax.swing.JLabel();
+        rbtnSorologico = new javax.swing.JRadioButton();
+        rbtnHemograma = new javax.swing.JRadioButton();
+        lblExame = new javax.swing.JLabel();
         cbEnfermeiro = new javax.swing.JComboBox<>();
-        lblSelecionarPaciente3 = new javax.swing.JLabel();
+        lblTipo = new javax.swing.JLabel();
         cbTipoExame = new javax.swing.JComboBox<>();
-        lblSelecionarPaciente4 = new javax.swing.JLabel();
+        lblEnfermeiro = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
         btnAgendar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
@@ -178,37 +215,37 @@ ActionListener actionListener = new ActionListener() {
 
         background.add(panelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 60));
 
-        lblSelecionarPaciente1.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
-        lblSelecionarPaciente1.setText("Preço:");
-        background.add(lblSelecionarPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 40));
+        lblPreco.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        lblPreco.setText("Preço:");
+        background.add(lblPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 40));
 
-        jRadioButton1.setBackground(new java.awt.Color(248, 197, 190));
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jRadioButton1.setText("Sorológico");
-        background.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
+        rbtnSorologico.setBackground(new java.awt.Color(248, 197, 190));
+        rbtnSorologico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbtnSorologico.setText("Sorológico");
+        background.add(rbtnSorologico, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
 
-        jRadioButton2.setBackground(new java.awt.Color(248, 197, 190));
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jRadioButton2.setText("Hemograma");
-        background.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        rbtnHemograma.setBackground(new java.awt.Color(248, 197, 190));
+        rbtnHemograma.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbtnHemograma.setText("Hemograma");
+        background.add(rbtnHemograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
-        lblSelecionarPaciente2.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
-        lblSelecionarPaciente2.setText("Exame:");
-        background.add(lblSelecionarPaciente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 120, 40));
+        lblExame.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        lblExame.setText("Exame:");
+        background.add(lblExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 120, 40));
 
         cbEnfermeiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do enfermeiro...", " " }));
         background.add(cbEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 190, 40));
 
-        lblSelecionarPaciente3.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
-        lblSelecionarPaciente3.setText("Tipo:");
-        background.add(lblSelecionarPaciente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 120, 40));
+        lblTipo.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        lblTipo.setText("Tipo:");
+        background.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 120, 40));
 
         cbTipoExame.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um tipo...", " " }));
         background.add(cbTipoExame, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 190, 40));
 
-        lblSelecionarPaciente4.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
-        lblSelecionarPaciente4.setText("Enfermeiro:");
-        background.add(lblSelecionarPaciente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 120, 40));
+        lblEnfermeiro.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        lblEnfermeiro.setText("Enfermeiro:");
+        background.add(lblEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 120, 40));
         background.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 190, 40));
 
         btnAgendar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -248,6 +285,11 @@ ActionListener actionListener = new ActionListener() {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
+//      Verifica se todos os campos obrigatórios foram preenchidos antes de prosseguir com o agendamento do exame.
+//      Se algum campo estiver vazio, exibe uma mensagem de aviso.
+//      Caso contrário, busca o enfermeiro selecionado no banco de dados, cria um novo exame (Sorológico ou Hemograma),
+//      adiciona-o ao carrinho de exames e atualiza a tabela de checkout na tela principal.
+ 
         if(cbTipoExame.getSelectedItem().equals("Selecione um tipo...") || cbEnfermeiro.getSelectedItem().equals("Nome do enfermeiro...") ||
            txtPreco.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
@@ -267,9 +309,9 @@ ActionListener actionListener = new ActionListener() {
             }
 
             Exame novoExame = null;
-            if (jRadioButton1.isSelected()) { // Sorológico
+            if (rbtnSorologico.isSelected()) { // Sorológico
                 novoExame = new Sorologico(tipoExame, "01/09/2023", telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false); // Data fixa por enquanto
-            } else if (jRadioButton2.isSelected()) { // Hemograma
+            } else if (rbtnHemograma.isSelected()) { // Hemograma
                 novoExame = new Hemograma(tipoExame, "01/09/2023" , telaAgendamentoRef.getPacienteSelecionado(), enfermeiroSelecionado, parseDouble(precoExame),false);
             }
 
@@ -320,13 +362,13 @@ ActionListener actionListener = new ActionListener() {
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbEnfermeiro;
     private javax.swing.JComboBox<String> cbTipoExame;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JLabel lblSelecionarPaciente1;
-    private javax.swing.JLabel lblSelecionarPaciente2;
-    private javax.swing.JLabel lblSelecionarPaciente3;
-    private javax.swing.JLabel lblSelecionarPaciente4;
+    private javax.swing.JLabel lblEnfermeiro;
+    private javax.swing.JLabel lblExame;
+    private javax.swing.JLabel lblPreco;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JPanel panelTitle;
+    private javax.swing.JRadioButton rbtnHemograma;
+    private javax.swing.JRadioButton rbtnSorologico;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables

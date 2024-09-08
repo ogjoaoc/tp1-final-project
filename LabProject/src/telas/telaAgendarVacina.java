@@ -1,3 +1,7 @@
+// Interface Gráfica: telaAgendarVacina
+// Responsável pelo preenchimento de dados para o agendamento de vacinas.
+// Podendo definir: a vacina, o enfermeiro e a dosagem, para adicionar ao agendamento.s
+
 package telas;
 
 import classes.Enfermeiro;
@@ -11,31 +15,43 @@ import java.util.ArrayList;
 import javax.swing.*;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
-/**
- *
- * @author joaoc
- */
 public class telaAgendarVacina extends javax.swing.JFrame {
+    
+//    Instanciando banco de dados e auxiliares.
 
     private BancoDeDados database = new BancoDeDados();
-    private ArrayList<Vacina> vacinas; 
-    private ArrayList<Enfermeiro> enfermeiros; 
     private telaAgendamento telaAgendamentoRef;
     
+//    Declaração de EDA's auxiliares para armazenar as vacinas e enfermeiros.
+   
+    private ArrayList<Vacina> vacinas; 
+    private ArrayList<Enfermeiro> enfermeiros; 
+        
     public telaAgendarVacina(){}
     
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.
+  
     public telaAgendarVacina(telaAgendamento ref) {
         initComponents();
-        carregarVacinas();
-        carregarEnfermeiros();
-        configurarComboBoxVacina();
-        configurarComboBoxEnfermeiro();
         setResizable(false);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        telaAgendamentoRef = ref;
+        
+    //  Faz a leitura dos arquivos Vacinas e Enfermeiros para configurar os comboBox
+        carregarVacinas();
+        carregarEnfermeiros();
+        
+    //  Configura os comboBox de vacina e enfermeiro  
+        configurarComboBoxVacina();
+        configurarComboBoxEnfermeiro();
+       
+        telaAgendamentoRef = ref; // Atribui a referência da tela de agendamento principal
     }
     
+//    Carrega a lista de vacinas do banco de dados e inclui na comboBox tipoVacina.
+//    Aplica a funcionalidade de autocompletar no comboBox.
+                
     private void carregarVacinas() {
         database.lerArquivo("vacina");
         vacinas = database.getVacinas();
@@ -48,6 +64,9 @@ public class telaAgendarVacina extends javax.swing.JFrame {
 
         AutoCompleteDecorator.decorate(cbTipoVacina);
     }
+
+//    Carrega a lista de enfermeiro do banco de dados e inclui na comboBox enfermeiro.
+//    Aplica a funcionalidade de autocompletar no comboBox.
     
     private void carregarEnfermeiros() {
         database.lerArquivo("enfermeiro");
@@ -62,6 +81,10 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(cbEnfermeiro);
     }
     
+    
+//  Configura o comboBox de tipos de vacina para reagir à seleção de itens.
+//  E chama o método "atualizarPreco" para atualizar o preço da vacina.
+    
     private void configurarComboBoxVacina() {
         cbTipoVacina.addItemListener(new ItemListener() {
             @Override
@@ -75,6 +98,8 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         });
     }
 
+//  Configura o comboBox de enfermeiro para reagir à seleção de itens.
+    
     private void configurarComboBoxEnfermeiro() {
         cbEnfermeiro.addItemListener(new ItemListener() {
             @Override
@@ -85,6 +110,9 @@ public class telaAgendarVacina extends javax.swing.JFrame {
             }
         });
     }
+
+//  Atualiza o campo de preço de acordo com a vacina selecionado no comboBox.
+//  se houver correspondência com o item selecionado, define o preço no campo de texto.
 
     private void atualizarPreco() {
         String selectedTipoVacina = (String) cbTipoVacina.getSelectedItem();
@@ -220,6 +248,12 @@ public class telaAgendarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
+//      Verifica se todos os campos obrigatórios foram preenchidos antes de prosseguir com o agendamento da vacina.
+//      Se algum campo estiver vazio ou com uma seleção padrão, exibe uma mensagem de aviso.
+//      Caso contrário, busca o enfermeiro e a vacina selecionados nas listas correspondentes,
+//      cria um novo objeto Vacina com os dados fornecidos, adiciona-o ao carrinho de vacinas,
+//      e atualiza a tabela de checkout na tela principal. Finalmente, fecha a janela atual.
+
         if(cbEnfermeiro.getSelectedItem().equals("Nome do enfermeiro...") || cbTipoVacina.getSelectedItem().equals("Selecione um tipo...") ||
            cbDose.getSelectedItem().equals("Selecione a dose...") || txtPreco.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
@@ -229,6 +263,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
             String dosagem = (String) cbDose.getSelectedItem();
             String precoVacina = txtPreco.getText();
 
+        //  Busca o enfermeiro selecionado na lista de enfermeiros
             Enfermeiro enfermeiroSelecionado = null;
             for (Enfermeiro enf : enfermeiros) {
                 if (enf.getNome().equals(nomeEnfermeiro)) {
@@ -236,7 +271,8 @@ public class telaAgendarVacina extends javax.swing.JFrame {
                     break;
                 }
             }
-
+            
+        //  Busca a vacina selecionada na lista de vacinas
             Vacina vacinaSelecionada = null;
             for (Vacina vac : vacinas) {
                 if(vac.getTipoVacina().equals(tipoVacina)) {
@@ -244,7 +280,8 @@ public class telaAgendarVacina extends javax.swing.JFrame {
                     break;
                 }
             }
-
+        
+        //  Cria uma nova vacina com os dados fornecidos e adiciona ao carrinho, atualizando a telaAgendamento
             Vacina novaVacina = new Vacina(tipoVacina, vacinaSelecionada.getValidade(), enfermeiroSelecionado, telaAgendamentoRef.getPacienteSelecionado(), dosagem, vacinaSelecionada.getPreco(),false);
             telaAgendamentoRef.getCheckOutVacina().add(novaVacina);
             telaAgendamentoRef.verificarCarrinho();

@@ -41,7 +41,7 @@ public class telaAdmin extends javax.swing.JFrame {
         btnPesquisarFunc = new javax.swing.JButton();
         btnCadastrarFunc = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        backgroundLogin = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin - Gerenciamento");
@@ -103,9 +103,9 @@ public class telaAdmin extends javax.swing.JFrame {
         });
         getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, 120, 40));
 
-        backgroundLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backgroundCor.png"))); // NOI18N
-        backgroundLogin.setText("Gerenciamento Financeiro");
-        getContentPane().add(backgroundLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 570));
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backgroundCor.png"))); // NOI18N
+        background.setText("Gerenciamento Financeiro");
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 570));
 
         pack();
         setLocationRelativeTo(null);
@@ -150,7 +150,7 @@ public class telaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backgroundLogin;
+    private javax.swing.JLabel background;
     private javax.swing.JButton btnCadastrarFunc;
     private javax.swing.JButton btnCadastroExame;
     private javax.swing.JButton btnEstoqueVacinas;
