@@ -409,7 +409,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
         
         limparCampos();
         habilitarCampos(true,true,true);
-        habilitarBotoes(true,true,false,false,true);
+        habilitarBotoes(false,true,false,false,true);
         estadoSalvar = "cadastro";
         
     }//GEN-LAST:event_btnCadastrarActionPerformed

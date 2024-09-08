@@ -557,8 +557,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
         
         templateLaudo resultado = new templateLaudo(laudoAtual);
         resultado.setVisible(true);
-        telaLogin teste = new telaLogin();
-        exportarJFrameParaPDF(teste, "pdfteste.pdf");
+        exportarJFrameParaPDF(resultado, "pdfteste.pdf");;
     }//GEN-LAST:event_btnGerarLaudoActionPerformed
 
     /**

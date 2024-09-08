@@ -34,9 +34,9 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
     public telaEstoqueVacina() {
         
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        this.setTitle("Admin - Estoque de Vacinas");
         this.setResizable(false);
-        setTitle("Admin - Estoque de Vacinas");
 
         bancoDeDados.lerArquivo("vacina");
         
@@ -577,6 +577,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
         limparCampos();
         habilitarCampos(true,true,true,true);
         habilitarBotoes(true,true,false,false,true);
+        btnCadastrar.setEnabled(false);
         estadoSalvar = "cadastro";
         
     }                                            

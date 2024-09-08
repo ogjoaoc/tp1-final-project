@@ -249,10 +249,11 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addComponent(lblEmail)
                         .addGap(22, 22, 22)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSexo)
-                    .addComponent(rbtnFeminino)
-                    .addComponent(rbtnMasculino))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtnMasculino)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblSexo)
+                        .addComponent(rbtnFeminino)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha)
@@ -334,6 +335,13 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
                 bancoDeDados.adicionarPessoa(atendente);
                 
             }
+            
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            
+            telaAdmin telaAdmin = new telaAdmin();
+            telaAdmin.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
