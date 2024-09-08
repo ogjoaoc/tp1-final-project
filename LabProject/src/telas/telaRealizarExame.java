@@ -32,11 +32,12 @@ public final class telaRealizarExame extends javax.swing.JFrame {
     BancoDeDados database = new BancoDeDados();
     private Exame exameRealizado;
     private int idAgendamento;
+    private telaDemandas telaAnterior;
     
 //    Construtor da tela
 //    Por padrão centralizada, e com redimensionamento desabilitado.    
     
-    public telaRealizarExame(Integer id,Exame exame) throws IOException, FileNotFoundException, ParseException {
+    public telaRealizarExame(Integer id, Exame exame, telaDemandas telaAnterior) throws IOException, FileNotFoundException, ParseException {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
@@ -44,6 +45,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
 //        Define as variáveis auxiliares
         exameRealizado = exame;
         idAgendamento = id;
+        this.telaAnterior = telaAnterior;
 
 //        Carrega os dados dos agendamentos 
         database.lerArquivoAgendamento();
@@ -533,6 +535,11 @@ public final class telaRealizarExame extends javax.swing.JFrame {
                     }
                 }
             }
+            
+            JOptionPane.showMessageDialog(null, "Exame realizado com sucesso!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            this.telaAnterior.carregarTabela();
+            this.telaAnterior.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnConcluirActionPerformed
 
@@ -569,7 +576,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
             
             
             templateLaudo resultado = new templateLaudo(laudoAtual);
-            resultado.setVisible(true);
+            resultado.setVisible(false);
             
             
             String caminho =  "src/resultados/exames/" + idAgendamento + "_" + exameRealizado.getTipoExame() + "_" + formatarData(exameRealizado.getDataRealizacao()) + ".pdf";

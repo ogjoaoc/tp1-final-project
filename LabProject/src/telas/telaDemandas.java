@@ -125,7 +125,7 @@ public class telaDemandas extends javax.swing.JFrame {
 
 //  Método auxiliar para carregar dados dos exames e vacinas da lista de demandas na tebela.
  
-    private void carregarTabela(){
+    public void carregarTabela(){
         String[] colunas = {"ID", "Procedimento", "Tipo", "Data", "Status"};
         Object[][] dados = new Object[listaDemandas.size()][5];
         
@@ -403,7 +403,7 @@ public class telaDemandas extends javax.swing.JFrame {
                 switch (listaDemandas.get(idx).getValue()) {
                     case Exame exame -> {
                         try {
-                            telaRealizarExame telaRealizarExame = new telaRealizarExame(listaDemandas.get(idx).getKey(), exame);
+                            telaRealizarExame telaRealizarExame = new telaRealizarExame(listaDemandas.get(idx).getKey(), exame, this);
                             telaRealizarExame.setVisible(true);
                         } catch (IOException | ParseException ex) {
                             Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
@@ -413,7 +413,7 @@ public class telaDemandas extends javax.swing.JFrame {
                     case Vacina vacina -> {
                         telaAplicarVacina telaAplicarVacina;
                         try {
-                            telaAplicarVacina = new telaAplicarVacina(listaDemandas.get(idx).getKey(), vacina);
+                            telaAplicarVacina = new telaAplicarVacina(listaDemandas.get(idx).getKey(), vacina, this);
                             telaAplicarVacina.setVisible(true);
                         } catch (IOException | ParseException ex) {
                             Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);

@@ -41,11 +41,12 @@ public final class telaAplicarVacina extends javax.swing.JFrame {
     private Vacina vacinaAplicada;
     private int idAgendamento;
     private boolean aplicado = false;
+    private telaDemandas telaAnterior;
     
 //    Construtor da tela
 //    Por padrão centralizada, e com redimensionamento desabilitado.    
     
-    public telaAplicarVacina(int id, Vacina vacina) throws IOException, FileNotFoundException, ParseException {
+    public telaAplicarVacina(int id, Vacina vacina, telaDemandas telaAnterior) throws IOException, FileNotFoundException, ParseException {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
@@ -53,6 +54,7 @@ public final class telaAplicarVacina extends javax.swing.JFrame {
 //        Define as variáveis auxiliares        
         vacinaAplicada = vacina;
         idAgendamento = id;
+        this.telaAnterior = telaAnterior;
  
 //        Carrega os dados dos agendamentos e das vacinas
         database.lerArquivo("vacina");
@@ -518,7 +520,7 @@ public final class telaAplicarVacina extends javax.swing.JFrame {
             ComprovanteVacina comprovanteAtual = new ComprovanteVacina(vacinaAplicada.getPacienteAssociado(), vacinaAplicada.getEnfermeiroAssociado());
             
             templateComprovanteVacina resultado = new templateComprovanteVacina(comprovanteAtual); 
-            resultado.setVisible(true);
+            resultado.setVisible(false);
             
             
             String caminho =  "src/resultados/vacinas/" + idAgendamento + "_" + vacinaAplicada.getTipoVacina() + ".pdf";
@@ -556,6 +558,11 @@ public final class telaAplicarVacina extends javax.swing.JFrame {
                     }
                 }
             }
+            
+            JOptionPane.showMessageDialog(null, "Vacina realizada com sucesso!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            this.telaAnterior.carregarTabela();
+            this.telaAnterior.setVisible(true);
+            this.dispose();
         } else{
             JOptionPane.showMessageDialog(null,"Vacina não aplicada!", "Mensagem",JOptionPane.WARNING_MESSAGE);
         }
