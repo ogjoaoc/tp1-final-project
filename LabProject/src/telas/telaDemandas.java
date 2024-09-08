@@ -440,14 +440,64 @@ public class telaDemandas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
+        
         int idx = tblDemandas.getSelectedRow();
-        Exame exameAtual = (Exame) listaDemandas.get(idx).getValue();
-        String caminho =  "src/resultados/exames/" + listaDemandas.get(idx).getKey() + "_" + exameAtual.getTipoExame() + "_" + formatarData(exameAtual.getDataRealizacao()) + ".pdf";
-        try {
-            Desktop.getDesktop().open(new File(caminho));
-        } catch (IOException ex) {
-            Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+        
+        if(idx != -1) {
+            
+            Exame exameAtual = null;
+            Vacina vacinaAtual = null;
+            
+            if(listaDemandas.get(idx).getValue() instanceof Exame) {
+                
+                exameAtual = (Exame) listaDemandas.get(idx).getValue();
+                
+            } else {
+                
+                vacinaAtual = (Vacina) listaDemandas.get(idx).getValue();
+               
+            }
+
+            if(exameAtual != null && exameAtual.getStatus() == true) {
+                
+                String caminho =  "src/resultados/exames/" + listaDemandas.get(idx).getKey() + "_" + exameAtual.getTipoExame() + "_" + formatarData(exameAtual.getDataRealizacao()) + ".pdf";
+                
+                try {
+                    
+                    Desktop.getDesktop().open(new File(caminho));
+                
+                } catch (IOException ex) {
+                    
+                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                
+                }
+                
+            } else if(vacinaAtual != null && vacinaAtual.getStatus() == true) {
+                
+                String caminho =  "src/resultados/exames/" + listaDemandas.get(idx).getKey() + "_" + vacinaAtual.getTipoVacina() + "_" + formatarData(vacinaAtual.getValidade()) + ".pdf";
+                
+                try {
+                    
+                    Desktop.getDesktop().open(new File(caminho));
+                
+                } catch (IOException ex) {
+                    
+                    Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                
+                }
+                
+            } else {
+                
+                JOptionPane.showMessageDialog(null,"A demanda deve ser concluída para visualizar o resultado!", "Aviso",JOptionPane.WARNING_MESSAGE);
+                
+            }
+            
+        } else {
+            
+            JOptionPane.showMessageDialog(null,"Nenhuma demanda selecionada!", "Aviso",JOptionPane.WARNING_MESSAGE);
+            
         }
+        
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     /**
