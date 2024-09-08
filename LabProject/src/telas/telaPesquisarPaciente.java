@@ -9,6 +9,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -22,8 +23,13 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
 
     
     public telaPesquisarPaciente() {
+        
         initComponents();
         this.setResizable(false);
+        
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        this.setTitle("Atendente - Pesquisar pacientes");
         
         addSearchListener();
         

@@ -570,8 +570,8 @@ public class telaPagamento extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Agendamento finalizado com sucesso!");
 
         this.dispose();
-        telaPrincipalAgendamento.limparTela();
-        telaPrincipalAgendamento.setVisible(true);
+        telaAtendente inicio = new telaAtendente();
+        inicio.setVisible(true);;
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**

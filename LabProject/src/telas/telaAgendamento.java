@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -49,6 +50,9 @@ public class telaAgendamento extends javax.swing.JFrame {
         this.setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        this.setTitle("Atendente - Agendamento");
         
 //        Métodos para inicialização de placeholders
 
@@ -96,6 +100,42 @@ public class telaAgendamento extends javax.swing.JFrame {
             System.out.println("-------------------------------------------------");
         }
 //      ---------------------------------------------------------------------------------- 
+
+            txtPaciente.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                }
+                @Override
+                public void focusLost(FocusEvent e) {
+                    Paciente paciente = getPacienteSelecionado();
+                    if (paciente != null) {
+                        System.out.println(paciente.getSexo());
+                        atualizarIconeSexo(paciente.getSexo());
+                    } else {
+                        iconSexoPaciente.setIcon(null); 
+                    }
+            }
+        });
+    }
+    
+    
+    public void atualizarIconeSexo(String sexoPaciente) {
+        
+        java.net.URL girlIconURL = getClass().getResource("/imagens/IconGirl.png");
+        java.net.URL boyIconURL = getClass().getResource("/imagens/IconBoy.png");
+
+        ImageIcon iconGirl = (girlIconURL != null) ? new ImageIcon(girlIconURL) : null;
+        ImageIcon iconBoy = (boyIconURL != null) ? new ImageIcon(boyIconURL) : null;
+
+        if (sexoPaciente.equalsIgnoreCase("Feminino")) {
+            iconSexoPaciente.setIcon(iconGirl); 
+        } else if (sexoPaciente.equalsIgnoreCase("Masculino")) {
+            System.out.println("oi");
+            iconSexoPaciente.setIcon(iconBoy);  
+        } else {
+            iconSexoPaciente.setIcon(null); 
+        }
+        
     }
     
 //    Método para reinicializar campos.
@@ -190,8 +230,18 @@ public class telaAgendamento extends javax.swing.JFrame {
         public AutoCompleteListener(JTextField textField) {
             this.textField = textField;
             this.popupMenu = popupPaciente;
+
+            // Adiciona o KeyListener para detectar quando a tecla Enter é pressionada
+            this.textField.addKeyListener(new java.awt.event.KeyAdapter() {
+                @Override
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                        textField.transferFocus(); // Perde o foco ao apertar Enter
+                    }
+                }
+            });
         }
-        
+
         @Override
         public void insertUpdate(DocumentEvent e) {
             if (!updatingText) {
@@ -207,8 +257,7 @@ public class telaAgendamento extends javax.swing.JFrame {
         }
 
         @Override
-        public void changedUpdate(DocumentEvent e) {
-        }
+        public void changedUpdate(DocumentEvent e) {}
 
         private void debounceBusca() {
             if (debounceTimer != null) {
@@ -219,11 +268,8 @@ public class telaAgendamento extends javax.swing.JFrame {
             debounceTimer.setRepeats(false);
             debounceTimer.start();
         }
-        
-        // Exibe as sugestões no popup menu com base no texto inserido.
-        
-        private void showSuggestions() {
-            
+
+            private void showSuggestions() {
             popupMenu.removeAll();
             String textoBusca = textField.getText().toLowerCase();
 
@@ -242,7 +288,8 @@ public class telaAgendamento extends javax.swing.JFrame {
                     popupMenu.setVisible(false);
                     textField.requestFocusInWindow();
                     updatingText = false;
-                
+
+                    textField.transferFocus(); // Força a perda de foco ao selecionar um item da lista
                 });
                 popupMenu.add(item);
             }
@@ -252,20 +299,17 @@ public class telaAgendamento extends javax.swing.JFrame {
             } else {
                 popupMenu.setVisible(false);
             }
-          
-        }
-        
-        // Retorna uma lista de sugestões com base no texto de busca fornecido.
-
-        private ArrayList<String> buscarSugestoes(String textoBusca) {
-            ArrayList<String> resultados = new ArrayList<>();
-            resultados = new ArrayList<>(database.getPacientes().stream()
-                        .map(Paciente::getNome)
-                        .filter(nome -> nome.toLowerCase().contains(textoBusca))
-                        .toList());
-            return resultados;
-        }
     }
+
+    private ArrayList<String> buscarSugestoes(String textoBusca) {
+        ArrayList<String> resultados = new ArrayList<>();
+        resultados = new ArrayList<>(database.getPacientes().stream()
+                    .map(Paciente::getNome)
+                    .filter(nome -> nome.toLowerCase().contains(textoBusca))
+                    .toList());
+        return resultados;
+    }
+}
 
     private void setupPlaceholders() {
         configurarPlaceholder(txtPaciente, "Digite o nome do paciente...");     
@@ -298,6 +342,14 @@ public class telaAgendamento extends javax.swing.JFrame {
         });
     }
     
+    protected void verificarCarrinho() {
+        if (!checkOutExames.isEmpty() || !checkOutVacinas.isEmpty()) {
+            txtPaciente.setEnabled(false); // Desabilita o campo de texto se houver exames ou vacinas no carrinho
+        } else {
+            txtPaciente.setEnabled(true); // Caso contrário, mantém o campo habilitado
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -316,7 +368,7 @@ public class telaAgendamento extends javax.swing.JFrame {
         btnAdicionarExame = new javax.swing.JButton();
         btnAdicionarVacina = new javax.swing.JButton();
         lblSelecionarPaciente1 = new javax.swing.JLabel();
-        iconSexoPaciente2 = new javax.swing.JLabel();
+        iconSexoPaciente = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -325,6 +377,8 @@ public class telaAgendamento extends javax.swing.JFrame {
 
         background.setBackground(new java.awt.Color(248, 197, 190));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelTitle.setPreferredSize(new java.awt.Dimension(700, 68));
 
         txtTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtTitle.setForeground(new java.awt.Color(153, 0, 0));
@@ -337,7 +391,7 @@ public class telaAgendamento extends javax.swing.JFrame {
             .addGroup(panelTitleLayout.createSequentialGroup()
                 .addGap(155, 155, 155)
                 .addComponent(txtTitle)
-                .addContainerGap(477, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         panelTitleLayout.setVerticalGroup(
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,13 +401,18 @@ public class telaAgendamento extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        background.add(panelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 70));
+        background.add(panelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 70));
 
         lblSelecionarEnfermeiro.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         lblSelecionarEnfermeiro.setText("Check-out:");
         background.add(lblSelecionarEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, 40));
 
         txtPaciente.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txtPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPacienteActionPerformed(evt);
+            }
+        });
         background.add(txtPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 240, 40));
 
         lblSelecionarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
@@ -407,9 +466,7 @@ public class telaAgendamento extends javax.swing.JFrame {
         lblSelecionarPaciente1.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         lblSelecionarPaciente1.setText("Selecionar paciente:");
         background.add(lblSelecionarPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 210, 40));
-
-        iconSexoPaciente2.setText("IconSexo");
-        background.add(iconSexoPaciente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, 20));
+        background.add(iconSexoPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 70, 70));
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVoltar.setText("Voltar");
@@ -455,14 +512,26 @@ public class telaAgendamento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAdicionarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarVacinaActionPerformed
+        if(getPacienteSelecionado() == null) {
+            JOptionPane.showMessageDialog(null,"Nenhum paciente selecionado!", "Aviso",JOptionPane.WARNING_MESSAGE);  
+        } else {
         telaAgendarVacina telaAgendarVacina = new telaAgendarVacina(this);
         telaAgendarVacina.setVisible(true);
+        }
     }//GEN-LAST:event_btnAdicionarVacinaActionPerformed
 
     private void btnAdicionarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarExameActionPerformed
-        telaAgendarExame telaAgendarExame = new telaAgendarExame(this);
-        telaAgendarExame.setVisible(true);
+        if(getPacienteSelecionado() == null) {
+            JOptionPane.showMessageDialog(null,"Nenhum paciente selecionado!", "Aviso",JOptionPane.WARNING_MESSAGE);  
+        } else {
+            telaAgendarExame telaAgendarExame = new telaAgendarExame(this);
+            telaAgendarExame.setVisible(true);
+        }
     }//GEN-LAST:event_btnAdicionarExameActionPerformed
+
+    private void txtPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPacienteActionPerformed
 
     public static void main(String args[]) {
 
@@ -486,7 +555,7 @@ public class telaAgendamento extends javax.swing.JFrame {
     private javax.swing.JButton btnAvancar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JLabel iconSexoPaciente2;
+    private javax.swing.JLabel iconSexoPaciente;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSelecionarEnfermeiro;

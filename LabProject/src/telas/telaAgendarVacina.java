@@ -222,7 +222,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
         if(cbEnfermeiro.getSelectedItem().equals("Nome do enfermeiro...") || cbTipoVacina.getSelectedItem().equals("Selecione um tipo...") ||
            cbDose.getSelectedItem().equals("Selecione a dose...") || txtPreco.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Todos os campos devem ser preechidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
         } else{
             String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
             String tipoVacina = (String) cbTipoVacina.getSelectedItem();
@@ -247,6 +247,7 @@ public class telaAgendarVacina extends javax.swing.JFrame {
 
             Vacina novaVacina = new Vacina(tipoVacina, vacinaSelecionada.getValidade(), enfermeiroSelecionado, telaAgendamentoRef.getPacienteSelecionado(), dosagem, vacinaSelecionada.getPreco(),false);
             telaAgendamentoRef.getCheckOutVacina().add(novaVacina);
+            telaAgendamentoRef.verificarCarrinho();
             telaAgendamentoRef.atualizarTabelaCheckOut();
             this.dispose();
         }

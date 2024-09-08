@@ -250,7 +250,7 @@ ActionListener actionListener = new ActionListener() {
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
         if(cbTipoExame.getSelectedItem().equals("Selecione um tipo...") || cbEnfermeiro.getSelectedItem().equals("Nome do enfermeiro...") ||
            txtPreco.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Todos os campos devem ser preechidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!", "Aviso",JOptionPane.WARNING_MESSAGE);
         } else{
         
             String nomeEnfermeiro = (String) cbEnfermeiro.getSelectedItem();
@@ -275,6 +275,7 @@ ActionListener actionListener = new ActionListener() {
 
             // Adicionar o exame à lista na tela principal
             telaAgendamentoRef.getCheckOutExames().add(novoExame);
+            telaAgendamentoRef.verificarCarrinho();
             telaAgendamentoRef.atualizarTabelaCheckOut();
             this.dispose();
         }
