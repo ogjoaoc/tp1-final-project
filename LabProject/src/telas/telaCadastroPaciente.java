@@ -1,4 +1,4 @@
-// Interface Gráfica: telaCadastroExame
+// Interface Gráfica: telaCadastroPaciente
 // Tela auxiliar para cadastrar Pacientes na base de dados.
 // Inserindo dados como: nome, email, CPF, data de nascimento, tipo Sanguíneo, sexo e convênio. 
 

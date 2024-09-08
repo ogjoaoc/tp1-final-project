@@ -8,12 +8,12 @@ package telas;
  *
  * @author analuisa
  */
-public class templateCartãoVacina extends javax.swing.JFrame {
+public class templateComprovanteVacina extends javax.swing.JFrame {
 
     /**
      * Creates new form templateCartãoVacina
      */
-    public templateCartãoVacina() {
+    public templateComprovanteVacina() {
         initComponents();
     }
 
@@ -28,14 +28,19 @@ public class templateCartãoVacina extends javax.swing.JFrame {
 
         pnlTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblVacinas = new javax.swing.JTable();
         lblNome = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtData = new javax.swing.JFormattedTextField();
         separator1 = new javax.swing.JSeparator();
         separator2 = new javax.swing.JSeparator();
+        lblEnfermeiro = new javax.swing.JLabel();
+        txtEnfermeiro = new javax.swing.JTextField();
+        lblVacina = new javax.swing.JLabel();
+        txtDose = new javax.swing.JTextField();
+        lblDose = new javax.swing.JLabel();
+        txtVacina = new javax.swing.JTextField();
+        lblicone = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,16 +48,16 @@ public class templateCartãoVacina extends javax.swing.JFrame {
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(153, 0, 0));
-        lblTitle.setText("Cartão Vacina - LabSaúde++");
+        lblTitle.setText("Comprovante Vacina - LabSaúde++");
 
         javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
         pnlTitle.setLayout(pnlTitleLayout);
         pnlTitleLayout.setHorizontalGroup(
             pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTitleLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(lblTitle)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         pnlTitleLayout.setVerticalGroup(
             pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,27 +66,6 @@ public class templateCartãoVacina extends javax.swing.JFrame {
                 .addComponent(lblTitle)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
-
-        tblVacinas.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        tblVacinas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1ª Dose", null, null, null, null, null},
-                {"2ª Dose", null, null, null, null, null},
-                {"Reforço", null, null, null, null, null}
-            },
-            new String [] {
-                "Doses", "Febre Amarela", "Hepatite B", "Dupla Adulto", "Meningocócica ACWY", "HPV"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblVacinas);
 
         lblNome.setText("Nome do Paciente: ");
 
@@ -98,6 +82,27 @@ public class templateCartãoVacina extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        lblEnfermeiro.setText("Enfermeiro responsável:");
+
+        txtEnfermeiro.setBackground(new java.awt.Color(242, 242, 242));
+        txtEnfermeiro.setBorder(null);
+
+        lblVacina.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lblVacina.setText("Vacina: ");
+
+        txtDose.setBackground(new java.awt.Color(242, 242, 242));
+        txtDose.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtDose.setBorder(null);
+
+        lblDose.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lblDose.setText("Dose:");
+
+        txtVacina.setBackground(new java.awt.Color(242, 242, 242));
+        txtVacina.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtVacina.setBorder(null);
+
+        lblicone.setText("lblicone");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,7 +112,6 @@ public class templateCartãoVacina extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -115,9 +119,24 @@ public class templateCartãoVacina extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblData)
                         .addGap(13, 13, 13)
-                        .addComponent(txtData)))
+                        .addComponent(txtData))
+                    .addComponent(separator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblEnfermeiro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEnfermeiro))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblVacina)
+                            .addComponent(lblDose))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDose)
+                            .addComponent(txtVacina, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblicone, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(separator2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,10 +153,24 @@ public class templateCartãoVacina extends javax.swing.JFrame {
                     .addComponent(lblData)
                     .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEnfermeiro)
+                    .addComponent(txtEnfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(separator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblVacina)
+                    .addComponent(txtVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDose)
+                    .addComponent(txtDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblicone, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -160,34 +193,40 @@ public class templateCartãoVacina extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(templateCartãoVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(templateComprovanteVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(templateCartãoVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(templateComprovanteVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(templateCartãoVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(templateComprovanteVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(templateCartãoVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(templateComprovanteVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new templateCartãoVacina().setVisible(true);
+                new templateComprovanteVacina().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblData;
+    private javax.swing.JLabel lblDose;
+    private javax.swing.JLabel lblEnfermeiro;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblVacina;
+    private javax.swing.JLabel lblicone;
     private javax.swing.JPanel pnlTitle;
     private javax.swing.JSeparator separator1;
     private javax.swing.JSeparator separator2;
-    private javax.swing.JTable tblVacinas;
     private javax.swing.JFormattedTextField txtData;
+    private javax.swing.JTextField txtDose;
+    private javax.swing.JTextField txtEnfermeiro;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtVacina;
     // End of variables declaration//GEN-END:variables
 }
