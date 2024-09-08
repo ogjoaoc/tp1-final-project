@@ -5,6 +5,7 @@ package telas;
 
 import classes.*;
 import database.BancoDeDados;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public final class telaContaFuncionario extends javax.swing.JFrame {
@@ -24,6 +25,9 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         txtCpf.setEnabled(false);
         txtData.setEnabled(false);
+        
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        this.setTitle("Funcionário - Minha conta");
         
 //      Define se o funcionário logado é um enfermeiro ou um atendente 
 //      para realizar a leitura do arquivo certo

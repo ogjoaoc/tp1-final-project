@@ -21,7 +21,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.text.ParseException;
+import java.util.stream.Collectors;
 
 
 public class telaRealizarExame extends javax.swing.JFrame {
@@ -146,8 +148,18 @@ public class telaRealizarExame extends javax.swing.JFrame {
         txtPatologia.setEnabled(false);
         
         // Campo Resultado
-        txtResultado.setEnabled(false);
+        txtResultado.setEnabled(true);
     
+    }
+    
+    public String formatarData(String data) {
+        String aux = "";
+        for(int i = 0; i < data.length(); i++) {
+            if(Character.isDigit(data.charAt(i))) {
+                aux += data.charAt(i);
+            }
+        }
+        return aux;
     }
     
     @SuppressWarnings("unchecked")
@@ -544,20 +556,32 @@ public class telaRealizarExame extends javax.swing.JFrame {
 //        Gera o laudo a partir do resultado escrito pelo enfermeiro
         
         if(txtResultado.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "O campo de resultado deve ser preenchido!" , "Aviso", JOptionPane.WARNING_MESSAGE);
-        } 
-        // gerando novo Laudo
-        String info = txtResultado.getText();
-        String nomeExame = exameRealizado.getSubtipo() + " - " + exameRealizado.getTipoExame();
-        Laudo laudoAtual = new Laudo(
-                exameRealizado.getDataRealizacao(),
-                exameRealizado.getPacienteAssociado(),
-                exameRealizado.getEnfermeiroAssociado(),
-                info, nomeExame);
         
-        templateLaudo resultado = new templateLaudo(laudoAtual);
-        resultado.setVisible(true);
-        exportarJFrameParaPDF(resultado, "pdfteste.pdf");;
+            JOptionPane.showMessageDialog(null, "O campo de resultado deve ser preenchido!" , "Aviso", JOptionPane.WARNING_MESSAGE);
+        
+        } else {
+        
+            // gerando novo Laudo
+            String info = txtResultado.getText();
+            String nomeExame = exameRealizado.getSubtipo() + " - " + exameRealizado.getTipoExame();
+            Laudo laudoAtual = new Laudo(
+                    exameRealizado.getDataRealizacao(),
+                    exameRealizado.getPacienteAssociado(),
+                    exameRealizado.getEnfermeiroAssociado(),
+                    info, nomeExame);
+            
+            
+            templateLaudo resultado = new templateLaudo(laudoAtual);
+            resultado.setVisible(true);
+            
+            
+            String caminho =  "src/resultados/exames/" + idAgendamento + "_" + exameRealizado.getTipoExame() + "_" + formatarData(exameRealizado.getDataRealizacao()) + ".pdf";
+            exportarJFrameParaPDF(resultado, Paths.get(System.getProperty("user.dir"), caminho).toString());
+            try {
+                Desktop.getDesktop().open(new File(caminho));
+            } catch (IOException ex) {}
+
+        }
     }//GEN-LAST:event_btnGerarLaudoActionPerformed
 
     /**

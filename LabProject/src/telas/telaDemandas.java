@@ -10,13 +10,12 @@ import classes.*;
 import classes.Exame;
 import classes.Agendamento;
 import database.BancoDeDados;
-import interfaces.UserLogado;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Date;
@@ -166,6 +165,16 @@ public class telaDemandas extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel(dados, colunas);
         tblDemandas.setModel(modelo); // Supondo que tabelaDemandas é o nome do seu JTable
 
+    }
+    
+    public String formatarData(String data) {
+        String aux = "";
+        for(int i = 0; i < data.length(); i++) {
+            if(Character.isDigit(data.charAt(i))) {
+                aux += data.charAt(i);
+            }
+        }
+        return aux;
     }
     
     
@@ -431,7 +440,14 @@ public class telaDemandas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        // TODO add your handling code here:
+        int idx = tblDemandas.getSelectedRow();
+        Exame exameAtual = (Exame) listaDemandas.get(idx).getValue();
+        String caminho =  "src/resultados/exames/" + listaDemandas.get(idx).getKey() + "_" + exameAtual.getTipoExame() + "_" + formatarData(exameAtual.getDataRealizacao()) + ".pdf";
+        try {
+            Desktop.getDesktop().open(new File(caminho));
+        } catch (IOException ex) {
+            Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     /**
