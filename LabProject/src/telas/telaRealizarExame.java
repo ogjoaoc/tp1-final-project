@@ -23,10 +23,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.ParseException;
-import java.util.stream.Collectors;
 
 
-public class telaRealizarExame extends javax.swing.JFrame {
+public final class telaRealizarExame extends javax.swing.JFrame {
 
 //    Instanciar o banco de dados e variáveis auxiliares.
 
@@ -57,7 +56,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
 
 //    Método para transformar o laudo em PDF
     
-     public void exportarJFrameParaPDF(JFrame frame, String pdfPath) {
+    public void exportarJFrameParaPDF(JFrame frame, String pdfPath) {
         try {
             // Define a cor de fundo do conteúdo do JFrame como branco
             frame.getContentPane().setBackground(Color.WHITE);
@@ -83,7 +82,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
             // Carrega a imagem temporária
             ImageData imageData = ImageDataFactory.create(tempFile.getAbsolutePath());
             Image pdfImage = new Image(imageData);
-
+            
             // Ajusta a escala da imagem para caber na página A4
             float imageWidth = pdfImage.getImageWidth();
             float imageHeight = pdfImage.getImageHeight();
@@ -542,9 +541,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
        
         try {
             telaDemandas = new telaDemandas();
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(telaRealizarExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+        } catch (IOException | ParseException ex) {
             java.util.logging.Logger.getLogger(telaRealizarExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         telaDemandas.setVisible(true);
@@ -643,10 +640,8 @@ public class telaRealizarExame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new telaRealizarExame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new telaRealizarExame().setVisible(true);
         });
     }
 

@@ -5,7 +5,7 @@
 
 package classes;
 
-public class CartaoVacina {
+public class ComprovanteVacina {
     
 
 //    Atributos específicos do Cartão de Vacina;
@@ -21,8 +21,13 @@ public class CartaoVacina {
 
     
 //    Construtor
+   
+    public ComprovanteVacina(Paciente paciente, Enfermeiro enfermeiro) {
+        this.paciente = paciente;
+        this.enfermeiro = enfermeiro;
+    }
     
-    public CartaoVacina(String data, String dose, Paciente paciente, Enfermeiro enfermeiro) {
+    public ComprovanteVacina(String data, String dose, Paciente paciente, Enfermeiro enfermeiro) {
         this.data = data;
         this.dose = dose;
         this.paciente = paciente;

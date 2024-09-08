@@ -400,28 +400,28 @@ public class telaDemandas extends javax.swing.JFrame {
         int idx = tblDemandas.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
         if (idx >= 0) {
             if(tblDemandas.getValueAt(idx,4).equals("Pendente")){
-                if(listaDemandas.get(idx).getValue() instanceof Exame){
-                    try {
-                        telaRealizarExame telaRealizarExame = new telaRealizarExame(listaDemandas.get(idx).getKey(),(Exame) listaDemandas.get(idx).getValue());
-                        telaRealizarExame.setVisible(true);
-                    } catch (IOException ex) {
-                        Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                switch (listaDemandas.get(idx).getValue()) {
+                    case Exame exame -> {
+                        try {
+                            telaRealizarExame telaRealizarExame = new telaRealizarExame(listaDemandas.get(idx).getKey(), exame);
+                            telaRealizarExame.setVisible(true);
+                        } catch (IOException | ParseException ex) {
+                            Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.dispose();
                     }
-                    this.dispose();
-                }
-                else if(listaDemandas.get(idx).getValue() instanceof Vacina){
-                    telaAplicarVacina telaAplicarVacina;
-                    try {
-                        telaAplicarVacina = new telaAplicarVacina(listaDemandas.get(idx).getKey(), (Vacina) listaDemandas.get(idx).getValue());
-                        telaAplicarVacina.setVisible(true);
-                    } catch (IOException ex) {
-                        Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                    case Vacina vacina -> {
+                        telaAplicarVacina telaAplicarVacina;
+                        try {
+                            telaAplicarVacina = new telaAplicarVacina(listaDemandas.get(idx).getKey(), vacina);
+                            telaAplicarVacina.setVisible(true);
+                        } catch (IOException | ParseException ex) {
+                            Logger.getLogger(telaDemandas.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        this.dispose();
                     }
-                    this.dispose();
+                    default -> {
+                    }
                 }
             }
             else {
@@ -474,7 +474,7 @@ public class telaDemandas extends javax.swing.JFrame {
                 
             } else if(vacinaAtual != null && vacinaAtual.getStatus() == true) {
                 
-                String caminho =  "src/resultados/exames/" + listaDemandas.get(idx).getKey() + "_" + vacinaAtual.getTipoVacina() + "_" + formatarData(vacinaAtual.getValidade()) + ".pdf";
+                String caminho =  "src/resultados/vacinas/" + listaDemandas.get(idx).getKey() + "_" + vacinaAtual.getTipoVacina() + ".pdf";
                 
                 try {
                     

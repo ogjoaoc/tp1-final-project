@@ -6,16 +6,34 @@ package telas;
 
 import classes.*;
 import classes.Vacina;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
 import database.BancoDeDados;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
-public class telaAplicarVacina extends javax.swing.JFrame {
+public final class telaAplicarVacina extends javax.swing.JFrame {
     
 //    Instanciar o banco de dados e variáveis auxiliares.
     
@@ -82,6 +100,59 @@ public class telaAplicarVacina extends javax.swing.JFrame {
         txtDose.setEnabled(false);
         txtVacina.setEnabled(false);
     
+    }
+    
+    public void exportarJFrameParaPDF(JFrame frame, String pdfPath) {
+        try {
+            // Define a cor de fundo do conteúdo do JFrame como branco
+            frame.getContentPane().setBackground(Color.WHITE);
+
+            // Pega o painel de conteúdo (sem a borda e o título da janela)
+            JPanel contentPanel = (JPanel) frame.getContentPane();
+
+            // Captura o conteúdo do JFrame (sem a janela) como uma imagem
+            BufferedImage image = new BufferedImage(contentPanel.getWidth(), contentPanel.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = image.createGraphics();
+            contentPanel.printAll(g2d); // Captura o conteúdo do JPanel
+            g2d.dispose();
+
+            // Salva a imagem em um arquivo temporário
+            File tempFile = new File("temp_image.png");
+            ImageIO.write(image, "png", tempFile);
+
+            // Cria o documento PDF com o tamanho de página A4
+            PdfWriter writer = new PdfWriter(pdfPath);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf, PageSize.A4);
+            
+            document.setMargins(50, 50, 50, 50);
+
+            // Carrega a imagem temporária
+            ImageData imageData = ImageDataFactory.create(tempFile.getAbsolutePath());
+            Image pdfImage = new Image(imageData);
+
+            // Ajusta a escala da imagem para caber na página A4
+            float imageWidth = pdfImage.getImageWidth();
+            float imageHeight = pdfImage.getImageHeight();
+            float pageWidth = PageSize.A4.getWidth() - document.getLeftMargin() - document.getRightMargin();
+            float pageHeight = PageSize.A4.getHeight() - document.getTopMargin() - document.getBottomMargin();
+
+            // Redimensiona a imagem para caber na página
+            if (imageWidth > pageWidth || imageHeight > pageHeight) {
+                pdfImage.scaleToFit(pageWidth, pageHeight);
+            }
+
+            // Adiciona a imagem ao PDF
+            document.add(pdfImage);
+
+            // Fecha o documento
+            document.close();
+
+            // Remove o arquivo temporário
+            tempFile.delete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -326,13 +397,13 @@ public class telaAplicarVacina extends javax.swing.JFrame {
         pnlBotoesLayout.setHorizontalGroup(
             pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBotoesLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAplicarVacina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCartaoVacina, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(39, 39, 39))
+                    .addComponent(btnConcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         pnlBotoesLayout.setVerticalGroup(
             pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,18 +497,39 @@ public class telaAplicarVacina extends javax.swing.JFrame {
                     break;
                 } else{
                     JOptionPane.showMessageDialog(null,"Vacina indisponível no estoque!", "Mensagem",JOptionPane.WARNING_MESSAGE);
-                    break;
+                    return;
                 }
             }
         }
         
         JOptionPane.showMessageDialog(null,"Vacina aplicada com sucesso.", "Mensagem",JOptionPane.WARNING_MESSAGE);
         btnAplicarVacina.setEnabled(false);
-        
+        btnVoltar.setEnabled(false);
     }//GEN-LAST:event_btnAplicarVacinaActionPerformed
 
     private void btnCartaoVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartaoVacinaActionPerformed
-        // TODO add your handling code here:
+        
+        if(!aplicado) {
+        
+            JOptionPane.showMessageDialog(null, "A vacina deve ser aplicada para gerar um comprovante atualizado!" , "Aviso", JOptionPane.WARNING_MESSAGE);
+        
+        } else {
+            
+            ComprovanteVacina comprovanteAtual = new ComprovanteVacina(vacinaAplicada.getPacienteAssociado(), vacinaAplicada.getEnfermeiroAssociado());
+            
+            templateComprovanteVacina resultado = new templateComprovanteVacina(comprovanteAtual); 
+            resultado.setVisible(true);
+            
+            
+            String caminho =  "src/resultados/vacinas/" + idAgendamento + "_" + vacinaAplicada.getTipoVacina() + ".pdf";
+            
+            exportarJFrameParaPDF(resultado, Paths.get(System.getProperty("user.dir"), caminho).toString());
+            try {
+                Desktop.getDesktop().open(new File(caminho));
+            } catch (IOException ex) {}
+
+        }
+        
     }//GEN-LAST:event_btnCartaoVacinaActionPerformed
 
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
