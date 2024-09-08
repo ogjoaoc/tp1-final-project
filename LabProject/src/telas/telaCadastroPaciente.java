@@ -228,12 +228,13 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             Paciente paciente = new Paciente(tipoSanguineo, convenio, /*preferencial*/ nome, cpf, sexo, dataNascimento, email);
             
             bancoDeDados.adicionarPessoa(paciente);
+
+            JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            telaAtendente telaAtendente = new telaAtendente();
+            telaAtendente.setVisible(true);
+            this.dispose();
+            
         }
-        
-        JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        telaAtendente telaAtendente = new telaAtendente();
-        telaAtendente.setVisible(true);
-        this.dispose();
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 

@@ -5,8 +5,6 @@ package telas;
 
 import classes.*;
 import database.BancoDeDados;
-import interfaces.UserLogado;
-import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public final class telaContaFuncionario extends javax.swing.JFrame {
@@ -24,6 +22,8 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        txtCpf.setEnabled(false);
+        txtData.setEnabled(false);
         
 //      Define se o funcionário logado é um enfermeiro ou um atendente 
 //      para realizar a leitura do arquivo certo
@@ -148,6 +148,11 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtData.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataActionPerformed(evt);
+            }
+        });
 
         txtCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "CPF: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 14))); // NOI18N
         try {
@@ -156,6 +161,11 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCpf.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfActionPerformed(evt);
+            }
+        });
 
         txtSenha.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         txtSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 14))); // NOI18N
@@ -265,6 +275,14 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfActionPerformed
+
+    private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataActionPerformed
 
     public static void main(String args[]) {
         try {
