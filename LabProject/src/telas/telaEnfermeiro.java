@@ -1,3 +1,8 @@
+// Interface Gráfica: telaEnfermeiro
+// responsável pela conexão das principais funcões do usuário Enfermeiro
+// realizar exames e aplicar vacinas
+// alterar os dados da própria conta
+
 package telas;
 
 import classes.*;
@@ -10,15 +15,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class telaEnfermeiro extends javax.swing.JFrame {
+
+//    Instanciando o usuário logado
     
     Enfermeiro userLogado = (Enfermeiro) GerenciadorLogin.getInstance().getFuncionario();
+    
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.
     
     public telaEnfermeiro() {
         initComponents();
         this.setResizable(false);
+        setLocationRelativeTo(null);
+        
+//        Carrega a data e o horário que o usuário entrou no sistema
         lblInfo.setText("Logado desde: " + formatarHoraLogin());
     }
-    
+ 
+//    Método para formatar a data e o horário
     public String formatarHoraLogin() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
         LocalDateTime dataHoraLogin = GerenciadorLogin.getInstance().getDataHoraLogin();
@@ -29,11 +43,9 @@ public class telaEnfermeiro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        pnlTitle = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
-        btnSair1 = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         background = new javax.swing.JPanel();
         lblInfo = new javax.swing.JLabel();
         btnMinhaConta = new javax.swing.JButton();
@@ -44,59 +56,47 @@ public class telaEnfermeiro extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 25, 775, 520));
         setFocusCycleRoot(false);
         setMinimumSize(new java.awt.Dimension(775, 520));
-        setPreferredSize(new java.awt.Dimension(775, 520));
         setResizable(false);
         setSize(new java.awt.Dimension(775, 520));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 23, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 785, -1));
 
         txtTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtTitle.setForeground(new java.awt.Color(153, 0, 0));
         txtTitle.setText("LabSaúde ++");
 
-        btnSair1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSair1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconExit.png"))); // NOI18N
-        btnSair1.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconExit.png"))); // NOI18N
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSair1ActionPerformed(evt);
+                btnSairActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(317, 317, 317)
+        javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
+        pnlTitle.setLayout(pnlTitleLayout);
+        pnlTitleLayout.setHorizontalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addContainerGap(311, Short.MAX_VALUE)
                 .addComponent(txtTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
-                .addComponent(btnSair1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(254, 254, 254)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnSair1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        pnlTitleLayout.setVerticalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addGroup(pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTitleLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(txtTitle))
+                    .addGroup(pnlTitleLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 785, -1));
+        getContentPane().add(pnlTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 60));
 
         background.setBackground(new java.awt.Color(248, 197, 190));
 
@@ -156,11 +156,11 @@ public class telaEnfermeiro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSair1ActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         telaLogin telaLogin = new telaLogin();
         telaLogin.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnSair1ActionPerformed
+    }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnMinhaContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinhaContaActionPerformed
         telaContaFuncionario telaContaAtendente = new telaContaFuncionario();
@@ -219,11 +219,9 @@ public class telaEnfermeiro extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton btnDemandas;
     private javax.swing.JButton btnMinhaConta;
-    private javax.swing.JButton btnSair1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblInfo;
+    private javax.swing.JPanel pnlTitle;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 }

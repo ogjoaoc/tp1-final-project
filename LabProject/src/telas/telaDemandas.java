@@ -1,3 +1,9 @@
+// Interface Gráfica: telaDemandas
+// responsável pela conexão das demandas de exames e vacinas de cada Enfermeiro
+// realizar exames e aplicar vacinas
+// monitorar a quantidade de demandas pendentes e concluídas
+// visualizar os resultados das demandas conluídas
+
 package telas;
 
 import classes.*;
@@ -22,28 +28,40 @@ import javax.swing.table.DefaultTableModel;
 
 public class telaDemandas extends javax.swing.JFrame {
     
+//    Instanciar o banco de dados e o usuário logado.
+    
     public BancoDeDados database = new BancoDeDados(); 
     public Enfermeiro userLogado = (Enfermeiro) GerenciadorLogin.getInstance().getFuncionario();
     
+//    Declaração de EDA's auxiliares para manipulação das demandas (exames e vacinas).
     public ArrayList<Map.Entry<Integer,Object>> listaDemandas = new ArrayList<>();
     public ArrayList<Object> listaDemandasPendentes = new ArrayList<>();
     public ArrayList<Object> listaDemandasConcluidas = new ArrayList<>();
-    
+
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.
+        
     public telaDemandas() throws IOException, FileNotFoundException, ParseException {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
         
+//        Carregando os dados dos agendamentos.
         database.lerArquivoAgendamento();
-        //System.out.println(database.getAgendamentos()); // Debug
+        
+//        Filtra os agendamentos com o enfermeiro logado.
         filtraAgendamentos();
         
+//        Indica a quantidade de demandas pendentes e concluídas.
         txtNumPendentes.setText(String.valueOf(listaDemandasPendentes.size()));
         txtNumConcluidos.setText(String.valueOf(listaDemandasConcluidas.size()));
-        
+
+//        Inicializa a tabela com as demandas filtradas.
         carregarTabela();
         
     }
+
+//    Filtra os agendamentos a partir do cpf do Enfermeiro logado.
     
     private void filtraAgendamentos(){
         String cpfEnfermeiro = userLogado.getCpf();
@@ -106,6 +124,8 @@ public class telaDemandas extends javax.swing.JFrame {
     System.out.println("Demandas Concluídas: " + listaDemandasConcluidas.size());
 }
 
+//        Método auxiliar para carregar dados dos exames e vacinas da lista de demandas na tebela.
+ 
     private void carregarTabela(){
         String[] colunas = {"ID", "Procedimento", "Tipo", "Data", "Status"};
         Object[][] dados = new Object[listaDemandas.size()][5];
@@ -366,6 +386,8 @@ public class telaDemandas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
+//        Avança para a telaRealizarExame ou telaAplicarVacina a partir da seleção de uma demanda na tabela
+        
         int idx = tblDemandas.getSelectedRow(); // Obtém o índice da linha selecionada na tabela
         if (idx >= 0) {
             if(tblDemandas.getValueAt(idx,4).equals("Pendente")){
@@ -396,6 +418,9 @@ public class telaDemandas extends javax.swing.JFrame {
             else {
                 JOptionPane.showMessageDialog(null,"Demanda já concluída", "Mensagem",JOptionPane.PLAIN_MESSAGE);
             }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Selecione uma demanda para avançar.", "Mensagem",JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_btnAvancarActionPerformed
 

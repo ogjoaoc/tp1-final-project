@@ -1,3 +1,7 @@
+// Interface Gráfica: telaAplicarVacina
+// responsável pela conclusão e visualização dos dados da vacina
+// e gerar o cartão de vacina
+
 package telas;
 
 import classes.*;
@@ -12,32 +16,40 @@ import javax.swing.JOptionPane;
 
 
 public class telaAplicarVacina extends javax.swing.JFrame {
-
+    
+//    Instanciar o banco de dados e variáveis auxiliares.
+    
     BancoDeDados database = new BancoDeDados();
     private Vacina vacinaAplicada;
     private int idAgendamento;
     private boolean aplicado = false;
     
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.    
+    
     public telaAplicarVacina(int id, Vacina vacina) throws IOException, FileNotFoundException, ParseException {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
-        
+
+//        Define as variáveis auxiliares        
         vacinaAplicada = vacina;
         idAgendamento = id;
-        
+ 
+//        Carrega os dados dos agendamentos e das vacinas
         database.lerArquivo("vacina");
         database.lerArquivoAgendamento();
-        
+
+//      Define o layout dos campos de texto          
         preencherCampos(vacina);
         desabilitarCampos();
         
     }
 
     private telaAplicarVacina() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+//    Método para preecher os campos de texto
     public void preencherCampos(Vacina vacina){
         Paciente p = vacina.getPacienteAssociado();
         
@@ -55,6 +67,8 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     
     }
     
+//    Método para desabilitar a escrita nos campos de texto
+
     public void desabilitarCampos(){
         // Dados Paciente
         txtNome.setEnabled(false);
@@ -402,7 +416,7 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAplicarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarVacinaActionPerformed
-        
+//        Diminui o estoque da vacina aplicada, se ela estiver disponível
         for(Vacina vac: database.getVacinas()){
             if(vac.getTipoVacina().equals(vacinaAplicada.getTipoVacina())){
                 if(vac.isDisponivel()){
@@ -424,6 +438,8 @@ public class telaAplicarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCartaoVacinaActionPerformed
 
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
+//        Altera o status da vacina para "Concluído"
+
         if(aplicado){
             for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
                 System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual

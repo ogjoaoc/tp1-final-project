@@ -436,7 +436,7 @@ public class telaAgendamento extends javax.swing.JFrame {
 
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
         
-//        Só é possível avançar caso todos os campos e pelomenos 1 exame, ou 1 vacina, tenha(m) sidos adicionados ao check-out.
+//        Só é possível avançar caso todos os campos e pelo menos 1 exame, ou 1 vacina, tenha(m) sidos adicionados ao check-out.
 
         if(checkOutVacinas.size() == 0 && checkOutExames.size() == 0){
             JOptionPane.showMessageDialog(null,"Nenhum procedimento cadastrado.", "Aviso",JOptionPane.WARNING_MESSAGE);                

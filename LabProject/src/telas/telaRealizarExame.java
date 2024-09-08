@@ -1,3 +1,7 @@
+// Interface Gráfica: telaRealizarExame
+// responsável pela conclusão e visualização dos dados do exame
+// e gerar laudo
+
 package telas;
 
 import classes.*;
@@ -22,24 +26,34 @@ import java.text.ParseException;
 
 public class telaRealizarExame extends javax.swing.JFrame {
 
+//    Instanciar o banco de dados e variáveis auxiliares.
+
     BancoDeDados database = new BancoDeDados();
     private Exame exameRealizado;
     private int idAgendamento;
+    
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.    
     
     public telaRealizarExame(Integer id,Exame exame) throws IOException, FileNotFoundException, ParseException {
         initComponents();
         this.setResizable(false);
         setLocationRelativeTo(null);
-        
+
+//        Define as variáveis auxiliares
         exameRealizado = exame;
         idAgendamento = id;
-        
+
+//        Carrega os dados dos agendamentos 
         database.lerArquivoAgendamento();
-        
+
+//      Define o layout dos campos de texto  
         preencherCampos(exame);
         desabilitarCampos();
         
     }
+
+//    Método para transformar o laudo em PDF
     
      public void exportarJFrameParaPDF(JFrame frame, String pdfPath) {
         try {
@@ -96,6 +110,8 @@ public class telaRealizarExame extends javax.swing.JFrame {
     private telaRealizarExame() {
     }
 
+//    Método para preecher os campos de texto
+            
     public void preencherCampos(Exame exame){
         Paciente p = exame.getPacienteAssociado();
         
@@ -113,6 +129,8 @@ public class telaRealizarExame extends javax.swing.JFrame {
         
     
     }
+ 
+//    Método para desabilitar a escrita nos campos de texto
     
     public void desabilitarCampos(){
         // Dados Paciente
@@ -158,10 +176,8 @@ public class telaRealizarExame extends javax.swing.JFrame {
         pnlTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         pnlResultados = new javax.swing.JPanel();
-        btnAddResultado = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
-        btnSalvar = new javax.swing.JButton();
         pnlBotoes = new javax.swing.JPanel();
         btnConcluir = new javax.swing.JButton();
         btnGerarLaudo = new javax.swing.JButton();
@@ -211,7 +227,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
         pnlDadosPacienteLayout.setHorizontalGroup(
             pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
                         .addComponent(lblConvenio)
@@ -224,7 +240,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTipoSanguineo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                        .addComponent(txtTipoSanguineo))
                     .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
                         .addComponent(lblEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -256,7 +272,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
                 .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConvenio)
                     .addComponent(txtConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pnlDadosExame.setBackground(new java.awt.Color(248, 197, 190));
@@ -348,56 +364,25 @@ public class telaRealizarExame extends javax.swing.JFrame {
         pnlResultados.setBackground(new java.awt.Color(248, 197, 190));
         pnlResultados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnAddResultado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnAddResultado.setText("Adicionar Resultado");
-        btnAddResultado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddResultadoActionPerformed(evt);
-            }
-        });
-
         txtResultado.setColumns(20);
         txtResultado.setRows(5);
         jScrollPane1.setViewportView(txtResultado);
-
-        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSalvar.setText("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlResultadosLayout = new javax.swing.GroupLayout(pnlResultados);
         pnlResultados.setLayout(pnlResultadosLayout);
         pnlResultadosLayout.setHorizontalGroup(
             pnlResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlResultadosLayout.createSequentialGroup()
-                .addGroup(pnlResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlResultadosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(pnlResultadosLayout.createSequentialGroup()
-                        .addGroup(pnlResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlResultadosLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(btnAddResultado))
-                            .addGroup(pnlResultadosLayout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(btnSalvar)))
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlResultadosLayout.setVerticalGroup(
             pnlResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlResultadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAddResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         pnlBotoes.setBackground(new java.awt.Color(248, 197, 190));
@@ -459,7 +444,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlDadosPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDadosExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlDadosExame, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -511,15 +496,9 @@ public class telaRealizarExame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtConvenioActionPerformed
 
-    private void btnAddResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddResultadoActionPerformed
-        txtResultado.setEnabled(true);
-    }//GEN-LAST:event_btnAddResultadoActionPerformed
-
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarActionPerformed
-
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
+//        Altera o status do exame para "Concluído"
+        
         if(txtResultado.equals("")){
             JOptionPane.showMessageDialog(null, "É necessário preencher o resultado antes de concluir!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else{
@@ -562,6 +541,7 @@ public class telaRealizarExame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnGerarLaudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarLaudoActionPerformed
+//        Gera o laudo a partir do resultado escrito pelo enfermeiro
         
         if(txtResultado.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo de resultado deve ser preenchido!" , "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -648,10 +628,8 @@ public class telaRealizarExame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddResultado;
     private javax.swing.JButton btnConcluir;
     private javax.swing.JButton btnGerarLaudo;
-    private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblConvenio;

@@ -1,3 +1,6 @@
+// Interface Gráfica: telaContaFuncionario
+// responsável pela visualização e edição dos dados do funcionário
+
 package telas;
 
 import classes.*;
@@ -8,24 +11,35 @@ import javax.swing.JOptionPane;
 
 public final class telaContaFuncionario extends javax.swing.JFrame {
     
+//    Instanciar o banco de dados e variável para armazenar o usuário logado.
+    
     Funcionario userLogado = (Funcionario) GerenciadorLogin.getInstance().getFuncionario();
     BancoDeDados bancoDeDados = new BancoDeDados();
+
+//    Construtor da tela
+//    Por padrão centralizada, e com redimensionamento desabilitado.    
     
     public telaContaFuncionario() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        
+//      Define se o funcionário logado é um enfermeiro ou um atendente 
+//      para realizar a leitura do arquivo certo
         if(userLogado.getFuncionario() instanceof Enfermeiro) {
             bancoDeDados.lerArquivo("enfermeiro");
         } else {
             bancoDeDados.lerArquivo("atendente");
         }
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+         
+//        Define layout dos campos de texto e botão salvar
         carregarDadosUserLogado();
         desativarEditCamposDeTexto();
         btnSalvar.setEnabled(false);
     }
-    
+
+//  Desabilita os campos de texto    
     public void desativarEditCamposDeTexto() {
         txtNome.setEditable(false);
         txtData.setEditable(false);
@@ -33,7 +47,8 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
         txtCpf.setEditable(false);
         txtSenha.setEditable(false);   
     }
-    
+
+// Habilita os campos de texto para escrita/edição    
     public void habilitarEditCamposDeTexto() {
         txtNome.setEditable(true);
         txtData.setEditable(true);
@@ -41,7 +56,8 @@ public final class telaContaFuncionario extends javax.swing.JFrame {
         txtCpf.setEditable(true);
         txtSenha.setEditable(true);  
     }
-    
+
+//  Preenche os campos de texto com os dados do usuário logado    
     public void carregarDadosUserLogado() {
         
         if(userLogado != null) {
