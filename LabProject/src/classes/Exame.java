@@ -6,6 +6,10 @@
 
 package classes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class Exame {
     
 //     Atributos de um Exame:
@@ -41,27 +45,50 @@ public abstract class Exame {
 //    Método auxiliar para saber qual o valor do desconto oferecido pelos diferentes tipos de Convênios cadastrados.
     
     public double precoConvenio(String convenio){
-        switch (convenio){
-            // Sem Convênio, Unimed, Amil, Bradesco Saúde, Porto Seguro
+        List<String> examesCobertos;
+        examesCobertos = new ArrayList<>();
+        
+        switch (convenio) {
             case "Sem Convênio" -> {
                 return preco;
             }
             case "Unimed" -> {
-                return preco*0.9;
+                examesCobertos.addAll(Arrays.asList("Dengue", "Zika Vírus", "Covid-19", "Colesterol"));
+
+                if (examesCobertos.contains(getTipoExame())) {
+                    return preco * 0.9; // 10% de desconto
+                } else {
+                    return preco;
+                }
             }
             case "Amil" -> {
-                return preco*0.85;
-            }
-            case "Bradesco" -> {
-                return preco*0.8;
+                examesCobertos.addAll(Arrays.asList("Zika Vírus", "Covid-19", "Sífilis", "Ácido Úrico"));
+
+                if (examesCobertos.contains(getTipoExame())) {
+                    return preco * 0.85; // 15% de desconto
+                } else {
+                    return preco;
+                }
             }
             case "Bradesco Saúde" -> {
-                return preco*0.75;
+                examesCobertos.addAll(Arrays.asList("Dengue", "Sífilis", "Rubéola", "Toxoplasmose"));
+
+                if (examesCobertos.contains(getTipoExame())) {
+                    return preco * 0.75; // 25% de desconto
+                } else {
+                    return preco;
+                }
             }
             case "Porto Seguro" -> {
-                return preco*0.7;
+                examesCobertos.addAll(Arrays.asList("Dengue", "Covid-19", "Rubéola", "Glicemia"));
+
+                if (examesCobertos.contains(getTipoExame())) {
+                    return preco * 0.7; // 30% de desconto
+                } else {
+                    return preco;
+                }
             }
-            default ->{
+            default -> {
                 return preco;
             }
         }

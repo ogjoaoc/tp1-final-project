@@ -6,6 +6,9 @@
 
 package classes;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Vacina {
     
 //     Atributos de uma Vacina:
@@ -52,27 +55,49 @@ public class Vacina {
 //    Método auxiliar para saber qual o valor do desconto oferecido pelos diferentes tipos de Convênios cadastrados.
     
     public double precoConvenio(String convenio){
-        switch (convenio){
-            // Sem Convênio, Unimed, Amil, Bradesco Saúde, Porto Seguro
+        List<String> vacinasCobertas;
+
+        switch (convenio) {
             case "Sem Convênio" -> {
                 return preco;
             }
             case "Unimed" -> {
-                return preco*0.9;
+                vacinasCobertas = Arrays.asList("Tríplice Viral", "Hepatite B", "Febre Amarela", "HPV");
+
+                if (vacinasCobertas.contains(getTipoVacina())) {
+                    return preco * 0.9; // 10% de desconto para vacinas
+                } else {
+                    return preco;
+                }
             }
             case "Amil" -> {
-                return preco*0.85;
-            }
-            case "Bradesco" -> {
-                return preco*0.8;
+                vacinasCobertas = Arrays.asList("Tríplice Viral", "Dupla Adulto", "Meningocócica ACWY");
+
+                if (vacinasCobertas.contains(getTipoVacina())) {
+                    return preco * 0.85; // 15% de desconto para vacinas
+                } else {
+                    return preco;
+                }
             }
             case "Bradesco Saúde" -> {
-                return preco*0.75;
+                vacinasCobertas = Arrays.asList("Hepatite B", "Dupla Adulto", "Febre Amarela", "HPV");
+
+                if (vacinasCobertas.contains(getTipoVacina())) {
+                    return preco * 0.75; // 25% de desconto para vacinas
+                } else {
+                    return preco;
+                }
             }
             case "Porto Seguro" -> {
-                return preco*0.7;
+                vacinasCobertas = Arrays.asList("Tríplice Viral", "Hepatite B", "Febre Amarela", "Meningocócica ACWY");
+
+                if (vacinasCobertas.contains(getTipoVacina())) {
+                    return preco * 0.7; // 30% de desconto para vacinas
+                } else {
+                    return preco;
+                }
             }
-            default ->{
+            default -> {
                 return preco;
             }
         }
