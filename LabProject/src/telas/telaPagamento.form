@@ -203,42 +203,35 @@
                           <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="txtNomeTitular" min="-2" pref="257" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txtNomeTitular" alignment="0" min="-2" pref="257" max="-2" attributes="0"/>
+                              <Component id="lblNomeTitular" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="lblNumCartao" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtNumCartao" min="-2" pref="257" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lblVencimento" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Component id="txtEnderecoCobranca" min="-2" pref="234" max="-2" attributes="0"/>
+                              <Component id="lblVencimento1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDataVencimento" min="-2" pref="136" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblIconCard" min="-2" pref="236" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblNomeTitular" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Component id="lblNumCartao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtNumCartao" min="-2" pref="257" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="lblVencimento" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtEnderecoCobranca" min="-2" pref="234" max="-2" attributes="0"/>
-                                      <Component id="lblVencimento1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtDataVencimento" min="-2" pref="136" max="-2" attributes="0"/>
+                                      <Component id="txtCpf" min="-2" pref="136" max="-2" attributes="0"/>
+                                      <Component id="lblCVV" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCvv" min="-2" pref="102" max="-2" attributes="0"/>
+                                      <Component id="lblCpf" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lblIconCard" min="-2" pref="236" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtCpf" min="-2" pref="136" max="-2" attributes="0"/>
-                                              <Component id="lblCVV" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCvv" min="-2" pref="102" max="-2" attributes="0"/>
-                                              <Component id="lblCpf" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -386,7 +379,7 @@
                 <Component class="javax.swing.JFormattedTextField" name="txtDataVencimento">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                      <Format format="##/##/#####" subtype="-1" type="5"/>
+                      <Format format="##/##" subtype="-1" type="5"/>
                     </Property>
                   </Properties>
                 </Component>

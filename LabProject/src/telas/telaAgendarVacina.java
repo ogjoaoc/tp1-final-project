@@ -5,12 +5,10 @@
 package telas;
 
 import classes.Enfermeiro;
-import classes.*;
 import classes.Vacina;
 import database.BancoDeDados;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import static java.lang.Double.parseDouble;
 import java.util.ArrayList;
 import javax.swing.*;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -37,6 +35,9 @@ public class telaAgendarVacina extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
+        this.setTitle("Atendente - Agendar vacina");
         
     //  Faz a leitura dos arquivos Vacinas e Enfermeiros para configurar os comboBox
         carregarVacinas();
