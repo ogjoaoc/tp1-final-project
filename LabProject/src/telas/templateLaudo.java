@@ -99,6 +99,7 @@ public class templateLaudo extends javax.swing.JFrame {
         txtResultado.setBackground(new java.awt.Color(242, 242, 242));
         txtResultado.setColumns(20);
         txtResultado.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        txtResultado.setLineWrap(true);
         txtResultado.setRows(5);
         txtResultado.setBorder(null);
         jScrollPane1.setViewportView(txtResultado);
