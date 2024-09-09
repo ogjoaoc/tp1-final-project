@@ -39,7 +39,7 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
 
         this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "exitToLogin");
         this.getRootPane().getActionMap().put("exitToLogin", new AbstractAction() {
-        @Override public void actionPerformed(ActionEvent e) { btnSair.doClick(); } });
+        @Override public void actionPerformed(ActionEvent e) { btnVoltar.doClick(); } });
         
     }
     
@@ -81,13 +81,13 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
         cbFuncao = new javax.swing.JComboBox<>();
         txtNome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        btnSair = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         txtData = new javax.swing.JFormattedTextField();
         txtCpf = new javax.swing.JFormattedTextField();
         lblSalario = new javax.swing.JLabel();
         txtSalario = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblImagem = new javax.swing.JLabel();
         backgroundLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,11 +131,11 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
             }
         });
 
-        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -191,7 +191,7 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
                 .addGap(0, 48, Short.MAX_VALUE)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
-                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
@@ -269,14 +269,14 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 570));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconPerson.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 230, 490));
+        lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconPerson.png"))); // NOI18N
+        getContentPane().add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 230, 490));
 
         backgroundLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backgroundCor.png"))); // NOI18N
         getContentPane().add(backgroundLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 830, 570));
@@ -345,11 +345,11 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         telaAdmin telaAdmin = new telaAdmin();
         telaAdmin.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnSairActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
         // TODO add your handling code here:
@@ -375,15 +375,15 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLogin;
     private javax.swing.ButtonGroup btnGrupoSexo;
-    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbFuncao;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFuncao;
+    private javax.swing.JLabel lblImagem;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSalario;
     private javax.swing.JLabel lblSenha;

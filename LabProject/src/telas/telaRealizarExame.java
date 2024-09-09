@@ -189,7 +189,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
         pnlTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         pnlResultados = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPaneResultado = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
         pnlBotoes = new javax.swing.JPanel();
         btnConcluir = new javax.swing.JButton();
@@ -240,27 +240,28 @@ public final class telaRealizarExame extends javax.swing.JFrame {
         pnlDadosPacienteLayout.setHorizontalGroup(
             pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                            .addComponent(lblConvenio)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtConvenio))
+                        .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                            .addComponent(lblSexo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblTipoSanguineo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtTipoSanguineo))
+                        .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                            .addComponent(lblEmail)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtEmail)))
                     .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                        .addComponent(lblConvenio)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtConvenio))
-                    .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                        .addComponent(lblSexo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTipoSanguineo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTipoSanguineo))
-                    .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                        .addComponent(lblEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEmail))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDadosPacienteLayout.createSequentialGroup()
                         .addComponent(lblNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
         );
@@ -350,7 +351,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
                 .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPatologia)
                     .addComponent(txtPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -361,17 +362,17 @@ public final class telaRealizarExame extends javax.swing.JFrame {
         pnlTitle.setLayout(pnlTitleLayout);
         pnlTitleLayout.setHorizontalGroup(
             pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTitleLayout.createSequentialGroup()
-                .addGap(256, 256, 256)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(319, 319, 319))
         );
         pnlTitleLayout.setVerticalGroup(
             pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTitleLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(17, 17, 17)
                 .addComponent(lblTitle)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pnlResultados.setBackground(new java.awt.Color(248, 197, 190));
@@ -380,7 +381,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
         txtResultado.setColumns(20);
         txtResultado.setLineWrap(true);
         txtResultado.setRows(5);
-        jScrollPane1.setViewportView(txtResultado);
+        scrollPaneResultado.setViewportView(txtResultado);
 
         javax.swing.GroupLayout pnlResultadosLayout = new javax.swing.GroupLayout(pnlResultados);
         pnlResultados.setLayout(pnlResultadosLayout);
@@ -388,14 +389,14 @@ public final class telaRealizarExame extends javax.swing.JFrame {
             pnlResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlResultadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlResultadosLayout.setVerticalGroup(
             pnlResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlResultadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(scrollPaneResultado)
                 .addContainerGap())
         );
 
@@ -461,7 +462,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
                     .addGroup(pnlBackgroundColorLayout.createSequentialGroup()
                         .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(pnlDadosPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlDadosExame, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
+                            .addComponent(pnlDadosExame, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(pnlResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -656,7 +657,6 @@ public final class telaRealizarExame extends javax.swing.JFrame {
     private javax.swing.JButton btnConcluir;
     private javax.swing.JButton btnGerarLaudo;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblConvenio;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblEmail;
@@ -672,6 +672,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
     private javax.swing.JPanel pnlDadosPaciente;
     private javax.swing.JPanel pnlResultados;
     private javax.swing.JPanel pnlTitle;
+    private javax.swing.JScrollPane scrollPaneResultado;
     private javax.swing.JTextField txtConvenio;
     private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtEmail;

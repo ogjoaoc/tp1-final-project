@@ -37,7 +37,7 @@ public class templateLaudo extends javax.swing.JFrame {
         txtData = new javax.swing.JFormattedTextField();
         separator2 = new javax.swing.JSeparator();
         txtNomeExame = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPaneResultado = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
         pnlBordaInferior = new javax.swing.JPanel();
         separator3 = new javax.swing.JSeparator();
@@ -102,7 +102,7 @@ public class templateLaudo extends javax.swing.JFrame {
         txtResultado.setLineWrap(true);
         txtResultado.setRows(5);
         txtResultado.setBorder(null);
-        jScrollPane1.setViewportView(txtResultado);
+        scrollPaneResultado.setViewportView(txtResultado);
 
         pnlBordaInferior.setBackground(new java.awt.Color(248, 197, 190));
 
@@ -150,7 +150,7 @@ public class templateLaudo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtNomeExame)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(scrollPaneResultado, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(19, Short.MAX_VALUE))
             .addComponent(pnlBordaInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -179,8 +179,8 @@ public class templateLaudo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNomeExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98)
+                .addComponent(scrollPaneResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(pnlBordaInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -223,7 +223,6 @@ public class templateLaudo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblEnfermeiro;
     private javax.swing.JLabel lblGenero;
@@ -231,6 +230,7 @@ public class templateLaudo extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlBordaInferior;
     private javax.swing.JPanel pnlTitle;
+    private javax.swing.JScrollPane scrollPaneResultado;
     private javax.swing.JSeparator separator1;
     private javax.swing.JSeparator separator2;
     private javax.swing.JSeparator separator3;

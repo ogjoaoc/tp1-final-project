@@ -177,7 +177,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
 
         this.getRootPane().getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "exitToLogin");
         this.getRootPane().getActionMap().put("exitToLogin", new AbstractAction() {
-        @Override public void actionPerformed(ActionEvent e) { btnSair.doClick(); } });
+        @Override public void actionPerformed(ActionEvent e) { btnVoltar.doClick(); } });
         
     }
     
@@ -208,7 +208,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
         txtExame = new javax.swing.JTextField();
         cmbTipo = new javax.swing.JComboBox<>();
         lblPreco = new javax.swing.JLabel();
-        lblTipo1 = new javax.swing.JLabel();
+        lblTipo = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -216,9 +216,9 @@ public class telaCadastroExame extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         txtBarraPesquisa = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPaneExames = new javax.swing.JScrollPane();
         tblExames = new javax.swing.JTable();
-        btnSair = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -235,8 +235,8 @@ public class telaCadastroExame extends javax.swing.JFrame {
         lblPreco.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblPreco.setText("Preço:");
 
-        lblTipo1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        lblTipo1.setText("Tipo: ");
+        lblTipo.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lblTipo.setText("Tipo: ");
 
         txtPreco.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
 
@@ -301,13 +301,13 @@ public class telaCadastroExame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblExames);
+        scrollPaneExames.setViewportView(tblExames);
 
-        btnSair.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -327,7 +327,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
                             .addGroup(backgroundColorLayout.createSequentialGroup()
                                 .addGroup(backgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblExame)
-                                    .addComponent(lblTipo1))
+                                    .addComponent(lblTipo))
                                 .addGap(18, 18, 18)
                                 .addGroup(backgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(backgroundColorLayout.createSequentialGroup()
@@ -350,10 +350,10 @@ public class telaCadastroExame extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtPreco))))
                             .addComponent(txtBarraPesquisa)
-                            .addComponent(jScrollPane1)))
+                            .addComponent(scrollPaneExames)))
                     .addGroup(backgroundColorLayout.createSequentialGroup()
                         .addGap(326, 326, 326)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         backgroundColorLayout.setVerticalGroup(
@@ -367,7 +367,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
                 .addGroup(backgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPreco)
-                    .addComponent(lblTipo1)
+                    .addComponent(lblTipo)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(backgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -379,9 +379,9 @@ public class telaCadastroExame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtBarraPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneExames, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -399,11 +399,11 @@ public class telaCadastroExame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         telaAdmin admin = new telaAdmin();
         admin.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnSairActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
@@ -591,13 +591,13 @@ public class telaCadastroExame extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbTipo;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblExame;
     private javax.swing.JLabel lblPreco;
-    private javax.swing.JLabel lblTipo1;
+    private javax.swing.JLabel lblTipo;
+    private javax.swing.JScrollPane scrollPaneExames;
     private javax.swing.JTable tblExames;
     private javax.swing.JTextField txtBarraPesquisa;
     private javax.swing.JTextField txtExame;

@@ -51,7 +51,7 @@ public class telaAtendente extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         lblInfo = new javax.swing.JLabel();
-        btnCadastrarPaciente1 = new javax.swing.JButton();
+        btnPesquisarPaciente = new javax.swing.JButton();
         btnCadastrarPaciente = new javax.swing.JButton();
         btnAgendamento = new javax.swing.JButton();
         btnMinhaConta = new javax.swing.JButton();
@@ -72,15 +72,15 @@ public class telaAtendente extends javax.swing.JFrame {
         lblInfo.setText("<html>Logado como: <i>Atendente</i></html>");
         background.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 190, 30));
 
-        btnCadastrarPaciente1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        btnCadastrarPaciente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconSearchUser.png"))); // NOI18N
-        btnCadastrarPaciente1.setText("Pesquisar Paciente");
-        btnCadastrarPaciente1.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisarPaciente.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        btnPesquisarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconSearchUser.png"))); // NOI18N
+        btnPesquisarPaciente.setText("Pesquisar Paciente");
+        btnPesquisarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarPaciente1ActionPerformed(evt);
+                btnPesquisarPacienteActionPerformed(evt);
             }
         });
-        background.add(btnCadastrarPaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 230, 80));
+        background.add(btnPesquisarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 230, 80));
 
         btnCadastrarPaciente.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         btnCadastrarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconAddUser.png"))); // NOI18N
@@ -192,11 +192,11 @@ public class telaAtendente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
-    private void btnCadastrarPaciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarPaciente1ActionPerformed
+    private void btnPesquisarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPacienteActionPerformed
         telaPesquisarPaciente telaPesquisarPaciente = new telaPesquisarPaciente();
         telaPesquisarPaciente.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnCadastrarPaciente1ActionPerformed
+    }//GEN-LAST:event_btnPesquisarPacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,8 +238,8 @@ public class telaAtendente extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton btnAgendamento;
     private javax.swing.JButton btnCadastrarPaciente;
-    private javax.swing.JButton btnCadastrarPaciente1;
     private javax.swing.JButton btnMinhaConta;
+    private javax.swing.JButton btnPesquisarPaciente;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblNome;

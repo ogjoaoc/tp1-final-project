@@ -378,7 +378,7 @@
                           <Component id="btnVoltar" max="32767" attributes="0"/>
                           <Component id="btnAplicarVacina" max="32767" attributes="0"/>
                           <Component id="btnCartaoVacina" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnConcluir" alignment="0" min="-2" pref="226" max="-2" attributes="0"/>
+                          <Component id="btnConcluir" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

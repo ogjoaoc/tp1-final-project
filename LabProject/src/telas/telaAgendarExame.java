@@ -198,7 +198,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         cbTipoExame = new javax.swing.JComboBox<>();
         lblEnfermeiro = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
-        lblPreco1 = new javax.swing.JLabel();
+        lblPreco = new javax.swing.JLabel();
         calendario = new com.toedter.calendar.JDateChooser();
         btnVoltar = new javax.swing.JButton();
         btnAgendar = new javax.swing.JButton();
@@ -235,7 +235,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
 
         lblRealizar.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         lblRealizar.setText("Realizar em:");
-        background.add(lblRealizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 120, 40));
+        background.add(lblRealizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 150, 40));
 
         rbtnSorologico.setBackground(new java.awt.Color(248, 197, 190));
         rbtnSorologico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -266,9 +266,9 @@ public class telaAgendarExame extends javax.swing.JFrame {
         background.add(lblEnfermeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 120, 40));
         background.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 190, 40));
 
-        lblPreco1.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
-        lblPreco1.setText("Preço:");
-        background.add(lblPreco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 40));
+        lblPreco.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        lblPreco.setText("Preço:");
+        background.add(lblPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 40));
 
         calendario.setDateFormatString("dd/MM/yyyy");
         calendario.setMinSelectableDate(new java.util.Date(-62135755120000L));
@@ -298,7 +298,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
         panelCalendario.setLayout(panelCalendarioLayout);
         panelCalendarioLayout.setHorizontalGroup(
             panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(calendarioUnable, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+            .addComponent(calendarioUnable, javax.swing.GroupLayout.PREFERRED_SIZE, 220, Short.MAX_VALUE)
         );
         panelCalendarioLayout.setVerticalGroup(
             panelCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,7 +408,7 @@ public class telaAgendarExame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoExame;
     private javax.swing.JLabel lblEnfermeiro;
     private javax.swing.JLabel lblExame;
-    private javax.swing.JLabel lblPreco1;
+    private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblRealizar;
     private javax.swing.JLabel lblTipo;
     private javax.swing.JPanel panelCalendario;

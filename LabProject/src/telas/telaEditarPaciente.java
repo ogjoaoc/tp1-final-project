@@ -53,15 +53,14 @@ public class telaEditarPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         groupSexo = new javax.swing.ButtonGroup();
-        groupPreferencial = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        backgroundColor = new javax.swing.JPanel();
+        lblNome = new javax.swing.JLabel();
+        lblSexo = new javax.swing.JLabel();
+        lblCpf = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblData = new javax.swing.JLabel();
+        lblSangue = new javax.swing.JLabel();
+        lblConvenio = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         rdbFeminino = new javax.swing.JRadioButton();
         rdbMasculino = new javax.swing.JRadioButton();
@@ -71,41 +70,42 @@ public class telaEditarPaciente extends javax.swing.JFrame {
         txtDataNascimento = new javax.swing.JFormattedTextField();
         txtCPF = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        lblImagem = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(248, 197, 190));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        backgroundColor.setBackground(new java.awt.Color(248, 197, 190));
+        backgroundColor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Nome:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 34, -1, -1));
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNome.setText("Nome:");
+        backgroundColor.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 34, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Sexo:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+        lblSexo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSexo.setText("Sexo:");
+        backgroundColor.add(lblSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("CPF:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 130, -1, -1));
+        lblCpf.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCpf.setText("CPF:");
+        backgroundColor.add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 130, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("E-mail:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 82, -1, -1));
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEmail.setText("E-mail:");
+        backgroundColor.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 82, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("Data de nascimento:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 178, -1, -1));
+        lblData.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblData.setText("Data de nascimento:");
+        backgroundColor.add(lblData, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 178, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("Tipo sanguíneo:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 226, -1, -1));
+        lblSangue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSangue.setText("Tipo sanguíneo:");
+        backgroundColor.add(lblSangue, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 226, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("Convênio:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+        lblConvenio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblConvenio.setText("Convênio:");
+        backgroundColor.add(lblConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtNome.setToolTipText("");
@@ -114,7 +114,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
                 txtNomeActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 31, 431, -1));
+        backgroundColor.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 31, 431, -1));
 
         rdbFeminino.setBackground(new java.awt.Color(248, 197, 190));
         groupSexo.add(rdbFeminino);
@@ -125,7 +125,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
                 rdbFemininoActionPerformed(evt);
             }
         });
-        jPanel1.add(rdbFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
+        backgroundColor.add(rdbFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
 
         rdbMasculino.setBackground(new java.awt.Color(248, 197, 190));
         groupSexo.add(rdbMasculino);
@@ -136,7 +136,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
                 rdbMasculinoActionPerformed(evt);
             }
         });
-        jPanel1.add(rdbMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
+        backgroundColor.add(rdbMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
 
         txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtEmail.setToolTipText("");
@@ -145,7 +145,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
                 txtEmailActionPerformed(evt);
             }
         });
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 77, 431, 32));
+        backgroundColor.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 77, 431, 32));
 
         cmbConvenio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cmbConvenio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sem Convênio", "Unimed", "Amil", "Bradesco Saúde", "Porto Seguro" }));
@@ -154,7 +154,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
                 cmbConvenioActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 180, -1));
+        backgroundColor.add(cmbConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 180, -1));
 
         cmbTipoSanguineo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cmbTipoSanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-" }));
@@ -163,7 +163,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
                 cmbTipoSanguineoActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbTipoSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 223, 122, -1));
+        backgroundColor.add(cmbTipoSanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 223, 122, -1));
 
         try {
             txtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -171,7 +171,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(txtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 173, -1, 32));
+        backgroundColor.add(txtDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 173, -1, 32));
 
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -179,7 +179,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCPF.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 127, 197, -1));
+        backgroundColor.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 127, 197, -1));
 
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSalvar.setText("Salvar");
@@ -188,20 +188,29 @@ public class telaEditarPaciente extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 126, 42));
+        backgroundColor.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 126, 42));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconHash.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, -1, -1));
+        lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconHash.png"))); // NOI18N
+        backgroundColor.add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, -1, -1));
+
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        backgroundColor.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 126, 42));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(backgroundColor, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(backgroundColor, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -262,6 +271,10 @@ public class telaEditarPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbConvenioActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,20 +312,20 @@ public class telaEditarPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel backgroundColor;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbConvenio;
     private javax.swing.JComboBox<String> cmbTipoSanguineo;
-    private javax.swing.ButtonGroup groupPreferencial;
     private javax.swing.ButtonGroup groupSexo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblConvenio;
+    private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblData;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblImagem;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblSangue;
+    private javax.swing.JLabel lblSexo;
     private javax.swing.JRadioButton rdbFeminino;
     private javax.swing.JRadioButton rdbMasculino;
     private javax.swing.JFormattedTextField txtCPF;

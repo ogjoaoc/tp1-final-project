@@ -139,7 +139,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
         pnlBkGround = new javax.swing.JPanel();
         pnlPesquisa = new javax.swing.JPanel();
         txtBusca = new javax.swing.JFormattedTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPanePacientes = new javax.swing.JScrollPane();
         tblPacientes = new javax.swing.JTable();
         btnVoltarResult = new javax.swing.JButton();
 
@@ -199,7 +199,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
                 tblPacientesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblPacientes);
+        scrollPanePacientes.setViewportView(tblPacientes);
         if (tblPacientes.getColumnModel().getColumnCount() > 0) {
             tblPacientes.getColumnModel().getColumn(0).setResizable(false);
             tblPacientes.getColumnModel().getColumn(1).setResizable(false);
@@ -223,7 +223,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlBkGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(scrollPanePacientes))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBkGroundLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,7 +236,7 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPanePacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnVoltarResult, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -341,9 +341,9 @@ public class telaPesquisarPaciente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVoltarResult;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlBkGround;
     private javax.swing.JPanel pnlPesquisa;
+    private javax.swing.JScrollPane scrollPanePacientes;
     private javax.swing.JTable tblPacientes;
     private javax.swing.JFormattedTextField txtBusca;
     // End of variables declaration//GEN-END:variables

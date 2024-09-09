@@ -185,7 +185,7 @@ public class telaDemandas extends javax.swing.JFrame {
         pnlBackgroundColor = new javax.swing.JPanel();
         pnlTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPaneDemandas = new javax.swing.JScrollPane();
         tblDemandas = new javax.swing.JTable();
         pnlDemandasPendentes = new javax.swing.JPanel();
         lblDemandasPendentes = new javax.swing.JLabel();
@@ -242,12 +242,13 @@ public class telaDemandas extends javax.swing.JFrame {
             }
         });
         tblDemandas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane1.setViewportView(tblDemandas);
+        scrollPaneDemandas.setViewportView(tblDemandas);
 
         lblDemandasPendentes.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblDemandasPendentes.setForeground(new java.awt.Color(153, 0, 0));
         lblDemandasPendentes.setText("Demandas Pendentes");
 
+        txtNumPendentes.setBackground(new java.awt.Color(242, 242, 242));
         txtNumPendentes.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtNumPendentes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNumPendentes.setMaximumSize(new java.awt.Dimension(100, 36));
@@ -281,6 +282,7 @@ public class telaDemandas extends javax.swing.JFrame {
         lblDemandasConcluidas.setForeground(new java.awt.Color(153, 0, 0));
         lblDemandasConcluidas.setText("Demandas Concluídas");
 
+        txtNumConcluidos.setBackground(new java.awt.Color(242, 242, 242));
         txtNumConcluidos.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtNumConcluidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNumConcluidos.setMaximumSize(new java.awt.Dimension(100, 64));
@@ -356,7 +358,7 @@ public class telaDemandas extends javax.swing.JFrame {
                         .addGap(18, 18, 18)))
                 .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAvancar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollPaneDemandas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlBackgroundColorLayout.setVerticalGroup(
@@ -371,7 +373,7 @@ public class telaDemandas extends javax.swing.JFrame {
                         .addComponent(pnlDemandasPendentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlBackgroundColorLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(scrollPaneDemandas, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(34, 34, 34)
                 .addGroup(pnlBackgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -545,7 +547,6 @@ public class telaDemandas extends javax.swing.JFrame {
     private javax.swing.JButton btnAvancar;
     private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDemandasConcluidas;
     private javax.swing.JLabel lblDemandasPendentes;
     private javax.swing.JLabel lblTitle;
@@ -553,6 +554,7 @@ public class telaDemandas extends javax.swing.JFrame {
     private javax.swing.JPanel pnlDemandasConcluidas;
     private javax.swing.JPanel pnlDemandasPendentes;
     private javax.swing.JPanel pnlTitle;
+    private javax.swing.JScrollPane scrollPaneDemandas;
     private javax.swing.JTable tblDemandas;
     private javax.swing.JTextField txtNumConcluidos;
     private javax.swing.JTextField txtNumPendentes;

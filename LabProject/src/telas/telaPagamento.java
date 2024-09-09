@@ -77,7 +77,7 @@ public final class telaPagamento extends javax.swing.JFrame {
             lblValorTotalPanel.setText(String.format("Valor total: R$%.2f", valorTotal));
         }
 
-        jTable1.setModel(modelo);
+        tblAgendamentos.setModel(modelo);
         valorTotalAgendamento = valorTotal;
     }
 
@@ -237,7 +237,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         backgroundColor = new javax.swing.JPanel();
         btnVoltar = new javax.swing.JButton();
         btnFinalizar = new javax.swing.JButton();
-        panelTitle = new javax.swing.JPanel();
+        pnlTitle = new javax.swing.JPanel();
         txtTitle = new javax.swing.JLabel();
         tabbedPagamento = new javax.swing.JTabbedPane();
         pnlCartao = new javax.swing.JPanel();
@@ -262,7 +262,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         lblValorTotalPanel = new javax.swing.JLabel();
         separatorCheckOut = new javax.swing.JSeparator();
         tblCheckOut = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAgendamentos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -291,18 +291,18 @@ public final class telaPagamento extends javax.swing.JFrame {
         txtTitle.setForeground(new java.awt.Color(153, 0, 0));
         txtTitle.setText("Informações - Pagamento");
 
-        javax.swing.GroupLayout panelTitleLayout = new javax.swing.GroupLayout(panelTitle);
-        panelTitle.setLayout(panelTitleLayout);
-        panelTitleLayout.setHorizontalGroup(
-            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
+        pnlTitle.setLayout(pnlTitleLayout);
+        pnlTitleLayout.setHorizontalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtTitle)
                 .addGap(362, 362, 362))
         );
-        panelTitleLayout.setVerticalGroup(
-            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
+        pnlTitleLayout.setVerticalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleLayout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(txtTitle)
                 .addGap(16, 16, 16))
@@ -473,7 +473,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         separatorCheckOut.setForeground(new java.awt.Color(0, 0, 0));
         separatorCheckOut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -492,7 +492,7 @@ public final class telaPagamento extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tblCheckOut.setViewportView(jTable1);
+        tblCheckOut.setViewportView(tblAgendamentos);
 
         javax.swing.GroupLayout pnlValorTotalLayout = new javax.swing.GroupLayout(pnlValorTotal);
         pnlValorTotal.setLayout(pnlValorTotalLayout);
@@ -532,7 +532,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         backgroundColor.setLayout(backgroundColorLayout);
         backgroundColorLayout.setHorizontalGroup(
             backgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(backgroundColorLayout.createSequentialGroup()
                 .addGroup(backgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(backgroundColorLayout.createSequentialGroup()
@@ -550,7 +550,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         backgroundColorLayout.setVerticalGroup(
             backgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundColorLayout.createSequentialGroup()
-                .addComponent(panelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(backgroundColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundColorLayout.createSequentialGroup()
@@ -648,7 +648,6 @@ public final class telaPagamento extends javax.swing.JFrame {
     private javax.swing.JPanel backgroundColor;
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCVV;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblDesconto;
@@ -659,13 +658,14 @@ public final class telaPagamento extends javax.swing.JFrame {
     private javax.swing.JLabel lblValorTotalPanel;
     private javax.swing.JLabel lblVencimento;
     private javax.swing.JLabel lblVencimento1;
-    private javax.swing.JPanel panelTitle;
     private javax.swing.JPanel pnlCartao;
     private javax.swing.JPanel pnlPix;
+    private javax.swing.JPanel pnlTitle;
     private javax.swing.JPanel pnlValorTotal;
     private javax.swing.JSeparator separatorCartao;
     private javax.swing.JSeparator separatorCheckOut;
     private javax.swing.JTabbedPane tabbedPagamento;
+    private javax.swing.JTable tblAgendamentos;
     private javax.swing.JScrollPane tblCheckOut;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtCvv;
