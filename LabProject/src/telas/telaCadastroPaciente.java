@@ -25,6 +25,8 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
 //        Define o ícone e o título da janela
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
         this.setTitle("Atendente - Cadastro de Pacientes");
+        
+        bancoDeDados.lerArquivo("paciente");
     }
 
     @SuppressWarnings("unchecked")
@@ -236,6 +238,12 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             String sexo;
             if (rdbMasculino.isSelected()) sexo = "Masculino";
             else sexo = "Feminino";
+            
+            if (bancoDeDados.encontrarPaciente(cpf) != null){
+                JOptionPane.showMessageDialog(null, "Já existe paciente com esse CPF!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                txtCPF.setText("");
+                return;
+            }
 
             Paciente paciente = new Paciente(tipoSanguineo, convenio, /*preferencial*/ nome, cpf, sexo, dataNascimento, email);
             
