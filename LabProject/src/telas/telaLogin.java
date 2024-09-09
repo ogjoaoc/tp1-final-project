@@ -97,6 +97,7 @@ public class telaLogin extends javax.swing.JFrame {
 
         pnlLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txtSenha.setBackground(new java.awt.Color(242, 242, 242));
         txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Senha: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 18))); // NOI18N
 
@@ -120,6 +121,7 @@ public class telaLogin extends javax.swing.JFrame {
 
         imgIconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconUserL.png"))); // NOI18N
 
+        txtLogin.setBackground(new java.awt.Color(242, 242, 242));
         txtLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Login:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         try {
             txtLogin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
