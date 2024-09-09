@@ -14,7 +14,7 @@ public class Funcionario extends Pessoa implements UserLogado {
 //    - salario: valor que identifica o salário de um funcionário.
 //    - dataHoraLogin: atributo responsável por armazenar o último momento em que o Funcionário logou no sistema.
 
-    String senha;
+    private String senha;
     protected String salario;
     private LocalDateTime dataHoraLogin;
     

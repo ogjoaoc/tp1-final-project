@@ -372,13 +372,13 @@ public class BancoDeDados {
     
 //    Métodos específicos para atualização de objetos na database.
     
-    public void atualizarVacina(Vacina vacina) {
-        String tipoVacina = vacina.getTipoVacina();
+    public void atualizarVacina(Vacina vacinaAtualizada) {
+        String tipoVacina = vacinaAtualizada.getTipoVacina();
 
         // Atualiza a vacina na lista em memória
         for (int i = 0; i < vacinas.size(); i++) {
             if (vacinas.get(i).getTipoVacina().equals(tipoVacina)) {
-                vacinas.set(i, vacina);
+                vacinas.set(i, vacinaAtualizada);
                 break; // Opcional: Se houver várias vacinas com o mesmo tipo, você pode remover isso.
             }
         }
@@ -426,14 +426,14 @@ public class BancoDeDados {
         System.out.println("Arquivo de agendamentos atualizado.");
     }
     
-    public void atualizarFuncionario(Funcionario func) {
+    public void atualizarFuncionario(Funcionario funcionarioAtualizado) {
         
-        String cpf = func.getCpf();
+        String cpf = funcionarioAtualizado.getCpf();
         
-        if(func instanceof Enfermeiro) {
+        if(funcionarioAtualizado instanceof Enfermeiro) {
             for (int i = 0; i < enfermeiros.size(); i++) {
                 if (enfermeiros.get(i).getCpf().equals(cpf)) {
-                    enfermeiros.set(i, (Enfermeiro)func);
+                    enfermeiros.set(i, (Enfermeiro)funcionarioAtualizado);
                     break; 
                 }
             }
@@ -442,7 +442,7 @@ public class BancoDeDados {
         } else {
             for (int i = 0; i < atendentes.size(); i++) {
                 if (atendentes.get(i).getCpf().equals(cpf)) {
-                    atendentes.set(i, (Atendente)func);
+                    atendentes.set(i, (Atendente)funcionarioAtualizado);
                     break; 
                 }
             }
