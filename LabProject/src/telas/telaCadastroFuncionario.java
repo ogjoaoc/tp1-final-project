@@ -321,6 +321,12 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
             String senha = new String(txtSenha.getPassword());
             String salario = txtSalario.getText();
             
+            if (bancoDeDados.encontrarFuncionario(cpf)){
+                JOptionPane.showMessageDialog(null, "Já existe funcionário com esse CPF!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                txtCpf.setText("");
+                return;
+            }
+            
             if(funcao.equals("Enfermeiro")) {
                 
                 boolean disponivel = true;

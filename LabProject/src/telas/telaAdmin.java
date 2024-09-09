@@ -82,7 +82,6 @@ public class telaAdmin extends javax.swing.JFrame {
         });
         getContentPane().add(btnPesquisarFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 280, 100));
 
-        btnCadastrarFunc.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         btnCadastrarFunc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconAddUser.png"))); // NOI18N
         btnCadastrarFunc.setText("Cadastrar Funcionário");
         btnCadastrarFunc.setToolTipText("");

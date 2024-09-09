@@ -102,9 +102,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrarFunc">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Helvetica Neue" size="14" style="0"/>
-        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagens/iconAddUser.png"/>
         </Property>

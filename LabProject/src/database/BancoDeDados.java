@@ -468,6 +468,22 @@ public class BancoDeDados {
         }
         return null;
     }
+    
+    public boolean encontrarFuncionario(String cpf) { 
+        for (int i = 0; i < enfermeiros.size(); i++) {
+            if (enfermeiros.get(i).getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+            
+        for (int i = 0; i < atendentes.size(); i++) {
+            if (atendentes.get(i).getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
   
     
 //    Método polimórfico responsável pela atualização e reescrita dos arquivos de diferentes tipos.
