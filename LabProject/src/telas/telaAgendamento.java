@@ -109,7 +109,7 @@ public class telaAgendamento extends javax.swing.JFrame {
                 public void focusLost(FocusEvent e) {
                     Paciente paciente = getPacienteSelecionado();
                     if (paciente != null) {
-                        System.out.println(paciente.getSexo());
+                        //System.out.println(paciente.getSexo());
                         atualizarIconeSexo(paciente.getSexo());
                     } else {
                         iconSexoPaciente.setIcon(null); 
@@ -130,7 +130,7 @@ public class telaAgendamento extends javax.swing.JFrame {
         if (sexoPaciente.equalsIgnoreCase("Feminino")) {
             iconSexoPaciente.setIcon(iconGirl); 
         } else if (sexoPaciente.equalsIgnoreCase("Masculino")) {
-            System.out.println("oi");
+            //System.out.println("oi");
             iconSexoPaciente.setIcon(iconBoy);  
         } else {
             iconSexoPaciente.setIcon(null); 

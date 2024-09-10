@@ -183,13 +183,16 @@ public class telaDemandas extends javax.swing.JFrame {
         }
         return aux;
     }
+ 
+//    Método auxiliar para converter String para LocalDate
     
     public static LocalDate toLocalDate(String dateString) {
         String format = "dd/MM/yyyy";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return LocalDate.parse(dateString, formatter);
     }
-    
+ 
+//    Método auxiliar para ordenar as demandas por data
     private void ordenarDemandasPorData() {
         // Ordena demandas (exames e vacinas) pela data
         Collections.sort(listaDemandas, new Comparator<Map.Entry<Integer, Object>>() {
@@ -220,14 +223,14 @@ public class telaDemandas extends javax.swing.JFrame {
         });
 
         // Debug: Verificar a lista ordenada
-        for (Map.Entry<Integer, Object> entry : listaDemandas) {
-            Object demanda = entry.getValue();
-            if (demanda instanceof Exame) {
-                System.out.println("Exame: " + ((Exame) demanda).getTipoExame() + " - Data: " + ((Exame) demanda).getDataRealizacao());
-            } else if (demanda instanceof Vacina) {
-                System.out.println("Vacina: " + ((Vacina) demanda).getTipoVacina() + " - Data: " + ((Vacina) demanda).getValidade());
-            }
-        }
+//        for (Map.Entry<Integer, Object> entry : listaDemandas) {
+//            Object demanda = entry.getValue();
+//            if (demanda instanceof Exame) {
+//                System.out.println("Exame: " + ((Exame) demanda).getTipoExame() + " - Data: " + ((Exame) demanda).getDataRealizacao());
+//            } else if (demanda instanceof Vacina) {
+//                System.out.println("Vacina: " + ((Vacina) demanda).getTipoVacina() + " - Data: " + ((Vacina) demanda).getValidade());
+//            }
+//        }
     }
     
     @SuppressWarnings("unchecked")

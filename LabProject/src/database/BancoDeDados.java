@@ -171,11 +171,11 @@ public class BancoDeDados {
 
                 String cpfPaciente = dados[7];
                 String cpfEnfermeiro = dados[6];
-                System.out.println(cpfPaciente);
-                System.out.println(cpfEnfermeiro);
-                
-                System.out.println(pacientes.size());
-                System.out.println(enfermeiros.size());
+//                System.out.println(cpfPaciente);
+//                System.out.println(cpfEnfermeiro);
+//                
+//                System.out.println(pacientes.size());
+//                System.out.println(enfermeiros.size());
                 Paciente pacienteAssociado = pacientes.stream()
                         .filter(p -> p.getCpf().equals(cpfPaciente))
                         .findFirst()
