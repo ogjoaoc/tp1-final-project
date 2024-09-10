@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +21,7 @@ public final class telaPagamento extends javax.swing.JFrame {
     private ArrayList<Vacina> pagamentoVacinas;
     private telaAgendamento telaPrincipalAgendamento;
     private double valorTotalAgendamento = 0f;
+    private Set<String> checkFieldsSet;
     
     public telaPagamento(telaAgendamento telaPrincipalAgendamento) {
         
@@ -30,6 +33,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         this.telaPrincipalAgendamento = telaPrincipalAgendamento;
         pagamentoExames = telaPrincipalAgendamento.getCheckOutExames();
         pagamentoVacinas = telaPrincipalAgendamento.getCheckOutVacina();
+        checkFieldsSet = new HashSet<>();
        
         this.setIconImage(new ImageIcon(getClass().getResource("/imagens/iconCoracao.png")).getImage());
         this.setTitle("Atendente - Finalizar pagamento");
@@ -90,6 +94,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         txtDataVencimento.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
         
         txtNomeTitular.setText("Nome do titular");
+        checkFieldsSet.add(txtNomeTitular.getText());
         txtNomeTitular.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -109,6 +114,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         txtNomeTitular.setForeground(Color.GRAY);
 
         txtNumCartao.setText("0000000000000000");
+        checkFieldsSet.add(txtNumCartao.getText());
         txtNumCartao.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -128,6 +134,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         txtNumCartao.setForeground(Color.GRAY);
 
         txtCvv.setText("123");
+        checkFieldsSet.add(txtCvv.getText());
         txtCvv.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -147,6 +154,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         txtCvv.setForeground(Color.GRAY);
 
         txtEnderecoCobranca.setText("Endereço de cobrança");
+        checkFieldsSet.add(txtEnderecoCobranca.getText());
         txtEnderecoCobranca.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -166,6 +174,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         txtEnderecoCobranca.setForeground(Color.GRAY);
 
         txtCpf.setText("000.000.000-00");
+        checkFieldsSet.add(txtCpf.getText());
         txtCpf.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -185,6 +194,7 @@ public final class telaPagamento extends javax.swing.JFrame {
         txtCpf.setForeground(Color.GRAY);
         
         txtDataVencimento.setText("24/04/2024");
+        checkFieldsSet.add(txtDataVencimento.getText());
         txtDataVencimento.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -202,6 +212,7 @@ public final class telaPagamento extends javax.swing.JFrame {
             }
         });
         txtDataVencimento.setForeground(Color.GRAY);
+        checkFieldsSet.add("");
         
     }
     
@@ -228,6 +239,10 @@ public final class telaPagamento extends javax.swing.JFrame {
         });
     }
     
+    public boolean checkField(String teste) {
+        return checkFieldsSet.contains(teste);
+    }
+     
     
 
     @SuppressWarnings("unchecked")
@@ -359,6 +374,11 @@ public final class telaPagamento extends javax.swing.JFrame {
 
         txtNomeTitular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         txtNomeTitular.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNomeTitular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeTitularActionPerformed(evt);
+            }
+        });
 
         try {
             txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -455,23 +475,23 @@ public final class telaPagamento extends javax.swing.JFrame {
         pnlPix.setLayout(pnlPixLayout);
         pnlPixLayout.setHorizontalGroup(
             pnlPixLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPixLayout.createSequentialGroup()
-                .addGap(174, 174, 174)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPixLayout.createSequentialGroup()
                 .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(lblNomeTitular1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
+            .addGroup(pnlPixLayout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlPixLayout.setVerticalGroup(
             pnlPixLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPixLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(lblNomeTitular1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel1)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         tabbedPagamento.addTab("   Pix    ", pnlPix);
@@ -608,6 +628,15 @@ public final class telaPagamento extends javax.swing.JFrame {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         
+        if(checkField(txtCpf.getText()) || checkField(txtCvv.getText()) ||checkField(txtDataVencimento.getText()) || checkField(txtEnderecoCobranca.getText()) || 
+            checkField(txtNomeTitular.getText()) || checkField(txtNumCartao.getText()) ) {
+                
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+            
+        }
+        
         int idAgendamento = telaPrincipalAgendamento.database.getAgendamentos().size() + 1;
         double valorTotal = valorTotalAgendamento; // Valor total calculado anteriormente
 
@@ -629,6 +658,10 @@ public final class telaPagamento extends javax.swing.JFrame {
         telaAtendente inicio = new telaAtendente();
         inicio.setVisible(true);
     }//GEN-LAST:event_btnFinalizarActionPerformed
+
+    private void txtNomeTitularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeTitularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeTitularActionPerformed
 
     /**
      * @param args the command line arguments
