@@ -223,7 +223,7 @@ public final class telaPagamento extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 txtNomeTitular.setText(telaPrincipalAgendamento.getPacienteSelecionado().getNome());
                 txtNumCartao.setText("1234567890123456");
-                txtCvv.setText("123");
+                txtCvv.setText("000");
                 txtCpf.setText(telaPrincipalAgendamento.getPacienteSelecionado().getCpf());
                 txtEnderecoCobranca.setText("Rua Exemplo, 123, Bairro, Cidade, Estado");
                 txtDataVencimento.setText("12/25");
@@ -339,6 +339,11 @@ public final class telaPagamento extends javax.swing.JFrame {
         lblNumCartao.setText("Número do cartão:");
 
         txtCvv.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtCvv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCvvActionPerformed(evt);
+            }
+        });
 
         lblVencimento.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblVencimento.setText("Endereço de cobrança:");
@@ -374,11 +379,6 @@ public final class telaPagamento extends javax.swing.JFrame {
 
         txtNomeTitular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         txtNomeTitular.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtNomeTitular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeTitularActionPerformed(evt);
-            }
-        });
 
         try {
             txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -475,23 +475,23 @@ public final class telaPagamento extends javax.swing.JFrame {
         pnlPix.setLayout(pnlPixLayout);
         pnlPixLayout.setHorizontalGroup(
             pnlPixLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPixLayout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPixLayout.createSequentialGroup()
                 .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(lblNomeTitular1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
-            .addGroup(pnlPixLayout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlPixLayout.setVerticalGroup(
             pnlPixLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPixLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(lblNomeTitular1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel1)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         tabbedPagamento.addTab("   Pix    ", pnlPix);
@@ -627,9 +627,10 @@ public final class telaPagamento extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCpfActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        
-        if(checkField(txtCpf.getText()) || checkField(txtCvv.getText()) ||checkField(txtDataVencimento.getText()) || checkField(txtEnderecoCobranca.getText()) || 
-            checkField(txtNomeTitular.getText()) || checkField(txtNumCartao.getText()) ) {
+       
+        System.out.println(tabbedPagamento.getSelectedIndex());
+        if((tabbedPagamento.getSelectedIndex() == 0) && (checkField(txtCpf.getText()) || checkField(txtCvv.getText()) ||checkField(txtDataVencimento.getText()) || checkField(txtEnderecoCobranca.getText()) || 
+            checkField(txtNomeTitular.getText()) || checkField(txtNumCartao.getText())) ) {
                 
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -662,6 +663,10 @@ public final class telaPagamento extends javax.swing.JFrame {
     private void txtNomeTitularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeTitularActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeTitularActionPerformed
+
+    private void txtCvvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCvvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCvvActionPerformed
 
     /**
      * @param args the command line arguments

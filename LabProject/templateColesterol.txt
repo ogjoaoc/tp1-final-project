@@ -1,0 +1,19 @@
+Template Colesterol
+
+Resultado:
+Colesterol Total:
+HDL:
+LDL:
+
+De acordo com a SBC(Sociedade Brasileira de Cardiologia), os valores referências para 
+o colesterol são:
+
+Colesterol total: abaixo de 190 mg/dL;
+HDL: acima de 40mg/dL;
+
+No caso específico de LDL, a recomendação segue de acordo com o risco do paciente:
+
+Risco baixo: abaixo de 130mg/dL;
+Risco médio: abaixo de 100mg/dL;
+Risco alto: abaixo de 70mg/dL;
+Risco muito alto: abaixo de 50mg/dL;

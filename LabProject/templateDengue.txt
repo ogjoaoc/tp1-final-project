@@ -1,0 +1,22 @@
+O exame sorológico foi conduzido para identificar a presença de anticorpos contra o vírus da dengue, utilizando os testes de anticorpos IgG e IgM. Estes testes ajudam a determinar se a infecção é recente ou passada.
+
+Sintomas Relatados pelo Paciente:
+Paciente apresenta um quadro clínico caracterizado por:
+
+Febre Alta: Temperatura corporal frequentemente acima de 39°C, persistente por vários dias.
+Dores Musculares e Articulares: Intensidade significativa, particularmente nos membros superiores e inferiores.
+Dor Retrocular: Desconforto intenso atrás dos olhos, exacerbado pelo movimento ocular.
+Erupções Cutâneas: Surgimento de manchas vermelhas e coceira na pele, que se espalham pelo corpo.
+Cansaço e Fraqueza: Sensação de fadiga geral e diminuição da força física.
+Resultados do Exame:
+
+IgG: Negativo
+IgM: Positivo
+Interpretação dos Resultados:
+A presença de anticorpos IgM positivos indica uma infecção recente ou aguda por dengue. A ausência de anticorpos IgG sugere que o paciente não teve uma infecção anterior ou que ainda está na fase inicial da resposta imunológica.
+
+Conclusão:
+O exame confirma que o paciente está na fase aguda da infecção por dengue. Recomenda-se monitoramento próximo dos sintomas, especialmente o controle da febre e a hidratação adequada para evitar complicações como desidratação. O paciente deve seguir as orientações médicas e retornar para avaliações de acompanhamento.
+
+Comentários Adicionais:
+Considerando o quadro clínico e os resultados laboratoriais, é crucial que o paciente siga as recomendações de repouso e evite medicamentos que possam exacerbar a condição, como anti-inflamatórios. O acompanhamento médico regular é essencial para gerenciar a progressão da doença e prevenir possíveis complicações.

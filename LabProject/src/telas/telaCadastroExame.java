@@ -479,7 +479,9 @@ public class telaCadastroExame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       
+
+        
+        
         int idx = tblExames.getSelectedRow(); 
         
         if (idx >= 0) {
@@ -489,7 +491,7 @@ public class telaCadastroExame extends javax.swing.JFrame {
             cmbTipo.setSelectedItem(tblExames.getValueAt(idx, 0).toString());
 
             estadoSalvar = "edicao";
-            habilitarCampos(true, true, true);
+            habilitarCampos(false, true, true);
             habilitarBotoes(false, true, true, true, true);
             
         } else {
