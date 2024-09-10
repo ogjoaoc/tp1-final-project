@@ -65,21 +65,21 @@ public class telaDemandas extends javax.swing.JFrame {
     private void filtraAgendamentos(){
         String cpfEnfermeiro = userLogado.getCpf();
 
-        // Debug: Verificando se os agendamentos estão sendo carregados
-        System.out.println("Iniciando filtragem de agendamentos...");
-        System.out.println("CPF do enfermeiro logado: " + cpfEnfermeiro);
-        System.out.println("Total de agendamentos no banco de dados: " + database.getAgendamentos().size());
+          // Debug: Verificando se os agendamentos estão sendo carregados
+//        System.out.println("Iniciando filtragem de agendamentos...");
+//        System.out.println("CPF do enfermeiro logado: " + cpfEnfermeiro);
+//        System.out.println("Total de agendamentos no banco de dados: " + database.getAgendamentos().size());
 
         for (Agendamento agendamento : database.getAgendamentos()) {
             // Debug: Verificando conteúdo de cada agendamento
-            System.out.println("Processando Agendamento ID: " + agendamento.getId());
-            System.out.println("Lista de Exames: " + agendamento.getListaExames().size());
-            System.out.println("Lista de Vacinas: " + agendamento.getListaVacinas().size());
+//            System.out.println("Processando Agendamento ID: " + agendamento.getId());
+//            System.out.println("Lista de Exames: " + agendamento.getListaExames().size());
+//            System.out.println("Lista de Vacinas: " + agendamento.getListaVacinas().size());
 
             for (Exame exame: agendamento.getListaExames()) {
                 // Debug: Examinando cada exame
-                System.out.println("Exame: " + exame.getTipoExame());
-                System.out.println("CPF do enfermeiro associado ao exame: " + exame.getEnfermeiroAssociado().getCpf());
+//                System.out.println("Exame: " + exame.getTipoExame());
+//                System.out.println("CPF do enfermeiro associado ao exame: " + exame.getEnfermeiroAssociado().getCpf());
 
                 if (exame.getEnfermeiroAssociado().getCpf().equals(cpfEnfermeiro)) {
                     listaDemandas.add(new AbstractMap.SimpleEntry<>(agendamento.getId(), exame));
@@ -87,19 +87,19 @@ public class telaDemandas extends javax.swing.JFrame {
                     if (exame.getStatus() == false) {
                         listaDemandasPendentes.add(exame);
                         // Debug: Exame pendente
-                        System.out.println("Exame Pendente: " + exame.getTipoExame());
+                        //System.out.println("Exame Pendente: " + exame.getTipoExame());
                     } else {
                         listaDemandasConcluidas.add(exame);
                         // Debug: Exame concluído
-                        System.out.println("Exame Concluído: " + exame.getTipoExame());
+                        //System.out.println("Exame Concluído: " + exame.getTipoExame());
                     }
                 }
             }
 
             for (Vacina vacina: agendamento.getListaVacinas()) {
                 // Debug: Examinando cada vacina
-                System.out.println("Vacina: " + vacina.getTipoVacina());
-                System.out.println("CPF do enfermeiro associado à vacina: " + vacina.getEnfermeiroAssociado().getCpf());
+//                System.out.println("Vacina: " + vacina.getTipoVacina());
+//                System.out.println("CPF do enfermeiro associado à vacina: " + vacina.getEnfermeiroAssociado().getCpf());
 
                 if (vacina.getEnfermeiroAssociado().getCpf().equals(cpfEnfermeiro)) {
                     listaDemandas.add(new AbstractMap.SimpleEntry<>(agendamento.getId(), vacina));
@@ -107,20 +107,20 @@ public class telaDemandas extends javax.swing.JFrame {
                     if (vacina.getStatus() == false) {
                         listaDemandasPendentes.add(vacina);
                         // Debug: Vacina pendente
-                        System.out.println("Vacina Pendente: " + vacina.getTipoVacina());
+                        //System.out.println("Vacina Pendente: " + vacina.getTipoVacina());
                     } else {
                         listaDemandasConcluidas.add(vacina);
                         // Debug: Vacina concluída
-                        System.out.println("Vacina Concluída: " + vacina.getTipoVacina());
+                        //System.out.println("Vacina Concluída: " + vacina.getTipoVacina());
                     }
                 }
             } 
     }
     
     // Debug: Resumo final
-    System.out.println("Total Demandas: " + listaDemandas.size());
-    System.out.println("Demandas Pendentes: " + listaDemandasPendentes.size());
-    System.out.println("Demandas Concluídas: " + listaDemandasConcluidas.size());
+//    System.out.println("Total Demandas: " + listaDemandas.size());
+//    System.out.println("Demandas Pendentes: " + listaDemandasPendentes.size());
+//    System.out.println("Demandas Concluídas: " + listaDemandasConcluidas.size());
 }
 
 //  Método auxiliar para carregar dados dos exames e vacinas da lista de demandas na tebela.

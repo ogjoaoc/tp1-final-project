@@ -72,33 +72,33 @@ public class telaAgendamento extends javax.swing.JFrame {
         database.lerArquivoAgendamento();
         
 //         Trecho de DEBUG...           ---------------------------------------------
-        for (Agendamento a : database.getAgendamentos()) {;
-            System.out.println("Agendamento ID: " + a.getId());
-            System.out.println("Data de Criação: " + a.getDataCriado());
-            System.out.println("Valor Total: " + a.getValorTotal());
-
-            // Itera sobre a lista de exames do agendamento
-            for (Exame e : a.getListaExames()) {
-                System.out.println("  Tipo de Exame: " + e.getTipoExame());
-                System.out.println("  Subtipo de Exame: " + e.getSubtipo());
-                System.out.println("  Data de Realização: " + e.getDataRealizacao());
-                System.out.println("  CPF do Paciente Associado: " + e.getCpfPacienteAssociado());
-                System.out.println("  CPF do Enfermeiro Associado: " + e.getCpfEnfermeiroAssociado());
-                System.out.println("  Preço: " + e.getPreco());
-            }
-
-            // Itera sobre a lista de vacinas do agendamento
-            for (Vacina v : a.getListaVacinas()) {
-                System.out.println("  Tipo de Vacina: " + v.getTipoVacina());
-                System.out.println("  Validade da Vacina: " + v.getValidade());
-                System.out.println("  CPF do Paciente Associado: " + v.getCpfPacienteAssociado());
-                System.out.println("  CPF do Enfermeiro Associado: " + v.getCpfEnfermeiroAssociado());
-                System.out.println("  Dosagem: " + v.getDose());
-                System.out.println("  Preço: " + v.getPreco());
-            }
-
-            System.out.println("-------------------------------------------------");
-        }
+//        for (Agendamento a : database.getAgendamentos()) {;
+//            System.out.println("Agendamento ID: " + a.getId());
+//            System.out.println("Data de Criação: " + a.getDataCriado());
+//            System.out.println("Valor Total: " + a.getValorTotal());
+//
+//            // Itera sobre a lista de exames do agendamento
+//            for (Exame e : a.getListaExames()) {
+//                System.out.println("  Tipo de Exame: " + e.getTipoExame());
+//                System.out.println("  Subtipo de Exame: " + e.getSubtipo());
+//                System.out.println("  Data de Realização: " + e.getDataRealizacao());
+//                System.out.println("  CPF do Paciente Associado: " + e.getCpfPacienteAssociado());
+//                System.out.println("  CPF do Enfermeiro Associado: " + e.getCpfEnfermeiroAssociado());
+//                System.out.println("  Preço: " + e.getPreco());
+//            }
+//
+//            // Itera sobre a lista de vacinas do agendamento
+//            for (Vacina v : a.getListaVacinas()) {
+//                System.out.println("  Tipo de Vacina: " + v.getTipoVacina());
+//                System.out.println("  Validade da Vacina: " + v.getValidade());
+//                System.out.println("  CPF do Paciente Associado: " + v.getCpfPacienteAssociado());
+//                System.out.println("  CPF do Enfermeiro Associado: " + v.getCpfEnfermeiroAssociado());
+//                System.out.println("  Dosagem: " + v.getDose());
+//                System.out.println("  Preço: " + v.getPreco());
+//            }
+//
+//            System.out.println("-------------------------------------------------");
+//        }
 //      ---------------------------------------------------------------------------------- 
 
             txtPaciente.addFocusListener(new FocusListener() {

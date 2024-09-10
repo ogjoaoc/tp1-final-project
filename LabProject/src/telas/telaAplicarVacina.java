@@ -539,20 +539,20 @@ public final class telaAplicarVacina extends javax.swing.JFrame {
 
         if(aplicado){
             for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
-                System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
+                //System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
 
                 if(agendamentoAtualizado.getId() == idAgendamento){
                     for (int i = 0; i < agendamentoAtualizado.getListaVacinas().size(); i++) {
                         Vacina vacinaAtual = agendamentoAtualizado.getListaVacinas().get(i);
-                        System.out.println("Verificando vacina: " + vacinaAtual.getTipoVacina() + " - Status: " + vacinaAtual.getStatus()); // Debug da vacina atual
+                        //System.out.println("Verificando vacina: " + vacinaAtual.getTipoVacina() + " - Status: " + vacinaAtual.getStatus()); // Debug da vacina atual
 
                         if (vacinaAtual.getTipoVacina().equals(vacinaAplicada.getTipoVacina())) {
-                            System.out.println("Vacina encontrada: " + vacinaAplicada.getTipoVacina()); // Confirma que a vacina foi encontrada
+                            //System.out.println("Vacina encontrada: " + vacinaAplicada.getTipoVacina()); // Confirma que a vacina foi encontrada
                             vacinaAplicada.setStatus(true);
                             agendamentoAtualizado.getListaVacinas().set(i, vacinaAplicada);
-                            System.out.println("Vacina atualizada: " + vacinaAplicada.getTipoVacina() + " - Novo Status: " + vacinaAplicada.getStatus()); // Confirma que o status foi atualizado
+                            //System.out.println("Vacina atualizada: " + vacinaAplicada.getTipoVacina() + " - Novo Status: " + vacinaAplicada.getStatus()); // Confirma que o status foi atualizado
                             database.atualizarAgendamento(agendamentoAtualizado);
-                            System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
+                            //System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
                             break;
                         }
                     }

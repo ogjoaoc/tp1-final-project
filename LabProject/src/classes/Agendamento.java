@@ -18,7 +18,7 @@ public class Agendamento {
 //    - Data de criação.
 //    - Valor total $.
 
-            private int id; 
+    private int id; 
     private ArrayList<Exame> listaExames;
     private ArrayList<Vacina> listaVacinas;
     private Date dataCriado;

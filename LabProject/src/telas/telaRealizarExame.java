@@ -152,7 +152,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
         txtResultado.setEnabled(true);
     
     }
-    
+
     public String formatarData(String data) {
         String aux = "";
         for(int i = 0; i < data.length(); i++) {
@@ -240,29 +240,31 @@ public final class telaRealizarExame extends javax.swing.JFrame {
         pnlDadosPacienteLayout.setHorizontalGroup(
             pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                            .addComponent(lblConvenio)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtConvenio))
-                        .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                            .addComponent(lblSexo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblTipoSanguineo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtTipoSanguineo))
-                        .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                            .addComponent(lblEmail)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtEmail)))
+                .addContainerGap()
+                .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
-                        .addComponent(lblNome)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblConvenio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtConvenio))
+                    .addGroup(pnlDadosPacienteLayout.createSequentialGroup()
+                        .addComponent(lblSexo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTipoSanguineo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTipoSanguineo))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDadosPacienteLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlDadosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDadosPacienteLayout.createSequentialGroup()
+                                .addComponent(lblEmail)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDadosPacienteLayout.createSequentialGroup()
+                                .addComponent(lblNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(16, 16, 16))
         );
         pnlDadosPacienteLayout.setVerticalGroup(
@@ -322,7 +324,7 @@ public final class telaRealizarExame extends javax.swing.JFrame {
         pnlDadosExameLayout.setHorizontalGroup(
             pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDadosExameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlDadosExameLayout.createSequentialGroup()
                         .addComponent(lblPatologia)
@@ -330,8 +332,8 @@ public final class telaRealizarExame extends javax.swing.JFrame {
                         .addComponent(txtPatologia))
                     .addGroup(pnlDadosExameLayout.createSequentialGroup()
                         .addComponent(lblData)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -348,10 +350,10 @@ public final class telaRealizarExame extends javax.swing.JFrame {
                     .addComponent(lblTipo)
                     .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPatologia)
-                    .addComponent(txtPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(pnlDadosExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPatologia))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -517,20 +519,20 @@ public final class telaRealizarExame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "É necessário preencher o resultado antes de concluir!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else{
             for (Agendamento agendamentoAtualizado : database.getAgendamentos()) {
-                System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
+                //System.out.println("Verificando agendamento: " + agendamentoAtualizado.getId()); // Debug do agendamento atual
 
                 if(agendamentoAtualizado.getId() == idAgendamento){
                     for (int i = 0; i < agendamentoAtualizado.getListaExames().size(); i++) {
                         Exame exameAtual = agendamentoAtualizado.getListaExames().get(i);
-                        System.out.println("Verificando vacina: " + exameAtual.getTipoExame() + " - Status: " + exameAtual.getStatus()); // Debug da vacina atual
+                        //System.out.println("Verificando vacina: " + exameAtual.getTipoExame() + " - Status: " + exameAtual.getStatus()); // Debug da vacina atual
 
                         if (exameAtual.getTipoExame().equals(exameRealizado.getTipoExame())) {
-                            System.out.println("Vacina encontrada: " + exameRealizado.getTipoExame()); // Confirma que a vacina foi encontrada
+                            //System.out.println("Vacina encontrada: " + exameRealizado.getTipoExame()); // Confirma que a vacina foi encontrada
                             exameRealizado.setStatus(true);
                             agendamentoAtualizado.getListaExames().set(i, exameRealizado);
-                            System.out.println("Vacina atualizada: " + exameRealizado.getTipoExame() + " - Novo Status: " + exameRealizado.getStatus()); // Confirma que o status foi atualizado
+                            //System.out.println("Vacina atualizada: " + exameRealizado.getTipoExame() + " - Novo Status: " + exameRealizado.getStatus()); // Confirma que o status foi atualizado
                             database.atualizarAgendamento(agendamentoAtualizado);
-                            System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
+                            //System.out.println("Agendamento atualizado: " + agendamentoAtualizado.getId()); // Confirma que o agendamento foi atualizado no banco de dados
                             break;
                         }
                     }

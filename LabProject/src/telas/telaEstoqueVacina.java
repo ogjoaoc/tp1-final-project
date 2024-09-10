@@ -322,7 +322,7 @@ public class telaEstoqueVacina extends javax.swing.JFrame{
         jScrollPane1.setViewportView(tblVacinas);
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnVoltar.setText("Sair");
+        btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
