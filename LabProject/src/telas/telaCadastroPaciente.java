@@ -6,6 +6,10 @@ package telas;
 
 import classes.Paciente;
 import database.BancoDeDados;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -242,6 +246,26 @@ public class telaCadastroPaciente extends javax.swing.JFrame {
             if (bancoDeDados.encontrarPaciente(cpf) != null){
                 JOptionPane.showMessageDialog(null, "Já existe paciente com esse CPF!", "Aviso", JOptionPane.WARNING_MESSAGE);
                 txtCPF.setText("");
+                return;
+            }
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            
+            try {
+                LocalDate data = LocalDate.parse(dataNascimento, formatter);
+                
+                System.out.println(Period.between(data, LocalDate.now()).getYears() );
+                
+                if (Period.between(data, LocalDate.now()).getYears() > 120){
+                    JOptionPane.showMessageDialog(null, "Data de nascimento inválida!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    txtDataNascimento.setText("");
+                    return;
+                }
+            
+            } catch (DateTimeParseException e) {
+                // Se a conversão falhar, a data é inválida
+                JOptionPane.showMessageDialog(null, "Data de nascimento inválida!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                txtDataNascimento.setText("");
                 return;
             }
 
