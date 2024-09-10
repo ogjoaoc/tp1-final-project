@@ -32,6 +32,7 @@ public class telaEditarPaciente extends javax.swing.JFrame {
         txtNome.setText(p.getNome());
         txtEmail.setText(p.getEmail());
         txtCPF.setText(p.getCpf());
+        txtCPF.setEnabled(false);
         txtDataNascimento.setText(p.getDataNascimento());
         cmbTipoSanguineo.setSelectedItem(p.getTipoSanguineo());
         if ("Masculino".equals(p.getSexo()))
@@ -252,12 +253,6 @@ public class telaEditarPaciente extends javax.swing.JFrame {
             String sexo;
             if (rdbMasculino.isSelected()) sexo = "Masculino";
             else sexo = "Feminino";
-            
-            if (bancoDeDados.encontrarPaciente(cpf) != null){
-                JOptionPane.showMessageDialog(null, "Já existe paciente com esse CPF!", "Aviso", JOptionPane.WARNING_MESSAGE);
-                txtCPF.setText("");
-                return;
-            }
 
             Paciente pacienteNovo = new Paciente(nome, cpf, sexo, dataNascimento, email, tipoSanguineo, convenio);
 
