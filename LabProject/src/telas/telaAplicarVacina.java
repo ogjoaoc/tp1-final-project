@@ -560,8 +560,17 @@ public final class telaAplicarVacina extends javax.swing.JFrame {
             }
             
             JOptionPane.showMessageDialog(null, "Vacina realizada com sucesso!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-            this.telaAnterior.carregarTabela();
-            this.telaAnterior.setVisible(true);
+            
+            
+            telaDemandas telaDemandas;
+            try {
+                telaDemandas = new telaDemandas();
+                telaDemandas.setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(telaEnfermeiro.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(telaEnfermeiro.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         } else{
             JOptionPane.showMessageDialog(null,"Vacina não aplicada!", "Mensagem",JOptionPane.WARNING_MESSAGE);

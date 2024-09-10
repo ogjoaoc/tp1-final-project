@@ -23,6 +23,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public final class telaRealizarExame extends javax.swing.JFrame {
@@ -540,8 +542,15 @@ public final class telaRealizarExame extends javax.swing.JFrame {
             }
             
             JOptionPane.showMessageDialog(null, "Exame realizado com sucesso!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-            this.telaAnterior.carregarTabela();
-            this.telaAnterior.setVisible(true);
+            telaDemandas telaDemandas;
+            try {
+                telaDemandas = new telaDemandas();
+                telaDemandas.setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(telaEnfermeiro.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(telaEnfermeiro.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnConcluirActionPerformed
