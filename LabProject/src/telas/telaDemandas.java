@@ -16,8 +16,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
 import java.util.logging.Level;
@@ -48,8 +52,9 @@ public class telaDemandas extends javax.swing.JFrame {
 //        Carregando os dados dos agendamentos.
         database.lerArquivoAgendamento();
         
-//        Filtra os agendamentos com o enfermeiro logado.
+//        Filtra os agendamentos e ordena por data com o enfermeiro logado.
         filtraAgendamentos();
+        ordenarDemandasPorData();
         
 //        Indica a quantidade de demandas pendentes e concluídas.
         txtNumPendentes.setText(String.valueOf(listaDemandasPendentes.size()));
@@ -166,7 +171,9 @@ public class telaDemandas extends javax.swing.JFrame {
         tblDemandas.setModel(modelo); // Supondo que tabelaDemandas é o nome do seu JTable
 
     }
-    
+
+//  Método auxiliar para formatar a data.
+     
     public String formatarData(String data) {
         String aux = "";
         for(int i = 0; i < data.length(); i++) {
@@ -177,6 +184,51 @@ public class telaDemandas extends javax.swing.JFrame {
         return aux;
     }
     
+    public static LocalDate toLocalDate(String dateString) {
+        String format = "dd/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        return LocalDate.parse(dateString, formatter);
+    }
+    
+    private void ordenarDemandasPorData() {
+        // Ordena demandas (exames e vacinas) pela data
+        Collections.sort(listaDemandas, new Comparator<Map.Entry<Integer, Object>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Object> entry1, Map.Entry<Integer, Object> entry2) {
+                Object demanda1 = entry1.getValue();
+                Object demanda2 = entry2.getValue();
+
+                if (demanda1 instanceof Exame && demanda2 instanceof Exame) {
+                    Exame exame1 = (Exame) demanda1;
+                    Exame exame2 = (Exame) demanda2;
+                    return toLocalDate(exame1.getDataRealizacao()).compareTo(toLocalDate(exame2.getDataRealizacao()));
+                } else if (demanda1 instanceof Vacina && demanda2 instanceof Vacina) {
+                    Vacina vacina1 = (Vacina) demanda1;
+                    Vacina vacina2 = (Vacina) demanda2;
+                    return toLocalDate(vacina1.getValidade()).compareTo(toLocalDate(vacina2.getValidade()));
+                } else if (demanda1 instanceof Exame && demanda2 instanceof Vacina) {
+                    Exame exame = (Exame) demanda1;
+                    Vacina vacina = (Vacina) demanda2;
+                    return toLocalDate(exame.getDataRealizacao()).compareTo(toLocalDate(vacina.getValidade()));
+                } else if (demanda1 instanceof Vacina && demanda2 instanceof Exame) {
+                    Vacina vacina = (Vacina) demanda1;
+                    Exame exame = (Exame) demanda2;
+                    return toLocalDate(vacina.getValidade()).compareTo(toLocalDate(exame.getDataRealizacao()));
+                }
+                return 0;
+            }
+        });
+
+        // Debug: Verificar a lista ordenada
+        for (Map.Entry<Integer, Object> entry : listaDemandas) {
+            Object demanda = entry.getValue();
+            if (demanda instanceof Exame) {
+                System.out.println("Exame: " + ((Exame) demanda).getTipoExame() + " - Data: " + ((Exame) demanda).getDataRealizacao());
+            } else if (demanda instanceof Vacina) {
+                System.out.println("Vacina: " + ((Vacina) demanda).getTipoVacina() + " - Data: " + ((Vacina) demanda).getValidade());
+            }
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
