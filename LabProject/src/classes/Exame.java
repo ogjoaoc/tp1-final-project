@@ -159,5 +159,8 @@ public abstract class Exame {
     public String getCpfEnfermeiroAssociado() {
         return this.getEnfermeiroAssociado().getCpf();
     }
+
+    @Override
+    public abstract String toString();
     
 }

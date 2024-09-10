@@ -34,5 +34,12 @@ public class Hemograma extends Exame {
     public void setAlvo(String alvo){
         this.alvo = alvo;
     }
+
+    @Override
+    public String toString() {
+        return "Hemograma{" + "alvo=" + alvo + '}';
+    }
+    
+    
     
 }

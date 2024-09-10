@@ -33,5 +33,11 @@ public class Sorologico extends Exame{
     public void setPatologia(String p){
         this.patologia = p;
     }
+
+    @Override
+    public String toString() {
+        return "Sorologico{" + "patologia=" + patologia + '}';
+    }
+    
     
 }
