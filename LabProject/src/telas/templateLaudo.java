@@ -44,7 +44,7 @@ public class templateLaudo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlTitle.setBackground(new java.awt.Color(248, 197, 190));
+        pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(153, 0, 0));
@@ -104,7 +104,7 @@ public class templateLaudo extends javax.swing.JFrame {
         txtResultado.setBorder(null);
         scrollPaneResultado.setViewportView(txtResultado);
 
-        pnlBordaInferior.setBackground(new java.awt.Color(248, 197, 190));
+        pnlBordaInferior.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout pnlBordaInferiorLayout = new javax.swing.GroupLayout(pnlBordaInferior);
         pnlBordaInferior.setLayout(pnlBordaInferiorLayout);
