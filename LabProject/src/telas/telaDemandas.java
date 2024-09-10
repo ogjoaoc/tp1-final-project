@@ -251,6 +251,7 @@ public class telaDemandas extends javax.swing.JFrame {
         txtNumPendentes.setBackground(new java.awt.Color(242, 242, 242));
         txtNumPendentes.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtNumPendentes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNumPendentes.setBorder(null);
         txtNumPendentes.setMaximumSize(new java.awt.Dimension(100, 36));
         txtNumPendentes.setMinimumSize(new java.awt.Dimension(100, 36));
         txtNumPendentes.setPreferredSize(new java.awt.Dimension(100, 36));
@@ -285,6 +286,7 @@ public class telaDemandas extends javax.swing.JFrame {
         txtNumConcluidos.setBackground(new java.awt.Color(242, 242, 242));
         txtNumConcluidos.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         txtNumConcluidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNumConcluidos.setBorder(null);
         txtNumConcluidos.setMaximumSize(new java.awt.Dimension(100, 64));
         txtNumConcluidos.setMinimumSize(new java.awt.Dimension(100, 64));
         txtNumConcluidos.setPreferredSize(new java.awt.Dimension(100, 36));

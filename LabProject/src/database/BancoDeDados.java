@@ -410,20 +410,20 @@ public class BancoDeDados {
 
     public void atualizarAgendamento(Agendamento agendamentoAtualizado) {
         int idAgendamento = agendamentoAtualizado.getId();
-        System.out.println("Iniciando atualização do agendamento: " + idAgendamento);
+        //System.out.println("Iniciando atualização do agendamento: " + idAgendamento);
 
         for(int i = 0; i < agendamentos.size(); i++){
-            System.out.println("Comparando com agendamento: " + agendamentos.get(i).getId());
+            //System.out.println("Comparando com agendamento: " + agendamentos.get(i).getId());
             if(agendamentos.get(i).getId() == idAgendamento){
-                System.out.println("Agendamento encontrado. Atualizando...");
+                //System.out.println("Agendamento encontrado. Atualizando...");
                 agendamentos.set(i, agendamentoAtualizado);
                 break;
             }
         }
 
-        System.out.println("Reescrevendo arquivo de agendamentos...");
+        //System.out.println("Reescrevendo arquivo de agendamentos...");
         reescreverArquivoAgendamento();
-        System.out.println("Arquivo de agendamentos atualizado.");
+        //System.out.println("Arquivo de agendamentos atualizado.");
     }
     
     public void atualizarFuncionario(Funcionario funcionarioAtualizado) {
@@ -567,7 +567,7 @@ public class BancoDeDados {
                                     exame.getPreco() + "," +
                                     exame.getStatus();
                     
-                    System.out.println(result);
+                    //System.out.println(result);
 
                     bw.write(result);
                     bw.newLine();
@@ -585,7 +585,7 @@ public class BancoDeDados {
                                     vacina.getPreco() + "," +
                                     vacina.getStatus();
                     
-                    System.out.println(result);
+                    //System.out.println(result);
 
                     bw.write(result);
                     bw.newLine();
