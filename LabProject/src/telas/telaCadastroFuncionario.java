@@ -8,6 +8,10 @@ import classes.Enfermeiro;
 import database.BancoDeDados;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Random;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -324,6 +328,26 @@ public final class telaCadastroFuncionario extends javax.swing.JFrame {
             if (bancoDeDados.encontrarFuncionario(cpf)){
                 JOptionPane.showMessageDialog(null, "Já existe funcionário com esse CPF!", "Aviso", JOptionPane.WARNING_MESSAGE);
                 txtCpf.setText("");
+                return;
+            }
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            
+            try {
+                LocalDate data = LocalDate.parse(dataNascimento, formatter);
+                
+                System.out.println(Period.between(data, LocalDate.now()).getYears() );
+                
+                if (Period.between(data, LocalDate.now()).getYears() > 120){
+                    JOptionPane.showMessageDialog(null, "Data de nascimento inválida!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    txtData.setText("");
+                    return;
+                }
+            
+            } catch (DateTimeParseException e) {
+                // Se a conversão falhar, a data é inválida
+                JOptionPane.showMessageDialog(null, "Data de nascimento inválida!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                txtData.setText("");
                 return;
             }
             
